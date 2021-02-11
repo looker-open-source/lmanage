@@ -1,0 +1,6 @@
+,content_type,dashboard_title,element_id,dashboard_id,view,field
+0,dashboard,Miro Test,1,1,inventory_items,product_name
+0,dashboard,Miro Test,1,1,inventory_items,count
+0,dashboard,Miro Test,1,1,products,cost
+0,dashboard,Miro Test,1,1,distribution_centers,id
+0,dashboard,Miro Test,1,1,products,id
