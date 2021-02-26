@@ -1,48 +1,60 @@
-import looker_sdk
-import configparser as ConfigParser
-import datetime
+from coloredlogger import ColoredLogger
+import json
 from pathlib import Path
+import datetime
+import configparser as ConfigParser
+from looker_sdk import models
+import looker_sdk
+from os import name
+import pandas as pd
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+logger = ColoredLogger()
 
 
-def find_delinquent_users(delinquent_days: int, sdk):
-    """Find deliquent users passing in an arbitrary days to disable
-    number
+def find_delinquent_users(sdk, delinquent_days: int, export_csv=False):
+    logger.verbose('Querying System Activity Model')
+    query_config = models.WriteQuery(
+        model="system__activity",
+        view="user",
+        fields=[
+            "user.id",
+            "user.name",
+            "user.created_date",
+            "user_facts.last_ui_login_date",
+            "history.most_recent_query_date",
+            "user_facts.last_ui_login_credential_type"],
+        filters={
+            "user.is_disabled": "No",
+            "user_facts.is_looker_employee": "No",
+        },
+        dynamic_fields="[{\"table_calculation\":\"no_query_login\",\"label\":\"No-Query Login?\",\"expression\":\"${history.most_recent_query_date} < ${user_facts.last_ui_login_date}\",\"value_format\":null,\"value_format_name\":null,\"_kind_hint\":\"measure\",\"_type_hint\":\"yesno\"},{\"table_calculation\":\"days_since_last_login\",\"label\":\"Days Since Last Login\",\"expression\":\"diff_days(${user_facts.last_ui_login_date}, trunc_days(now()))\",\"value_format\":null,\"value_format_name\":null,\"_kind_hint\":\"dimension\",\"_type_hint\":\"number\"}]",
+        limit=' 5000'
+    )
+    query_response = sdk.run_inline_query(
+        result_format='json',
+        body=query_config
+    )
+    logger.verbose('Turning Response into JSON')
+    logger.wtf(query_response)
+    query_response = json.loads(query_response)
+    responsedf = pd.DataFrame(query_response)
+    responsedf['delinquent'] = responsedf['days_since_last_login'] > delinquent_days
+    responsedf.columns = responsedf.columns.str.replace('.', '_')
+    logger.verbose('Tabulating data into DataFrame')
 
-    Args:
-        days_to_disable (int): number in days that you consider users
-        to be deliquent
-
-    Returns:
-        [list]: list of user ids that can be disabled or deleted that haven't
-        logged in for x days
-    """
-    prefix = 'credentials'
-    credentials = [f'{prefix}_api3',
-                   f'{prefix}_embed',
-                   f'{prefix}email',
-                   f'{prefix}_google',
-                   f'{prefix}_ldap',
-                   f'{prefix}_looker_openid',
-                   f'{prefix}_oidc',
-                   f'{prefix}_saml',
-                   f'{prefix}_totp']
-    response = sdk.all_users()
-    delinquent_users = []
-    for user in range(0, len(response)):
-        try:
-            login_date = response[user].credentials_saml.logged_in_at
-            login_date = datetime.datetime.strptime(
-                login_date[0:10], "%Y-%m-%d")
-            days_since_login = abs(datetime.datetime.now() - login_date).days
-            if days_since_login < delinquent_days:
-                delinquent_users.append(response[user].id)
-
-        except AttributeError:
-            print(f'user {response[user].id} did not login through saml')
-    return delinquent_users
+    if export_csv:
+        responsedf.to_csv()
+    disabled_user_list = (responsedf['delinquent'] == True)
+    disabled_user_list = responsedf[disabled_user_list]
+    iterate = disabled_user_list['user_id'].to_list()
+    for user_id in iterate:
+        logger.success(
+            f'user {user_id} will be disabled if you add the flag --removeuser True')
+    return disabled_user_list['user_id'].to_list()
 
 
-def disable_deliquent_users(user_list: list):
+def disable_deliquent_users(user_list: list, sdk):
     """Expects a list of user id's and iterates
     through that list
 
@@ -55,43 +67,29 @@ def disable_deliquent_users(user_list: list):
     user_disable_list = []
     for user_id in user_list:
         user_info_body = sdk.user(user_id)
-        if user_info_body.verified_looker_employee is False:
-            email = user_info_body.credentials_saml.email.split('@')[1]
-            if email != 'looker.com':
-                info = (f'{user_info_body.credentials_saml.email} would be disabled'
-                        'if you uncommented the next line')
-                print(info)
-                # Comment out the next line to disable users!
-                # user_info_body.is_disabled = True
-                user_disable_list.append(user_info_body.id)
+        user_info_body.is_disabled = True
+        logger.success(f'user {user_id} has been disabled')
+        user_disable_list.append(user_info_body.id)
 
-    return user_disable_list
+    logger.info(user_disable_list)
 
 
 def main(**kwargs):
     cwd = Path.cwd()
     ini_file = kwargs.get("ini_file")
-    days_delinquent = kwargs.get("days")
-    print(days_delinquent)
+    days_delinquent = int(kwargs.get("days"))
+    rm_user = kwargs.get("removeuser")
     if ini_file:
         parsed_ini_file = cwd.joinpath(ini_file)
     else:
         parsed_ini_file = None
-
     sdk = looker_sdk.init31(config_file=parsed_ini_file)
-    return find_delinquent_users(delinquent_days=30, sdk=sdk)
-
-
-main(ini_file="/usr/local/google/home/hugoselbie/code_sample/py/projects/ini/looker.ini", days=30)
-
-# if __name__ == "__main__":
-    ini_file = 'looker.ini'
-#     config = ConfigParser.RawConfigParser(allow_no_value=True)
-#     config.read(ini_file)
-
-#     github_token = config.get('Github', 'github_token')
-    sdk = looker_sdk.init31(config_file=ini_file, se)
-
-#     # example usage
-#     deliquent_users = find_delinquent_users(30)
-#     print(disable_deliquent_users(deliquent_users))
+    if rm_user:
+        response = find_delinquent_users(
+            delinquent_days=days_delinquent, sdk=sdk)
+        logger.info(response)
+        disable_deliquent_users(user_list=response, sdk=sdk)
+        return response
+    else:
+        logger.info(find_delinquent_users(
+            delinquent_days=days_delinquent, sdk=sdk))

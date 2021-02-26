@@ -1,6 +1,16 @@
-,content_type,dashboard_title,element_id,dashboard_id,view,field
-0,dashboard,Miro Test,1,1,inventory_items,product_name
-0,dashboard,Miro Test,1,1,inventory_items,count
-0,dashboard,Miro Test,1,1,products,cost
-0,dashboard,Miro Test,1,1,distribution_centers,id
-0,dashboard,Miro Test,1,1,products,id
+,content_type,title,dash_elem_id,content_id,tables
+0,dashboard,Miro Test,1,1,order_item
+0,dashboard,Miro Test,1,1,users
+0,dashboard,Miro Test,1,1,inventory_items
+0,dashboard,Miro Test,1,1,products
+0,dashboard,Miro Test,1,1,distribution_centers
+1,dashboard,Miro Test,2,1,order_item
+1,dashboard,Miro Test,2,1,users
+1,dashboard,Miro Test,2,1,inventory_items
+1,dashboard,Miro Test,2,1,products
+1,dashboard,Miro Test,2,1,distribution_centers
+2,look,test,,1,order_item
+2,look,test,,1,users
+2,look,test,,1,inventory_items
+2,look,test,,1,products
+2,look,test,,1,distribution_centers
