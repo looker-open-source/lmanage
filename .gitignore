@@ -1,0 +1,10 @@
+look_backup/
+looker_backup_content/
+
+#Ignore all setup files
+.venv/
+.vscode/
+
+#Ignore test files
+test.py
+test.csv

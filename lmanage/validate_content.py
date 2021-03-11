@@ -2,16 +2,16 @@ from looker_sdk import models
 import looker_sdk
 import configparser as ConfigParser
 import hashlib
-import logging
+from coloredlogger import ColoredLogger
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+logger = ColoredLogger()
 
 
-logging.basicConfig(level=logging.DEBUG)
-
-
-
-def get_space_data():
+def get_space_data(sdk):
     """Collect all space information"""
     space_data = sdk.all_spaces(fields="id, parent_id, name")
+    logger.success('Gathering data about all spaces')
     return space_data
 
 
@@ -75,10 +75,11 @@ def parse_broken_content(base_url, broken_content, space_data):
             "errors": str(errors),
         }
         output.append(data)
+    logger.wtf('Exporting Content Validator Run Data...')
     return output
 
 
-def sendContentOnce(**kwargs):    
+def sendContentOnce(**kwargs):
     """helper function to generate the send the scheduled_plan_run_once
         api end points
     Returns:
@@ -90,7 +91,8 @@ def sendContentOnce(**kwargs):
     plan_id = kwargs.get('plan_id')
     user_email = kwargs.get('user_email')
     message = kwargs.get('message')
-    logging.debug(f'Assigned variables content_type:{content_type}')
+    sdk = kwargs.get('sdk')
+    logger.wtf(f'Assigned variables content_type:{content_type}')
 
     plan_destination = [
         {
@@ -130,7 +132,7 @@ def sendContentOnce(**kwargs):
     return f'notification for {content_id} has been sent to {user_email}'
 
 
-def sendContentAlert(broken_content: list):
+def sendContentAlert(broken_content: list, sdk, broken_look_content: int, broken_dash_content: str):
     """takes in the value of the `parse broken content` function
     iterates over this content and calls the sendContentOnce function
     to send an email to the content owner of broken content
@@ -141,83 +143,81 @@ def sendContentAlert(broken_content: list):
     Returns:
         [string]: [denoting completion]
     """
-    logging.debug('Initializing sendContentAlert')
+    logger.wtf('Initializing sendContentAlert')
     for content in range(0, len(broken_content)):
-        logging.debug(broken_content[content]['content_type'])
-        logging.debug(broken_content[content]['content_id'])
-        if broken_content[content]['content_type'] == 'dashboard':
-            content_id = str(broken_content[content]['content_id'])
-            dashboard_metadata = sdk.dashboard(content_id)
-            user_id = dashboard_metadata.user_id
-            user_email = sdk.user(user_id=user_id).email
-            content_url = broken_content[content]['url']
-            logging.debug(f'variables set user_id:{user_id}, user_email:{user_email}, content_url {content_url}')
+        try:
+            if broken_content[content]['content_type'] == 'dashboard':
+                content_id = str(broken_content[content]['content_id'])
+                dashboard_metadata = sdk.dashboard(content_id)
+                user_id = dashboard_metadata.user_id
+                user_email = sdk.user(user_id=user_id).email
+                content_url = broken_content[content]['url']
+                logger.wtf(
+                    f'variables set user_id:{user_id}, user_email:{user_email}, content_url {content_url}')
 
-            dashboard_message = f'''
-                please fix or delete your broken dashboard element on dashboard
-                {dashboard_metadata.title} at {content_url} or in folder id {dashboard_metadata.folder_id}.
-            '''
+                dashboard_message = f'''
+                    please fix or delete your broken dashboard element on dashboard
+                    {dashboard_metadata.title} at {content_url} or in folder id {dashboard_metadata.folder_id}.
+                '''
 
-            sendContentOnce(
-                user_id=user_id,
-                user_email=user_email,
-                plan_id=content,
-                content_id=BROKEN_DASHBOARD_CONTENT,
-                content_type='dashboard',
-                message=dashboard_message
-            )
+                sendContentOnce(
+                    sdk=sdk,
+                    user_id=user_id,
+                    user_email=user_email,
+                    plan_id=content,
+                    content_id=broken_dash_content,
+                    content_type='dashboard',
+                    message=dashboard_message
+                )
 
-        elif broken_content[content]['content_type'] == 'look':
-            look_metadata = sdk.look(broken_content[content]['content_id'])
-            user_id = look_metadata.user_id
-            content_url = look_metadata.short_url
-            user_email = sdk.user(user_id=user_id).email
-            
-            look_message = f'''
-                please fix or delete your broken dashboard element on dashboard
-                {look_metadata.title} at {content_url} or in folder id {look_metadata.folder_id}.
-            '''
-            sendContentOnce(
-                user_id=user_id,
-                user_email=user_email,
-                plan_id=content,
-                content_id=BROKEN_LOOK_CONTENT,
-                content_type='look',
-                message=look_message
-            )
+            elif broken_content[content]['content_type'] == 'look':
+                look_metadata = sdk.look(broken_content[content]['content_id'])
+                user_id = look_metadata.user_id
+                content_url = look_metadata.short_url
+                user_email = sdk.user(user_id=user_id).email
 
-    return 'complete'
+                look_message = f'''
+                    please fix or delete your broken dashboard element on dashboard
+                    {look_metadata.title} at {content_url} or in folder id {look_metadata.folder_id}.
+                '''
+                sendContentOnce(
+                    sdk=sdk,
+                    user_id=user_id,
+                    user_email=user_email,
+                    plan_id=content,
+                    content_id=broken_look_content,
+                    content_type='look',
+                    message=look_message
+                )
+
+            logger.success(
+                'Message send complete, verify your message has been sent in admin/schedules')
+        except:
+            return 'please verify your helper content id'
 
 
-if __name__ == "__main__":
-
-    """Global Variables for the content to be sent (need simple always running
-    content to ensure that we can adjust the custom message as we nee to)
-    """
-    BROKEN_LOOK_CONTENT = 704
-    BROKEN_DASHBOARD_CONTENT = str(551)
-
-    """Boiler plate setup
-    """
-    ini_file = '/usr/local/google/home/hugoselbie/code_sample/py/projects/ini/looker.ini'
+def main(**kwargs):
+    ini_file = kwargs.get("ini_file")
+    broken_dash_id = str(kwargs.get("broken_dash_id"))
+    broken_look_id = int(kwargs.get("broken_look_id"))
+    sdk = looker_sdk.init31(config_file=ini_file)
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read(ini_file)
 
-    github_token = config.get('Github', 'github_token')
-    sdk = looker_sdk.init31(config_file=ini_file)
-
-
-
-    """Generating the broken content data
-    """
+    """Generating the broken content data"""
     content_with_errors = sdk.content_validation().content_with_errors
-    space = get_space_data()
+    space = get_space_data(sdk=sdk)
     broken_content = parse_broken_content(
         broken_content=content_with_errors,
         space_data=space,
         base_url=config.get('Looker', 'base_url')
     )
 
-    """Sending an alert to all content owners to do something with their content
-    """
-    sendContentAlert(broken_content=broken_content)
+    """Sending an alert to all content owners to do something with their content"""
+    sendContentAlert(broken_content=broken_content, sdk=sdk,
+                     broken_look_content=broken_look_id, broken_dash_content=broken_dash_id)
+
+
+if __name__ == "__main__":
+    main(ini_file='/usr/local/google/home/hugoselbie/code_sample/py/projects/ini/looker.ini',
+         broken_dash_id=25, broken_look_id=22)

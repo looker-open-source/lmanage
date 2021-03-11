@@ -1,6 +1,5 @@
 import looker_sdk
 import configparser as ConfigParser
-from icecream import ic
 import pandas as pd
 from coloredlogger import ColoredLogger
 import warnings
@@ -30,6 +29,7 @@ def get_content_id_title(sdk):
         response['look_title'] = look_content[looks].title
         response['look_id'] = look_content[looks].id
         content_metadata.append(response)
+    logger.wtf(content_metadata)
     return content_metadata
 
 
@@ -45,16 +45,25 @@ def find_content_views(looker_content: list, sdk):
         if content.get('content_type') == 'dashboard':
             db_metadata = sdk.dashboard_dashboard_elements(
                 dashboard_id=content.get('dashboard_id'))
+            logger.wtf(db_metadata)
 
-            for element in range(0, len(db_metadata)):
+            try:
+                for element in range(0, len(db_metadata)):
+                    response = {}
+                    response['content_type'] = content.get('content_type')
+                    response['title'] = content.get('dashboard_title')
+                    response['dash_elem_id'] = db_metadata[element].id
+                    response['content_id'] = db_metadata[element].dashboard_id
+                    response['tables'] = parse_sql(
+                        sdk, qid=db_metadata[element].query_id)
+
+                    element_info.append(response)
+            except TypeError:
                 response = {}
                 response['content_type'] = content.get('content_type')
                 response['title'] = content.get('dashboard_title')
-                response['dash_elem_id'] = db_metadata[element].id
-                response['content_id'] = db_metadata[element].dashboard_id
-                tables = parse_sql(
-                    sdk, qid=db_metadata[element].query_id)
-
+                response['dash_elem_id'] = db_metadata.id
+                response['content_id'] = db_metadata.dashboard_id
                 response['tables'] = parse_sql(
                     sdk, qid=db_metadata[element].query_id)
 
@@ -70,44 +79,56 @@ def find_content_views(looker_content: list, sdk):
 
             element_info.append(response)
     logger.success('Adding elements to Pandas Df')
+    logger.wtf(element_info)
     return element_info
 
 
 def parse_sql(sdk, qid: int):
+    logger.success("Parsing SQL from Queries")
     try:
         sql = sdk.run_query(query_id=qid, result_format='sql')
-        start = sql.find('FROM')
-        finish = sql.find('GROUP')
-        from_clause = sql[start:finish]
-        split_query = from_clause.split('\n')
-        as_query = [line.strip()
-                    for line in split_query if line.strip()[:2] == 'AS']
-        response = []
-        for line in as_query:
-            end = line.find('ON')
-            response.append(line[2:end].strip())
+        split_new_lines = sql.split('\n')
+        # logger.wtf(split_new_lines)
+        string_check = ["FROM", "LEFT", "INNER", "CROSS", "UNION", "AS"]
+        froms = []
+        for string in string_check:
+            for sql in split_new_lines:
+                sql = sql.strip()
+                if sql.startswith(string):
+                    froms.append(sql)
+        # logger.wtf(froms)
+        select_tables = [table.partition("AS")[2] for table in froms]
+        response = list(set([x.partition("ON")[0].strip()
+                             for x in select_tables if len(x) > 0]))
         return(response)
     except looker_sdk.error.SDKError:
         return('No Content')
+
+
+def create_df(data, file_path):
+    '''
+    Pandas code to create a dataframe, explode the list of fields, split that column into fields and
+    views
+    '''
+    df = pd.DataFrame(data=data)
+    df = df.explode(column='tables')
+    df.to_csv(file_path)
+    logger.success(df.head(30))
+    logger.wtf(df.head(30))
+    return df
 
 
 def main(**kwargs):
     ini_file = kwargs.get("ini_file")
     file_path = kwargs.get("file_path")
 
-    sdk = looker_sdk.init31(
-        config_file=ini_file)
+    sdk = looker_sdk.init31(config_file=ini_file)
 
     content_metadata = get_content_id_title(sdk=sdk)
-    find_content_views(looker_content=content_metadata, sdk=sdk)
-    '''
-        Pandas code to create a dataframe, explode the list of fields, split that column into fields and
-        views
-        '''
-    df = pd.DataFrame(data=find_content_views(
-        looker_content=content_metadata, sdk=sdk))
-    df = df.explode(column='tables')
-    ic(df.head(30))
-    df.to_csv(file_path)
- # sdk = looker_sdk.init31(
- #     config_file='/usr/local/google/home/hugoselbie/code_sample/py/projects/ini/looker.ini')
+    data = find_content_views(looker_content=content_metadata, sdk=sdk)
+    create_df(data, file_path=file_path)
+
+
+if __name__ == '__main__':
+    main(ini_file='/usr/local/google/home/hugoselbie/code_sample/py/projects/ini/looker.ini',
+         file_path='./test.py')
