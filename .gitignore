@@ -8,3 +8,5 @@ looker_backup_content/
 #Ignore test files
 test.py
 test.csv
+delinquentcontent.csv
+utils/test.py

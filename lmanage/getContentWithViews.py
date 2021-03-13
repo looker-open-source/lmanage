@@ -1,8 +1,8 @@
-import looker_sdk
-import configparser as ConfigParser
-import pandas as pd
-from coloredlogger import ColoredLogger
 import warnings
+from coloredlogger import ColoredLogger
+import configparser as ConfigParser
+import looker_sdk
+from utils import create_df
 warnings.simplefilter(action='ignore', category=FutureWarning)
 logger = ColoredLogger()
 
@@ -105,12 +105,12 @@ def parse_sql(sdk, qid: int):
         return('No Content')
 
 
-def create_df(data, file_path):
+def df_export(data, file_path):
     '''
     Pandas code to create a dataframe, explode the list of fields, split that column into fields and
     views
     '''
-    df = pd.DataFrame(data=data)
+    df = create_df(data)
     df = df.explode(column='tables')
     df.to_csv(file_path)
     logger.success(df.head(30))

@@ -1,4 +1,5 @@
 from coloredlogger import ColoredLogger
+import pandas as pd
 import json
 from pathlib import Path
 import datetime
@@ -8,6 +9,7 @@ import looker_sdk
 from os import name
 import pandas as pd
 import warnings
+from .utils import create_df
 warnings.simplefilter(action='ignore', category=FutureWarning)
 logger = ColoredLogger()
 
@@ -37,8 +39,10 @@ def find_delinquent_users(sdk, delinquent_days: int, export_csv=False):
     )
     logger.verbose('Turning Response into JSON')
     logger.wtf(query_response)
-    query_response = json.loads(query_response)
-    responsedf = pd.DataFrame(query_response)
+    # query_response = json.loads(query_response)
+    responsedf = create_df.create_df(query_response)
+
+    logger.wtf(responsedf.columns)
     responsedf['delinquent'] = responsedf['days_since_last_login'] > delinquent_days
     responsedf.columns = responsedf.columns.str.replace('.', '_')
     logger.verbose('Tabulating data into DataFrame')

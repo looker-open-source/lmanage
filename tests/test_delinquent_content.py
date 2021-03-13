@@ -1,4 +1,5 @@
-from lmanage import delinquent_content
+from lmanage import delinquent_user
+import subprocess
 import pandas as pd
 import lmanage
 
@@ -66,49 +67,10 @@ def test_get_last_accessed_content_dates(mocker):
     sdk = MockSDK()
     mocker.patch.object(sdk, "run_inline_query")
     sdk.run_inline_query.return_value = '''
-    [{"content_usage.last_accessed_date": "2021-02-16",
-      "content_usage.content_id": "5",
-      "content_usage.content_title": "5",
-      "content_usage.content_type": "look"
-                                      },
-                                         {
-        "content_usage.last_accessed_date": "2021-02-13",
-        "content_usage.content_id": "2",
-        "content_usage.content_title": "2",
-        "content_usage.content_type": "dashboard"
-    },
-        {
-        "content_usage.last_accessed_date": "2021-02-11",
-        "content_usage.content_id": "1",
-        "content_usage.content_title": "test",
-        "content_usage.content_type": "look"
-    }
-    ]
+   [{"user.id":3,"user.name":"aa aa","user.created_date":"2021-02-17","user_facts.last_ui_login_date":null,"user_facts.last_ui_login_credential_type":null,"days_since_last_login":null,"history.most_recent_query_date":"2021-03-05","no_query_login":"No"},
+{"user.id":4,"user.name":"hugo test","user.created_date":"2021-02-17","user_facts.last_ui_login_date":null,"user_facts.last_ui_login_credential_type":null,"days_since_last_login":null,"history.most_recent_query_date":"2021-03-03","no_query_login":"No"},
+{"user.id":1,"user.name":"Hugo Selbie","user.created_date":"2021-02-05","user_facts.last_ui_login_date":"2021-03-08","user_facts.last_ui_login_credential_type":"email","days_since_last_login":4,"history.most_recent_query_date":"2021-03"}]
+
     '''
-    test = delinquent_content.get_last_accessed_content_dates(
-        content_type="test", delinquent_days=5, sdk=sdk)
-
+    test = delinquent_user.find_delinquent_users(sdk=sdk, delinquent_days=2)
     assert isinstance(test, list)
-
-
-def test_delinquent_content(mocker):
-    mocker.patch("delinquent_content.get_last_accessed_content_dates")
-    delinquent_content.get_last_accessed_content_dates.return_value = [{"content_usage.last_accessed_date": "2021-02-16",
-                                                                        "content_usage.content_id": "5",
-                                                                        "content_usage.content_title": "5",
-                                                                        "content_usage.content_type": "look"
-                                                                        },
-                                                                       {
-        "content_usage.last_accessed_date": "2021-02-13",
-        "content_usage.content_id": "2",
-        "content_usage.content_title": "2",
-        "content_usage.content_type": "dashboard"
-    },
-        {
-        "content_usage.last_accessed_date": "2021-02-11",
-        "content_usage.content_id": "1",
-        "content_usage.content_title": "test",
-        "content_usage.content_type": "look"
-    }
-    ]
-    mocker.patch("subprocess.run")

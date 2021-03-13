@@ -30,7 +30,7 @@ def mapview(**kwargs):
 @lmanage.command()
 @click.option("-d", "--days", help="How many days has the user to be removed been inactive for")
 @click.option("-i", "--ini-file", help="Path to the ini file to use for sdk authentication")
-@click.option("-b", "--backup-url", help="gzr instance that you should input for back up (the machine name in your .netrc file)")
+@click.option("-b", "--backup-location", help="file path where you would like backed up content to live")
 def dcontent(**kwargs):
     delinquent_content.main(**kwargs)
 
