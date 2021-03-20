@@ -14,7 +14,6 @@ class MockSDK():
         pass
 
     def dashboard_dashboard_elements():
-        pass
 
     def look():
         pass
@@ -231,43 +230,3 @@ def test_find_content_views(mocker):
         sdk=sdk, looker_content=getContentWithViews.get_content_id_title(sdk=sdk))
     assert isinstance(content_view_list, list)
     assert len(content_view_list) == 3
-
-
-def test_create_df(mocker):
-    mocker.patch("lmanage.getContentWithViews.find_content_views")
-    sdk = MockSDK
-    lmanage.getContentWithViews.find_content_views.return_value = [
-        {'content_type': 'dashboard', 'title': 'user Test',
-            'dash_elem_id': '4', 'content_id': '1', 'tables': ['order_items']},
-        {'content_type': 'dashboard', 'title': 'user Test',
-            'dash_elem_id': '46', 'content_id': '1', 'tables': ['order_items']},
-        {'content_type': 'dashboard', 'title': 'user Test',
-            'dash_elem_id': '33', 'content_id': '20', 'tables': 'No Content'},
-        {'content_type': 'dashboard', 'title': 'user Test',
-            'dash_elem_id': '42', 'content_id': '20', 'tables': ['order_items']},
-        {'content_type': 'dashboard', 'title': 'user Test',
-            'dash_elem_id': '32', 'content_id': '21', 'tables': ['order_items']},
-        {'content_type': 'dashboard', 'title': 'test', 'dash_elem_id': '44',
-            'content_id': '23', 'tables': ['order_items']},
-        {'content_type': 'dashboard', 'title': 'test', 'dash_elem_id': '45',
-            'content_id': '23', 'tables': 'No Content'},
-        {'content_type': 'dashboard', 'title': 'broken_content',
-            'dash_elem_id': '43', 'content_id': '25', 'tables': ['order_items']},
-        {'content_type': 'look', 'title': 'test',
-            'content_id': 1, 'tables': ['order_items']},
-        {'content_type': 'look', 'title': 'lookwsched',
-            'content_id': 2, 'tables': ['order_items']},
-        {'content_type': 'look', 'title': 'lookwsched',
-            'content_id': 19, 'tables': ['order_items']},
-        {'content_type': 'look', 'title': 'lookwsched',
-            'content_id': 20, 'tables': 'No Content'},
-        {'content_type': 'look', 'title': '1',
-            'content_id': 21, 'tables': ['user']},
-        {'content_type': 'look', 'title': 'broken_content',
-            'content_id': 22, 'tables': ['order_items']},
-        {'content_type': 'look', 'title': 'ttt', 'content_id': 23, 'tables': ['order_items']}]
-    data = lmanage.getContentWithViews.find_content_views('[test]', sdk)
-    response = lmanage.getContentWithViews.create_df(
-        data=data, file_path='./test.csv')
-    assert len(response) == 15
-    assert isinstance(response, pd.DataFrame)

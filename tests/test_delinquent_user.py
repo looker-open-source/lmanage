@@ -1,10 +1,14 @@
-from lmanage import delinquent_content
+from lmanage import delinquent_user
+import json
 import subprocess
 import pandas as pd
 import lmanage
 
 
 class MockSDK():
+    def user():
+        pass
+
     def run_query():
         pass
 
@@ -23,131 +27,96 @@ class MockSDK():
     def run_inline_query():
         pass
 
-# create mock dashboard elements
 
-
-class MockQuery():
-    def __init__(self, fields, filters, limit):
-        self.fields = fields
-        self.filters = filters
-        self.limit = limit
-
-
-class MockSQL():
-    def __init__(self, sql):
-        self.sql = sql
-
-
-class MockLook():
-    def __init__(self, title, look_id, content_type, query_id):
-        self.title = title
-        self.id = look_id
-        self.content_type = content_type
-        self.query_id = query_id
-
-
-class MockDashboard():
-    def __init__(self, dash_id, title, content_type):
-        self.id = dash_id
-        self.title = title
-        self.content_type = content_type
-
-
-class MockDashboardElement():
-    def __init__(self, query_id, id, dashboard_id, title, tables, look):
+class MockUser():
+    def __init__(self, id, is_disabled):
         self.id = id
-        self.query_id = query_id
-        self.dashboard_id = dashboard_id
-        self.title = title
-        self.tables = tables
-        self.look = look
+        self.is_disabled = is_disabled
 
 
-def test_get_last_accessed_content_dates(mocker):
+def test_get_user_list(mocker):
     sdk = MockSDK()
     mocker.patch.object(sdk, "run_inline_query")
     sdk.run_inline_query.return_value = '''
-    [{"content_usage.last_accessed_date": "2021-02-16",
-      "content_usage.content_id": "5",
-      "content_usage.content_title": "5",
-      "content_usage.content_type": "look"
-                                      },
-                                         {
-        "content_usage.last_accessed_date": "2021-02-13",
-        "content_usage.content_id": "2",
-        "content_usage.content_title": "2",
-        "content_usage.content_type": "dashboard"
-    },
-        {
-        "content_usage.last_accessed_date": "2021-02-11",
-        "content_usage.content_id": "1",
-        "content_usage.content_title": "test",
-        "content_usage.content_type": "look"
-    }
-    ]
+   [
+        {"user.id":3,
+        "user.name":"aa aa",
+        "user.created_date":"2021-02-17",
+        "user_facts.last_ui_login_date":null,
+        "user_facts.last_ui_login_credential_type":null,
+        "days_since_last_login":null,
+        "history.most_recent_query_date":"2021-03-05",
+        "no_query_login":"No"},
+
+        {"user.id":4,
+        "user.name":"hugo test",
+        "user.created_date":"2021-02-17",
+        "user_facts.last_ui_login_date":null,
+        "user_facts.last_ui_login_credential_type":null,
+        "days_since_last_login":null,
+        "history.most_recent_query_date":"2021-03-03",
+        "no_query_login":"No"},
+
+        {"user.id":1,
+        "user.name":"Hugo Selbie",
+        "user.created_date":"2021-02-05",
+        "user_facts.last_ui_login_date":"2021-03-08",
+        "user_facts.last_ui_login_credential_type":"email",
+        "days_since_last_login":4,
+        "history.most_recent_query_date":"2021-03"}]
+
     '''
-    test = delinquent_content.get_last_accessed_content_dates(
-        content_type="test", delinquent_days=5, sdk=sdk)
-
+    test = delinquent_user.get_user_list(sdk=sdk)
     assert isinstance(test, list)
+    assert len(test) == 3
 
 
-def test_backupcontent(mocker):
-    mocker.patch(
-        "lmanage.delinquent_content.get_gzr_creds")
-    lmanage.delinquent_content.get_gzr_creds.return_value = (
-        "foobar.com", "1234", "abc", "xyz", "True")
-    data = {
-        "content_usage.last_accessed_date": "2021-02-16",
-        "content_usage.content_id": "5",
-        "content_usage.content_title": "5",
-        "content_usage.content_type": "look"
-    }
+def test_find_delinquent_users(mocker):
+    sdk = MockSDK()
+    mocker.patch("lmanage.delinquent_user.get_user_list")
+    lmanage.delinquent_user.get_user_list.return_value = '''
+   [
+        {"user.id":3,
+        "user.name":"aa aa",
+        "user.created_date":"2021-02-17",
+        "user_facts.last_ui_login_date":null,
+        "user_facts.last_ui_login_credential_type":null,
+        "days_since_last_login":null,
+        "history.most_recent_query_date":"2021-03-05",
+        "no_query_login":"No"},
 
-    mocker.patch("subprocess.run")
-    lmanage.delinquent_content.backUpContent(data, 'ini', 'env', './test/')
-    subprocess.run.assert_called_with([
-        "gzr",
-        "look",
-        "cat",
-        "5",
-        "--dir",
-        "./test/",
-        "--host",
-        "foobar.com",
-        "--port",
-        "1234",
-        "--client-id",
-        "abc",
-        "--client-secret",
-        "xyz"
-    ]
+        {"user.id":4,
+        "user.name":"hugo test",
+        "user.created_date":"2021-02-17",
+        "user_facts.last_ui_login_date":null,
+        "user_facts.last_ui_login_credential_type":null,
+        "days_since_last_login":null,
+        "history.most_recent_query_date":"2021-03-03",
+        "no_query_login":"No"},
+
+        {"user.id":1,
+        "user.name":"Hugo Selbie",
+        "user.created_date":"2021-02-05",
+        "user_facts.last_ui_login_date":"2021-03-08",
+        "user_facts.last_ui_login_credential_type":"email",
+        "days_since_last_login":4,
+        "history.most_recent_query_date":"2021-03"}]
+
+    '''
+    test = delinquent_user.find_delinquent_users(sdk=sdk, delinquent_days=2)
+    assert isinstance(test, list)
+    assert len(test) == 1
+
+
+def test_disable_delinquent_users(mocker):
+    test_list = [1, 2]
+
+    sdk = MockSDK()
+    mocker.patch.object(sdk, "user")
+    sdk.user.return_value = MockUser(
+        id="1",
+        is_disabled="False"
     )
-
-
-def test_delinquent_content(mocker):
-    mocker.patch("lmanage.delinquent_content.get_last_accessed_content_dates")
-    look_data = [
-        {
-            "content_usage.last_accessed_date": "2021-02-16",
-            "content_usage.content_id": "5",
-            "content_usage.content_title": "5",
-            "content_usage.content_type": "look"
-        },
-        {
-            "content_usage.last_accessed_date": "2021-02-13",
-            "content_usage.content_id": "2",
-            "content_usage.content_title": "2",
-            "content_usage.content_type": "dashboard"
-        },
-        {
-            "content_usage.last_accessed_date": "2021-02-11",
-            "content_usage.content_id": "1",
-            "content_usage.content_title": "test",
-            "content_usage.content_type": "look"
-        }
-    ]
-    mocker.patch("lmanage.delinquent_content.backUpContent")
-    lmanage.delinquent_content.backUpContent.return_value = 'foo'
-    test = lmanage.delinquent_content.delinquent_content(look_data)
-    assert isinstance(test, pd.DataFrame)
+    test = delinquent_user.disable_deliquent_users(
+        user_list=test_list, sdk=sdk)
+    assert isinstance(test, list)

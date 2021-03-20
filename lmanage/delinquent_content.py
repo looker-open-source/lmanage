@@ -23,9 +23,9 @@ def backupDir(content_type: str):
 
     if not os.path.exists(path):
         os.mkdir(path)
-        print(f"Successfully created the directory {path}")
+        logger.success(f"Successfully created the directory {path}")
     elif not os.path.isdir(path):
-        print(f"Creation of the directory {path} has failed")
+        logger.success(f"Creation of the directory {path} has failed")
 
 
 def get_last_accessed_content_dates(content_type: str, delinquent_days: int, sdk):

@@ -9,13 +9,14 @@ import looker_sdk
 from os import name
 import pandas as pd
 import warnings
-from .utils import create_df
+import lmanage.utils.create_df as create_df
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
 logger = ColoredLogger()
 
 
-def find_delinquent_users(sdk, delinquent_days: int, export_csv=False):
-    logger.verbose('Querying System Activity Model')
+def get_user_list(sdk):
+    logger.success('Querying System Activity Model')
     query_config = models.WriteQuery(
         model="system__activity",
         view="user",
@@ -37,16 +38,22 @@ def find_delinquent_users(sdk, delinquent_days: int, export_csv=False):
         result_format='json',
         body=query_config
     )
-    logger.verbose('Turning Response into JSON')
-    logger.wtf(query_response)
-    # query_response = json.loads(query_response)
-    responsedf = create_df.create_df(query_response)
+    logger.success('Turning Response into JSON')
+    query_response = json.loads(query_response)
+    return query_response
 
-    logger.wtf(responsedf.columns)
+
+def find_delinquent_users(sdk, delinquent_days: int, export_csv=False):
+    user_list = get_user_list(sdk=sdk)
+    responsedf = create_df.create_df(user_list)
+
+    responsedf = responsedf.replace('NULL', 0)
+    logger.wtf(responsedf['days_since_last_login'] == 'NULL')
     responsedf['delinquent'] = responsedf['days_since_last_login'] > delinquent_days
-    responsedf.columns = responsedf.columns.str.replace('.', '_')
-    logger.verbose('Tabulating data into DataFrame')
+    responsedf.columns = responsedf.columns.str.replace('.', '_', regex=True)
+    logger.success('Tabulating data into DataFrame')
 
+    logger.success(responsedf)
     if export_csv:
         responsedf.to_csv()
     disabled_user_list = (responsedf['delinquent'] == True)
@@ -72,10 +79,11 @@ def disable_deliquent_users(user_list: list, sdk):
     for user_id in user_list:
         user_info_body = sdk.user(user_id)
         user_info_body.is_disabled = True
+        logger.wtf(user_info_body)
         logger.success(f'user {user_id} has been disabled')
         user_disable_list.append(user_info_body.id)
 
-    logger.info(user_disable_list)
+    return user_disable_list
 
 
 def main(**kwargs):
@@ -97,3 +105,11 @@ def main(**kwargs):
     else:
         logger.info(find_delinquent_users(
             delinquent_days=days_delinquent, sdk=sdk))
+
+
+if __name__ == "__main__":
+    main(
+        ini_file='../ini/looker.ini',
+        days=2,
+        removeuser=True
+    )
