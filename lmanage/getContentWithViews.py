@@ -1,7 +1,9 @@
 import warnings
+import concurrent.futures
 from coloredlogger import ColoredLogger
 import configparser as ConfigParser
 import looker_sdk
+from lmanage.utils import create_df as create_df
 warnings.simplefilter(action='ignore', category=FutureWarning)
 logger = ColoredLogger()
 
@@ -28,8 +30,61 @@ def get_content_id_title(sdk):
         response['look_title'] = look_content[looks].title
         response['look_id'] = look_content[looks].id
         content_metadata.append(response)
-    logger.wtf(content_metadata)
+    # logger.wtf(content_metadata)
     return content_metadata
+
+
+def get_dashboards(sdk):
+    """Accepts an instance reference and pulls all relevant dashboard info via the Looker API.
+    This info includes dashboard element info such as title and field data, which we can then
+    use to determine which dashboards and dashboard elements reference a table of interest.
+    Returns a list that can be used to compare to views of interest.
+    """
+
+    # initialize an empty dict container that will hold the final returned objects
+    dash_element_fields = []
+
+    dashboards = sdk.all_dashboards(fields="title, id")
+
+    for dash in dashboards:
+        dash_entry = {"id": dash.id, "title": dash.title, "elements": []}
+        elements = sdk.dashboard_dashboard_elements(
+            dash.id, fields="id, title, query, look")
+
+        for elem in elements:
+            # element field info will either be in a query or a look. we try both
+            try:
+                fields = elem.query.fields
+            except AttributeError:
+                fields = elem.look.query.fields
+
+            tables = parse_sql(sdk, qid=elem.query_id)
+
+            title = elem.title or elem.look.title
+
+            elem_entry = {"id": elem.id, "title": title,
+                          "fields": fields, "tables": tables}
+            dash_entry["elements"].append(elem_entry)
+
+        dash_element_fields.append(dash_entry)
+
+    return dash_element_fields
+
+
+def dashboard_info(looker_content, sdk):
+    db_metadata = sdk.dashboard_dashboard_elements(
+        dashboard_id=looker_content.get('dashboard_id'))
+
+    for element in range(0, len(db_metadata)):
+        response = {}
+        response['content_type'] = content.get('content_type')
+        response['title'] = content.get('dashboard_title')
+        response['dash_elem_id'] = db_metadata[element].id
+        response['content_id'] = db_metadata[element].dashboard_id
+        response['tables'] = parse_sql(
+            sdk, qid=db_metadata[element].query_id)
+
+    return response
 
 
 def find_content_views(looker_content: list, sdk):
@@ -44,7 +99,7 @@ def find_content_views(looker_content: list, sdk):
         if content.get('content_type') == 'dashboard':
             db_metadata = sdk.dashboard_dashboard_elements(
                 dashboard_id=content.get('dashboard_id'))
-            logger.wtf(db_metadata)
+            # logger.wtf(db_metadata)
 
             try:
                 for element in range(0, len(db_metadata)):
@@ -78,7 +133,7 @@ def find_content_views(looker_content: list, sdk):
 
             element_info.append(response)
     logger.success('Adding elements to Pandas Df')
-    logger.wtf(element_info)
+    # logger.wtf(element_info)
     return element_info
 
 
@@ -109,7 +164,7 @@ def df_export(data, file_path):
     Pandas code to create a dataframe, explode the list of fields, split that column into fields and
     views
     '''
-    df = utils.create_df(data)
+    df = create_df.create_df(data)
     df = df.explode(column='tables')
     df.to_csv(file_path)
     logger.success(df.head(30))
@@ -123,9 +178,16 @@ def main(**kwargs):
 
     sdk = looker_sdk.init31(config_file=ini_file)
 
-    content_metadata = get_content_id_title(sdk=sdk)
-    data = find_content_views(looker_content=content_metadata, sdk=sdk)
-    create_df(data, file_path=file_path)
+    # content_metadata = get_content_id_title(sdk=sdk)
+    # print(dashboard_info(content_metadata[0], sdk))
+    # logger.wtf(content_metadata)
+    # map(content_metadatjk)
+    # for content in content_metadata:
+    #     for k,v in content.items:
+    #         if k=='dashboard':
+
+    # data = find_content_views(looker_content=content_metadata, sdk=sdk)
+    # df_export(data, file_path=file_path)
 
 
 if __name__ == '__main__':

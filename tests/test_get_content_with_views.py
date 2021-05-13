@@ -1,0 +1,253 @@
+import pandas as pd
+import unittest
+import lookml
+from lmanage import get_content_with_views as ipe
+
+
+class MockSDK():
+    def run_query():
+        pass
+
+
+class MockQuery():
+    def __init__(self, fields, query_id):
+        self.fields = fields
+        self.query_id = query_id
+
+
+def test_parse_sql_pivots(mocker):
+    sdk = MockSDK()
+    mocker.patch.object(sdk, "run_query")
+    sdk.run_query.return_value = """
+        WITH order_user_sequence_facts AS (select oi.user_id,oi.id as order_id,row_number() over(partition by oi.user_id order by oi.created_at asc ) as order_sequence,
+                oi.created_at,
+                MIN(oi.created_at) OVER(PARTITION BY oi.user_id) as first_ordered_date,
+                LAG(oi.created_at) OVER (PARTITION BY oi.user_id ORDER BY oi.created_at asc) as previous_order_date,
+                LEAD(oi.created_at) OVER(partition by oi.user_id ORDER BY oi.created_at) as next_order_date,
+                DATEDIFF(DAY,CAST(oi.created_at as date),CAST(LEAD(oi.created_at) over(partition by oi.user_id ORDER BY oi.created_at) AS date)) as repurchase_gap
+              from order_items oi
+         )
+        SELECT * FROM (
+        SELECT *, DENSE_RANK() OVER (ORDER BY z___min_rank) as z___pivot_row_rank, RANK() OVER (PARTITION BY z__pivot_col_rank ORDER BY z___min_rank) as z__pivot_col_ordering, CASE WHEN z___min_rank = z___rank THEN 1 ELSE 0 END AS z__is_h
+        ighest_ranked_cell FROM (
+        SELECT *, MIN(z___rank) OVER (PARTITION BY "order_user_sequence_facts.created_at_month") as z___min_rank FROM (
+        SELECT *, RANK() OVER (ORDER BY "order_user_sequence_facts.created_at_month" DESC, z__pivot_col_rank) AS z___rank FROM (
+        SELECT *, DENSE_RANK() OVER (ORDER BY "users.gender" NULLS LAST) AS z__pivot_col_rank FROM (
+        SELECT
+            users.gender  AS "users.gender",
+                (TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_user_sequence_facts.created_at )), 'YYYY-MM')) AS "order_user_sequence_facts.created_at_month",
+            COUNT(DISTINCT order_user_sequence_facts.user_id ) AS "order_user_sequence_facts.count"
+        FROM public.order_items  AS order_items
+        INNER JOIN public.users  AS users ON order_items.user_id = users.id
+        LEFT JOIN public.inventory_items  AS inventory_items ON inventory_items.id = order_items.inventory_item_id
+        LEFT JOIN order_user_sequence_facts ON users.id = order_user_sequence_facts.user_id
+        WHERE (order_user_sequence_facts.order_sequence = 1
+            )
+        GROUP BY
+            (DATE_TRUNC('month', CONVERT_TIMEZONE(
+                'UTC', 'America/New_York', order_user_sequence_facts.created_at ))),
+            1) ww
+        ) bb WHERE z__pivot_col_rank <= 16384
+        ) aa
+        ) xx
+        ) zz
+         WHERE (z__pivot_col_rank <= 50 OR z__is_highest_ranked_cell = 1) AND (z___pivot_row_rank <= 500 OR z__pivot_col_ordering = 1) ORDER BY z___pivot_row_rank
+            """
+
+    test = ipe.parse_sql(sdk=sdk, qid=(777))
+    expected_result = ["public.order_items", "public.users",
+                       "public.inventory_items", "order_user_sequence_facts", "order_items"]
+    assert isinstance(test, list)
+    assert len(test) == 5
+    assert sorted(test) == sorted(expected_result)
+
+
+def test_parse_sql_redshift_simple(mocker):
+    sdk = MockSDK()
+    mocker.patch.object(sdk, "run_query")
+    sdk.run_query.return_value = """
+        SELECT
+            COUNT(DISTINCT order_items.order_id ) AS "order_items.count"
+        FROM
+            "public"."order_items" AS "order_items"
+        LIMIT 500
+        """
+
+    test = ipe.parse_sql(sdk=sdk, qid=(777))
+    expected_result = ["public.order_items"]
+    assert isinstance(test, list)
+    assert len(test) == 1
+    assert sorted(test) == sorted(expected_result)
+
+
+def test_parse_sql_redshift(mocker):
+    sdk = MockSDK()
+    mocker.patch.object(sdk, "run_query")
+    sdk.run_query.return_value = """
+    WITH cs_user_order_ndt AS (SELECT
+            order_items.user_id  AS user_id,
+            COUNT(DISTINCT CASE WHEN (products.category = 'Jeans') THEN order_items.order_id  ELSE NULL END) AS count_orders_with_jeans,
+            COALESCE(SUM(CASE WHEN ((TRIM(TO_CHAR(order_items.created_at , 'Day'))) = 'Thursday') THEN order_items.sale_price  ELSE NULL END), 0) AS total_revenue_on_thursdays
+    FROM public.order_items  AS order_items
+    LEFT JOIN public.inventory_items  AS inventory_items ON order_items.inventory_item_id = inventory_items.id
+    LEFT JOIN public.products  AS products ON inventory_items.product_id = products.id
+
+    GROUP BY 1)
+    SELECT
+            cs_user_order_ndt.total_revenue_on_thursdays AS "cs_user_order_ndt.total_revenue_on_thursdays",
+            distribution_centers.latitude  AS "distribution_centers.latitude",
+            inventory_items.id  AS "inventory_items.id",
+            order_items.order_id  AS "order_items.order_id",
+            products.cost  AS "products.cost",
+            users.latitude  AS "users.latitude"
+    FROM public.order_items  AS order_items
+    LEFT JOIN public.users  AS users ON order_items.user_id = users.id
+    LEFT JOIN public.inventory_items  AS inventory_items ON order_items.inventory_item_id = inventory_items.id
+    LEFT JOIN public.products  AS products ON inventory_items.product_id = products.id
+    LEFT JOIN public.distribution_centers  AS distribution_centers ON products.distribution_center_id = distribution_centers.id
+    INNER JOIN cs_user_order_ndt ON order_items.user_id = cs_user_order_ndt.user_id
+
+    GROUP BY 1,2,3,4,5,6
+    ORDER BY 1
+    LIMIT 500
+    """
+
+    test = ipe.parse_sql(sdk=sdk, qid=(777))
+    expected_result = ["public.order_items", "public.inventory_items",
+                       "public.products", "public.users", "public.distribution_centers", "cs_user_order_ndt"]
+
+    assert isinstance(test, list)
+    assert len(test) == 6
+    assert sorted(test) == sorted(expected_result)
+
+
+def test_parse_sql_bq(mocker):
+    sdk = MockSDK()
+    mocker.patch.object(sdk, "run_query")
+    sdk.run_query.return_value = """
+        WITH order_items_parameter_test AS (SELECT
+                users.first_name  AS first_name
+        FROM `looker-private-demo.ecomm.order_items`
+             AS order_items
+        LEFT JOIN `looker-private-demo.ecomm.users`
+             AS users ON order_items.user_id = users.id
+
+        WHERE
+                (users.first_name = 'ABBEY')
+        GROUP BY 1)
+        SELECT
+                distribution_centers.latitude  AS distribution_centers_latitude,
+                inventory_items.cost  AS inventory_items_cost,
+                "Fix your broken Content Please"  AS order_items_broken_content,
+                order_items_parameter_test.first_name AS order_items_parameter_test_first_name,
+                products.category  AS products_category,
+                users.country  AS users_country
+        FROM `looker-private-demo.ecomm.order_items`
+             AS order_items
+        LEFT JOIN `looker-private-demo.ecomm.users`
+             AS users ON order_items.user_id = users.id
+        LEFT JOIN `looker-private-demo.ecomm.inventory_items`
+             AS inventory_items ON order_items.inventory_item_id = inventory_items.id
+        LEFT JOIN `looker-private-demo.ecomm.products`
+             AS products ON inventory_items.product_id = products.id
+        LEFT JOIN `looker-private-demo.ecomm.distribution_centers`
+             AS distribution_centers ON (CAST(products.distribution_center_id AS int64)) = distribution_centers.id
+        LEFT JOIN order_items_parameter_test ON order_items_parameter_test.first_name = users.first_name
+
+        GROUP BY 1,2,3,4,5,6
+        ORDER BY 1
+        LIMIT 500
+        """
+
+    test = ipe.parse_sql(sdk=sdk, qid=(777))
+    expected_result = ["`looker-private-demo.ecomm.order_items`", "`looker-private-demo.ecomm.inventory_items`", "`looker-private-demo.ecomm.products`",
+                       "`looker-private-demo.ecomm.users`", "`looker-private-demo.ecomm.distribution_centers`", "order_items_parameter_test"]
+    assert isinstance(test, list)
+    assert len(test) == 6
+    assert sorted(test) == sorted(expected_result)
+
+
+def test_parse_sql_bq_1327(mocker):
+    sdk = MockSDK()
+    mocker.patch.object(sdk, "run_query")
+    sdk.run_query.return_value = """
+         SELECT
+            REGEXP_EXTRACT(_TABLE_SUFFIX,r'\d\d\d\d')  AS gsod_year,
+            case when gsod.prcp = 99.99 then null else gsod.prcp end AS gsod_rainfall,
+            AVG(( case when gsod.prcp = 99.99 then null else gsod.prcp end ) ) AS gsod_average_rainfall
+        FROM `bigquery-public-data.noaa_gsod.gsod*`  AS gsod
+        GROUP BY
+            1,
+            2
+        ORDER BY
+            3 DESC
+        LIMIT 500       """
+    test = ipe.parse_sql(sdk=sdk, qid=(777))
+    expected_result = ["`bigquery-public-data.noaa_gsod.gsod*`"]
+    assert isinstance(test, list)
+    assert len(test) == 1
+    assert sorted(test) == sorted(expected_result)
+
+
+def test_parse_sql_snowflake(mocker):
+    sdk = MockSDK()
+    mocker.patch.object(sdk, "run_query")
+    sdk.run_query.return_value = """
+        SELECT
+                distribution_centers."LATITUDE"  AS "distribution_centers.latitude",
+                inventory_items."COST"  AS "inventory_items.cost",
+                order_items."INVENTORY_ITEM_ID"  AS "order_items.inventory_item_id",
+                products."BRAND"  AS "products.brand",
+                users."COUNTRY"  AS "users.country"
+        FROM "PUBLIC"."ORDER_ITEMS"
+             AS order_items
+        LEFT JOIN "PUBLIC"."USERS"
+             AS users ON (order_items."USER_ID") = (users."ID")
+        LEFT JOIN "PUBLIC"."INVENTORY_ITEMS"
+             AS inventory_items ON (order_items."INVENTORY_ITEM_ID") = (inventory_items."ID")
+        LEFT JOIN "PUBLIC"."PRODUCTS"
+             AS products ON (inventory_items."PRODUCT_ID") = (products."ID")
+        LEFT JOIN "PUBLIC"."DISTRIBUTION_CENTERS"
+             AS distribution_centers ON (products."DISTRIBUTION_CENTER_ID") = (distribution_centers."ID")
+
+        GROUP BY 1,2,3,4,5
+        ORDER BY 1
+        LIMIT 500
+        """
+
+    test = ipe.parse_sql(sdk=sdk, qid=(777))
+    expected_result = ["public.order_items", "public.inventory_items",
+                       "public.products", "public.users", "public.distribution_centers"]
+    assert isinstance(test, list)
+    assert len(test) == 5
+    assert sorted(test) == sorted(expected_result)
+
+
+def test_find_model_files(mocker):
+    project = lookml.Project(
+        path="/usr/local/google/home/hugoselbie/code_sample/py/projects/lmanage/tests/test_lookml_files/the_look"
+    )
+    response = ipe.find_model_files(project)
+
+    print(response)
+    assert False
+
+    # def test_match_views(mocker):
+    #     project = lookml.Project(
+    #         path='./tests/test_lookml_files/pylookml_test_project/'
+    #     )
+    #     data = {
+    #         'dashboard_id': 1,
+    #         'element_id': 2,
+    #         'sql_joins': ['`looker-private-demo.ecomm.order_items`'],
+    #         'fields_used': ["order_items.created_date", "order_items.count"],
+    #         'sql_table_name': ['looker-private-demo.ecomm.order_items', 'looker-private-demo.ecomm.inventory_items', 'looker-private-demo.ecomm.user_data', 'looker-private-demo.ecomm.orders',
+    #                            'looker-private-demo.ecomm.users', 'looker-private-demo.ecomm.events', 'looker-private-demo.ecomm.flights', 'looker-private-demo.ecomm.products'],
+    #         'potential_join': ['foo'],
+    #         'used_joins': ['looker-private-demo.ecomm.order_items',
+    #                        'looker-private-demo.ecomm.inventory_items']
+    #     }
+    #     response = ipe.match_views(myresults=data, proj=project)
+    #     assert isinstance(response, list)
+if __name__ == '__main__':
+    unittest.main()

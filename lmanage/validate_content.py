@@ -79,7 +79,7 @@ def parse_broken_content(base_url, broken_content, space_data):
     return output
 
 
-def sendContentOnce(**kwargs):
+def send_content_once(**kwargs):
     """helper function to generate the send the scheduled_plan_run_once
         api end points
     Returns:

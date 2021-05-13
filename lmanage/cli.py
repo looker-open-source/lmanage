@@ -1,6 +1,6 @@
 import click
 from lmanage import delinquent_user
-from lmanage import getContentWithViews
+from lmanage import get_content_with_views
 from lmanage import delinquent_content
 from lmanage import validate_content
 
@@ -21,10 +21,11 @@ def removeuser(**kwargs):
 
 
 @lmanage.command()
-@click.option("-f", "--file-path", help="input your file path to save a csv of results")
+@click.option("-fp", "--path", help="input your file path to save a csv of results")
 @click.option("-i", "--ini-file", help="Path to the ini file to use for sdk authentication")
+@click.option("-p", "--project", help="Path folder containing your lookml files, often taken using a git pull from your connected lookml project repository")
 def mapview(**kwargs):
-    getContentWithViews.main(**kwargs)
+    get_content_with_views.main(**kwargs)
 
 
 @lmanage.command()

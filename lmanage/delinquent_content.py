@@ -48,7 +48,7 @@ def get_last_accessed_content_dates(content_type: str, delinquent_days: int, sdk
         result_format='json',
         body=query_config
     )
-    logger.wtf(query_response)
+    # logger.wtf(query_response)
     query_response = json.loads(query_response)
 
     return query_response
@@ -74,7 +74,7 @@ def get_gzr_creds(ini, env='Looker'):
 
 def backUpContent(content_details, ini, backuploc, env='Looker'):
     host, port, client_id, client_secret, verify_ssl = get_gzr_creds(ini, env)
-    logger.wtf(content_details)
+    # logger.wtf(content_details)
     gzr_command = [
         "gzr",
         f"{content_details['content_usage.content_type']}",
@@ -100,7 +100,7 @@ def delinquent_content(content_export, ini, backuploc):
     content rendering for easy restoration after delete
     """
     for content in content_export:
-        logger.wtf(content)
+        # logger.wtf(content)
         backUpContent(content, ini, backuploc='./test/')
 
     # response = pd.DataFrame(content_export)
@@ -183,10 +183,10 @@ def main(**kwargs):
         backup_location) > 0 else backupDir('looker_backup_content')
     delinquent_looks = get_last_accessed_content_dates(
         content_type='look', delinquent_days=delinquent_day, sdk=sdk)
-    logger.wtf(delinquent_looks)
+    # logger.wtf(delinquent_looks)
     delinquent_dashboards = get_last_accessed_content_dates(
         content_type='dashboard', delinquent_days=delinquent_day, sdk=sdk)
-    logger.wtf(delinquent_dashboards)
+    # logger.wtf(delinquent_dashboards)
 
     delinquent_content(content_export=delinquent_looks,
                        ini=ini_file, backuploc=backupLocation)

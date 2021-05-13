@@ -16,7 +16,7 @@ logger = ColoredLogger()
 
 
 def get_user_list(sdk):
-    logger.success('Querying System Activity Model')
+    logger.verbose('... Querying System Activity Model')
     query_config = models.WriteQuery(
         model="system__activity",
         view="user",
@@ -38,7 +38,7 @@ def get_user_list(sdk):
         result_format='json',
         body=query_config
     )
-    logger.success('Turning Response into JSON')
+    logger.verbose('... Turning Response into JSON')
     query_response = json.loads(query_response)
     return query_response
 
@@ -48,10 +48,9 @@ def find_delinquent_users(sdk, delinquent_days: int, export_csv=False):
     responsedf = create_df.create_df(user_list)
 
     responsedf = responsedf.replace('NULL', 0)
-    logger.wtf(responsedf['days_since_last_login'] == 'NULL')
     responsedf['delinquent'] = responsedf['days_since_last_login'] > delinquent_days
     responsedf.columns = responsedf.columns.str.replace('.', '_', regex=True)
-    logger.success('Tabulating data into DataFrame')
+    logger.verbose('... Tabulating data into DataFrame')
 
     logger.success(responsedf)
     if export_csv:
@@ -60,7 +59,7 @@ def find_delinquent_users(sdk, delinquent_days: int, export_csv=False):
     disabled_user_list = responsedf[disabled_user_list]
     iterate = disabled_user_list['user_id'].to_list()
     for user_id in iterate:
-        logger.success(
+        logger.verbose(
             f'user {user_id} will be disabled if you add the flag --removeuser True')
     return disabled_user_list['user_id'].to_list()
 
@@ -77,11 +76,11 @@ def disable_deliquent_users(user_list: list, sdk):
     """
     user_disable_list = []
     for user_id in user_list:
-        user_info_body = sdk.user(user_id)
-        user_info_body.is_disabled = True
-        logger.wtf(user_info_body)
+        disabler = models.WriteUser(is_disabled='true')
+        sdk.update_user(user_id=user_id, body=disabler,
+                        transport_options={"timeout": 60 * 5})
         logger.success(f'user {user_id} has been disabled')
-        user_disable_list.append(user_info_body.id)
+        user_disable_list.append(user_id)
 
     return user_disable_list
 
@@ -99,12 +98,11 @@ def main(**kwargs):
     if rm_user:
         response = find_delinquent_users(
             delinquent_days=days_delinquent, sdk=sdk)
-        logger.info(response)
         disable_deliquent_users(user_list=response, sdk=sdk)
         return response
     else:
-        logger.info(find_delinquent_users(
-            delinquent_days=days_delinquent, sdk=sdk))
+        logger.info(len(find_delinquent_users(
+            delinquent_days=days_delinquent, sdk=sdk)))
 
 
 if __name__ == "__main__":

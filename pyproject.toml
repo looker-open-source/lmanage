@@ -14,8 +14,10 @@ tabulate = "^0.8.8"
 coloredlogs = "^15.0"
 verboselogs = "^1.7"
 coloredlogger = "^1.3.12"
-looker-deployer = "^0.3.0"
 pytest-mock = "^3.5.1"
+sqlparse = "^0.4.1"
+snoop = "^0.3.0"
+lookml = "^3.0.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
