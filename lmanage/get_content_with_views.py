@@ -26,8 +26,7 @@ def find_model_files(proj):
         myFile = proj.file(path)
         print(myFile.type)
         if myFile.type == 'model':
-            pass
-            # return file
+            return file
 
 
 def get_view_path(proj):
@@ -70,7 +69,8 @@ def get_sql_table_name(proj):
         myFile = proj.file(path)
         if myFile.type == 'partial_model':
             for view in myFile.views:
-                response.append(view.sql_table_name.value)
+                if view.sql_table_name.value:
+                    response.append(view.sql_table_name.value)
 
     return response
 
@@ -125,8 +125,6 @@ def get_dashboards(sdk):
 
     query_response = json.loads(query_response)
 
-    get_sql_from_elements(sdk, query_response)
-
     return query_response
 
 
@@ -137,32 +135,36 @@ def test_period_appearence(input_response):
 
 def match_joins(myresults):
     result = []
-    sql_join = myresults['sql_joins']
-    sql_table_name = myresults['sql_table_name']
-    for sql in sql_join:
-        if not bool(test_period_appearence(sql)):
-            result.append(sql)
-        for name in sql_table_name:
-            if sql == name:
+    for element in range(0, len(myresults)):
+        sql_join = myresults[element]['sql_joins']
+        sql_table_name = myresults[element]['sql_table_name']
+        for sql in sql_join:
+            if not bool(test_period_appearence(sql)):
                 result.append(sql)
-    return result
+            for name in sql_table_name:
+                if sql == name:
+                    result.append(sql)
+        myresults[element]['used_joins'] = result
+    return myresults
 
 
 def match_views(myresults, proj):
     result = []
-    used_joins = myresults['used_joins']
-    for join in used_joins:
-        if not bool(test_period_appearence(join)):
-            result.append(join)
-    for file in proj.files():
-        path = file.path
-        myFile = proj.file(path)
-        if myFile.type != 'model':
-            for view in myFile.views:
-                if view.sql_table_name.value in used_joins:
-                    result.append(view.name)
+    for element in range(0, len(myresults)):
+        used_joins = myresults[element]['used_joins']
+        for join in used_joins:
+            if not bool(test_period_appearence(join)):
+                result.append(join)
+        for file in proj.files():
+            path = file.path
+            myFile = proj.file(path)
+            if myFile.type != 'model':
+                for view in myFile.views:
+                    if view.sql_table_name.value in used_joins:
+                        result.append(view.name)
 
-    return result
+    myresults[element]['used_view_names'] = result
+    return myresults
 
 
 def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
@@ -181,13 +183,6 @@ def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
             if content['query.view'] == explore:
                 result['potential_join'] = tables
                 tables_in_explore.append(result)
-
-    for meta in tables_in_explore:
-        meta['used_joins'] = match_joins(meta)
-
-    for joins in tables_in_explore:
-        joins['used_view_names'] = match_views(joins, proj)
-
     return tables_in_explore
 
 
@@ -247,7 +242,7 @@ def find_unused_views(set_views, set_explores):
     return sorted(unused_views)
 
 
-@snoop
+# @snoop
 def main(**kwargs):
     cwd = Path.cwd()
     ini_file = kwargs.get("ini_file")
@@ -269,7 +264,8 @@ def main(**kwargs):
         path=project_repo
     )
 
-    content_results = get_dashboards(sdk=sdk)
+    content_results = get_dashboards(sdk)
+    db_response = get_sql_from_elements(sdk, content_results)
     # print(content_results)
     explore_results = fetch_view_files(proj=project)
     # print(explore_results)
@@ -277,7 +273,12 @@ def main(**kwargs):
     # print(sql_table_names)
 
     combine = match_view_to_dash(
-        content_results, explore_results, sql_table_names, proj=project)
+        db_response, explore_results, sql_table_names, proj=project)
+    logger.info('matching joins')
+    matching_joins = match_joins(combine)
+
+    logger.info('matching views')
+    matching_views = match_views(matching_joins, project)
     df = pd.DataFrame(combine)
     df.to_csv(f'{file_path}')
 

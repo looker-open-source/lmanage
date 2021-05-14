@@ -1,10 +1,15 @@
 import pandas as pd
+import lmanage
+from collections import defaultdict
 import unittest
 import lookml
 from lmanage import get_content_with_views as ipe
 
 
 class MockSDK():
+    def run_inline_query():
+        pass
+
     def run_query():
         pass
 
@@ -13,6 +18,55 @@ class MockQuery():
     def __init__(self, fields, query_id):
         self.fields = fields
         self.query_id = query_id
+
+
+'''Inserting setup for project'''
+project = lookml.Project(
+    path="/usr/local/google/home/hugoselbie/code_sample/py/projects/lmanage/tests/test_lookml_files/the_look"
+)
+
+data = [{'dashboard.id': 1,
+         'dashboard_element.id': 1,
+         'dashboard_element.type': 'vis',
+         'dashboard_element.result_source': 'Lookless',
+         'query.model': 'bq',
+         'query.view': 'order_items',
+         'query.formatted_fields': '["order_items.created_month", "order_items.count"]',
+         'query.id': 59,
+         'dashboard.title': 'dash_1',
+         'look.id': None,
+         'sql_joins': ['`looker-private-demo.ecomm.order_items`']}]
+
+match_data = [{'dashboard_id': 1,
+               'element_id': 1,
+               'sql_joins': ['`looker-private-demo.ecomm.order_items`'],
+               'fields_used': '["order_items.created_month", "order_items.count"]',
+               'sql_table_name': [
+                   '`looker-private-demo.ecomm.distribution_centers`',
+                   '`looker-private-demo.ecomm.products`',
+                   '`looker-private-demo.ecomm.users`',
+                   '`looker-private-demo.ecomm.order_items`',
+                   '`looker-private-demo.ecomm.inventory_items`',
+                   '`looker-private-demo.ecomm.events`'],
+               'potential_join': [
+                   'order_items',
+                   'order_facts',
+                   'inventory_items',
+                   'users',
+                   'user_order_facts',
+                   'products',
+                   'repeat_purchase_facts',
+                   'distribution_centers',
+                   'test_ndt']}]
+
+
+sql_table_names = [
+    '`looker-private-demo.ecomm.distribution_centers`',
+    '`looker-private-demo.ecomm.products`',
+    '`looker-private-demo.ecomm.users`',
+    '`looker-private-demo.ecomm.order_items`',
+    '`looker-private-demo.ecomm.inventory_items`',
+    '`looker-private-demo.ecomm.events`']
 
 
 def test_parse_sql_pivots(mocker):
@@ -224,30 +278,109 @@ def test_parse_sql_snowflake(mocker):
 
 
 def test_find_model_files(mocker):
-    project = lookml.Project(
-        path="/usr/local/google/home/hugoselbie/code_sample/py/projects/lmanage/tests/test_lookml_files/the_look"
-    )
     response = ipe.find_model_files(project)
 
-    print(response)
-    assert False
+    assert response.type == 'model'
 
-    # def test_match_views(mocker):
-    #     project = lookml.Project(
-    #         path='./tests/test_lookml_files/pylookml_test_project/'
-    #     )
-    #     data = {
-    #         'dashboard_id': 1,
-    #         'element_id': 2,
-    #         'sql_joins': ['`looker-private-demo.ecomm.order_items`'],
-    #         'fields_used': ["order_items.created_date", "order_items.count"],
-    #         'sql_table_name': ['looker-private-demo.ecomm.order_items', 'looker-private-demo.ecomm.inventory_items', 'looker-private-demo.ecomm.user_data', 'looker-private-demo.ecomm.orders',
-    #                            'looker-private-demo.ecomm.users', 'looker-private-demo.ecomm.events', 'looker-private-demo.ecomm.flights', 'looker-private-demo.ecomm.products'],
-    #         'potential_join': ['foo'],
-    #         'used_joins': ['looker-private-demo.ecomm.order_items',
-    #                        'looker-private-demo.ecomm.inventory_items']
-    #     }
-    #     response = ipe.match_views(myresults=data, proj=project)
-    #     assert isinstance(response, list)
+
+def test_get_view_path(mocker):
+    response = ipe.get_view_path(project)
+    assert len(response) == 12
+    assert isinstance(response, dict)
+
+
+def test_fetch_view_files(mocker):
+    response = ipe.fetch_view_files(project)
+    assert len(response) == 8
+    assert isinstance(response, dict)
+
+
+def test_get_sql_table_name(mocker):
+    response = ipe.get_sql_table_name(project)
+    expected_response = sql_table_names
+    assert len(response) == 6
+    assert response == expected_response
+    assert isinstance(response, list)
+
+
+def test_get_sql_from_elements(mocker):
+    sdk = MockSDK()
+    mocker.patch("lmanage.get_content_with_views.parse_sql")
+    sql_table_name = ['public.order_items',
+                      'public.inventory_items', 'public.users', 'public.products']
+    lmanage.get_content_with_views.parse_sql.return_value = sql_table_name
+    response = ipe.get_sql_from_elements(sdk, data)
+    result = response[0]['sql_joins']
+    assert isinstance(result, list)
+    assert len(result) == 4
+    assert result == sql_table_name
+
+
+def test_get_dashboards(mocker):
+    sdk = MockSDK()
+    mocker.patch.object(sdk, "run_inline_query")
+    sdk.run_inline_query.return_value = '''
+    [
+        {"dashboard.id":3,
+        "dashboard_element.id":"4",
+        "dashboard_element.type":"look",
+        "dashboard_element.result_source":"taco",
+        "query.model":"mackermodel",
+        "query.view":"mackerview",
+        "query.formatted_fields":"['orders','sales']",
+        "query.id":"55",
+        "dashboard.title":"franky fredericks",
+        "look.id":"44"}]
+    '''
+    test = ipe.get_dashboards(sdk=sdk)
+    assert isinstance(test, list)
+    assert test[0]['dashboard.id'] == 3
+    assert len(test[0]) == 10
+
+
+def test_t_period_appearence(mocker):
+    val = 'fliberrty.gibberty'
+    test = ipe.test_period_appearence(val)
+    assert test == True
+    val2 = 'flivertygiverty'
+    test2 = ipe.test_period_appearence(val2)
+    assert test2 == False
+
+
+def test_match_joins(mocker):
+    data = match_data
+    test = ipe.match_joins(data)
+    assert isinstance(test, list)
+    assert len(test[0]) == 7
+    assert len(test[0]['used_joins']) == 1
+    assert isinstance(test[0]['used_joins'], list)
+    assert test[0]['used_joins'] == ['`looker-private-demo.ecomm.order_items`']
+
+
+def test_match_views(mocker):
+    data = match_data
+    data[0]['used_joins'] = ['`looker-private-demo.ecomm.order_items`']
+    test = ipe.match_views(data, project)
+    print(test)
+    assert len(test) == 1
+    assert len(test[0]) == 8
+    assert len(test[0]['used_view_names']) == 1
+    assert isinstance(test[0]['used_view_names'], list)
+    assert test[0]['used_view_names'][0] == 'order_items'
+
+
+def test_match_view_to_dash(mocker):
+    content_results = [{'dashboard.id': 1, 'dashboard_element.id': 1, 'dashboard_element.type': 'vis', 'dashboard_element.result_source': 'Lookless', 'query.model': 'bq', 'query.view': 'order_items',
+                        'query.formatted_fields': '["order_items.created_month", "order_items.count"]', 'query.id': 59, 'dashboard.title': 'dash_1', 'look.id': None, 'sql_joins': ['`looker-private-demo.ecomm.order_items`']}]
+    explore_results = ipe.fetch_view_files(project)
+    sql_table_name = sql_table_names
+    test = ipe.match_view_to_dash(content_results=content_results,
+                                  explore_results=explore_results, sql_table_name=sql_table_name, proj=project)
+    assert isinstance(test, list)
+    assert len(test[0]) == 6
+    assert isinstance(test[0]['fields_used'], str)
+    assert test[0]['element_id'] == 1
+
+
 if __name__ == '__main__':
     unittest.main()
