@@ -1,8 +1,9 @@
-import pandas as pd
-import json
-from pathlib import Path
-from coloredlogger import ColoredLogger
 import warnings
+from coloredlogger import ColoredLogger
+from pathlib import Path
+import json
+import pandas as pd
+import os
 warnings.simplefilter(action='ignore', category=FutureWarning)
 logger = ColoredLogger()
 
@@ -10,7 +11,7 @@ logger = ColoredLogger()
 def create_df(data):
     logger.wtf(type(data))
     data = json.loads(data) if isinstance(data, str) else data
-    df = pd.DataFrame(data)
+    df = pd.dataframe(data)
     return df
 
 
@@ -20,10 +21,16 @@ def check_ini(ini):
     if ini:
         parsed_ini_file = cwd.joinpath(ini)
     else:
-        parsed_ini_file = None
+        parsed_ini_file = none
 
-    logger.wtf(parsed_ini_file)
-    return parsed_ini_file
+    if os.path.isfile(parsed_ini_file):
+        logger.success(f'opening your ini file at {parsed_ini_file}')
+        return parsed_ini_file
+    else:
+        logger.wtf(
+            f'the path to your ini file is not valid at {parsed_ini_file}')
 
 
-check_ini('../../ini/looker.ini')
+if __name__ == '__main__':
+
+    check_ini('../ini/k8.ini')

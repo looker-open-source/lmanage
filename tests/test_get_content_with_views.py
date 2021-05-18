@@ -37,28 +37,27 @@ data = [{'dashboard.id': 1,
          'look.id': None,
          'sql_joins': ['`looker-private-demo.ecomm.order_items`']}]
 
-match_data = [{'dashboard_id': 1,
-               'element_id': 1,
-               'sql_joins': ['`looker-private-demo.ecomm.order_items`'],
-               'fields_used': '["order_items.created_month", "order_items.count"]',
-               'sql_table_name': [
-                   '`looker-private-demo.ecomm.distribution_centers`',
-                   '`looker-private-demo.ecomm.products`',
-                   '`looker-private-demo.ecomm.users`',
-                   '`looker-private-demo.ecomm.order_items`',
-                   '`looker-private-demo.ecomm.inventory_items`',
-                   '`looker-private-demo.ecomm.events`'],
-               'potential_join': [
-                   'order_items',
-                   'order_facts',
-                   'inventory_items',
-                   'users',
-                   'user_order_facts',
-                   'products',
-                   'repeat_purchase_facts',
-                   'distribution_centers',
-                   'test_ndt']}]
-
+match_data = {'dashboard_id': 1,
+              'element_id': 1,
+              'sql_joins': ['`looker-private-demo.ecomm.order_items`'],
+              'fields_used': '["order_items.created_month", "order_items.count"]',
+              'sql_table_name': [
+                  '`looker-private-demo.ecomm.distribution_centers`',
+                  '`looker-private-demo.ecomm.products`',
+                  '`looker-private-demo.ecomm.users`',
+                  '`looker-private-demo.ecomm.order_items`',
+                  '`looker-private-demo.ecomm.inventory_items`',
+                  '`looker-private-demo.ecomm.events`'],
+              'potential_join': [
+                  'order_items',
+                  'order_facts',
+                  'inventory_items',
+                  'users',
+                  'user_order_facts',
+                  'products',
+                  'repeat_purchase_facts',
+                  'distribution_centers',
+                  'test_ndt']}
 
 sql_table_names = [
     '`looker-private-demo.ecomm.distribution_centers`',
@@ -347,26 +346,45 @@ def test_t_period_appearence(mocker):
     assert test2 == False
 
 
-def test_match_joins(mocker):
+def test_match_join_per_query(mocker):
     data = match_data
-    test = ipe.match_joins(data)
-    assert isinstance(test, list)
-    assert len(test[0]) == 7
-    assert len(test[0]['used_joins']) == 1
-    assert isinstance(test[0]['used_joins'], list)
-    assert test[0]['used_joins'] == ['`looker-private-demo.ecomm.order_items`']
+    test = ipe.match_join_per_query(data)
+    assert isinstance(test, dict)
+    assert len(test) == 7
+    assert len(test['used_joins']) == 1
+    assert isinstance(test['used_joins'], list)
+    assert test['used_joins'] == ['`looker-private-demo.ecomm.order_items`']
 
 
-def test_match_views(mocker):
+def test_match_views_per_query(mocker):
     data = match_data
-    data[0]['used_joins'] = ['`looker-private-demo.ecomm.order_items`']
-    test = ipe.match_views(data, project)
+    data['used_joins'] = ['`looker-private-demo.ecomm.order_items`']
+    test = ipe.match_views_per_query(data, project)
     print(test)
-    assert len(test) == 1
-    assert len(test[0]) == 8
-    assert len(test[0]['used_view_names']) == 1
-    assert isinstance(test[0]['used_view_names'], list)
-    assert test[0]['used_view_names'][0] == 'order_items'
+    assert len(test) == 8
+    assert len(test['used_view_names']) == 1
+    assert isinstance(test['used_view_names'], list)
+    assert test['used_view_names'] == ['order_items']
+
+
+def test_find_unused_views(mocker):
+    data = match_data
+    data['used_view_names'] = ['order_items', 'test_ndt']
+    test = ipe.find_unused_views(data)
+    test_return = [
+        'order_facts',
+        'inventory_items',
+        'users',
+        'user_order_facts',
+        'products',
+        'repeat_purchase_facts',
+        'distribution_centers'
+    ]
+    assert len(test['unused_joins']) == 7
+    assert len(data['used_view_names']) == 2
+    assert True if 'test_ndt' in data['used_view_names'] else False
+    assert isinstance(test['unused_joins'], list)
+    assert sorted(test_return) == sorted(test['unused_joins'])
 
 
 def test_match_view_to_dash(mocker):
@@ -380,7 +398,3 @@ def test_match_view_to_dash(mocker):
     assert len(test[0]) == 6
     assert isinstance(test[0]['fields_used'], str)
     assert test[0]['element_id'] == 1
-
-
-if __name__ == '__main__':
-    unittest.main()

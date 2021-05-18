@@ -1,0 +1,55 @@
+2021-05-17 21:47:22 [35m[X] /usr/local/google/home/hugoselbie/code_sample/py/projects/lmanage/../../ini/looker.ini [0m
+2021-05-17 21:47:22 [32m[+] your ini file path is /usr/local/google/home/hugoselbie/code_sample/py/projects/ini/k8.ini [0m
+2021-05-17 21:47:22 [32m[+] your project repo is at/usr/local/google/home/hugoselbie/code_sample/py/projects/clients/snap/tests/test_lookml_files/the_look [0m
+2021-05-17 21:47:22 [32m[+] your path is at ./output/test.csv [0m
+['`looker-private-demo.ecomm.order_items`']
+['`looker-private-demo.ecomm.inventory_items`', '`looker-private-demo.ecomm.products`', '`looker-private-demo.ecomm.order_items`']
+['`looker-private-demo.ecomm.inventory_items`', '`looker-private-demo.ecomm.products`', '`looker-private-demo.ecomm.users`', '`looker-private-demo.ecomm.order_items`']
+['`looker-private-demo.traffic_events.drivers`']
+['`looker-private-demo.ecomm.inventory_items`', '`looker-private-demo.ecomm.order_items`', '`looker-private-demo.ecomm.products`', '`looker-private-demo.ecomm.users`', 'test_ndt']
+model
+2021-05-17 21:47:25 [34m[?] matching joins [0m
+2021-05-17 21:47:25 [34m[?] matching views [0m
+2021-05-17 21:47:25 [34m[?] matching views [0m
+2021-05-17 21:47:25 [35m[X] order_items [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'inventory_items', 'order_facts', 'order_items', 'products', 'repeat_purchase_facts', 'test_ndt', 'user_order_facts', 'users'] [0m
+2021-05-17 21:47:25 [34m[?] matching joins [0m
+2021-05-17 21:47:25 [34m[?] matching views [0m
+2021-05-17 21:47:25 [34m[?] matching views [0m
+2021-05-17 21:47:25 [35m[X] inventory_items [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'inventory_items', 'order_facts', 'order_items', 'products', 'repeat_purchase_facts', 'test_ndt', 'user_order_facts', 'users'] [0m
+2021-05-17 21:47:25 [35m[X] order_items [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'order_facts', 'order_items', 'products', 'repeat_purchase_facts', 'test_ndt', 'user_order_facts', 'users'] [0m
+2021-05-17 21:47:25 [35m[X] products [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'order_facts', 'products', 'repeat_purchase_facts', 'test_ndt', 'user_order_facts', 'users'] [0m
+2021-05-17 21:47:25 [34m[?] matching joins [0m
+2021-05-17 21:47:25 [34m[?] matching views [0m
+2021-05-17 21:47:25 [34m[?] matching views [0m
+2021-05-17 21:47:25 [35m[X] inventory_items [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'inventory_items', 'order_facts', 'order_items', 'products', 'repeat_purchase_facts', 'test_ndt', 'user_order_facts', 'users'] [0m
+2021-05-17 21:47:25 [35m[X] order_items [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'order_facts', 'order_items', 'products', 'repeat_purchase_facts', 'test_ndt', 'user_order_facts', 'users'] [0m
+2021-05-17 21:47:25 [35m[X] products [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'order_facts', 'products', 'repeat_purchase_facts', 'test_ndt', 'user_order_facts', 'users'] [0m
+2021-05-17 21:47:25 [35m[X] users [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'order_facts', 'repeat_purchase_facts', 'test_ndt', 'user_order_facts', 'users'] [0m
+2021-05-17 21:47:25 [34m[?] matching joins [0m
+2021-05-17 21:47:25 [34m[?] matching views [0m
+2021-05-17 21:47:25 [34m[?] matching views [0m
+2021-05-17 21:47:25 [35m[X] inventory_items [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'inventory_items', 'order_facts', 'order_items', 'products', 'repeat_purchase_facts', 'test_ndt', 'user_order_facts', 'users'] [0m
+2021-05-17 21:47:25 [35m[X] order_items [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'order_facts', 'order_items', 'products', 'repeat_purchase_facts', 'test_ndt', 'user_order_facts', 'users'] [0m
+2021-05-17 21:47:25 [35m[X] products [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'order_facts', 'products', 'repeat_purchase_facts', 'test_ndt', 'user_order_facts', 'users'] [0m
+2021-05-17 21:47:25 [35m[X] test_ndt [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'order_facts', 'repeat_purchase_facts', 'test_ndt', 'user_order_facts', 'users'] [0m
+2021-05-17 21:47:25 [35m[X] users [0m
+2021-05-17 21:47:25 [35m[X] ['distribution_centers', 'order_facts', 'repeat_purchase_facts', 'user_order_facts', 'users'] [0m
+   dashboard_id  ...                                       unused_joins
+0             1  ...  [distribution_centers, inventory_items, order_...
+1             1  ...  [distribution_centers, order_facts, repeat_pur...
+2             1  ...  [distribution_centers, order_facts, repeat_pur...
+3             1  ...  [distribution_centers, order_facts, repeat_pur...
+
+[4 rows x 9 columns]

@@ -4,7 +4,6 @@ import looker_sdk
 from looker_sdk import models
 import json
 from pathlib import Path
-import re
 from collections import defaultdict
 import pandas as pd
 import lookml
@@ -24,7 +23,6 @@ def find_model_files(proj):
     for file in proj.files():
         path = file.path
         myFile = proj.file(path)
-        print(myFile.type)
         if myFile.type == 'model':
             return file
 
@@ -133,22 +131,41 @@ def test_period_appearence(input_response):
     return bool(test_period)
 
 
-def match_joins(myresults):
+def match_join_per_query(myresults):
+    result = []
+    sql_join = myresults['sql_joins']
+    sql_table_name = myresults['sql_table_name']
+
+    for sql in sql_join:
+        if not bool(test_period_appearence(sql)):
+            result.append(sql)
+        for name in sql_table_name:
+            if sql == name:
+                result.append(sql)
+    myresults['used_joins'] = result
+    return myresults
+
+
+def all_joins(myresults):
+    ''' function returns all used joins for a given set of content '''
     result = []
     for element in range(0, len(myresults)):
         sql_join = myresults[element]['sql_joins']
         sql_table_name = myresults[element]['sql_table_name']
+
         for sql in sql_join:
             if not bool(test_period_appearence(sql)):
                 result.append(sql)
             for name in sql_table_name:
                 if sql == name:
                     result.append(sql)
+        logger.wtf(f'result= {result}')
         myresults[element]['used_joins'] = result
+        logger.wtf(myresults)
     return myresults
 
 
-def match_views(myresults, proj):
+def all_views(myresults, proj):
     result = []
     for element in range(0, len(myresults)):
         used_joins = myresults[element]['used_joins']
@@ -164,6 +181,36 @@ def match_views(myresults, proj):
                         result.append(view.name)
 
     myresults[element]['used_view_names'] = result
+    return myresults
+
+
+def match_views_per_query(myresults, proj):
+    result = []
+    used_joins = myresults['used_joins']
+    for join in used_joins:
+        if not bool(test_period_appearence(join)):
+            result.append(join)
+    for file in proj.files():
+        path = file.path
+        myFile = proj.file(path)
+        if myFile.type != 'model':
+            for view in myFile.views:
+                if view.sql_table_name.value in used_joins:
+                    result.append(view.name)
+
+    myresults['used_view_names'] = result
+    return myresults
+
+
+def find_unused_views(myresults):
+    used_view_names = sorted(myresults['used_view_names'])
+    potential_joins = sorted(myresults['potential_join'])
+    result = potential_joins
+
+    for view in used_view_names:
+        if view in potential_joins:
+            result.remove(view)
+    myresults['unused_joins'] = result
     return myresults
 
 
@@ -186,78 +233,21 @@ def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
     return tables_in_explore
 
 
-def identify_all_views(parsed_lookML_file):
-    """Return a dictionary of all views and dependent view objects
-    Parameters:
-    path (str): Parent Directory to parse
-    filename (str): filename for parsed object
-    """
-    if 'views' in parsed_lookML_file:
-        all_views = defaultdict(list)
-        for view in parsed_lookML_file['views']:
-            all_views[view['name']].append(view['name'])
-            if 'derived_table' in view:
-                if 'sql' in view['derived_table']:
-                    regex = r"([A-Za-z0-9_]+)\.SQL_TABLE_NAME"
-                    matches = re.findall(regex, view['derived_table']['sql'])
-                    [all_views[view['name']].append(
-                        match) for match in matches]
-            if 'extends' in view:
-                [all_views[view['name']].append(e) for e in view['extends']]
-        return all_views
-
-
-def set_unique_explores(all_explores_dict):
-    """Return a set of unique explores
-    Parameters:
-    model_dict (dict): Explore Directory to parse'
-    """
-    return set([view for filename in all_explores_dict for base_view in all_explores_dict[filename] for view in all_explores_dict[filename][base_view]])
-
-
-def set_unique_views(all_views_dict):
-    """Return a set of unique views
-    Parameters:
-    all_views_dict (dict): Views Directory to parse'
-    """
-    return set([view for filename in all_views_dict for view_name in all_views_dict[filename] for view in all_views_dict[filename][view_name]])
-
-
-def dependent_view_check(view_dict, unique_explores_set):
-    for view_name in view_dict.values():
-        for views in view_name.values():
-            if len(views) > 1 and views[0] in unique_explores_set:
-                for reference in views[1:]:
-                    if reference not in unique_explores_set:
-                        unique_explores_set.add(reference)
-
-
-def find_unused_views(set_views, set_explores):
-    """ Return a set of view dictionaries that have dependencies
-    Parameters:
-    set_views (set): Unique Views
-    set_explores (set): Unique Exploers
-    """
-    unused_views = list(set_views - set_explores)
-    return sorted(unused_views)
-
-
 # @snoop
 def main(**kwargs):
     cwd = Path.cwd()
     ini_file = kwargs.get("ini_file")
-    logger.success(f'your ini file path is {ini_file}')
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read(ini_file)
     project_repo = kwargs.get("project")
-    logger.success(f'your project repo is at{project_repo}')
+    logger.success(f'your project repo is at {project_repo}')
     file_path = kwargs.get("path")
-    logger.success(f'your path is at {file_path}')
+    logger.success(f'your output file is at {file_path}')
+    table_mask = kwargs.get("table")
+    field_mask = kwargs.get("field")
 
-    if ini_file:
-        parsed_ini_file = cwd.joinpath(ini_file)
-    else:
-        parsed_ini_file = None
+    create_df.check_ini(ini_file)
+
     sdk = looker_sdk.init31(config_file=ini_file)
 
     project = lookml.Project(
@@ -266,23 +256,41 @@ def main(**kwargs):
 
     content_results = get_dashboards(sdk)
     db_response = get_sql_from_elements(sdk, content_results)
-    # print(content_results)
     explore_results = fetch_view_files(proj=project)
-    # print(explore_results)
     sql_table_names = get_sql_table_name(proj=project)
-    # print(sql_table_names)
 
     combine = match_view_to_dash(
         db_response, explore_results, sql_table_names, proj=project)
-    logger.info('matching joins')
-    matching_joins = match_joins(combine)
+    for element in range(0, len(combine)):
+        match_join_per_query(combine[element])
+        match_views_per_query(combine[element], project)
+        find_unused_views(combine[element])
 
-    logger.info('matching views')
-    matching_views = match_views(matching_joins, project)
     df = pd.DataFrame(combine)
-    df.to_csv(f'{file_path}')
 
-    print(df.head())
+    if table_mask == None and field_mask == None:
+        logger.success('you have not set any field or table filters')
+
+        df.to_csv(f'{file_path}')
+        logger.success(df)
+
+    elif table_mask != None:
+        logger.success(f'your table filter = {table_mask}')
+
+        mask = df['used_view_names'].apply(lambda x: table_mask in x)
+        df = df[mask]
+        df.to_csv(f'{file_path}')
+
+        logger.success(df)
+
+    elif field_mask != None:
+        logger.success(f'your field filter = {field_mask}')
+
+        mask = df['fields_used'].apply(lambda x: field_mask in x)
+        df = df[mask]
+        df.to_csv(f'{file_path}')
+
+        logger.success(df)
 
 
 if __name__ == "__main__":

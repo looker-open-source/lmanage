@@ -8,7 +8,11 @@
             "name": "Python: lmanage",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
+            "program": "${workspaceFolder}/lmanage/cli.py",
+            "args": [
+                "--port",
+                "1593"
+            ],
             "console": "integratedTerminal"
         }
     ]

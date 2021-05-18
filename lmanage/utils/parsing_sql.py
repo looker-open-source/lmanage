@@ -67,7 +67,7 @@ def extract_tables(sql):
 
     clean_table = [elem[0].strip('\n')
                    for elem in clean_list if not elem[0].startswith('z__')]
-    print(clean_table)
+    # print(clean_table)
     return clean_table
 
 
