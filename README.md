@@ -18,3 +18,14 @@ The mapview command will find the etymology of the content on your dashboard, ex
 In addition you can pre filter the returned dataset to find all the dashboard content that requires  specific field, or requires a specific table using the flags `--table` (`-t`), or `--field` (`-f`).
 
     lmanage mapview --path ./output/my_output.csv --ini-file ~/py/projects/ini/k8.ini --project /test_lookml_files/the_look -table "order_items"
+
+## Fields Returneds
+- **dashboard_id**, the id of the looker dashboard 	
+- **element_id**, the id of the visualization element on the looker dashboard	
+- **sql_joins**, the joins used in a query grouped by element id	
+- **fields_used**, the fields used by the query grouped by element id
+- **sql_table_name**, the underlying sql value being referenced at the view level of the lookml (assuming the view is standard)	
+- **potential_join**, for the explore that powers the element query, what are all the potential joins available	
+- **used_joins**, 	
+- **used_view_names**,	
+- **unused_joins**,
