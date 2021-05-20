@@ -8,8 +8,9 @@ Lmanage can be found on [pypi](#).
 pip install lmanage
 ```
 
-LManage will ultimately have many different commands.
+## How do I Use it.
 ### Commands
+LManage will ultimately will have many different commands as development continues e.g. the ability to sunset dashboards and create a backup using [gzr](https://github.com/looker-open-source/gzr)
 
 #### help and version
 ```
