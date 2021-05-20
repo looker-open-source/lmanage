@@ -23,29 +23,29 @@ The mapview command will find the etymology of the content on your dashboard, ex
 ##### example usage
 `lmanage mapview --path ./output/my_output.csv --ini-file ~/py/projects/ini/k8.ini --project /test_lookml_files/the_look -table "order_items"`
 ##### flags
-- _path_ (`--path`, `-fp`) This is the path where you would like the outputfile for your returned dataset to be. 
-- _ini_file_ (`--ini-file`, `-i`) This is the file path to the ini file that you've created to use the Looker SDK
-(example Ini file)
+- **path** (`--path`, `-fp`) This is the path where you would like the outputfile for your returned dataset to be. 
+- **ini-file** (`--ini-file`, `-i`) This is the file path to the ini file that you've created to use the Looker SDK
 ```
+#example Ini file
 [Looker_Instance]
 base_url=https://looker-dev.company.com:19999 (or 443 if hosted in GCP)
 client_id=abc
 client_secret=xyz
 verify_ssl=True
 ```
-- _project_ (`--project`, `-p`) This is the file path to your local project of LookML files that lmanage will scan to associate connections between your Looker content and LookML
+- **project** (`--project`, `-p`) This is the file path to your local project of LookML files that lmanage will scan to associate connections between your Looker content and LookML
 Lmanage can either return a full dataset of all content mapping, or a prefiltered dataset with all content associated with a specific table or field.
-- _table_ (`--table`, `-t`) Expecting input of lookml view name
-- _field_ (`--field`, `-f`) Expecting input of fully scoped LookML field name e.g. viewname.fieldname 
+- **table** (`--table`, `-t`) Expecting input of lookml view name
+- **field** (`--field`, `-f`) Expecting input of fully scoped LookML field name e.g. viewname.fieldname 
 
 ## Fields Returneds
 
-- **dashboard_id**, the id of the looker dashboard 	
-- **element_id**, the id of the visualization element on the looker dashboard	
-- **sql_joins**, the joins used in a query grouped by element id	
-- **fields_used**, the fields used by the query grouped by element id
-- **sql_table_name**, the underlying sql value being referenced at the view level of the lookml (assuming the view is standard)	
-- **potential_join**, for the explore that powers the element query, what are all the potential joins available	
-- **used_joins**, joins used by the underlying queries obtained by parsing sql of query 	
-- **used_view_names**, views that are used by each query grouped by element_id	
-- **unused_joins**, views that are unused by the specific query of the dashboard element
+- **dashboard_id**: the id of the looker dashboard 	
+- **element_id**: the id of the visualization element on the looker dashboard	
+- **sql_joins**: the joins used in a query grouped by element id	
+- **fields_used**: the fields used by the query grouped by element id
+- **sql_table_name**: the underlying sql value being referenced at the view level of the lookml (assuming the view is standard)	
+- **potential_join**: for the explore that powers the element query: what are all the potential joins available	
+- **used_joins**: joins used by the underlying queries obtained by parsing sql of query 	
+- **used_view_names**: views that are used by each query grouped by element_id	
+- **unused_joins**: views that are unused by the specific query of the dashboard element
