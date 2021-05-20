@@ -10,13 +10,14 @@ pip install lmanage
 
 ## How do I Use it.
 ### Commands
-LManage will ultimately will have many different commands as development continues e.g. the ability to sunset dashboards and create a backup using [gzr]()
-| Status  | Command    | Rationale                                                                                                           |
-|---------|------------|---------------------------------------------------------------------------------------------------------------------|
-| Live    | mapview    | Find the LookML fields and tables that are associated with a piece of Looker content                                |
-| Planned | removeuser | Based on last time logged in, prune Looker users to ensure a performant, compliant Looker instance                  |
-| Planned | dcontent   | Iterate through an input of content, delete content and back it up using [gzr](https://github.com/looker-open-source/gzr) for easy restoration              |
-| Planned | bcontent   | Iterate through all broken content (using content validator) and email a customized message to each dashboard owner |
+LManage will ultimately will have many different commands as development continues 
+| Status  | Command    | Rationale                                                                                                                                                                                            |
+|---------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Live    | mapview    | Find the LookML fields and tables that are associated with a piece of Looker content                                                                                                                 |
+| Planned | removeuser | Based on last time logged in, prune Looker users to ensure a performant, compliant Looker instance                                                                                                   |
+| Planned | dcontent   | Iterate through an input of content, delete content and back it up using [gzr](https://github.com/looker-open-source/gzr) for easy restoration                                                                                               |
+| Planned | bcontent   | Iterate through all broken content (using content validator) and email a customized message to each dashboard owner                                                                                  |
+| Planned | scoper     | Takes in a model file, elminates the * includes, iterate through the explores and joins and creates a fully scoped model include list for validation performance and best practice code organization |
 
 #### help and version
 ```
