@@ -10,3 +10,6 @@ test.py
 test.csv
 delinquentcontent.csv
 utils/test.py
+
+#Ignore legacy files
+lmanage/getContentWithViews.py
