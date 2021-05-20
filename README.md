@@ -10,7 +10,13 @@ pip install lmanage
 
 ## How do I Use it.
 ### Commands
-LManage will ultimately will have many different commands as development continues e.g. the ability to sunset dashboards and create a backup using [gzr](https://github.com/looker-open-source/gzr)
+LManage will ultimately will have many different commands as development continues e.g. the ability to sunset dashboards and create a backup using [gzr]()
+| Status  | Command    | Rationale                                                                                                           |
+|---------|------------|---------------------------------------------------------------------------------------------------------------------|
+| Live    | mapview    | Find the LookML fields and tables that are associated with a piece of Looker content                                |
+| Planned | removeuser | Based on last time logged in, prune Looker users to ensure a performant, compliant Looker instance                  |
+| Planned | dcontent   | Iterate through an input of content, delete content and back it up using [gzr](https://github.com/looker-open-source/gzr) for easy restoration              |
+| Planned | bcontent   | Iterate through all broken content (using content validator) and email a customized message to each dashboard owner |
 
 #### help and version
 ```
