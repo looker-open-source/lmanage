@@ -2,6 +2,12 @@
 ## What is it.
 LManage is a collection of useful tools for [Looker](https://looker.com/) admins to help curate and cleanup content and it's associated source [LookML](https://docs.looker.com/data-modeling/learning-lookml/what-is-lookml).
 
+## How do i Install it.
+Lmanage can be found on [pypi](#).
+```
+pip install lmanage
+```
+
 LManage will ultimately have many different commands.
 ### Commands
 
