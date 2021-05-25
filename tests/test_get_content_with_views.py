@@ -313,6 +313,8 @@ def test_get_sql_from_elements(mocker):
     assert isinstance(result, list)
     assert len(result) == 4
     assert result == sql_table_name
+    print(result)
+    assert False
 
 
 def test_get_dashboards(mocker):

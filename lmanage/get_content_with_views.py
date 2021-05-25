@@ -20,6 +20,14 @@ logger = ColoredLogger()
 
 
 def find_model_files(proj):
+    """Fetches model files from PyLookML obj.
+    Scans all files in PyLookML object and returns a file if that file has a type of Model.
+
+    Args:
+        proj: The project from PyLookML
+    Returns:
+        The unparsed model file of a project.
+    """
     for file in proj.files():
         path = file.path
         myFile = proj.file(path)
@@ -28,6 +36,16 @@ def find_model_files(proj):
 
 
 def get_view_path(proj):
+    """Fetches the file path of a PyLookML Oject.
+
+    Iterates over a list of PyLookML files and returns a list of the files if they are of type 'View'
+    Args:
+        proj: The project from PyLookML
+    Returns:
+        A list of all the file paths pointing towards view objects that are kept in a PyLookML object.
+        For example:
+        ['proj/views/order_items.view.lkml','proj/views/inventory_items.view.lkml','proj/views/products.view.lkml']
+    """
     view_list = defaultdict(list)
     for file in proj.files():
         path = file.path
@@ -40,6 +58,14 @@ def get_view_path(proj):
 
 
 def fetch_view_files(proj):
+    """Fetches the all the named view objects listed in explores of a Model file specifically.
+    Identifies a model file, iterates over all the explore objects in the model file, appends their base view and joined views to a dict object
+    Args:
+        proj: The project from PyLookML
+    Returns:
+        A dict with key: being the base view and values: list of all the used views in the explore object.
+        For example:
+         defaultdict(<class 'list'>, {'order_items': ['order_items', 'order_facts', 'inventory_items', 'users', 'user_order_facts', 'products', 'repeat_purchase_facts', 'distribution_centers', 'test_ndt'], 'events':['events', 'sessions', 'session_landing_page', 'session_bounce_page', 'product_viewed', 'users', 'user_order_facts']})    """
     file = find_model_files(proj)
     true_view_names = defaultdict(list)
     for explore in file.explores:
@@ -61,6 +87,16 @@ def fetch_view_files(proj):
 
 
 def get_sql_table_name(proj):
+    """Fetches the sql_table_name of view files listed in a PyLookML Oject.
+
+    Iterates over a list of PyLookML files identifies view files aand returns a list of the sql_table_names if they exist in an object of type 'View'
+    Args:
+        proj: The project from PyLookML
+    Returns:
+        A list of all the sql_table_names that are found in a series of view objects.
+        For example:
+        ['public.order_items','public.inventory_items','public.events']
+    """
     response = []
     for file in proj.files():
         path = file.path
@@ -74,6 +110,19 @@ def get_sql_table_name(proj):
 
 
 def parse_sql(sdk, qid: int):
+    """Idenfies the base tables and joins used by a Looker query.
+
+    Iterates over a list of PyLookML files identifies view files aand returns a list of the sql_table_names if they exist in an object of type 'View'
+    Args:
+        sdk: Looker SDK object
+        qid: (int) query_id from a  Looker query (n.b. NOT THE SAME AS A QID in the url)
+    Returns:
+        A list of all the tables that are found from a Looker generated SQL query.
+        For example:
+        ['public.order_items','public.inventory_items','public.events']
+    Exception:
+        If a query is broken for whatever reason an Exception is raised to continue the program running
+    """
     try:
         sql_response = sdk.run_query(query_id=qid, result_format='sql')
         if type(sql_response) == str:
@@ -86,6 +135,27 @@ def parse_sql(sdk, qid: int):
 
 
 def get_sql_from_elements(sdk, content_results):
+    """Amends returned SDK System__Activity reponse with sql tables used from the `parse_sql` function.
+
+    Iterates over the response from get_dashboards and runs the parse_sql function for each returned dashboard element, returns the list of tables and amends the dict response and returns it
+    Args:
+        sdk: Looker SDK object
+        content_results: (dict) response from get_dashboards function call
+    Returns:
+        An amended dict response with the sql columns used by each element extracted our of the Looker generated SQL for each dashboard object.
+        For example:
+    [{'dashboard.id': 1,
+         'dashboard_element.id': 1,
+         'dashboard_element.type': 'vis',
+         'dashboard_element.result_source': 'Lookless',
+         'query.model': 'bq',
+         'query.view': 'order_items',
+         'query.formatted_fields': '["order_items.created_month", "order_items.count"]',
+         'query.id': 59,
+         'dashboard.title': 'dash_1',
+         'look.id': None,
+         'sql_joins': ['`looker-private-demo.ecomm.order_items`']}]
+    """
     for dash in content_results:
         query_id = dash['query.id']
         sql_value = parse_sql(sdk, query_id)
@@ -96,6 +166,25 @@ def get_sql_from_elements(sdk, content_results):
 
 
 def get_dashboards(sdk):
+    """Uses the Looker SDK System__Activity model to extract dashboard and dashboard_element metadata.
+
+    Simple run_inline_query call to Looker SDK
+    Args:
+        sdk: Looker SDK object
+    Returns:
+        An dict response with the dashboard and dashboard_element metadata.
+        For example:
+    [{'dashboard.id': 1,
+         'dashboard_element.id': 1,
+         'dashboard_element.type': 'vis',
+         'dashboard_element.result_source': 'Lookless',
+         'query.model': 'bq',
+         'query.view': 'order_items',
+         'query.formatted_fields': '["order_items.created_month", "order_items.count"]',
+         'query.id': 59,
+         'dashboard.title': 'dash_1',
+         'look.id': None}]
+    """
     query_config = models.WriteQuery(
         model="system__activity",
         view="dashboard",
@@ -127,6 +216,16 @@ def get_dashboards(sdk):
 
 
 def test_period_appearence(input_response):
+    """Checks existence of a period in an input string.
+
+    Simple return True if a period is detected in a string
+    Args:
+        input_response: (str) 
+    Returns:
+        A boolean response         
+    For example:
+    True or False 
+    """
     test_period = re.search(r"\.", input_response)
     return bool(test_period)
 
