@@ -1,0 +1,817 @@
+2020-11-21 01:03:36,166 DEBUG | Authenticating Looker API credentials
+2020-11-21 01:03:36,401 DEBUG | Checking Looker instance release version
+2020-11-21 01:03:36,441 INFO | Connected to Looker version 7.20.7 using Looker API 3.1
+2020-11-21 01:03:36,441 DEBUG | Getting active branch for project 'hugo_sandbox'
+2020-11-21 01:03:36,494 DEBUG | The active branch is 'master'
+2020-11-21 01:03:36,494 DEBUG | Updating session to use the production workspace
+2020-11-21 01:03:36,533 INFO | Building LookML project hierarchy for project 'hugo_sandbox' @ master
+2020-11-21 01:03:36,533 DEBUG | Getting all models and explores from https://profservices.dev.looker.com
+2020-11-21 01:04:12,525 DEBUG | Getting all dimensions from explore bsandell
+2020-11-21 01:04:12,662 DEBUG | Getting all dimensions from explore company_list
+2020-11-21 01:04:12,784 DEBUG | Getting all dimensions from explore distribution_centers
+2020-11-21 01:04:12,911 DEBUG | Getting all dimensions from explore events
+2020-11-21 01:04:13,082 DEBUG | Getting all dimensions from explore inventory_items
+2020-11-21 01:04:13,226 DEBUG | Getting all dimensions from explore order_items
+2020-11-21 01:04:13,408 DEBUG | Getting all dimensions from explore products
+2020-11-21 01:04:13,541 DEBUG | Getting all dimensions from explore users
+2020-11-21 01:04:13,696 INFO | 
+============== Testing 8 explores [batch mode] [concurrency = 10] ==============
+
+2020-11-21 01:04:13,696 DEBUG | Creating async query for hugo_sandbox/bsandell/*
+2020-11-21 01:04:13,814 DEBUG | Query for hugo_sandbox/bsandell/* created as query 119831
+2020-11-21 01:04:13,815 DEBUG | Creating async query for hugo_sandbox/company_list/company_list.company_id
+2020-11-21 01:04:13,903 DEBUG | Query for hugo_sandbox/company_list/company_list.company_id created as query 119832
+2020-11-21 01:04:13,903 DEBUG | Creating async query for hugo_sandbox/distribution_centers/*
+2020-11-21 01:04:13,994 DEBUG | Query for hugo_sandbox/distribution_centers/* created as query 119833
+2020-11-21 01:04:13,994 DEBUG | Creating async query for hugo_sandbox/events/*
+2020-11-21 01:04:14,107 DEBUG | Query for hugo_sandbox/events/* created as query 119834
+2020-11-21 01:04:14,108 DEBUG | Creating async query for hugo_sandbox/inventory_items/*
+2020-11-21 01:04:14,194 DEBUG | Query for hugo_sandbox/inventory_items/* created as query 119835
+2020-11-21 01:04:14,194 DEBUG | Creating async query for hugo_sandbox/order_items/*
+2020-11-21 01:04:14,300 DEBUG | Query for hugo_sandbox/order_items/* created as query 119836
+2020-11-21 01:04:14,300 DEBUG | Creating async query for hugo_sandbox/products/*
+2020-11-21 01:04:14,390 DEBUG | Query for hugo_sandbox/products/* created as query 119837
+2020-11-21 01:04:14,390 DEBUG | Creating async query for hugo_sandbox/users/*
+2020-11-21 01:04:14,506 DEBUG | Query for hugo_sandbox/users/* created as query 119838
+2020-11-21 01:04:14,507 DEBUG | Starting a new loop, 8 queries queued
+2020-11-21 01:04:14,507 DEBUG | 10 available query slots, creating query task
+2020-11-21 01:04:14,507 DEBUG | Starting query 119831
+2020-11-21 01:04:14,656 DEBUG | Query 119831 is running under query task a4665335a40dfa8487ee3bb27465e233
+2020-11-21 01:04:14,656 DEBUG | 9 available query slots, creating query task
+2020-11-21 01:04:14,656 DEBUG | Starting query 119832
+2020-11-21 01:04:14,830 DEBUG | Query 119832 is running under query task 6717632f4897597fdc1b06b2bfae6f69
+2020-11-21 01:04:14,831 DEBUG | 8 available query slots, creating query task
+2020-11-21 01:04:14,831 DEBUG | Starting query 119833
+2020-11-21 01:04:15,132 DEBUG | Query 119833 is running under query task 689b2063928b3fbff4177160066e4a0a
+2020-11-21 01:04:15,132 DEBUG | 7 available query slots, creating query task
+2020-11-21 01:04:15,132 DEBUG | Starting query 119834
+2020-11-21 01:04:15,377 DEBUG | Query 119834 is running under query task aff0912444e8a3f5bae4fc1bb2f7c447
+2020-11-21 01:04:15,377 DEBUG | 6 available query slots, creating query task
+2020-11-21 01:04:15,378 DEBUG | Starting query 119835
+2020-11-21 01:04:15,636 DEBUG | Query 119835 is running under query task bd694aa560bf2dbe8ea5048958a41ab3
+2020-11-21 01:04:15,636 DEBUG | 5 available query slots, creating query task
+2020-11-21 01:04:15,636 DEBUG | Starting query 119836
+2020-11-21 01:04:15,871 DEBUG | Query 119836 is running under query task f1bc87316c94f79fec35d7b44249d2d2
+2020-11-21 01:04:15,872 DEBUG | 4 available query slots, creating query task
+2020-11-21 01:04:15,872 DEBUG | Starting query 119837
+2020-11-21 01:04:16,204 DEBUG | Query 119837 is running under query task a6e7627a199be477fb54f200c031df10
+2020-11-21 01:04:16,204 DEBUG | 3 available query slots, creating query task
+2020-11-21 01:04:16,204 DEBUG | Starting query 119838
+2020-11-21 01:04:16,480 DEBUG | Query 119838 is running under query task 0f2964e79c32171c94f95c85ec257b89
+2020-11-21 01:04:16,481 DEBUG | Checking for results of 8 query tasks
+2020-11-21 01:04:16,481 DEBUG | Attempting to get results for 8 query tasks
+2020-11-21 01:04:17,029 DEBUG | Query task 0f2964e79c32171c94f95c85ec257b89 status is: added
+2020-11-21 01:04:17,029 DEBUG | Query task 6717632f4897597fdc1b06b2bfae6f69 status is: complete
+2020-11-21 01:04:17,029 DEBUG | Query task 689b2063928b3fbff4177160066e4a0a status is: complete
+2020-11-21 01:04:17,030 DEBUG | Query task a4665335a40dfa8487ee3bb27465e233 status is: complete
+2020-11-21 01:04:17,030 DEBUG | Query task a6e7627a199be477fb54f200c031df10 status is: running
+2020-11-21 01:04:17,030 DEBUG | Query task aff0912444e8a3f5bae4fc1bb2f7c447 status is: running
+2020-11-21 01:04:17,031 DEBUG | Query task bd694aa560bf2dbe8ea5048958a41ab3 status is: running
+2020-11-21 01:04:17,031 DEBUG | Query task f1bc87316c94f79fec35d7b44249d2d2 status is: running
+2020-11-21 01:04:17,532 DEBUG | Checking for results of 5 query tasks
+2020-11-21 01:04:17,533 DEBUG | Attempting to get results for 5 query tasks
+2020-11-21 01:04:17,931 DEBUG | Query task 0f2964e79c32171c94f95c85ec257b89 status is: running
+2020-11-21 01:04:17,931 DEBUG | Query task a6e7627a199be477fb54f200c031df10 status is: running
+2020-11-21 01:04:17,932 DEBUG | Query task aff0912444e8a3f5bae4fc1bb2f7c447 status is: complete
+2020-11-21 01:04:17,932 DEBUG | Query task bd694aa560bf2dbe8ea5048958a41ab3 status is: complete
+2020-11-21 01:04:17,932 DEBUG | Query task f1bc87316c94f79fec35d7b44249d2d2 status is: running
+2020-11-21 01:04:18,433 DEBUG | Checking for results of 3 query tasks
+2020-11-21 01:04:18,433 DEBUG | Attempting to get results for 3 query tasks
+2020-11-21 01:04:18,727 DEBUG | Query task 0f2964e79c32171c94f95c85ec257b89 status is: complete
+2020-11-21 01:04:18,727 DEBUG | Query task a6e7627a199be477fb54f200c031df10 status is: complete
+2020-11-21 01:04:18,727 DEBUG | Query task f1bc87316c94f79fec35d7b44249d2d2 status is: running
+2020-11-21 01:04:19,228 DEBUG | Checking for results of 1 query tasks
+2020-11-21 01:04:19,228 DEBUG | Attempting to get results for 1 query tasks
+2020-11-21 01:04:19,536 DEBUG | Query task f1bc87316c94f79fec35d7b44249d2d2 status is: complete
+2020-11-21 01:04:20,038 DEBUG | Restoring project 'hugo_sandbox' to branch 'master'
+2020-11-21 01:04:20,038 DEBUG | Updating session to use the production workspace
+2020-11-21 01:04:20,098 INFO | ✓ hugo_sandbox.bsandell passed
+2020-11-21 01:04:20,098 INFO | ✓ hugo_sandbox.company_list passed
+2020-11-21 01:04:20,099 INFO | ✓ hugo_sandbox.distribution_centers passed
+2020-11-21 01:04:20,099 INFO | ✓ hugo_sandbox.events passed
+2020-11-21 01:04:20,099 INFO | ✓ hugo_sandbox.inventory_items passed
+2020-11-21 01:04:20,099 INFO | ✓ hugo_sandbox.order_items passed
+2020-11-21 01:04:20,099 INFO | ✓ hugo_sandbox.products passed
+2020-11-21 01:04:20,099 INFO | ✓ hugo_sandbox.users passed
+2020-11-21 01:04:20,099 INFO | 
+2020-11-21 01:04:20,100 INFO | Completed SQL validation in 44 seconds.
+
+2020-11-21 01:07:52,252 DEBUG | Authenticating Looker API credentials
+2020-11-21 01:07:52,555 DEBUG | Checking Looker instance release version
+2020-11-21 01:07:52,623 INFO | Connected to Looker version 7.20.7 using Looker API 3.1
+2020-11-21 01:07:52,623 DEBUG | Getting active branch for project 'hugo_sandbox'
+2020-11-21 01:07:52,706 DEBUG | The active branch is 'master'
+2020-11-21 01:07:52,706 DEBUG | Updating session to use the production workspace
+2020-11-21 01:07:52,778 INFO | Building LookML project hierarchy for project 'hugo_sandbox' @ master
+2020-11-21 01:07:52,778 DEBUG | Getting all models and explores from https://profservices.dev.looker.com
+2020-11-21 01:08:24,666 DEBUG | Getting all dimensions from explore bsandell
+2020-11-21 01:08:24,842 DEBUG | Getting all dimensions from explore company_list
+2020-11-21 01:08:24,998 DEBUG | Getting all dimensions from explore distribution_centers
+2020-11-21 01:08:25,163 DEBUG | Getting all dimensions from explore events
+2020-11-21 01:08:25,354 DEBUG | Getting all dimensions from explore inventory_items
+2020-11-21 01:08:25,560 DEBUG | Getting all dimensions from explore order_items
+2020-11-21 01:08:25,790 DEBUG | Getting all dimensions from explore products
+2020-11-21 01:08:25,964 DEBUG | Getting all dimensions from explore users
+2020-11-21 01:08:26,143 INFO | 
+============== Testing 8 explores [batch mode] [concurrency = 10] ==============
+
+2020-11-21 01:08:26,143 DEBUG | Creating async query for hugo_sandbox/bsandell/*
+2020-11-21 01:08:26,304 DEBUG | Query for hugo_sandbox/bsandell/* created as query 119831
+2020-11-21 01:08:26,304 DEBUG | Creating async query for hugo_sandbox/company_list/company_list.company_id
+2020-11-21 01:08:26,424 DEBUG | Query for hugo_sandbox/company_list/company_list.company_id created as query 119832
+2020-11-21 01:08:26,424 DEBUG | Creating async query for hugo_sandbox/distribution_centers/*
+2020-11-21 01:08:26,572 DEBUG | Query for hugo_sandbox/distribution_centers/* created as query 119833
+2020-11-21 01:08:26,572 DEBUG | Creating async query for hugo_sandbox/events/*
+2020-11-21 01:08:26,707 DEBUG | Query for hugo_sandbox/events/* created as query 119834
+2020-11-21 01:08:26,707 DEBUG | Creating async query for hugo_sandbox/inventory_items/*
+2020-11-21 01:08:26,836 DEBUG | Query for hugo_sandbox/inventory_items/* created as query 119835
+2020-11-21 01:08:26,836 DEBUG | Creating async query for hugo_sandbox/order_items/*
+2020-11-21 01:08:26,964 DEBUG | Query for hugo_sandbox/order_items/* created as query 119836
+2020-11-21 01:08:26,964 DEBUG | Creating async query for hugo_sandbox/products/*
+2020-11-21 01:08:27,092 DEBUG | Query for hugo_sandbox/products/* created as query 119837
+2020-11-21 01:08:27,092 DEBUG | Creating async query for hugo_sandbox/users/*
+2020-11-21 01:08:27,236 DEBUG | Query for hugo_sandbox/users/* created as query 119838
+2020-11-21 01:08:27,236 DEBUG | Starting a new loop, 8 queries queued
+2020-11-21 01:08:27,236 DEBUG | 10 available query slots, creating query task
+2020-11-21 01:08:27,236 DEBUG | Starting query 119831
+2020-11-21 01:08:27,429 DEBUG | Query 119831 is running under query task baa97b132bcb2bdea686bf4b1c17207d
+2020-11-21 01:08:27,429 DEBUG | 9 available query slots, creating query task
+2020-11-21 01:08:27,429 DEBUG | Starting query 119832
+2020-11-21 01:08:27,634 DEBUG | Query 119832 is running under query task 6c396c846306ae6cf6d13da663f73db8
+2020-11-21 01:08:27,634 DEBUG | 8 available query slots, creating query task
+2020-11-21 01:08:27,634 DEBUG | Starting query 119833
+2020-11-21 01:08:27,824 DEBUG | Query 119833 is running under query task 5fb9a640b4781440115f30e4dc9355f0
+2020-11-21 01:08:27,824 DEBUG | 7 available query slots, creating query task
+2020-11-21 01:08:27,824 DEBUG | Starting query 119834
+2020-11-21 01:08:28,115 DEBUG | Query 119834 is running under query task 71e7f637f06be5cb21dc38029dcbb908
+2020-11-21 01:08:28,115 DEBUG | 6 available query slots, creating query task
+2020-11-21 01:08:28,115 DEBUG | Starting query 119835
+2020-11-21 01:08:28,404 DEBUG | Query 119835 is running under query task 8ecb038e848e2034ca5102b5a900e80e
+2020-11-21 01:08:28,404 DEBUG | 5 available query slots, creating query task
+2020-11-21 01:08:28,404 DEBUG | Starting query 119836
+2020-11-21 01:08:28,715 DEBUG | Query 119836 is running under query task ccd5b7260df24901a9130481551c1911
+2020-11-21 01:08:28,715 DEBUG | 4 available query slots, creating query task
+2020-11-21 01:08:28,715 DEBUG | Starting query 119837
+2020-11-21 01:08:29,022 DEBUG | Query 119837 is running under query task 3824f49077506c4c1e033b03c8bf0bd8
+2020-11-21 01:08:29,022 DEBUG | 3 available query slots, creating query task
+2020-11-21 01:08:29,022 DEBUG | Starting query 119838
+2020-11-21 01:08:29,451 DEBUG | Query 119838 is running under query task 9a15b83d93eff9586bd37bfe070ace98
+2020-11-21 01:08:29,451 DEBUG | Checking for results of 8 query tasks
+2020-11-21 01:08:29,451 DEBUG | Attempting to get results for 8 query tasks
+2020-11-21 01:08:30,102 DEBUG | Query task 3824f49077506c4c1e033b03c8bf0bd8 status is: running
+2020-11-21 01:08:30,102 DEBUG | Query task 5fb9a640b4781440115f30e4dc9355f0 status is: complete
+2020-11-21 01:08:30,103 DEBUG | Query task 6c396c846306ae6cf6d13da663f73db8 status is: complete
+2020-11-21 01:08:30,103 DEBUG | Query task 71e7f637f06be5cb21dc38029dcbb908 status is: running
+2020-11-21 01:08:30,103 DEBUG | Query task 8ecb038e848e2034ca5102b5a900e80e status is: running
+2020-11-21 01:08:30,103 DEBUG | Query task 9a15b83d93eff9586bd37bfe070ace98 status is: added
+2020-11-21 01:08:30,103 DEBUG | Query task baa97b132bcb2bdea686bf4b1c17207d status is: complete
+2020-11-21 01:08:30,103 DEBUG | Query task ccd5b7260df24901a9130481551c1911 status is: running
+2020-11-21 01:08:30,604 DEBUG | Checking for results of 5 query tasks
+2020-11-21 01:08:30,604 DEBUG | Attempting to get results for 5 query tasks
+2020-11-21 01:08:31,225 DEBUG | Query task 3824f49077506c4c1e033b03c8bf0bd8 status is: complete
+2020-11-21 01:08:31,225 DEBUG | Query task 71e7f637f06be5cb21dc38029dcbb908 status is: complete
+2020-11-21 01:08:31,225 DEBUG | Query task 8ecb038e848e2034ca5102b5a900e80e status is: complete
+2020-11-21 01:08:31,225 DEBUG | Query task 9a15b83d93eff9586bd37bfe070ace98 status is: running
+2020-11-21 01:08:31,225 DEBUG | Query task ccd5b7260df24901a9130481551c1911 status is: running
+2020-11-21 01:08:31,726 DEBUG | Checking for results of 2 query tasks
+2020-11-21 01:08:31,726 DEBUG | Attempting to get results for 2 query tasks
+2020-11-21 01:08:32,218 DEBUG | Query task 9a15b83d93eff9586bd37bfe070ace98 status is: complete
+2020-11-21 01:08:32,218 DEBUG | Query task ccd5b7260df24901a9130481551c1911 status is: complete
+2020-11-21 01:08:32,720 DEBUG | Restoring project 'hugo_sandbox' to branch 'master'
+2020-11-21 01:08:32,720 DEBUG | Updating session to use the production workspace
+2020-11-21 01:08:32,893 INFO | ✓ hugo_sandbox.bsandell passed
+2020-11-21 01:08:32,893 INFO | ✓ hugo_sandbox.company_list passed
+2020-11-21 01:08:32,894 INFO | ✓ hugo_sandbox.distribution_centers passed
+2020-11-21 01:08:32,894 INFO | ✓ hugo_sandbox.events passed
+2020-11-21 01:08:32,894 INFO | ✓ hugo_sandbox.inventory_items passed
+2020-11-21 01:08:32,895 INFO | ✓ hugo_sandbox.order_items passed
+2020-11-21 01:08:32,895 INFO | ✓ hugo_sandbox.products passed
+2020-11-21 01:08:32,896 INFO | ✓ hugo_sandbox.users passed
+2020-11-21 01:08:32,896 INFO | 
+2020-11-21 01:08:32,898 INFO | Completed SQL validation in 41 seconds.
+
+2020-11-21 01:21:01,617 DEBUG | Authenticating Looker API credentials
+2020-11-21 01:21:01,744 DEBUG | Checking Looker instance release version
+2020-11-21 01:21:01,787 INFO | Connected to Looker version 7.20.7 using Looker API 3.1
+2020-11-21 01:21:01,787 DEBUG | Getting active branch for project 'hugo_sandbox'
+2020-11-21 01:21:01,831 DEBUG | The active branch is 'master'
+2020-11-21 01:21:01,831 DEBUG | Updating session to use the production workspace
+2020-11-21 01:21:01,867 INFO | Building LookML project hierarchy for project 'hugo_sandbox' @ master
+2020-11-21 01:21:01,867 DEBUG | Getting all models and explores from https://profservices.dev.looker.com
+2020-11-21 01:21:30,381 DEBUG | Getting all dimensions from explore bsandell
+2020-11-21 01:21:30,544 DEBUG | Getting all dimensions from explore company_list
+2020-11-21 01:21:30,666 DEBUG | Getting all dimensions from explore distribution_centers
+2020-11-21 01:21:30,799 DEBUG | Getting all dimensions from explore events
+2020-11-21 01:21:30,955 DEBUG | Getting all dimensions from explore inventory_items
+2020-11-21 01:21:31,109 DEBUG | Getting all dimensions from explore order_items
+2020-11-21 01:21:31,323 DEBUG | Getting all dimensions from explore products
+2020-11-21 01:21:31,471 DEBUG | Getting all dimensions from explore users
+2020-11-21 01:21:31,626 INFO | 
+============== Testing 8 explores [batch mode] [concurrency = 10] ==============
+
+2020-11-21 01:21:31,627 DEBUG | Creating async query for hugo_sandbox/bsandell/*
+2020-11-21 01:21:31,738 DEBUG | Query for hugo_sandbox/bsandell/* created as query 119831
+2020-11-21 01:21:31,738 DEBUG | Creating async query for hugo_sandbox/company_list/company_list.company_id
+2020-11-21 01:21:31,855 DEBUG | Query for hugo_sandbox/company_list/company_list.company_id created as query 119832
+2020-11-21 01:21:31,856 DEBUG | Creating async query for hugo_sandbox/distribution_centers/*
+2020-11-21 01:21:31,967 DEBUG | Query for hugo_sandbox/distribution_centers/* created as query 119833
+2020-11-21 01:21:31,967 DEBUG | Creating async query for hugo_sandbox/events/*
+2020-11-21 01:21:32,078 DEBUG | Query for hugo_sandbox/events/* created as query 119834
+2020-11-21 01:21:32,079 DEBUG | Creating async query for hugo_sandbox/inventory_items/*
+2020-11-21 01:21:32,193 DEBUG | Query for hugo_sandbox/inventory_items/* created as query 119835
+2020-11-21 01:21:32,193 DEBUG | Creating async query for hugo_sandbox/order_items/*
+2020-11-21 01:21:32,286 DEBUG | Query for hugo_sandbox/order_items/* created as query 119836
+2020-11-21 01:21:32,286 DEBUG | Creating async query for hugo_sandbox/products/*
+2020-11-21 01:21:32,373 DEBUG | Query for hugo_sandbox/products/* created as query 119837
+2020-11-21 01:21:32,373 DEBUG | Creating async query for hugo_sandbox/users/*
+2020-11-21 01:21:32,461 DEBUG | Query for hugo_sandbox/users/* created as query 119838
+2020-11-21 01:21:32,462 DEBUG | Starting a new loop, 8 queries queued
+2020-11-21 01:21:32,462 DEBUG | 10 available query slots, creating query task
+2020-11-21 01:21:32,462 DEBUG | Starting query 119831
+2020-11-21 01:21:32,576 DEBUG | Query 119831 is running under query task d6628fd18cdd81b1e265f50d3ed2b68f
+2020-11-21 01:21:32,576 DEBUG | 9 available query slots, creating query task
+2020-11-21 01:21:32,577 DEBUG | Starting query 119832
+2020-11-21 01:21:32,743 DEBUG | Query 119832 is running under query task 1ab0285b3881cbfd8cdacc890f2107e7
+2020-11-21 01:21:32,744 DEBUG | 8 available query slots, creating query task
+2020-11-21 01:21:32,744 DEBUG | Starting query 119833
+2020-11-21 01:21:32,958 DEBUG | Query 119833 is running under query task 0a5453b79b49cc914169be84418de1e8
+2020-11-21 01:21:32,958 DEBUG | 7 available query slots, creating query task
+2020-11-21 01:21:32,959 DEBUG | Starting query 119834
+2020-11-21 01:21:33,212 DEBUG | Query 119834 is running under query task 78bcb59861476293f7026753bc703cf0
+2020-11-21 01:21:33,212 DEBUG | 6 available query slots, creating query task
+2020-11-21 01:21:33,212 DEBUG | Starting query 119835
+2020-11-21 01:21:33,447 DEBUG | Query 119835 is running under query task a10b36a19be39a01e7f2c4d05c175809
+2020-11-21 01:21:33,447 DEBUG | 5 available query slots, creating query task
+2020-11-21 01:21:33,447 DEBUG | Starting query 119836
+2020-11-21 01:21:33,606 DEBUG | Query 119836 is running under query task bea25218e0da688f40510bd23a1499c5
+2020-11-21 01:21:33,606 DEBUG | 4 available query slots, creating query task
+2020-11-21 01:21:33,607 DEBUG | Starting query 119837
+2020-11-21 01:21:33,762 DEBUG | Query 119837 is running under query task 5aa93a0fa338656eedfa97b03841ba08
+2020-11-21 01:21:33,763 DEBUG | 3 available query slots, creating query task
+2020-11-21 01:21:33,763 DEBUG | Starting query 119838
+2020-11-21 01:21:34,098 DEBUG | Query 119838 is running under query task d0100371e9017a88de2a7dd96b3c0481
+2020-11-21 01:21:34,098 DEBUG | Checking for results of 8 query tasks
+2020-11-21 01:21:34,098 DEBUG | Attempting to get results for 8 query tasks
+2020-11-21 01:21:35,189 DEBUG | Query task 0a5453b79b49cc914169be84418de1e8 status is: complete
+2020-11-21 01:21:35,189 DEBUG | Query task 1ab0285b3881cbfd8cdacc890f2107e7 status is: complete
+2020-11-21 01:21:35,189 DEBUG | Query task 5aa93a0fa338656eedfa97b03841ba08 status is: running
+2020-11-21 01:21:35,189 DEBUG | Query task 78bcb59861476293f7026753bc703cf0 status is: running
+2020-11-21 01:21:35,189 DEBUG | Query task a10b36a19be39a01e7f2c4d05c175809 status is: running
+2020-11-21 01:21:35,189 DEBUG | Query task bea25218e0da688f40510bd23a1499c5 status is: expired
+2020-11-21 01:21:35,189 DEBUG | Query task d0100371e9017a88de2a7dd96b3c0481 status is: added
+2020-11-21 01:21:35,189 DEBUG | Query task d6628fd18cdd81b1e265f50d3ed2b68f status is: complete
+2020-11-21 01:21:35,690 DEBUG | Checking for results of 5 query tasks
+2020-11-21 01:21:35,690 DEBUG | Attempting to get results for 5 query tasks
+2020-11-21 01:21:36,242 DEBUG | Query task 5aa93a0fa338656eedfa97b03841ba08 status is: complete
+2020-11-21 01:21:36,242 DEBUG | Query task 78bcb59861476293f7026753bc703cf0 status is: complete
+2020-11-21 01:21:36,243 DEBUG | Query task a10b36a19be39a01e7f2c4d05c175809 status is: complete
+2020-11-21 01:21:36,243 DEBUG | Query task bea25218e0da688f40510bd23a1499c5 status is: error
+2020-11-21 01:21:36,243 DEBUG | Query task d0100371e9017a88de2a7dd96b3c0481 status is: complete
+2020-11-21 01:21:36,744 DEBUG | Restoring project 'hugo_sandbox' to branch 'master'
+2020-11-21 01:21:36,744 DEBUG | Updating session to use the production workspace
+2020-11-21 01:21:36,779 INFO | ✓ hugo_sandbox.bsandell passed
+2020-11-21 01:21:36,779 INFO | ✓ hugo_sandbox.company_list passed
+2020-11-21 01:21:36,779 INFO | ✓ hugo_sandbox.distribution_centers passed
+2020-11-21 01:21:36,779 INFO | ✓ hugo_sandbox.events passed
+2020-11-21 01:21:36,779 INFO | ✓ hugo_sandbox.inventory_items passed
+2020-11-21 01:21:36,779 INFO | ✗ hugo_sandbox.order_items failed
+2020-11-21 01:21:36,780 INFO | ✓ hugo_sandbox.products passed
+2020-11-21 01:21:36,780 INFO | ✓ hugo_sandbox.users passed
+2020-11-21 01:21:36,780 INFO | 
+=========================== hugo_sandbox/order_items ===========================
+
+2020-11-21 01:21:36,780 INFO | The Amazon Redshift database encountered an error while running this query.
+ERROR: column order_items.inventory_item_1111id does not exist
+2020-11-21 01:21:36,780 DEBUG | Logging failing SQL query to 'logs/queries/hugo_sandbox__order_items.sql'
+2020-11-21 01:21:36,780 DEBUG | Failing SQL: 
+SELECT
+	distribution_centers.id  AS "distribution_centers.id",
+	distribution_centers.latitude  AS "distribution_centers.latitude",
+	distribution_centers.longitude  AS "distribution_centers.longitude",
+	distribution_centers.name  AS "distribution_centers.name",
+	inventory_items.cost  AS "inventory_items.cost",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at )) AS "inventory_items.created_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at )), 'YYYY-MM') AS "inventory_items.created_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at ))), 'YYYY-MM') AS "inventory_items.created_quarter",
+	inventory_items.created_at  AS "inventory_items.created_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at )), 'YYYY-MM-DD HH24:MI:SS') AS "inventory_items.created_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at )), 'YYYY-MM-DD') AS "inventory_items.created_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at ))::integer AS "inventory_items.created_year",
+	inventory_items.id  AS "inventory_items.id",
+	inventory_items.product_brand  AS "inventory_items.product_brand",
+	inventory_items.product_category  AS "inventory_items.product_category",
+	inventory_items.product_department  AS "inventory_items.product_department",
+	inventory_items.product_distribution_center_id  AS "inventory_items.product_distribution_center_id",
+	inventory_items.product_id  AS "inventory_items.product_id",
+	inventory_items.product_name  AS "inventory_items.product_name",
+	inventory_items.product_retail_price  AS "inventory_items.product_retail_price",
+	inventory_items.product_sku  AS "inventory_items.product_sku",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at )) AS "inventory_items.sold_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at )), 'YYYY-MM') AS "inventory_items.sold_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at ))), 'YYYY-MM') AS "inventory_items.sold_quarter",
+	inventory_items.sold_at  AS "inventory_items.sold_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at )), 'YYYY-MM-DD HH24:MI:SS') AS "inventory_items.sold_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at )), 'YYYY-MM-DD') AS "inventory_items.sold_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at ))::integer AS "inventory_items.sold_year",
+	1  AS "order_items.broken_content",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at )) AS "order_items.created_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at )), 'YYYY-MM') AS "order_items.created_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at ))), 'YYYY-MM') AS "order_items.created_quarter",
+	order_items.created_at  AS "order_items.created_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at )), 'YYYY-MM-DD HH24:MI:SS') AS "order_items.created_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at )), 'YYYY-MM-DD') AS "order_items.created_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at ))::integer AS "order_items.created_year",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at )) AS "order_items.delivered_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at )), 'YYYY-MM') AS "order_items.delivered_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at ))), 'YYYY-MM') AS "order_items.delivered_quarter",
+	order_items.delivered_at  AS "order_items.delivered_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at )), 'YYYY-MM-DD HH24:MI:SS') AS "order_items.delivered_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at )), 'YYYY-MM-DD') AS "order_items.delivered_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at ))::integer AS "order_items.delivered_year",
+	order_items.id  AS "order_items.id",
+	order_items.inventory_item_1111id  AS "order_items.inventory_item_id",
+	order_items.order_id  AS "order_items.order_id",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at )) AS "order_items.returned_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at )), 'YYYY-MM') AS "order_items.returned_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at ))), 'YYYY-MM') AS "order_items.returned_quarter",
+	order_items.returned_at  AS "order_items.returned_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at )), 'YYYY-MM-DD HH24:MI:SS') AS "order_items.returned_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at )), 'YYYY-MM-DD') AS "order_items.returned_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at ))::integer AS "order_items.returned_year",
+	order_items.sale_price  AS "order_items.sale_price",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at )) AS "order_items.shipped_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at )), 'YYYY-MM') AS "order_items.shipped_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at ))), 'YYYY-MM') AS "order_items.shipped_quarter",
+	order_items.shipped_at  AS "order_items.shipped_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at )), 'YYYY-MM-DD HH24:MI:SS') AS "order_items.shipped_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at )), 'YYYY-MM-DD') AS "order_items.shipped_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at ))::integer AS "order_items.shipped_year",
+	order_items.status  AS "order_items.status",
+	order_items.user_id  AS "order_items.user_id",
+	products.brand  AS "products.brand",
+	products.category  AS "products.category",
+	products.cost  AS "products.cost",
+	products.department  AS "products.department",
+	products.distribution_center_id  AS "products.distribution_center_id",
+	products.id  AS "products.id",
+	products.name  AS "products.name",
+	products.retail_price  AS "products.retail_price",
+	products.sku  AS "products.sku",
+	users.age  AS "users.age",
+	users.city  AS "users.city",
+	users.country  AS "users.country",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at )) AS "users.created_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at )), 'YYYY-MM') AS "users.created_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at ))), 'YYYY-MM') AS "users.created_quarter",
+	users.created_at  AS "users.created_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at )), 'YYYY-MM-DD HH24:MI:SS') AS "users.created_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at )), 'YYYY-MM-DD') AS "users.created_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at ))::integer AS "users.created_year",
+	users.email  AS "users.email",
+	users.first_name  AS "users.first_name",
+	users.gender  AS "users.gender",
+	users.id  AS "users.id",
+	users.last_name  AS "users.last_name",
+	users.latitude  AS "users.latitude",
+	users.longitude  AS "users.longitude",
+	users.state  AS "users.state",
+	users.traffic_source  AS "users.traffic_source",
+	users.zip  AS "users.zip"
+FROM public.order_items  AS order_items
+LEFT JOIN public.users  AS users ON order_items.user_id = users.id
+LEFT JOIN public.inventory_items  AS inventory_items ON order_items.inventory_item_1111id = inventory_items.id
+LEFT JOIN public.products  AS products ON inventory_items.product_id = products.id
+LEFT JOIN public.distribution_centers  AS distribution_centers ON products.distribution_center_id = distribution_centers.id
+
+WHERE 1 = 2
+ORDER BY 6 DESC
+LIMIT 0
+2020-11-21 01:21:36,781 INFO | 
+Test SQL: logs/queries/hugo_sandbox__order_items.sql
+2020-11-21 01:21:36,781 INFO | 
+
+To determine the exact dimensions responsible for this error, you can re-run 
+Spectacles in single-dimension mode, with `--mode single`.
+
+You can also run this original validation with `--mode hybrid` to do this automatically.
+2020-11-21 01:21:36,781 INFO | 
+2020-11-21 01:21:36,781 INFO | Completed SQL validation in 35 seconds.
+
+2020-11-21 04:47:52,108 DEBUG | Authenticating Looker API credentials
+2020-11-21 04:47:52,290 DEBUG | Checking Looker instance release version
+2020-11-21 04:47:52,332 INFO | Connected to Looker version 7.20.7 using Looker API 3.1
+2020-11-21 04:47:52,333 DEBUG | Getting active branch for project 'hugo_sandbox'
+2020-11-21 04:47:52,390 DEBUG | The active branch is 'master'
+2020-11-21 04:47:52,390 DEBUG | Updating session to use the production workspace
+2020-11-21 04:47:52,426 INFO | Building LookML project hierarchy for project 'hugo_sandbox' @ master
+2020-11-21 04:47:52,427 DEBUG | Getting all models and explores from https://profservices.dev.looker.com
+2020-11-21 04:48:25,639 DEBUG | Getting all dimensions from explore bsandell
+2020-11-21 04:48:25,800 DEBUG | Getting all dimensions from explore company_list
+2020-11-21 04:48:25,950 DEBUG | Getting all dimensions from explore distribution_centers
+2020-11-21 04:48:26,100 DEBUG | Getting all dimensions from explore events
+2020-11-21 04:48:26,297 DEBUG | Getting all dimensions from explore inventory_items
+2020-11-21 04:48:26,467 DEBUG | Getting all dimensions from explore order_items
+2020-11-21 04:48:26,707 DEBUG | Getting all dimensions from explore products
+2020-11-21 04:48:26,863 DEBUG | Getting all dimensions from explore users
+2020-11-21 04:48:27,032 INFO | 
+============== Testing 8 explores [batch mode] [concurrency = 10] ==============
+
+2020-11-21 04:48:27,033 DEBUG | Creating async query for hugo_sandbox/bsandell/*
+2020-11-21 04:48:27,165 DEBUG | Query for hugo_sandbox/bsandell/* created as query 119831
+2020-11-21 04:48:27,165 DEBUG | Creating async query for hugo_sandbox/company_list/company_list.company_id
+2020-11-21 04:48:27,295 DEBUG | Query for hugo_sandbox/company_list/company_list.company_id created as query 119832
+2020-11-21 04:48:27,295 DEBUG | Creating async query for hugo_sandbox/distribution_centers/*
+2020-11-21 04:48:27,390 DEBUG | Query for hugo_sandbox/distribution_centers/* created as query 119833
+2020-11-21 04:48:27,391 DEBUG | Creating async query for hugo_sandbox/events/*
+2020-11-21 04:48:27,529 DEBUG | Query for hugo_sandbox/events/* created as query 119834
+2020-11-21 04:48:27,530 DEBUG | Creating async query for hugo_sandbox/inventory_items/*
+2020-11-21 04:48:27,649 DEBUG | Query for hugo_sandbox/inventory_items/* created as query 119835
+2020-11-21 04:48:27,650 DEBUG | Creating async query for hugo_sandbox/order_items/*
+2020-11-21 04:48:27,744 DEBUG | Query for hugo_sandbox/order_items/* created as query 119836
+2020-11-21 04:48:27,744 DEBUG | Creating async query for hugo_sandbox/products/*
+2020-11-21 04:48:27,839 DEBUG | Query for hugo_sandbox/products/* created as query 119837
+2020-11-21 04:48:27,839 DEBUG | Creating async query for hugo_sandbox/users/*
+2020-11-21 04:48:27,930 DEBUG | Query for hugo_sandbox/users/* created as query 119838
+2020-11-21 04:48:27,931 DEBUG | Starting a new loop, 8 queries queued
+2020-11-21 04:48:27,931 DEBUG | 10 available query slots, creating query task
+2020-11-21 04:48:27,931 DEBUG | Starting query 119831
+2020-11-21 04:48:28,099 DEBUG | Query 119831 is running under query task 5398e272f69bff19daccec90cab4ebf1
+2020-11-21 04:48:28,099 DEBUG | 9 available query slots, creating query task
+2020-11-21 04:48:28,100 DEBUG | Starting query 119832
+2020-11-21 04:48:28,330 DEBUG | Query 119832 is running under query task 3acc17476b3e7d9080dab788886cb4eb
+2020-11-21 04:48:28,330 DEBUG | 8 available query slots, creating query task
+2020-11-21 04:48:28,330 DEBUG | Starting query 119833
+2020-11-21 04:48:28,682 DEBUG | Query 119833 is running under query task c924ee2adc24cfa2a3e0eda6f70b108c
+2020-11-21 04:48:28,682 DEBUG | 7 available query slots, creating query task
+2020-11-21 04:48:28,683 DEBUG | Starting query 119834
+2020-11-21 04:48:28,917 DEBUG | Query 119834 is running under query task dd4a63976b0653d5179d62dc52d7fc70
+2020-11-21 04:48:28,917 DEBUG | 6 available query slots, creating query task
+2020-11-21 04:48:28,918 DEBUG | Starting query 119835
+2020-11-21 04:48:29,155 DEBUG | Query 119835 is running under query task a255e41215a575d9603b38d238b5d808
+2020-11-21 04:48:29,155 DEBUG | 5 available query slots, creating query task
+2020-11-21 04:48:29,156 DEBUG | Starting query 119836
+2020-11-21 04:48:29,447 DEBUG | Query 119836 is running under query task b3b50e83c0e596073faf13cae0758002
+2020-11-21 04:48:29,448 DEBUG | 4 available query slots, creating query task
+2020-11-21 04:48:29,448 DEBUG | Starting query 119837
+2020-11-21 04:48:29,804 DEBUG | Query 119837 is running under query task c9b6a8ba5c5af4654a7b0b2b24bd9fce
+2020-11-21 04:48:29,804 DEBUG | 3 available query slots, creating query task
+2020-11-21 04:48:29,805 DEBUG | Starting query 119838
+2020-11-21 04:48:30,256 DEBUG | Query 119838 is running under query task 721bf388e8031ffde425d6bc0cea4e65
+2020-11-21 04:48:30,256 DEBUG | Checking for results of 8 query tasks
+2020-11-21 04:48:30,256 DEBUG | Attempting to get results for 8 query tasks
+2020-11-21 04:48:31,827 DEBUG | Query task 3acc17476b3e7d9080dab788886cb4eb status is: complete
+2020-11-21 04:48:31,827 DEBUG | Query task 5398e272f69bff19daccec90cab4ebf1 status is: complete
+2020-11-21 04:48:31,827 DEBUG | Query task 721bf388e8031ffde425d6bc0cea4e65 status is: added
+2020-11-21 04:48:31,828 DEBUG | Query task a255e41215a575d9603b38d238b5d808 status is: running
+2020-11-21 04:48:31,828 DEBUG | Query task b3b50e83c0e596073faf13cae0758002 status is: expired
+2020-11-21 04:48:31,828 DEBUG | Query task c924ee2adc24cfa2a3e0eda6f70b108c status is: complete
+2020-11-21 04:48:31,828 DEBUG | Query task c9b6a8ba5c5af4654a7b0b2b24bd9fce status is: running
+2020-11-21 04:48:31,828 DEBUG | Query task dd4a63976b0653d5179d62dc52d7fc70 status is: running
+2020-11-21 04:48:32,329 DEBUG | Checking for results of 5 query tasks
+2020-11-21 04:48:32,329 DEBUG | Attempting to get results for 5 query tasks
+2020-11-21 04:48:33,692 DEBUG | Query task 721bf388e8031ffde425d6bc0cea4e65 status is: running
+2020-11-21 04:48:33,692 DEBUG | Query task a255e41215a575d9603b38d238b5d808 status is: complete
+2020-11-21 04:48:33,692 DEBUG | Query task b3b50e83c0e596073faf13cae0758002 status is: expired
+2020-11-21 04:48:33,692 DEBUG | Query task c9b6a8ba5c5af4654a7b0b2b24bd9fce status is: complete
+2020-11-21 04:48:33,692 DEBUG | Query task dd4a63976b0653d5179d62dc52d7fc70 status is: complete
+2020-11-21 04:48:34,193 DEBUG | Checking for results of 2 query tasks
+2020-11-21 04:48:34,193 DEBUG | Attempting to get results for 2 query tasks
+2020-11-21 04:48:34,438 DEBUG | Query task 721bf388e8031ffde425d6bc0cea4e65 status is: complete
+2020-11-21 04:48:34,438 DEBUG | Query task b3b50e83c0e596073faf13cae0758002 status is: error
+2020-11-21 04:48:34,939 DEBUG | Restoring project 'hugo_sandbox' to branch 'master'
+2020-11-21 04:48:34,940 DEBUG | Updating session to use the production workspace
+2020-11-21 04:48:34,973 INFO | ✓ hugo_sandbox.bsandell passed
+2020-11-21 04:48:34,973 INFO | ✓ hugo_sandbox.company_list passed
+2020-11-21 04:48:34,974 INFO | ✓ hugo_sandbox.distribution_centers passed
+2020-11-21 04:48:34,974 INFO | ✓ hugo_sandbox.events passed
+2020-11-21 04:48:34,974 INFO | ✓ hugo_sandbox.inventory_items passed
+2020-11-21 04:48:34,974 INFO | ✗ hugo_sandbox.order_items failed
+2020-11-21 04:48:34,974 INFO | ✓ hugo_sandbox.products passed
+2020-11-21 04:48:34,974 INFO | ✓ hugo_sandbox.users passed
+2020-11-21 04:48:34,974 INFO | 
+=========================== hugo_sandbox/order_items ===========================
+
+2020-11-21 04:48:34,975 INFO | The Amazon Redshift database encountered an error while running this query.
+ERROR: column order_items.inventory_item_1111id does not exist
+2020-11-21 04:48:34,975 DEBUG | Logging failing SQL query to 'logs/queries/hugo_sandbox__order_items.sql'
+2020-11-21 04:48:34,975 DEBUG | Failing SQL: 
+SELECT
+	distribution_centers.id  AS "distribution_centers.id",
+	distribution_centers.latitude  AS "distribution_centers.latitude",
+	distribution_centers.longitude  AS "distribution_centers.longitude",
+	distribution_centers.name  AS "distribution_centers.name",
+	inventory_items.cost  AS "inventory_items.cost",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at )) AS "inventory_items.created_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at )), 'YYYY-MM') AS "inventory_items.created_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at ))), 'YYYY-MM') AS "inventory_items.created_quarter",
+	inventory_items.created_at  AS "inventory_items.created_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at )), 'YYYY-MM-DD HH24:MI:SS') AS "inventory_items.created_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at )), 'YYYY-MM-DD') AS "inventory_items.created_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at ))::integer AS "inventory_items.created_year",
+	inventory_items.id  AS "inventory_items.id",
+	inventory_items.product_brand  AS "inventory_items.product_brand",
+	inventory_items.product_category  AS "inventory_items.product_category",
+	inventory_items.product_department  AS "inventory_items.product_department",
+	inventory_items.product_distribution_center_id  AS "inventory_items.product_distribution_center_id",
+	inventory_items.product_id  AS "inventory_items.product_id",
+	inventory_items.product_name  AS "inventory_items.product_name",
+	inventory_items.product_retail_price  AS "inventory_items.product_retail_price",
+	inventory_items.product_sku  AS "inventory_items.product_sku",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at )) AS "inventory_items.sold_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at )), 'YYYY-MM') AS "inventory_items.sold_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at ))), 'YYYY-MM') AS "inventory_items.sold_quarter",
+	inventory_items.sold_at  AS "inventory_items.sold_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at )), 'YYYY-MM-DD HH24:MI:SS') AS "inventory_items.sold_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at )), 'YYYY-MM-DD') AS "inventory_items.sold_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at ))::integer AS "inventory_items.sold_year",
+	1  AS "order_items.broken_content",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at )) AS "order_items.created_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at )), 'YYYY-MM') AS "order_items.created_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at ))), 'YYYY-MM') AS "order_items.created_quarter",
+	order_items.created_at  AS "order_items.created_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at )), 'YYYY-MM-DD HH24:MI:SS') AS "order_items.created_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at )), 'YYYY-MM-DD') AS "order_items.created_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at ))::integer AS "order_items.created_year",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at )) AS "order_items.delivered_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at )), 'YYYY-MM') AS "order_items.delivered_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at ))), 'YYYY-MM') AS "order_items.delivered_quarter",
+	order_items.delivered_at  AS "order_items.delivered_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at )), 'YYYY-MM-DD HH24:MI:SS') AS "order_items.delivered_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at )), 'YYYY-MM-DD') AS "order_items.delivered_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at ))::integer AS "order_items.delivered_year",
+	order_items.id  AS "order_items.id",
+	order_items.inventory_item_1111id  AS "order_items.inventory_item_id",
+	order_items.order_id  AS "order_items.order_id",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at )) AS "order_items.returned_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at )), 'YYYY-MM') AS "order_items.returned_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at ))), 'YYYY-MM') AS "order_items.returned_quarter",
+	order_items.returned_at  AS "order_items.returned_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at )), 'YYYY-MM-DD HH24:MI:SS') AS "order_items.returned_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at )), 'YYYY-MM-DD') AS "order_items.returned_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at ))::integer AS "order_items.returned_year",
+	order_items.sale_price  AS "order_items.sale_price",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at )) AS "order_items.shipped_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at )), 'YYYY-MM') AS "order_items.shipped_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at ))), 'YYYY-MM') AS "order_items.shipped_quarter",
+	order_items.shipped_at  AS "order_items.shipped_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at )), 'YYYY-MM-DD HH24:MI:SS') AS "order_items.shipped_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at )), 'YYYY-MM-DD') AS "order_items.shipped_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at ))::integer AS "order_items.shipped_year",
+	order_items.status  AS "order_items.status",
+	order_items.user_id  AS "order_items.user_id",
+	products.brand  AS "products.brand",
+	products.category  AS "products.category",
+	products.cost  AS "products.cost",
+	products.department  AS "products.department",
+	products.distribution_center_id  AS "products.distribution_center_id",
+	products.id  AS "products.id",
+	products.name  AS "products.name",
+	products.retail_price  AS "products.retail_price",
+	products.sku  AS "products.sku",
+	users.age  AS "users.age",
+	users.city  AS "users.city",
+	users.country  AS "users.country",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at )) AS "users.created_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at )), 'YYYY-MM') AS "users.created_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at ))), 'YYYY-MM') AS "users.created_quarter",
+	users.created_at  AS "users.created_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at )), 'YYYY-MM-DD HH24:MI:SS') AS "users.created_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at )), 'YYYY-MM-DD') AS "users.created_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at ))::integer AS "users.created_year",
+	users.email  AS "users.email",
+	users.first_name  AS "users.first_name",
+	users.gender  AS "users.gender",
+	users.id  AS "users.id",
+	users.last_name  AS "users.last_name",
+	users.latitude  AS "users.latitude",
+	users.longitude  AS "users.longitude",
+	users.state  AS "users.state",
+	users.traffic_source  AS "users.traffic_source",
+	users.zip  AS "users.zip"
+FROM public.order_items  AS order_items
+LEFT JOIN public.users  AS users ON order_items.user_id = users.id
+LEFT JOIN public.inventory_items  AS inventory_items ON order_items.inventory_item_1111id = inventory_items.id
+LEFT JOIN public.products  AS products ON inventory_items.product_id = products.id
+LEFT JOIN public.distribution_centers  AS distribution_centers ON products.distribution_center_id = distribution_centers.id
+
+WHERE 1 = 2
+ORDER BY 6 DESC
+LIMIT 0
+2020-11-21 04:48:34,975 INFO | 
+Test SQL: logs/queries/hugo_sandbox__order_items.sql
+2020-11-21 04:48:34,976 INFO | 
+
+To determine the exact dimensions responsible for this error, you can re-run 
+Spectacles in single-dimension mode, with `--mode single`.
+
+You can also run this original validation with `--mode hybrid` to do this automatically.
+2020-11-21 04:48:34,976 INFO | 
+2020-11-21 04:48:34,976 INFO | Completed SQL validation in 43 seconds.
+
+2020-11-21 04:50:28,122 DEBUG | Authenticating Looker API credentials
+2020-11-21 04:50:28,250 DEBUG | Checking Looker instance release version
+2020-11-21 04:50:28,283 INFO | Connected to Looker version 7.20.7 using Looker API 3.1
+2020-11-21 04:50:28,283 DEBUG | Getting active branch for project 'hugo_sandbox'
+2020-11-21 04:50:28,340 DEBUG | The active branch is 'master'
+2020-11-21 04:50:28,340 DEBUG | Updating session to use the production workspace
+2020-11-21 04:50:28,384 INFO | Building LookML project hierarchy for project 'hugo_sandbox' @ master
+2020-11-21 04:50:28,384 DEBUG | Getting all models and explores from https://profservices.dev.looker.com
+2020-11-21 04:50:59,672 DEBUG | Getting all dimensions from explore bsandell
+2020-11-21 04:50:59,829 DEBUG | Getting all dimensions from explore company_list
+2020-11-21 04:50:59,952 DEBUG | Getting all dimensions from explore distribution_centers
+2020-11-21 04:51:00,082 DEBUG | Getting all dimensions from explore events
+2020-11-21 04:51:00,248 DEBUG | Getting all dimensions from explore inventory_items
+2020-11-21 04:51:00,398 DEBUG | Getting all dimensions from explore order_items
+2020-11-21 04:51:00,597 DEBUG | Getting all dimensions from explore products
+2020-11-21 04:51:00,730 DEBUG | Getting all dimensions from explore users
+2020-11-21 04:51:00,874 INFO | 
+============== Testing 8 explores [batch mode] [concurrency = 10] ==============
+
+2020-11-21 04:51:00,874 DEBUG | Creating async query for hugo_sandbox/bsandell/*
+2020-11-21 04:51:00,970 DEBUG | Query for hugo_sandbox/bsandell/* created as query 119831
+2020-11-21 04:51:00,970 DEBUG | Creating async query for hugo_sandbox/company_list/company_list.company_id
+2020-11-21 04:51:01,063 DEBUG | Query for hugo_sandbox/company_list/company_list.company_id created as query 119832
+2020-11-21 04:51:01,063 DEBUG | Creating async query for hugo_sandbox/distribution_centers/*
+2020-11-21 04:51:01,179 DEBUG | Query for hugo_sandbox/distribution_centers/* created as query 119833
+2020-11-21 04:51:01,180 DEBUG | Creating async query for hugo_sandbox/events/*
+2020-11-21 04:51:01,280 DEBUG | Query for hugo_sandbox/events/* created as query 119834
+2020-11-21 04:51:01,280 DEBUG | Creating async query for hugo_sandbox/inventory_items/*
+2020-11-21 04:51:01,397 DEBUG | Query for hugo_sandbox/inventory_items/* created as query 119835
+2020-11-21 04:51:01,398 DEBUG | Creating async query for hugo_sandbox/order_items/*
+2020-11-21 04:51:01,516 DEBUG | Query for hugo_sandbox/order_items/* created as query 119836
+2020-11-21 04:51:01,517 DEBUG | Creating async query for hugo_sandbox/products/*
+2020-11-21 04:51:01,636 DEBUG | Query for hugo_sandbox/products/* created as query 119837
+2020-11-21 04:51:01,636 DEBUG | Creating async query for hugo_sandbox/users/*
+2020-11-21 04:51:01,755 DEBUG | Query for hugo_sandbox/users/* created as query 119838
+2020-11-21 04:51:01,756 DEBUG | Starting a new loop, 8 queries queued
+2020-11-21 04:51:01,756 DEBUG | 10 available query slots, creating query task
+2020-11-21 04:51:01,756 DEBUG | Starting query 119831
+2020-11-21 04:51:01,902 DEBUG | Query 119831 is running under query task 94ad611f999886aaaf6becb18c2ca441
+2020-11-21 04:51:01,902 DEBUG | 9 available query slots, creating query task
+2020-11-21 04:51:01,902 DEBUG | Starting query 119832
+2020-11-21 04:51:02,119 DEBUG | Query 119832 is running under query task cb15d63dc66a0032a65dc0086ca27d9b
+2020-11-21 04:51:02,119 DEBUG | 8 available query slots, creating query task
+2020-11-21 04:51:02,119 DEBUG | Starting query 119833
+2020-11-21 04:51:02,323 DEBUG | Query 119833 is running under query task bff399b743dbb9136b28fd0b4adf8663
+2020-11-21 04:51:02,323 DEBUG | 7 available query slots, creating query task
+2020-11-21 04:51:02,323 DEBUG | Starting query 119834
+2020-11-21 04:51:02,486 DEBUG | Query 119834 is running under query task 55d8bf7c75736c75d17c21e52b3e57e9
+2020-11-21 04:51:02,486 DEBUG | 6 available query slots, creating query task
+2020-11-21 04:51:02,486 DEBUG | Starting query 119835
+2020-11-21 04:51:02,803 DEBUG | Query 119835 is running under query task 68e5e10f08bf4835e12c5d765df6ca5f
+2020-11-21 04:51:02,803 DEBUG | 5 available query slots, creating query task
+2020-11-21 04:51:02,803 DEBUG | Starting query 119836
+2020-11-21 04:51:03,171 DEBUG | Query 119836 is running under query task 91e86d0ece6da132dc46d70d62b608df
+2020-11-21 04:51:03,172 DEBUG | 4 available query slots, creating query task
+2020-11-21 04:51:03,172 DEBUG | Starting query 119837
+2020-11-21 04:51:03,479 DEBUG | Query 119837 is running under query task 005330a87f426b3fd0c402505ed173b2
+2020-11-21 04:51:03,479 DEBUG | 3 available query slots, creating query task
+2020-11-21 04:51:03,479 DEBUG | Starting query 119838
+2020-11-21 04:51:03,782 DEBUG | Query 119838 is running under query task e492bd5f197605752a76975a854e05e3
+2020-11-21 04:51:03,782 DEBUG | Checking for results of 8 query tasks
+2020-11-21 04:51:03,782 DEBUG | Attempting to get results for 8 query tasks
+2020-11-21 04:51:04,734 DEBUG | Query task 005330a87f426b3fd0c402505ed173b2 status is: running
+2020-11-21 04:51:04,735 DEBUG | Query task 55d8bf7c75736c75d17c21e52b3e57e9 status is: running
+2020-11-21 04:51:04,735 DEBUG | Query task 68e5e10f08bf4835e12c5d765df6ca5f status is: running
+2020-11-21 04:51:04,735 DEBUG | Query task 91e86d0ece6da132dc46d70d62b608df status is: expired
+2020-11-21 04:51:04,735 DEBUG | Query task 94ad611f999886aaaf6becb18c2ca441 status is: complete
+2020-11-21 04:51:04,735 DEBUG | Query task bff399b743dbb9136b28fd0b4adf8663 status is: complete
+2020-11-21 04:51:04,735 DEBUG | Query task cb15d63dc66a0032a65dc0086ca27d9b status is: complete
+2020-11-21 04:51:04,735 DEBUG | Query task e492bd5f197605752a76975a854e05e3 status is: added
+2020-11-21 04:51:05,236 DEBUG | Checking for results of 5 query tasks
+2020-11-21 04:51:05,237 DEBUG | Attempting to get results for 5 query tasks
+2020-11-21 04:51:05,776 DEBUG | Query task 005330a87f426b3fd0c402505ed173b2 status is: complete
+2020-11-21 04:51:05,776 DEBUG | Query task 55d8bf7c75736c75d17c21e52b3e57e9 status is: complete
+2020-11-21 04:51:05,776 DEBUG | Query task 68e5e10f08bf4835e12c5d765df6ca5f status is: complete
+2020-11-21 04:51:05,776 DEBUG | Query task 91e86d0ece6da132dc46d70d62b608df status is: error
+2020-11-21 04:51:05,776 DEBUG | Query task e492bd5f197605752a76975a854e05e3 status is: complete
+2020-11-21 04:51:06,278 DEBUG | Restoring project 'hugo_sandbox' to branch 'master'
+2020-11-21 04:51:06,278 DEBUG | Updating session to use the production workspace
+2020-11-21 04:51:06,310 INFO | ✓ hugo_sandbox.bsandell passed
+2020-11-21 04:51:06,311 INFO | ✓ hugo_sandbox.company_list passed
+2020-11-21 04:51:06,311 INFO | ✓ hugo_sandbox.distribution_centers passed
+2020-11-21 04:51:06,311 INFO | ✓ hugo_sandbox.events passed
+2020-11-21 04:51:06,311 INFO | ✓ hugo_sandbox.inventory_items passed
+2020-11-21 04:51:06,312 INFO | ✗ hugo_sandbox.order_items failed
+2020-11-21 04:51:06,312 INFO | ✓ hugo_sandbox.products passed
+2020-11-21 04:51:06,312 INFO | ✓ hugo_sandbox.users passed
+2020-11-21 04:51:06,313 INFO | 
+=========================== hugo_sandbox/order_items ===========================
+
+2020-11-21 04:51:06,314 INFO | The Amazon Redshift database encountered an error while running this query.
+ERROR: column order_items.inventory_item_1111id does not exist
+2020-11-21 04:51:06,314 DEBUG | Logging failing SQL query to 'logs/queries/hugo_sandbox__order_items.sql'
+2020-11-21 04:51:06,315 DEBUG | Failing SQL: 
+SELECT
+	distribution_centers.id  AS "distribution_centers.id",
+	distribution_centers.latitude  AS "distribution_centers.latitude",
+	distribution_centers.longitude  AS "distribution_centers.longitude",
+	distribution_centers.name  AS "distribution_centers.name",
+	inventory_items.cost  AS "inventory_items.cost",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at )) AS "inventory_items.created_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at )), 'YYYY-MM') AS "inventory_items.created_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at ))), 'YYYY-MM') AS "inventory_items.created_quarter",
+	inventory_items.created_at  AS "inventory_items.created_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at )), 'YYYY-MM-DD HH24:MI:SS') AS "inventory_items.created_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at )), 'YYYY-MM-DD') AS "inventory_items.created_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.created_at ))::integer AS "inventory_items.created_year",
+	inventory_items.id  AS "inventory_items.id",
+	inventory_items.product_brand  AS "inventory_items.product_brand",
+	inventory_items.product_category  AS "inventory_items.product_category",
+	inventory_items.product_department  AS "inventory_items.product_department",
+	inventory_items.product_distribution_center_id  AS "inventory_items.product_distribution_center_id",
+	inventory_items.product_id  AS "inventory_items.product_id",
+	inventory_items.product_name  AS "inventory_items.product_name",
+	inventory_items.product_retail_price  AS "inventory_items.product_retail_price",
+	inventory_items.product_sku  AS "inventory_items.product_sku",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at )) AS "inventory_items.sold_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at )), 'YYYY-MM') AS "inventory_items.sold_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at ))), 'YYYY-MM') AS "inventory_items.sold_quarter",
+	inventory_items.sold_at  AS "inventory_items.sold_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at )), 'YYYY-MM-DD HH24:MI:SS') AS "inventory_items.sold_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at )), 'YYYY-MM-DD') AS "inventory_items.sold_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', inventory_items.sold_at ))::integer AS "inventory_items.sold_year",
+	1  AS "order_items.broken_content",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at )) AS "order_items.created_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at )), 'YYYY-MM') AS "order_items.created_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at ))), 'YYYY-MM') AS "order_items.created_quarter",
+	order_items.created_at  AS "order_items.created_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at )), 'YYYY-MM-DD HH24:MI:SS') AS "order_items.created_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at )), 'YYYY-MM-DD') AS "order_items.created_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.created_at ))::integer AS "order_items.created_year",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at )) AS "order_items.delivered_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at )), 'YYYY-MM') AS "order_items.delivered_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at ))), 'YYYY-MM') AS "order_items.delivered_quarter",
+	order_items.delivered_at  AS "order_items.delivered_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at )), 'YYYY-MM-DD HH24:MI:SS') AS "order_items.delivered_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at )), 'YYYY-MM-DD') AS "order_items.delivered_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.delivered_at ))::integer AS "order_items.delivered_year",
+	order_items.id  AS "order_items.id",
+	order_items.inventory_item_1111id  AS "order_items.inventory_item_id",
+	order_items.order_id  AS "order_items.order_id",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at )) AS "order_items.returned_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at )), 'YYYY-MM') AS "order_items.returned_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at ))), 'YYYY-MM') AS "order_items.returned_quarter",
+	order_items.returned_at  AS "order_items.returned_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at )), 'YYYY-MM-DD HH24:MI:SS') AS "order_items.returned_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at )), 'YYYY-MM-DD') AS "order_items.returned_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.returned_at ))::integer AS "order_items.returned_year",
+	order_items.sale_price  AS "order_items.sale_price",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at )) AS "order_items.shipped_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at )), 'YYYY-MM') AS "order_items.shipped_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at ))), 'YYYY-MM') AS "order_items.shipped_quarter",
+	order_items.shipped_at  AS "order_items.shipped_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at )), 'YYYY-MM-DD HH24:MI:SS') AS "order_items.shipped_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at )), 'YYYY-MM-DD') AS "order_items.shipped_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', order_items.shipped_at ))::integer AS "order_items.shipped_year",
+	order_items.status  AS "order_items.status",
+	order_items.user_id  AS "order_items.user_id",
+	products.brand  AS "products.brand",
+	products.category  AS "products.category",
+	products.cost  AS "products.cost",
+	products.department  AS "products.department",
+	products.distribution_center_id  AS "products.distribution_center_id",
+	products.id  AS "products.id",
+	products.name  AS "products.name",
+	products.retail_price  AS "products.retail_price",
+	products.sku  AS "products.sku",
+	users.age  AS "users.age",
+	users.city  AS "users.city",
+	users.country  AS "users.country",
+	DATE(CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at )) AS "users.created_date",
+	TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at )), 'YYYY-MM') AS "users.created_month",
+	TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at ))), 'YYYY-MM') AS "users.created_quarter",
+	users.created_at  AS "users.created_raw",
+	TO_CHAR(DATE_TRUNC('second', CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at )), 'YYYY-MM-DD HH24:MI:SS') AS "users.created_time",
+	TO_CHAR(DATE_TRUNC('week', CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at )), 'YYYY-MM-DD') AS "users.created_week",
+	DATE_PART(year, CONVERT_TIMEZONE('UTC', 'America/New_York', users.created_at ))::integer AS "users.created_year",
+	users.email  AS "users.email",
+	users.first_name  AS "users.first_name",
+	users.gender  AS "users.gender",
+	users.id  AS "users.id",
+	users.last_name  AS "users.last_name",
+	users.latitude  AS "users.latitude",
+	users.longitude  AS "users.longitude",
+	users.state  AS "users.state",
+	users.traffic_source  AS "users.traffic_source",
+	users.zip  AS "users.zip"
+FROM public.order_items  AS order_items
+LEFT JOIN public.users  AS users ON order_items.user_id = users.id
+LEFT JOIN public.inventory_items  AS inventory_items ON order_items.inventory_item_1111id = inventory_items.id
+LEFT JOIN public.products  AS products ON inventory_items.product_id = products.id
+LEFT JOIN public.distribution_centers  AS distribution_centers ON products.distribution_center_id = distribution_centers.id
+
+WHERE 1 = 2
+ORDER BY 6 DESC
+LIMIT 0
+2020-11-21 04:51:06,316 INFO | 
+Test SQL: logs/queries/hugo_sandbox__order_items.sql
+2020-11-21 04:51:06,316 INFO | 
+
+To determine the exact dimensions responsible for this error, you can re-run 
+Spectacles in single-dimension mode, with `--mode single`.
+
+You can also run this original validation with `--mode hybrid` to do this automatically.
+2020-11-21 04:51:06,316 INFO | 
+2020-11-21 04:51:06,317 INFO | Completed SQL validation in 38 seconds.
+
