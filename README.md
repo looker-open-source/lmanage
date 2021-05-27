@@ -63,3 +63,5 @@ Lmanage can either return a full dataset of all content mapping, or a prefiltere
 - **used_joins**: joins used by the underlying queries obtained by parsing sql of query 	
 - **used_view_names**: views that are used by each query grouped by element_id	
 - **unused_joins**: views that are unused by the specific query of the dashboard element
+
+**This is not an officially supported Google Product.**
