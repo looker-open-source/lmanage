@@ -241,16 +241,15 @@ def test_parse_sql_bq_1327(mocker):
     mocker.patch.object(sdk, "run_query")
     sdk.run_query.return_value = """
          SELECT
-            REGEXP_EXTRACT(_TABLE_SUFFIX,r'\d\d\d\d')  AS gsod_year,
+            REGEXP_EXTRACT(_TABLE_SUFFIX,r'\\d\\d\\d\\d')  AS gsod_year,
             case when gsod.prcp = 99.99 then null else gsod.prcp end AS gsod_rainfall,
             AVG(( case when gsod.prcp = 99.99 then null else gsod.prcp end ) ) AS gsod_average_rainfall
         FROM `bigquery-public-data.noaa_gsod.gsod*`  AS gsod
-        GROUP BY
-            1,
-            2
+        GROUP BY 1,2
         ORDER BY
             3 DESC
-        LIMIT 500       """
+        LIMIT 500
+        """
     test = ipe.parse_sql(sdk=sdk, qid=(777))
     expected_result = ["`bigquery-public-data.noaa_gsod.gsod*`"]
     assert isinstance(test, list)
@@ -282,7 +281,7 @@ def test_parse_sql_snowflake(mocker):
         GROUP BY 1,2,3,4,5
         ORDER BY 1
         LIMIT 500
-        """
+    """
 
     test = ipe.parse_sql(sdk=sdk, qid=(777))
     expected_result = ["public.order_items", "public.inventory_items",
@@ -329,8 +328,6 @@ def test_get_sql_from_elements(mocker):
     assert isinstance(result, list)
     assert len(result) == 4
     assert result == sql_table_name
-    print(result)
-    assert False
 
 
 def test_get_dashboards(mocker):
