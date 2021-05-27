@@ -19,6 +19,7 @@ sqlparse = "^0.4.1"
 snoop = "^0.3.0"
 lookml = "^3.0.3"
 debugpy = "^1.3.0"
+pynvim = "^0.4.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
