@@ -30,7 +30,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import lkml
 import sqlparse
 import looker_sdk
 from looker_sdk import models
