@@ -36,7 +36,7 @@ def check_ini(ini):
     if ini:
         parsed_ini_file = cwd.joinpath(ini)
     else:
-        parsed_ini_file = none
+        parsed_ini_file = None
 
     if os.path.isfile(parsed_ini_file):
         logger.success(f'opening your ini file at {parsed_ini_file}')
