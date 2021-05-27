@@ -38,7 +38,7 @@ class MockQuery():
 
 '''Inserting setup for project'''
 project = lookml.Project(
-    path="/usr/local/google/home/hugoselbie/code_sample/py/projects/lmanage/tests/test_lookml_files/the_look"
+    path="./tests/test_lookml_files/the_look"
 )
 
 data = [{'dashboard.id': 1,
