@@ -4,6 +4,7 @@ looker_backup_content/
 #Ignore all setup files
 .venv/
 .vscode/
+folder_walk.sh
 
 #Ignore test files
 test.py
