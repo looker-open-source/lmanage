@@ -15,10 +15,7 @@
 # limitations under the License.
 
 import click
-from lmanage import delinquent_user
 from lmanage import get_content_with_views
-from lmanage import delinquent_content
-from lmanage import validate_content
 
 
 @click.group()
