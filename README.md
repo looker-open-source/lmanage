@@ -52,7 +52,10 @@ Lmanage can either return a full dataset of all content mapping, or a prefiltere
 - **table** (`--table`, `-t`) Expecting input of lookml view name
 - **field** (`--field`, `-f`) Expecting input of fully scoped LookML field name e.g. viewname.fieldname 
 
+
 ![](./images/lmanage_mapview_chart.pdf)
+
+
 ## Fields Returneds
 
 - **dashboard_id**: the id of the looker dashboard 	
