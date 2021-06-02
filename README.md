@@ -53,7 +53,7 @@ Lmanage can either return a full dataset of all content mapping, or a prefiltere
 - **field** (`--field`, `-f`) Expecting input of fully scoped LookML field name e.g. viewname.fieldname 
 
 
-![](./images/lmanage_mapview_chart.pdf)
+![](./images/mapview_walkthru.jpeg)
 
 
 ## Fields Returneds
