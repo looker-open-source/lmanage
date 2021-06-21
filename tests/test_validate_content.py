@@ -147,4 +147,4 @@ def test_parse_broken_content(mocker):
     sdk.content_validation.return_value = content_validation
 
 
-def test_send_content_once(mocker):
+# def test_send_content_once(mocker):
