@@ -16,6 +16,10 @@
 
 import click
 from lmanage import get_content_with_views
+from coloredlogger import ColoredLogger
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+logger = ColoredLogger()
 
 
 @click.group()
@@ -37,4 +41,13 @@ def lmanage():
 @click.option("-f", "--field",
               help="Add a fully scoped fieldname (e.g. view_name.field_name) to return a csv with these values")
 def mapview(**kwargs):
-    get_content_with_views.main(**kwargs)
+    arguments = ['PATH', 'INI_FILE', 'PROJECT', 'TABLE', 'FIELD']
+    for argument in arguments:
+        logger.success(
+            f'You have set {kwargs.get(argument)} for your {argument} variable')
+        if kwargs.get(argument) == None:
+            logger.wtf(
+                f'There is no value set for {argument} please use the `--help` flag to see input parameters')
+            return 'test fail response'
+        else:
+            get_content_with_views.main(**kwargs)
