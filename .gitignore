@@ -1,12 +1,14 @@
-look_backup/
-looker_backup_content/
-
 #Ignore all setup files
 .venv/
 .vscode/
+folder_walk.sh
 
 #Ignore test files
 test.py
 test.csv
 delinquentcontent.csv
 utils/test.py
+
+#Ignore legacy files
+
+#Ignore test files for early content
