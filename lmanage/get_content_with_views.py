@@ -235,11 +235,11 @@ def test_period_appearence(input_response):
 
     Simple return True if a period is detected in a string
     Args:
-        input_response: (str) 
+        input_response: (str)
     Returns:
-        A boolean response         
+        A boolean response
     For example:
-    True or False 
+    True or False
     """
     test_period = re.search(r"\.", input_response)
     return bool(test_period)
@@ -381,6 +381,9 @@ def main(**kwargs):
         find_unused_views(combine[element])
 
     df = pd.DataFrame(combine)
+    del df['sql_table_name']
+    del df['potential_join']
+    del df['sql_joins']
 
     if table_mask == None and field_mask == None:
         logger.success('you have not set any field or table filters')
@@ -408,6 +411,4 @@ def main(**kwargs):
 
 
 if __name__ == "__main__":
-    main(ini_file="/usr/local/google/home/hugoselbie/code_sample/py/projects/ini/k8.ini",
-         project="/usr/local/google/home/hugoselbie/code_sample/py/projects/lmanage/tests/test_lookml_files/the_look",
-         path="/usr/local/google/home/hugoselbie/code_sample/py/projects/lmanage/tests/test_lookml_files/the_look")
+    main(ini_file="/usr/local/google/home/hugoselbie/code_sample/py/projects/ini/k8.ini")
