@@ -37,9 +37,9 @@ def lmanage():
 @ click.option("-p", "--project",
                help="Path folder containing your lookml files, often taken using a git pull from your connected lookml project repository")
 @ click.option("-t", "--table",
-               help="Add a view name to search for elements that rely on this view")
+               help="**OPTIONAL** Add a view name to search for elements that rely on this view")
 @ click.option("-f", "--field",
-               help="Add a fully scoped fieldname (e.g. view_name.field_name) to return a csv with these values")
+               help="**OPTIONAL** Add a fully scoped fieldname (e.g. view_name.field_name) to return a csv with these values")
 def mapview(**kwargs):
     for k, v in kwargs.items():
         if {v} != None:

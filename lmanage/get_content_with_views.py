@@ -274,9 +274,7 @@ def all_joins(myresults):
             for name in sql_table_name:
                 if sql == name:
                     result.append(sql)
-        logger.wtf(f'result= {result}')
         myresults[element]['used_joins'] = result
-        logger.wtf(myresults)
     return myresults
 
 
@@ -319,7 +317,6 @@ def match_views_per_query(myresults, proj):
 
 def find_unused_views(myresults):
     used_view_names = sorted(myresults['used_view_names'])
-    logger.wtf(myresults['potential_join'])
     potential_joins = sorted(myresults['potential_join'])
     result = potential_joins
 
@@ -349,7 +346,7 @@ def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
     return tables_in_explore
 
 
-@snoop
+# @snoop
 def main(**kwargs):
     cwd = Path.cwd()
     ini_file = kwargs.get("ini_file")
@@ -377,7 +374,7 @@ def main(**kwargs):
 
     combine = match_view_to_dash(
         db_response, explore_results, sql_table_names, proj=project)
-    logger.wtf(combine)
+    # logger.wtf(combine)
     for element in range(0, len(combine)):
         match_join_per_query(combine[element])
         match_views_per_query(combine[element], project)
