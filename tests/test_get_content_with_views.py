@@ -305,6 +305,7 @@ def test_get_view_path(mocker):
 
 def test_fetch_view_files(mocker):
     response = ipe.fetch_view_files(project)
+    print(response)
     assert len(response) == 8
     assert isinstance(response, dict)
 
@@ -400,6 +401,37 @@ def test_find_unused_views(mocker):
     assert True if 'test_ndt' in data['used_view_names'] else False
     assert isinstance(test['unused_joins'], list)
     assert sorted(test_return) == sorted(test['unused_joins'])
+
+
+# find_unused_view_data = {
+#     'dashboard_id': 1,
+#     'element_id': 1,
+#     'sql_joins': ['`looker-private-demo.ecomm.order_items`'],
+#     'fields_used': ["order_items.created_month", "order_items.count"],
+#     'sql_table_name': ['`looker-private-demo.ecomm.distribution_centers`', '`looker-private-demo.ecomm.products`', '`looker-private-demo.ecomm.users`', '`looker-private-demo.ecomm.order_items`', '`looker-private-demo.ecomm.inventory_items`', '`looker-private-demo.ecomm.events`'],
+#     'potential_join': ['events', 'sessions', 'session_landing_page', '<lookml.core.prop_string_unquoted object at 0x7f5b4b561f10>']
+#     # 'potential_join': ['events', 'sessions', 'session_landing_page', < lookml.core.prop_string_unquoted object at 0x7f5b4b561f10 >, 'session_bounce_page', < lookml.core.prop_string_unquoted object at 0x7f5b4b572150 > , 'product_viewed', < lookml.core.prop_string_unquoted object at 0x7f5b4b572390 > , 'users', 'user_order_facts']
+# }
+
+
+# def test_find_unused_views_pylookml_reponses(mocker):
+#     data = find_unused_view_data
+#     data['used_view_names'] = ['order_items', 'test_ndt']
+#     test = ipe.find_unused_views(data)
+#     test_return = [
+#         'order_facts',
+#         'inventory_items',
+#         'users',
+#         'user_order_facts',
+#         'products',
+#         'repeat_purchase_facts',
+#         'distribution_centers'
+#     ]
+#     assert len(test['unused_joins']) == 7
+#     assert len(data['used_view_names']) == 1
+#     assert True if 'test_ndt' in data['used_view_names'] else False
+#     assert isinstance(test['unused_joins'], list)
+#     assert sorted(test_return) == sorted(test['unused_joins'])
 
 
 def test_match_view_to_dash(mocker):

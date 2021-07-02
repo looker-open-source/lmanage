@@ -94,10 +94,11 @@ def fetch_view_files(proj):
         if 'join' in explore:
             for join in explore['join']:
                 true_view_names[explore['name']].append(join['name'])
-                if 'view_name' in join:
-                    true_view_names[explore['name']].append(join['view_name'])
-                if 'from' in join:
-                    true_view_names[explore['name']].append(join['from'])
+                if 'view_name' in join.__dict__.keys():
+                    true_view_names[explore['name']].append(
+                        join['view_name'].value)
+                if 'from' in join.__dict__.keys():
+                    true_view_names[explore['name']].append(join['from'].value)
     return true_view_names
 
 
@@ -318,6 +319,7 @@ def match_views_per_query(myresults, proj):
 
 def find_unused_views(myresults):
     used_view_names = sorted(myresults['used_view_names'])
+    logger.wtf(myresults['potential_join'])
     potential_joins = sorted(myresults['potential_join'])
     result = potential_joins
 
@@ -347,7 +349,7 @@ def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
     return tables_in_explore
 
 
-# @snoop
+@snoop
 def main(**kwargs):
     cwd = Path.cwd()
     ini_file = kwargs.get("ini_file")
@@ -375,6 +377,7 @@ def main(**kwargs):
 
     combine = match_view_to_dash(
         db_response, explore_results, sql_table_names, proj=project)
+    logger.wtf(combine)
     for element in range(0, len(combine)):
         match_join_per_query(combine[element])
         match_views_per_query(combine[element], project)
@@ -411,4 +414,7 @@ def main(**kwargs):
 
 
 if __name__ == "__main__":
-    main(ini_file="/usr/local/google/home/hugoselbie/code_sample/py/projects/ini/k8.ini")
+    main(
+        ini_file="/usr/local/google/home/hugoselbie/code_sample/py/projects/ini/k8.ini",
+        path='./output.csv',
+        project='./tests/test_lookml_files/the_look')

@@ -48,8 +48,9 @@ def mapview(**kwargs):
         else:
             logger.wtf(
                 f'There is no value set for {k} please use the `--help` flag to see input parameters')
-    try:
-        get_content_with_views.main(**kwargs)
-    except TypeError:
-        logger.wtf(
-            f'**WARNING** You have not correctly set your input parameters')
+    get_content_with_views.main(**kwargs)
+    # try:
+    #     get_content_with_views.main(**kwargs)
+    # except TypeError:
+    #     logger.wtf(
+    #         f'**WARNING** You have not correctly set your input parameters')
