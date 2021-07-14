@@ -72,7 +72,8 @@ Lmanage can either return a full dataset of all content mapping, or a prefiltere
 **Multi Project Usage**
 Dashboards can hold tiles from multiple projects, in this case if you create one local folder of lookml for example
 
-```├── test_lookml_files
+```
+├── test_lookml_files
     │   └── the_look
     │       ├── dashboards
     │       │   ├── brand_lookup.dashboard.lookml
