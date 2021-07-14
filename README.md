@@ -49,8 +49,8 @@ verify_ssl=True
 ```
 - **project** (`--project`, `-p`) This is the file path to your local project of LookML files that lmanage will scan to associate connections between your Looker content and LookML
 Lmanage can either return a full dataset of all content mapping, or a prefiltered dataset with all content associated with a specific table or field.
-- **table** (`--table`, `-t`) Expecting input of lookml view name
-- **field** (`--field`, `-f`) Expecting input of fully scoped LookML field name e.g. viewname.fieldname 
+- **table** (`--table`, `-t`) **Optional** Expecting input of lookml view name
+- **field** (`--field`, `-f`) **Optional** Expecting input of fully scoped LookML field name e.g. viewname.fieldname 
 
 
 ![](./images/mapview_walkthru.jpeg)
@@ -67,5 +67,25 @@ Lmanage can either return a full dataset of all content mapping, or a prefiltere
 - **used_joins**: joins used by the underlying queries obtained by parsing sql of query 	
 - **used_view_names**: views that are used by each query grouped by element_id	
 - **unused_joins**: views that are unused by the specific query of the dashboard element
+
+##### n.b.
+**Multi Project Usage**
+Dashboards can hold tiles from multiple projects, in this case if you create one local folder of lookml for example
+.
++-- lookml_folder 
++-- _lookml_proj1
+|   +-- views 
+|      +-- view_1.view.lkml
+|      +-- view_2.view.lkml
+|   +-- models
+|      +-- model.model.lkml
++-- _lookml_proj2
+|   +-- views 
+|      +-- view_3.view.lkml
+|      +-- view_4.view.lkml
+|   +-- models
+|      +-- model_1.model.lkml
+
+Doing this will enable the underlying LookML parsing engine driven by [pyLookML](https://github.com/llooker/pylookml)
 
 **This is not an officially supported Google Product.**
