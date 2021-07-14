@@ -72,22 +72,37 @@ Lmanage can either return a full dataset of all content mapping, or a prefiltere
 **Multi Project Usage**
 Dashboards can hold tiles from multiple projects, in this case if you create one local folder of lookml for example
 
-
-.
-+-- lookml_folder 
-+-- _lookml_proj1
-|   +-- views 
-|      +-- view_1.view.lkml
-|      +-- view_2.view.lkml
-|   +-- models
-|      +-- model.model.lkml
-+-- _lookml_proj2
-|   +-- views 
-|      +-- view_3.view.lkml
-|      +-- view_4.view.lkml
-|   +-- models
-|      +-- model_1.model.lkml
-
+```├── test_lookml_files
+    │   └── the_look
+    │       ├── dashboards
+    │       │   ├── brand_lookup.dashboard.lookml
+    │       │   ├── business_pulse.dashboard.lookml
+    │       │   ├── customer_lookup.dashboard.lookml
+    │       ├── models
+    │       │   └── thelook.model.lkml
+    │       ├── models_aws
+    │       │   └── thelook_redshift.model.lkml
+    │       ├── view_aws
+    │       │   ├── 01_order_items.view.lkml
+    │       │   ├── 02_users.view.lkml
+    │       │   ├── 03_inventory_items.view.lkml
+    │       │   ├── 04_products.view.lkml
+    │       │   ├── 05_distribution_centers.view.lkml
+    │       └── views
+    │           ├── 01_order_items.view.lkml
+    │           ├── 02_users.view.lkml
+    │           ├── 03_inventory_items.view.lkml
+    │           ├── 04_products.view.lkml
+    │           ├── 05_distribution_centers.view.lkml
+    │           ├── 11_order_facts.view.lkml
+    │           ├── 12_user_order_facts.view.lkml
+    │           ├── 13_repeat_purchase_facts.view.lkml
+    │           ├── 22_affinity.view.lkml
+    │           ├── 25_trailing_sales_snapshot.view.lkml
+    │           ├── 51_events.view.lkml
+    │           ├── explores.lkml
+    │           └── test_ndt.view.lkml.
+```
 
 Doing this will enable the underlying LookML parsing engine driven by [pyLookML](https://github.com/llooker/pylookml) to iterate over all the relevant files and find the appropriate cross project matches.
 
