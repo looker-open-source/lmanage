@@ -70,7 +70,7 @@ Lmanage can either return a full dataset of all content mapping, or a prefiltere
 
 ##### n.b.
 **Multi Project Usage**
-Dashboards can hold tiles from multiple projects, in this case if you create one local folder of lookml for example
+Dashboards can hold tiles from multiple projects, in this case if you create one local folder of lookml see example below, then pass the value of that one meta folder the the `--project` flag. Doing this will enable the underlying LookML parsing engine driven by [pyLookML](https://github.com/llooker/pylookml) to iterate over all the relevant files and find the appropriate cross project matches.
 
 ```
 ├── test_lookml_files
@@ -104,6 +104,6 @@ Dashboards can hold tiles from multiple projects, in this case if you create one
     │        └── test_ndt.view.lkml.
 ```
 
-Doing this will enable the underlying LookML parsing engine driven by [pyLookML](https://github.com/llooker/pylookml) to iterate over all the relevant files and find the appropriate cross project matches.
+
 
 **This is not an officially supported Google Product.**
