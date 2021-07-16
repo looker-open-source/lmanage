@@ -75,13 +75,11 @@ match_data = {'dashboard_id': 1,
                   'distribution_centers',
                   'test_ndt']}
 
-sql_table_names = [
-    '`looker-private-demo.ecomm.distribution_centers`',
-    '`looker-private-demo.ecomm.products`',
-    '`looker-private-demo.ecomm.users`',
-    '`looker-private-demo.ecomm.order_items`',
-    '`looker-private-demo.ecomm.inventory_items`',
-    '`looker-private-demo.ecomm.events`']
+sql_table_names = {
+    'views_aws/distribution_centers.view.lkml': ['`looker-private-demo.ecomm.distribution_centers`'],
+    'views_aws/products.view.lkml': ['`looker-private-demo.ecomm.products`'],
+    'views_aws/users.view.lkml': ['`looker-private-demo.ecomm.users`']
+}
 
 
 def test_parse_sql_pivots(mocker):
@@ -299,22 +297,31 @@ def test_find_model_files(mocker):
 
 def test_get_view_path(mocker):
     response = ipe.get_view_path(project)
-    assert len(response) == 12
+    assert len(response) == 18
     assert isinstance(response, dict)
 
 
 def test_fetch_view_files(mocker):
     response = ipe.fetch_view_files(project)
     print(response)
-    assert len(response) == 8
+    assert len(response) == 5
     assert isinstance(response, dict)
 
 
-def test_get_sql_table_name(mocker):
+def test_get_sql_table_name():
     response = ipe.get_sql_table_name(project)
     expected_response = sql_table_names
-    assert len(response) == 6
-    # assert response == expected_response
+    assert len(response) == 12
+    assert isinstance(response, dict)
+
+
+test_sql_table_name_data = {'foo': ['foo'], 'xbarr': ['barr']}
+
+
+def test_get_sql_table_name_list():
+    response = ipe.get_sql_table_name_list(test_sql_table_name_data, key=False)
+    assert response == ['foo', 'barr']
+    assert len(response) == 2
     assert isinstance(response, list)
 
 
@@ -442,6 +449,6 @@ def test_match_view_to_dash(mocker):
     test = ipe.match_view_to_dash(content_results=content_results,
                                   explore_results=explore_results, sql_table_name=sql_table_name, proj=project)
     assert isinstance(test, list)
-    assert len(test[0]) == 6
+    assert len(test[0]) == 7
     assert isinstance(test[0]['fields_used'], str)
     assert test[0]['element_id'] == 1

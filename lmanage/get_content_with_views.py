@@ -113,24 +113,34 @@ def get_sql_table_name(proj):
         For example:
         ['public.order_items','public.inventory_items','public.events']
     """
-    response = []
+    view_list = defaultdict(list)
+
     for file in proj.files():
         path = file.path
         myFile = proj.file(path)
         if myFile.type == 'partial_model':
             for view in myFile.views:
                 if view.sql_table_name.value:
-                    response.append(view.sql_table_name.value)
+                    view_list[path].append(view.sql_table_name.value)
 
-    return response
+    return view_list
+
+
+def get_sql_table_name_list(sql_table_name_dict, key: True):
+    response = []
+    for k, v in sql_table_name_dict.items():
+        if key:
+            response.append(k)
+        else:
+            response.append(v)
+
+    return response if key else list(chain(*response))
 
 
 def parse_sql(sdk, qid: int):
     """Idenfies the base tables and joins used by a Looker query.
 
     Iterates over a list of PyLookML files identifies view files aand returns a list of the sql_table_names if they exist in an object of type 'View'
-    Args:
-        sdk: Looker SDK object
         qid: (int) query_id from a  Looker query (n.b. NOT THE SAME AS A QID in the url)
     Returns:
         A list of all the tables that are found from a Looker generated SQL query.
@@ -330,6 +340,9 @@ def find_unused_views(myresults):
 def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
     tables_in_explore = []
 
+    sql_table_name_ = get_sql_table_name_list(sql_table_name, key=False)
+    sql_table_paths_ = get_sql_table_name_list(sql_table_name, key=True)
+
     for content in content_results:
         result = defaultdict(list)
         result['dashboard_id'] = content['dashboard.id']
@@ -337,7 +350,8 @@ def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
         result['sql_joins'] = content['sql_joins']
         result['fields_used'] = content['query.formatted_fields']
 
-        result['sql_table_name'] = sql_table_name
+        result['sql_table_name'] = sql_table_name_
+        result['lookml_file_name'] = sql_table_paths_
 
         for explore, tables in explore_results.items():
             if content['query.view'] == explore:
@@ -370,11 +384,12 @@ def main(**kwargs):
     content_results = get_dashboards(sdk)
     db_response = get_sql_from_elements(sdk, content_results)
     explore_results = fetch_view_files(proj=project)
+
     sql_table_names = get_sql_table_name(proj=project)
 
     combine = match_view_to_dash(
         db_response, explore_results, sql_table_names, proj=project)
-    # logger.wtf(combine)
+
     for element in range(0, len(combine)):
         match_join_per_query(combine[element])
         match_views_per_query(combine[element], project)
