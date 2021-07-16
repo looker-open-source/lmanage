@@ -13,18 +13,18 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import warnings
-from coloredlogger import ColoredLogger
 from pathlib import Path
 import json
 import pandas as pd
 import os
-warnings.simplefilter(action='ignore', category=FutureWarning)
-logger = ColoredLogger()
+import coloredlogs
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def create_df(data):
-    logger.wtf(type(data))
+    logger.debug(type(data))
     data = json.loads(data) if isinstance(data, str) else data
     df = pd.DataFrame(data)
     return df
@@ -39,10 +39,10 @@ def check_ini(ini):
         parsed_ini_file = None
 
     if os.path.isfile(parsed_ini_file):
-        logger.success(f'opening your ini file at {parsed_ini_file}')
+        logger.info(f'opening your ini file at {parsed_ini_file}')
         return parsed_ini_file
     else:
-        logger.wtf(
+        logger.debug(
             f'the path to your ini file is not valid at {parsed_ini_file}')
 
 

@@ -17,10 +17,11 @@
 import click
 from lmanage import get_content_with_views
 import snoop
-from coloredlogger import ColoredLogger
-import warnings
-warnings.simplefilter(action='ignore', category=FutureWarning)
-logger = ColoredLogger()
+import coloredlogs
+import logging
+from lmanage.utils import create_df
+
+logger = logging.getLogger(__name__)
 
 
 @click.group()
@@ -40,17 +41,17 @@ def lmanage():
                help="**OPTIONAL** Add a view name to search for elements that rely on this view")
 @ click.option("-f", "--field",
                help="**OPTIONAL** Add a fully scoped fieldname (e.g. view_name.field_name) to return a csv with these values")
+@ click.option("-l", "--level",
+               default='INFO',
+               help="**OPTIONAL** Add the value 'DEBUG' to get a more verbose version of the returned stout text")
 def mapview(**kwargs):
+    level = kwargs.get('level', 'INFO')
+    coloredlogs.install(level=level, logger=logger)
     for k, v in kwargs.items():
         if {v} != None:
-            logger.success(
+            logger.info(
                 f'You have set {v} for your {k} variable')
         else:
-            logger.wtf(
+            logger.debug(
                 f'There is no value set for {k} please use the `--help` flag to see input parameters')
     get_content_with_views.main(**kwargs)
-    # try:
-    #     get_content_with_views.main(**kwargs)
-    # except TypeError:
-    #     logger.wtf(
-    #         f'**WARNING** You have not correctly set your input parameters')
