@@ -28,10 +28,10 @@ import re
 from itertools import chain
 from lmanage.utils import parsing_sql
 from lmanage.utils import create_df
-from coloredlogger import ColoredLogger
-import warnings
-warnings.simplefilter(action='ignore', category=FutureWarning)
-logger = ColoredLogger()
+import coloredlogs
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def find_model_files(proj):
@@ -227,7 +227,8 @@ def get_dashboards(sdk):
             "look.id"
         ],
         filters={
-            "dashboard_element.type": "-text"
+            "dashboard_element.type": "-text",
+            "dashboard.deleted_date": "NULL"
         },
         limit='5000'
     )
@@ -362,14 +363,16 @@ def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
 
 # @snoop
 def main(**kwargs):
+    level = kwargs.get('level', 'INFO')
+    coloredlogs.install(level=level, logger=logger)
     cwd = Path.cwd()
     ini_file = kwargs.get("ini_file")
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read(ini_file)
     project_repo = kwargs.get("project")
-    logger.success(f'your project repo is at {project_repo}')
+    logger.info(f'your project repo is at {project_repo}')
     file_path = kwargs.get("path")
-    logger.success(f'your output file is at {file_path}')
+    logger.info(f'your output file is at {file_path}')
     table_mask = kwargs.get("table")
     field_mask = kwargs.get("field")
 
@@ -382,13 +385,18 @@ def main(**kwargs):
     )
 
     content_results = get_dashboards(sdk)
+    logger.debug(f'dashboard_response = {content_results}')
     db_response = get_sql_from_elements(sdk, content_results)
+    logger.debug(f'db_response = {db_response}')
     explore_results = fetch_view_files(proj=project)
+    logger.debug(f'explore results = {explore_results}')
 
     sql_table_names = get_sql_table_name(proj=project)
+    logger.debug(f'sql_table_names = {sql_table_names}')
 
     combine = match_view_to_dash(
         db_response, explore_results, sql_table_names, proj=project)
+    logger.debug(f'combine = {combine}')
 
     for element in range(0, len(combine)):
         match_join_per_query(combine[element])
@@ -401,28 +409,28 @@ def main(**kwargs):
     del df['sql_joins']
 
     if table_mask == None and field_mask == None:
-        logger.success('you have not set any field or table filters')
+        logger.info('you have not set any field or table filters')
 
         df.to_csv(f'{file_path}')
-        logger.success(df)
+        logger.info(df)
 
     elif table_mask != None:
-        logger.success(f'your table filter = {table_mask}')
+        logger.info(f'your table filter = {table_mask}')
 
         mask = df['used_view_names'].apply(lambda x: table_mask in x)
         df = df[mask]
         df.to_csv(f'{file_path}')
 
-        logger.success(df)
+        logger.info(df)
 
     elif field_mask != None:
-        logger.success(f'your field filter = {field_mask}')
+        logger.info(f'your field filter = {field_mask}')
 
         mask = df['fields_used'].apply(lambda x: field_mask in x)
         df = df[mask]
         df.to_csv(f'{file_path}')
 
-        logger.success(df)
+        logger.info(df)
 
 
 if __name__ == "__main__":

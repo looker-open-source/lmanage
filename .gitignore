@@ -9,6 +9,7 @@ folder_walk.sh
 #Ignore test files
 test.py
 test.csv
+output.csv
 delinquentcontent.csv
 utils/test.py
 
@@ -26,3 +27,7 @@ tests/test_delinquent_user.py
 tests/test_find_content_with_lookml_params.py
 tests/test_validate_content.py
 tests/test_lookml_files.py
+
+#Ignore pycache
+__pycache__/
+*.pyc
