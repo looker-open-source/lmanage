@@ -63,6 +63,7 @@ Lmanage can either return a full dataset of all content mapping, or a prefiltere
 - **sql_joins**: the joins used in a query grouped by element id	
 - **fields_used**: the fields used by the query grouped by element id
 - **sql_table_name**: the underlying sql value being referenced at the view level of the lookml (assuming the view is standard)	
+- **lookml_file_name**: the physical file in which the view files reside
 - **potential_join**: for the explore that powers the element query: what are all the potential joins available	
 - **used_joins**: joins used by the underlying queries obtained by parsing sql of query 	
 - **used_view_names**: views that are used by each query grouped by element_id	
