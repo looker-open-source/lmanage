@@ -51,6 +51,7 @@ verify_ssl=True
 Lmanage can either return a full dataset of all content mapping, or a prefiltered dataset with all content associated with a specific table or field.
 - **table** (`--table`, `-t`) **Optional** Expecting input of lookml view name
 - **field** (`--field`, `-f`) **Optional** Expecting input of fully scoped LookML field name e.g. viewname.fieldname 
+- **level** (`--level`, `-l`) **Optional** Set this flag to DEBUG to receive expanded results in stdout for debugging  
 
 
 ![](./images/mapview_walkthru.jpeg)
