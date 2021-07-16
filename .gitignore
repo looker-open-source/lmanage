@@ -9,6 +9,18 @@ test.csv
 delinquentcontent.csv
 utils/test.py
 
-#Ignore legacy files
+#Ignore test files for early content
+=======
+lmanage/getContentWithViews.py
+lmanage/delinquent_content.py
+lmanage/delinquent_user.py
+lmanage/validate_content.py
+lmanage/find_content_with_lookml_params.py
 
 #Ignore test files for early content
+tests/test_getContentWithViews.py
+tests/test_delinquent_content.py
+tests/test_delinquent_user.py
+tests/test_find_content_with_lookml_params.py
+tests/test_validate_content.py
+tests/test_lookml_files.py

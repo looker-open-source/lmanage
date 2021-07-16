@@ -1,3 +1,19 @@
+#!/usr/bin/python
+#
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import pandas as pd
 import lmanage
 from collections import defaultdict
@@ -22,7 +38,7 @@ class MockQuery():
 
 '''Inserting setup for project'''
 project = lookml.Project(
-    path="/usr/local/google/home/hugoselbie/code_sample/py/projects/lmanage/tests/test_lookml_files/the_look"
+    path="./tests/test_lookml_files/the_look"
 )
 
 data = [{'dashboard.id': 1,
@@ -59,13 +75,11 @@ match_data = {'dashboard_id': 1,
                   'distribution_centers',
                   'test_ndt']}
 
-sql_table_names = [
-    '`looker-private-demo.ecomm.distribution_centers`',
-    '`looker-private-demo.ecomm.products`',
-    '`looker-private-demo.ecomm.users`',
-    '`looker-private-demo.ecomm.order_items`',
-    '`looker-private-demo.ecomm.inventory_items`',
-    '`looker-private-demo.ecomm.events`']
+sql_table_names = {
+    'views_aws/distribution_centers.view.lkml': ['`looker-private-demo.ecomm.distribution_centers`'],
+    'views_aws/products.view.lkml': ['`looker-private-demo.ecomm.products`'],
+    'views_aws/users.view.lkml': ['`looker-private-demo.ecomm.users`']
+}
 
 
 def test_parse_sql_pivots(mocker):
@@ -225,16 +239,15 @@ def test_parse_sql_bq_1327(mocker):
     mocker.patch.object(sdk, "run_query")
     sdk.run_query.return_value = """
          SELECT
-            REGEXP_EXTRACT(_TABLE_SUFFIX,r'\d\d\d\d')  AS gsod_year,
+            REGEXP_EXTRACT(_TABLE_SUFFIX,r'\\d\\d\\d\\d')  AS gsod_year,
             case when gsod.prcp = 99.99 then null else gsod.prcp end AS gsod_rainfall,
             AVG(( case when gsod.prcp = 99.99 then null else gsod.prcp end ) ) AS gsod_average_rainfall
         FROM `bigquery-public-data.noaa_gsod.gsod*`  AS gsod
-        GROUP BY
-            1,
-            2
+        GROUP BY 1,2
         ORDER BY
             3 DESC
-        LIMIT 500       """
+        LIMIT 500
+        """
     test = ipe.parse_sql(sdk=sdk, qid=(777))
     expected_result = ["`bigquery-public-data.noaa_gsod.gsod*`"]
     assert isinstance(test, list)
@@ -266,7 +279,7 @@ def test_parse_sql_snowflake(mocker):
         GROUP BY 1,2,3,4,5
         ORDER BY 1
         LIMIT 500
-        """
+    """
 
     test = ipe.parse_sql(sdk=sdk, qid=(777))
     expected_result = ["public.order_items", "public.inventory_items",
@@ -284,21 +297,31 @@ def test_find_model_files(mocker):
 
 def test_get_view_path(mocker):
     response = ipe.get_view_path(project)
-    assert len(response) == 12
+    assert len(response) == 18
     assert isinstance(response, dict)
 
 
 def test_fetch_view_files(mocker):
     response = ipe.fetch_view_files(project)
-    assert len(response) == 8
+    print(response)
+    assert len(response) == 5
     assert isinstance(response, dict)
 
 
-def test_get_sql_table_name(mocker):
+def test_get_sql_table_name():
     response = ipe.get_sql_table_name(project)
     expected_response = sql_table_names
-    assert len(response) == 6
-    assert response == expected_response
+    assert len(response) == 12
+    assert isinstance(response, dict)
+
+
+test_sql_table_name_data = {'foo': ['foo'], 'xbarr': ['barr']}
+
+
+def test_get_sql_table_name_list():
+    response = ipe.get_sql_table_name_list(test_sql_table_name_data, key=False)
+    assert response == ['foo', 'barr']
+    assert len(response) == 2
     assert isinstance(response, list)
 
 
@@ -387,6 +410,37 @@ def test_find_unused_views(mocker):
     assert sorted(test_return) == sorted(test['unused_joins'])
 
 
+# find_unused_view_data = {
+#     'dashboard_id': 1,
+#     'element_id': 1,
+#     'sql_joins': ['`looker-private-demo.ecomm.order_items`'],
+#     'fields_used': ["order_items.created_month", "order_items.count"],
+#     'sql_table_name': ['`looker-private-demo.ecomm.distribution_centers`', '`looker-private-demo.ecomm.products`', '`looker-private-demo.ecomm.users`', '`looker-private-demo.ecomm.order_items`', '`looker-private-demo.ecomm.inventory_items`', '`looker-private-demo.ecomm.events`'],
+#     'potential_join': ['events', 'sessions', 'session_landing_page', '<lookml.core.prop_string_unquoted object at 0x7f5b4b561f10>']
+#     # 'potential_join': ['events', 'sessions', 'session_landing_page', < lookml.core.prop_string_unquoted object at 0x7f5b4b561f10 >, 'session_bounce_page', < lookml.core.prop_string_unquoted object at 0x7f5b4b572150 > , 'product_viewed', < lookml.core.prop_string_unquoted object at 0x7f5b4b572390 > , 'users', 'user_order_facts']
+# }
+
+
+# def test_find_unused_views_pylookml_reponses(mocker):
+#     data = find_unused_view_data
+#     data['used_view_names'] = ['order_items', 'test_ndt']
+#     test = ipe.find_unused_views(data)
+#     test_return = [
+#         'order_facts',
+#         'inventory_items',
+#         'users',
+#         'user_order_facts',
+#         'products',
+#         'repeat_purchase_facts',
+#         'distribution_centers'
+#     ]
+#     assert len(test['unused_joins']) == 7
+#     assert len(data['used_view_names']) == 1
+#     assert True if 'test_ndt' in data['used_view_names'] else False
+#     assert isinstance(test['unused_joins'], list)
+#     assert sorted(test_return) == sorted(test['unused_joins'])
+
+
 def test_match_view_to_dash(mocker):
     content_results = [{'dashboard.id': 1, 'dashboard_element.id': 1, 'dashboard_element.type': 'vis', 'dashboard_element.result_source': 'Lookless', 'query.model': 'bq', 'query.view': 'order_items',
                         'query.formatted_fields': '["order_items.created_month", "order_items.count"]', 'query.id': 59, 'dashboard.title': 'dash_1', 'look.id': None, 'sql_joins': ['`looker-private-demo.ecomm.order_items`']}]
@@ -395,6 +449,6 @@ def test_match_view_to_dash(mocker):
     test = ipe.match_view_to_dash(content_results=content_results,
                                   explore_results=explore_results, sql_table_name=sql_table_name, proj=project)
     assert isinstance(test, list)
-    assert len(test[0]) == 6
+    assert len(test[0]) == 7
     assert isinstance(test[0]['fields_used'], str)
     assert test[0]['element_id'] == 1
