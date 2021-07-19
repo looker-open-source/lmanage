@@ -345,7 +345,6 @@ def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
     tables_in_explore = []
 
     sql_table_name_ = get_sql_table_name_list(sql_table_name, key=False)
-    # sql_table_paths_ = get_sql_table_name_list(sql_table_name, key=True)
 
     for content in content_results:
         result = defaultdict(list)
@@ -355,7 +354,6 @@ def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
         result['fields_used'] = content['query.formatted_fields']
 
         result['sql_table_name'] = sql_table_name_
-        # result['lookml_file_name'] = sql_table_paths_
 
         for explore, tables in explore_results.items():
             if content['query.view'] == explore:

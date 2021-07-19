@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lmanage"
-version = "0.2.2"
+version = "0.2.3"
 description = "LManage is a collection of useful tools for Looker admins to help curate and cleanup content and it's associated source LookML."
 keywords = ["keyword", "another_keyword"]
 authors = ["hselbie <hselbie@gmail.com>"]
