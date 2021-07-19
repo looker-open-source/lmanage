@@ -384,7 +384,8 @@ def test_match_views_per_query(mocker):
     data['used_joins'] = ['`looker-private-demo.ecomm.order_items`']
     test = ipe.match_views_per_query(data, project)
     print(test)
-    assert len(test) == 8
+    assert test['sql_table_paths_'] == ['views/01_order_items.view.lkml']
+    assert len(test) == 9
     assert len(test['used_view_names']) == 1
     assert isinstance(test['used_view_names'], list)
     assert test['used_view_names'] == ['order_items']
@@ -449,6 +450,6 @@ def test_match_view_to_dash(mocker):
     test = ipe.match_view_to_dash(content_results=content_results,
                                   explore_results=explore_results, sql_table_name=sql_table_name, proj=project)
     assert isinstance(test, list)
-    assert len(test[0]) == 7
+    assert len(test[0]) == 6
     assert isinstance(test[0]['fields_used'], str)
     assert test[0]['element_id'] == 1
