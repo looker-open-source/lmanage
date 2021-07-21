@@ -14,10 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pandas as pd
+import ast
 import lmanage
-from collections import defaultdict
-import unittest
 import lookml
 from lmanage import get_content_with_views as ipe
 
@@ -289,23 +287,19 @@ def test_parse_sql_snowflake(mocker):
     assert sorted(test) == sorted(expected_result)
 
 
-def test_find_model_files(mocker):
-    response = ipe.find_model_files(project)
-
-    assert response.type == 'model'
-
-
 def test_get_view_path(mocker):
     response = ipe.get_view_path(project)
     assert len(response) == 18
     assert isinstance(response, dict)
 
 
-def test_fetch_view_files(mocker):
+def test_fetch_view_files():
     response = ipe.fetch_view_files(project)
     print(response)
-    assert len(response) == 5
+    assert len(response) == 14
     assert isinstance(response, dict)
+    assert response['kitten_order_items'] == [
+        'kitten_order_items', 'users', 'kitten_users']
 
 
 def test_get_sql_table_name():
@@ -441,8 +435,7 @@ def test_find_unused_views(mocker):
 #     assert isinstance(test['unused_joins'], list)
 #     assert sorted(test_return) == sorted(test['unused_joins'])
 
-
-def test_match_view_to_dash(mocker):
+def test_match_view_to_dash():
     content_results = [{'dashboard.id': 1, 'dashboard_element.id': 1, 'dashboard_element.type': 'vis', 'dashboard_element.result_source': 'Lookless', 'query.model': 'bq', 'query.view': 'order_items',
                         'query.formatted_fields': '["order_items.created_month", "order_items.count"]', 'query.id': 59, 'dashboard.title': 'dash_1', 'look.id': None, 'sql_joins': ['`looker-private-demo.ecomm.order_items`']}]
     explore_results = ipe.fetch_view_files(project)
@@ -453,3 +446,18 @@ def test_match_view_to_dash(mocker):
     assert len(test[0]) == 6
     assert isinstance(test[0]['fields_used'], str)
     assert test[0]['element_id'] == 1
+
+
+path = './tests/snap_db_response.json'
+with open(path) as f:
+    client_data = ast.literal_eval(f.read())
+
+
+def test_match_view_to_dash_extra_tests():
+    client_results = client_data
+    explore_results = ipe.fetch_view_files(project)
+    sql_table_name = sql_table_names
+    test = ipe.match_view_to_dash(content_results=client_results,
+                                  explore_results=explore_results, sql_table_name=sql_table_name, proj=project)
+    assert isinstance(test, list)
+    assert len(test) == 9
