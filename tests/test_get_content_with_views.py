@@ -446,18 +446,3 @@ def test_match_view_to_dash():
     assert len(test[0]) == 6
     assert isinstance(test[0]['fields_used'], str)
     assert test[0]['element_id'] == 1
-
-
-path = './tests/snap_db_response.json'
-with open(path) as f:
-    client_data = ast.literal_eval(f.read())
-
-
-def test_match_view_to_dash_extra_tests():
-    client_results = client_data
-    explore_results = ipe.fetch_view_files(project)
-    sql_table_name = sql_table_names
-    test = ipe.match_view_to_dash(content_results=client_results,
-                                  explore_results=explore_results, sql_table_name=sql_table_name, proj=project)
-    assert isinstance(test, list)
-    # assert len(test) == 9
