@@ -308,8 +308,6 @@ def test_fetch_view_files():
     print(response)
     assert len(response) == 14
     assert isinstance(response, dict)
-    assert response['kitten_order_items'] == [
-        'kitten_order_items', 'users', 'kitten_users']
 
 
 def test_get_sql_table_name():
