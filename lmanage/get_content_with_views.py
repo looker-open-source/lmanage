@@ -34,7 +34,7 @@ import sys
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
-fh = logging.FileHandler('spam.log')
+fh = logging.FileHandler('map_view.log')
 fh.setLevel(logging.DEBUG)
 formatter = logging.Formatter(
     '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -82,7 +82,6 @@ def fetch_view_files(proj):
             my_model = file
 
             for explore in my_model.explores:
-
                 if 'view_name' not in explore and 'from' not in explore:
                     true_view_names[explore.name].append(explore.name)
                 if 'view_name' in explore:
@@ -364,10 +363,9 @@ def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
     return tables_in_explore
 
 
-# @snoop
 def main(**kwargs):
-    level = kwargs.get('level', 'INFO')
-    coloredlogs.install(level=level, logger=logger)
+    # level = kwargs.get('level', 'INFO')
+    # coloredlogs.install(level=level, logger=logger)
     cwd = Path.cwd()
     ini_file = kwargs.get("ini_file")
     config = ConfigParser.RawConfigParser(allow_no_value=True)
