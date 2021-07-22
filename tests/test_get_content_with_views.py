@@ -16,6 +16,10 @@
 
 import ast
 import lmanage
+import pandas as pd
+import lmanage
+from collections import defaultdict
+import unittest
 import lookml
 from lmanage import get_content_with_views as ipe
 
@@ -285,6 +289,12 @@ def test_parse_sql_snowflake(mocker):
     assert isinstance(test, list)
     assert len(test) == 5
     assert sorted(test) == sorted(expected_result)
+
+
+def test_find_model_files(mocker):
+    response = ipe.find_model_files(project)
+
+    assert response.type == 'model'
 
 
 def test_get_view_path(mocker):

@@ -14,6 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+<<<<<<< HEAD
+=======
+import sqlparse
+>>>>>>> e1483d103e6f45be798d0e432e744dde2c69dcfd
 import looker_sdk
 from looker_sdk import models
 import json
@@ -29,6 +33,7 @@ from lmanage.utils import parsing_sql
 from lmanage.utils import create_df
 import coloredlogs
 import logging
+<<<<<<< HEAD
 import sys
 
 logger = logging.getLogger(__name__)
@@ -40,10 +45,34 @@ formatter = logging.Formatter(
     '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 fh.setFormatter(formatter)
 logger.addHandler(fh)
+=======
+
+logger = logging.getLogger(__name__)
+
+
+def find_model_files(proj):
+    """Fetches model files from PyLookML obj.
+    Scans all files in PyLookML object and returns a file if that file has a type of Model.
+
+    Args:
+        proj: The project from PyLookML
+    Returns:
+        The unparsed model file of a project.
+    """
+    for file in proj.files():
+        path = file.path
+        myFile = proj.file(path)
+        if myFile.type == 'model':
+            return file
+>>>>>>> e1483d103e6f45be798d0e432e744dde2c69dcfd
 
 
 def get_view_path(proj):
     """Fetches the file path of a PyLookML Oject.
+<<<<<<< HEAD
+=======
+
+>>>>>>> e1483d103e6f45be798d0e432e744dde2c69dcfd
     Iterates over a list of PyLookML files and returns a list of the files if they are of type 'View'
     Args:
         proj: The project from PyLookML
@@ -72,6 +101,7 @@ def fetch_view_files(proj):
         A dict with key: being the base view and values: list of all the used views in the explore object.
         For example:
          defaultdict(<class 'list'>, {'order_items': ['order_items', 'order_facts', 'inventory_items', 'users', 'user_order_facts', 'products', 'repeat_purchase_facts', 'distribution_centers', 'test_ndt'], 'events':['events', 'sessions', 'session_landing_page', 'session_bounce_page', 'product_viewed', 'users', 'user_order_facts']})    """
+<<<<<<< HEAD
 
     true_view_names = defaultdict(list)
 
@@ -99,6 +129,26 @@ def fetch_view_files(proj):
                         if 'from' in join.__dict__.keys():
                             true_view_names[explore['name']].append(
                                 join['from'].value)
+=======
+    file = find_model_files(proj)
+    true_view_names = defaultdict(list)
+    for explore in file.explores:
+        if 'view_name' not in explore and 'from' not in explore:
+            true_view_names[explore.name].append(explore.name)
+        if 'view_name' in explore:
+            true_view_names[explore['name']].append(
+                explore['view_name'].value)
+        if 'from' in explore:
+            true_view_names[explore['name']].append(explore['from'].value)
+        if 'join' in explore:
+            for join in explore['join']:
+                true_view_names[explore['name']].append(join['name'])
+                if 'view_name' in join.__dict__.keys():
+                    true_view_names[explore['name']].append(
+                        join['view_name'].value)
+                if 'from' in join.__dict__.keys():
+                    true_view_names[explore['name']].append(join['from'].value)
+>>>>>>> e1483d103e6f45be798d0e432e744dde2c69dcfd
     return true_view_names
 
 
@@ -346,7 +396,10 @@ def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
 
     sql_table_name_ = get_sql_table_name_list(sql_table_name, key=False)
 
+<<<<<<< HEAD
     print(explore_results)
+=======
+>>>>>>> e1483d103e6f45be798d0e432e744dde2c69dcfd
     for content in content_results:
         result = defaultdict(list)
         result['dashboard_id'] = content['dashboard.id']
@@ -363,9 +416,16 @@ def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
     return tables_in_explore
 
 
+<<<<<<< HEAD
 def main(**kwargs):
     # level = kwargs.get('level', 'INFO')
     # coloredlogs.install(level=level, logger=logger)
+=======
+# @snoop
+def main(**kwargs):
+    level = kwargs.get('level', 'INFO')
+    coloredlogs.install(level=level, logger=logger)
+>>>>>>> e1483d103e6f45be798d0e432e744dde2c69dcfd
     cwd = Path.cwd()
     ini_file = kwargs.get("ini_file")
     config = ConfigParser.RawConfigParser(allow_no_value=True)
