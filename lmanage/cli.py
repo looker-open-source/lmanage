@@ -55,3 +55,26 @@ def mapview(**kwargs):
             logger.debug(
                 f'There is no value set for {k} please use the `--help` flag to see input parameters')
     get_content_with_views.main(**kwargs)
+
+
+@lmanage.group()
+def instance_config(**kwargs):
+    pass
+
+
+@instance_config.command()
+@click.option("-t", "--test")
+def folder_permissions(**kwargs):
+    print('folders')
+
+
+@instance_config.command()
+@click.option("-t", "--test")
+def user_permissions(**kwargs):
+    print('users')
+
+
+@instance_config.command()
+@click.option("-t", "--test")
+def full_instance_config(**kwargs):
+    print('full')
