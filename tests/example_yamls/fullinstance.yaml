@@ -1,0 +1,110 @@
+# We implement three categories of Looker user groups:
+#
+# 1. Roles: these groups are assigned Looker Roles, which control what
+#    functionality a user has access to in Looker.
+# 2. Content: these groups control access to Folders, which organize
+#    content (dashboards and Looks) in Looker.
+# 3. Attributes: these groups are assigned attributes, which are used to
+#    control access to rows and columns of data via access filters and
+#    access frants.
+
+#########
+# MODEL_SET_ROLES #
+#########
+role_admin:
+  role: Admin
+  team:
+  - Cameos
+role_BusinessOperations_Developer:
+  role: Developer
+  permissions:
+    - can_see_system_activity
+    - see_lookml_dashboards
+    - access_data
+    - see_dashboards
+  model_set:
+    - business_operations_model_Set 
+  team:
+    - BusinessOperations_BO_Dev
+    - Cameos_BO_Dev
+
+role_BusinessOperations_User:
+  role: User 
+  team:
+    - BusinessOperations
+
+role_BusinessOperations_Viewer:
+  role: Viewer 
+  team:
+    - BusinessOperations
+
+role_Cameos_Developer:
+  role: Developer
+  team:
+    - Cameos_C_Dev
+
+role_Cameos_User:
+  role: User
+  team:
+    - Cameos
+
+role_Cameos_Viewer:
+  role: Viewer
+  team:
+    - Cameos_C_Dev
+
+#####################
+# FOLDER PERMISSONS #
+#####################
+BusinessOperations_folder_permissions:
+  folder:
+    name: BusinessOperations
+    team_edit: 
+    - BusinessOperations
+    team_view:
+    - Cameos
+Cameos_folder_permissions:
+  folder:
+    name: Cameos
+    team_edit: 
+    - Cameos
+    team_view:
+    - BusinessOperations
+    - HugoGroup
+Hugo_folder_permissions:
+  folder:
+    name: Hugo 
+    team_edit: 
+    - Hugo 
+    team_view:
+    - BusinessOperations
+    - HugoGroup
+
+
+###################
+# User Attributes #
+###################
+# attr_region:
+region_all:
+  value:
+    - us
+    - ag
+    - bb
+  team:
+    - Cameos
+    - AudreyGroup
+region_europe:
+  value:
+    - ad
+    - at
+    - ua
+    - xk
+  team:
+    - BusinessOperations
+
+attr_can_see_dau:
+  value:
+    - True
+  team:
+    - Cameos
+    - CanSeeDAUGroup

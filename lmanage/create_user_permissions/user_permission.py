@@ -1,110 +1,14 @@
+import logging
+import sys
+import time
 import json
+import coloredlogs
 from pprint import pprint
 import looker_sdk
 from looker_sdk import models
-import logging
-import sys
-import yaml
-import time
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
-fh = logging.FileHandler('schedule_juggle.log')
-fh.setLevel(logging.DEBUG)
-formatter = logging.Formatter(
-    '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-fh.setFormatter(formatter)
-logger.addHandler(fh)
-
-logger = logging.getLogger(__name__)
-
-
-def read_provision_yaml(path: str) -> json:
-    """ Load YAML configuration file to a dictionary
-    """
-    with open(path, 'r') as file:
-        parsed_yaml = yaml.safe_load(file)
-        # logger.info(parsed_yaml)
-        return parsed_yaml
-
-
-def create_group_if_not_exists(
-        sdk: looker_sdk,
-        group_name: str) -> dict:
-    """ Create a Looker Group and add Group attributes
-
-    :param str group_name: Name of a Looker group to create.
-    :param dict attributes: Dictionary of attribute names and values (default is None).
-    :rtype: Looker Group object.
-    """
-    # get group if exists
-    group = sdk.search_groups(name=group_name)
-    if group:
-        logger.info(f'Group "{group_name}" already exists')
-        group = group[0]
-    else:
-        logger.info(f'Creating group "{group_name}"')
-        group = sdk.create_group(
-            body=models.WriteGroup(
-                can_add_to_content_metadata=True,
-                name=group_name
-            )
-        )
-
-    return group
-
-
-def delete_groups(group_config):
-    """ Delete groups not in the group configuration
-
-    :param dict group_config: Dictionary of configurations for each group,
-        with group names as keys.
-    """
-    group_names = [group_name for group_name, _ in group_config.items()]
-    groups_to_delete = {group.id: group.name
-                        for group in sdk.all_groups()
-                        if group.name not in group_names
-                        }
-    pprint(groups_to_delete)
-    for gid, gname in groups_to_delete.items():
-        sdk.delete_group(gid)
-        print(f'* Deleted group {gname}')
-
-
-def search_group_id(sdk: looker_sdk, group_config: dict) -> list:
-    group_metadata = []
-    for group_name, group_info in group_config.items():
-        if 'folder' in group_name:
-            folder_name = group_info['folder']['name']
-            group = create_group_if_not_exists(sdk, folder_name)
-            temp = {}
-            temp['group_id'] = group['id']
-            temp['group_name'] = group['name']
-            logger.info(f'creating folder {folder_name}')
-            try:
-                folder = sdk.create_folder(
-                    body=models.Folder(
-                        name=folder_name,
-                        parent_id=1
-                    )
-                )
-                temp['folder_id'] = folder.id
-                temp['content_metadata_id'] = folder.content_metadata_id
-            except looker_sdk.error.SDKError:
-                logger.info('folder has already been created')
-                folder = sdk.search_folders(name=folder_name)
-                temp['folder_id'] = folder[0]['id']
-                temp['content_metadata_id'] = folder[0]['content_metadata_id']
-            group_metadata.append(temp)
-
-        else:
-            group = create_group_if_not_exists(sdk, group_name)
-            temp = {}
-            temp['group_id'] = group['id']
-            temp['group_name'] = group['name']
-            group_metadata.append(temp)
-    return group_metadata
+coloredlogs.install(level='DEBUG')
 
 
 def create_role_mapping(
@@ -167,6 +71,17 @@ def create_roles(
     return role_output
 
 
+def set_role(
+        role_id: str,
+        sdk: looker_sdk,
+        group_id: str) -> str:
+    try:
+        sdk.set_role_groups(role_id, [group_id])
+        return logger.info(f'attributing {group_id} permissions on instance')
+    except looker_sdk.error.SDKError:
+        return logger.info('something went wrong')
+
+
 def attach_role_to_group(
         sdk: looker_sdk,
         role_metadata: list,
@@ -178,14 +93,15 @@ def attach_role_to_group(
     group_dict = {group.name: group.id for group in all_groups}
     for group_name, group_info in group_config.items():
         if group_name in group_dict.keys():
-            group_id = group_dict.get(group_name)
             role_id = role_dict.get(group_name.lower())
-            try:
-                sdk.set_role_groups(role_id, [group_id])
-                logger.info(
-                    f'attributing {group_name} permissions on instance')
-            except looker_sdk.error.SDKError:
-                logger.info('something went wrong')
+
+            if 'team' in group_info.keys():
+                for team in group_info['team']:
+                    group_id = group_dict.get(team)
+                    set_role(role_id=role_id, group_id=group_id, sdk=sdk)
+            else:
+                group_id = group_dict.get(group_name)
+                set_role(role_id=role_id, group_id=group_id, sdk=sdk)
 
 
 def folder_output(

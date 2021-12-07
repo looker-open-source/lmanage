@@ -4,7 +4,7 @@ import logging
 import coloredlogs
 
 logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
+coloredlogs.install(level='INFO')
 
 
 class Yaml:

@@ -1,7 +1,8 @@
 import logging
 import time
 import coloredlogs
-from looker_sdk import models, looker_sdk
+from looker_sdk import models
+import looker_sdk
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')

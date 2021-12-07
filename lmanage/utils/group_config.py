@@ -1,9 +1,30 @@
 import logging
 import coloredlogs
-from looker_sdk import models, looker_sdk
+from looker_sdk import models
+import looker_sdk
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
+
+
+def get_unique_groups(
+        parsed_yaml: dict) -> list:
+
+    temp_list = []
+    for k, v in parsed_yaml.items():
+        if 'team' in v.keys():
+            team_list = parsed_yaml[k]['team']
+            for team in team_list:
+                temp_list.append(team)
+        else:
+            edit_list = parsed_yaml[k]['folder']['team_edit']
+            view_list = parsed_yaml[k]['folder']['team_view']
+            for team in edit_list:
+                temp_list.append(team)
+            for team in view_list:
+                temp_list.append(team)
+    final_return = list(set(temp_list))
+    return final_return
 
 
 def create_group_if_not_exists(
@@ -18,7 +39,7 @@ def create_group_if_not_exists(
     # get group if exists
     group = sdk.search_groups(name=group_name)
     if group:
-        logger.info(f'Group "{group_name}" already exists')
+        logger.info(f"Group {group_name} already exists")
         group = group[0]
     else:
         logger.info(f'Creating group "{group_name}"')
@@ -28,37 +49,54 @@ def create_group_if_not_exists(
                 name=group_name
             )
         )
-
     return group
 
 
-def delete_groups(
+def get_group_metadata(
         sdk: looker_sdk,
-        group_config: dict):
-    """ Delete groups not in the group configuration
+        unique_group_list: list) -> list:
 
-    :param dict group_config: Dictionary of configurations for each group,
-        with group names as keys.
-    """
-    group_names = [group_name for group_name, _ in group_config.items()]
-    groups_to_delete = {group.id: group.name
-                        for group in sdk.all_groups()
-                        if group.name not in group_names
-                        }
-    for gid, gname in groups_to_delete.items():
-        sdk.delete_group(gid)
-        print(f'* Deleted group {gname}')
+    group_metadata = []
+
+    for group_name in unique_group_list:
+        group = create_group_if_not_exists(sdk, group_name)
+        temp = {}
+        temp['group_id'] = group.id
+        temp['group_name'] = group.name
+        group_metadata.append(temp)
+
+    return group_metadata
+
+
+def sync_groups(
+        sdk: looker_sdk,
+        group_metadata_list: list,
+        group_name_list: list) -> str:
+
+    all_groups = sdk.all_groups()
+    group_dict = {group.name: group.id for group in all_groups}
+    # Deleting Standard Groups
+    del group_dict['All Users']
+
+    for group_name in group_dict.keys():
+        if group_name not in group_name_list:
+            sdk.delete_group(group_id=group_dict[group_name])
+            logger.info(
+                f'deleting group {group_name} to sync with yaml config')
+
+    return 'your groups are in sync with your yaml file'
 
 
 def search_group_id(sdk: looker_sdk, group_config: dict) -> list:
     group_metadata = []
     for group_name, group_info in group_config.items():
         if 'folder' in group_name:
+            logger.debug(group_name)
             folder_name = group_info['folder']['name']
             group = create_group_if_not_exists(sdk, folder_name)
             temp = {}
-            temp['group_id'] = group['id']
-            temp['group_name'] = group['name']
+            temp['group_id'] = group.id
+            temp['group_name'] = group.name
             logger.info(f'creating folder {folder_name}')
             try:
                 folder = sdk.create_folder(
@@ -78,8 +116,9 @@ def search_group_id(sdk: looker_sdk, group_config: dict) -> list:
 
         else:
             group = create_group_if_not_exists(sdk, group_name)
+            logger.info(group)
             temp = {}
-            temp['group_id'] = group['id']
-            temp['group_name'] = group['name']
+            temp['group_id'] = group.id
+            temp['group_name'] = group.name
             group_metadata.append(temp)
-        return group_metadata
+    return group_metadata
