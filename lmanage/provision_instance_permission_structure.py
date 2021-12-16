@@ -7,6 +7,7 @@ from utils import group_config as gc
 from utils import folder_config as fc
 from utils import parse_yaml as py
 
+
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
 
@@ -43,7 +44,25 @@ def main(**kwargs):
 # Role Config ################################################
 ###############################################################
     # # FIND UNIQUE ROLES
+    role_metadata = up.get_role_metadata(parsed_yaml=instance_config)
+
+    # # CREATE PERMISSION SETS
+    permission_set_metadata = up.create_permission_set(
+        sdk=sdk, permission_set_list=role_metadata)
+
+    # # SYNC PERMISSION SETS
+    up.sync_permission_set(
+        sdk=sdk, permission_set_list=permission_set_metadata)
+
+    # # CREATE MODEL SETS
+    model_set_metadata = up.create_model_set(
+        sdk=sdk, model_set_list=role_metadata)
+
+    # # SYNC MODEL SETS
+    up.sync_model_set(sdk=sdk, model_set_list=model_set_metadata)
+
     # # CREATE NEW ROLES
+    up.create_roles(sdk=sdk, role_metadata_list=role_metadata)
     # # ATTACH ROLES TO TEAM GROUPS
     # # DELETE ALL ROLES THAT DON'T MATCH WITH YAML
 
@@ -55,22 +74,27 @@ def main(**kwargs):
         sdk=sdk, parsed_yaml=instance_config)
     logger.info(div)
 
-   # # CREATE NEW FOLDERS
+    # # CREATE NEW FOLDERS
     folder_metadata = fc.get_folder_metadata(
         sdk=sdk, unique_folder_list=unique_folder_names)
     logger.info(div)
 
     # # CONFIGURE FOLDERS WITH EDIT AND VIEW ACCESS
-    # folder_permission_metadata = cfp.folder_output(
-    #     sdk=sdk,
-    #     group_metadata=group_metadata,
-    #     group_config=group_config)
+    content_access_metadata = cfp.get_content_access_metadata(
+        sdk=sdk,
+        parsed_yaml=instance_config)
 
+    # # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
+    cfp.provision_folders_with_group_access(
+        sdk=sdk, content_access_metadata_list=content_access_metadata)
+
+    cfp.remove_all_user_group(
+        sdk=sdk, content_access_metadata_list=content_access_metadata)
     # # DELETE ALL FOLDERS THAT DON'T MATCH WITH YAML
     fc.sync_folders(sdk=sdk, folder_metadata_list=folder_metadata,
                     folder_name_list=unique_folder_names)
-    logger.info(div)
 
+    logger.info(div)
 
     # # update content access
     # logger.info(div)

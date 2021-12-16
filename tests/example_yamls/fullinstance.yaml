@@ -16,42 +16,60 @@ role_admin:
   team:
   - Cameos
 role_BusinessOperations_Developer:
-  role: Developer
+  role: BODeveloper
   permissions:
     - can_see_system_activity
-    - see_lookml_dashboards
-    - access_data
     - see_dashboards
+    - access_data 
+    - clear_cache_refresh
+    - create_table_calculations
+    - deploy
+    - develop
+    - download_without_limit
+    - explore
+    - manage_spaces
+    - mobile_app_access
+    - save_content
+    - schedule_look_emails
+    - see_drill_overlay
+    - see_lookml
+    - see_lookml_dashboards
+    - see_looks
+    - see_sql
+    - see_user_dashboards
+    - send_to_integration, 
+    - use_sql_runner
   model_set:
-    - business_operations_model_Set 
+    - lk2_business_operations 
+    - lk2_test_model
   team:
     - BusinessOperations_BO_Dev
     - Cameos_BO_Dev
 
 role_BusinessOperations_User:
-  role: User 
+  role: BOUser 
+  permissions:
+    - access_data
+    - clear_cache_refresh
+    - create_table_calculations
+    - download_without_limit
+    - explore
+    - manage_spaces
+    - mobile_app_access
+    - save_content
+    - schedule_look_emails
+    - see_drill_overlay
+    - see_lookml
+    - see_lookml_dashboards
+    - see_looks
+    - see_sql
+    - see_user_dashboards
+    - send_to_integration
+  model_set:
+    - lk4_huggy
+    - lk2_jungy
   team:
     - BusinessOperations
-
-role_BusinessOperations_Viewer:
-  role: Viewer 
-  team:
-    - BusinessOperations
-
-role_Cameos_Developer:
-  role: Developer
-  team:
-    - Cameos_C_Dev
-
-role_Cameos_User:
-  role: User
-  team:
-    - Cameos
-
-role_Cameos_Viewer:
-  role: Viewer
-  team:
-    - Cameos_C_Dev
 
 #####################
 # FOLDER PERMISSONS #
@@ -62,6 +80,7 @@ BusinessOperations_folder_permissions:
     team_edit: 
     - BusinessOperations
     team_view:
+    - Snaptest
     - Cameos
 Cameos_folder_permissions:
   folder:
@@ -76,11 +95,10 @@ Hugo_folder_permissions:
     name: Hugo 
     team_edit: 
     - Hugo 
+    - HugoEdit
     team_view:
     - BusinessOperations
-    - HugoGroup
-
-
+    - NotHugoGroup
 ###################
 # User Attributes #
 ###################

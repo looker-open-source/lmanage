@@ -50,6 +50,7 @@ def get_folder_metadata(
         temp = {}
         temp['folder_id'] = folder.id
         temp['folder_name'] = folder.name
+        temp['content_metadata_id'] = folder.content_metadata_id
         folder_metadata.append(temp)
 
     return folder_metadata

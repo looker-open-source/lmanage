@@ -8,46 +8,135 @@ import looker_sdk
 from looker_sdk import models
 
 logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
+coloredlogs.install(level='INFO')
 
 
-def create_role_mapping(
-        group_config: list) -> list:
+def get_role_metadata(
+        parsed_yaml: dict) -> list:
     role_permission = []
-    del group_config['role_admin']
-    for group_name, group_info in group_config.items():
-        if 'role' in group_name.split('_'):
+    del parsed_yaml['role_admin']
+    for group_name, group_info in parsed_yaml.items():
+        if 'role' in group_name:
+            role_name = group_info['role']
             temp = {}
-            temp['role_name'] = group_name.lower()
-            temp['permission'] = group_info['role']
-            model_set_name = group_info.get('team')[0]
-            temp['model_set_std'] = f'{model_set_name}_std_sql'.lower()
-            temp['model_set_legacy'] = f'{model_set_name}_legacy_sql'.lower(
-            )
-            role_permission.append(temp)
+            if 'permissions' in group_info.keys():
+                temp['role_name'] = role_name
+                temp['permission'] = group_info['permissions']
+                temp['model_set_value'] = group_info['model_set']
+                temp['teams'] = group_info['team']
+                role_permission.append(temp)
+            else:
+                temp['role_name'] = role_name
+                role_permission.append(temp)
+
+    logger.debug(role_permission)
     return role_permission
+
+
+def sync_permission_set(
+        sdk: looker_sdk,
+        permission_set_list: list):
+
+    all_permission_sets = sdk.all_permission_sets()
+    permissions_dict = {p.name: p.id for p in all_permission_sets}
+    permissions_dict.pop('Admin')
+    yaml_permissions = [role.get('name') for role in permission_set_list]
+
+    for permission_set_name in permissions_dict.keys():
+
+        if permission_set_name not in yaml_permissions:
+            permission_id = sdk.search_permission_sets(
+                name=permission_set_name)[0].id
+            sdk.delete_permission_set(permission_set_id=permission_id)
+
+
+def create_permission_set(
+        sdk: looker_sdk,
+        permission_set_list: list):
+    final_response = []
+    for permission in permission_set_list:
+        permission_set_name = permission.get('role_name')
+        permissions = permission.get('permission')
+        body = models.WritePermissionSet(
+            name=permission_set_name.lower(),
+            permissions=permissions
+        )
+        try:
+            perm = sdk.create_permission_set(
+                body=body
+            )
+        except looker_sdk.error.SDKError:
+            perm = sdk.search_permission_sets(name=permission_set_name)[0]
+            pid = perm.id
+            perm = sdk.update_permission_set(permission_set_id=pid, body=body)
+
+        temp = {}
+        temp['name'] = perm.name
+        temp['pid'] = perm.id
+        final_response.append(temp)
+
+    logger.debug(final_response)
+    return final_response
+
+
+def create_model_set(
+        sdk: looker_sdk,
+        model_set_list: list) -> list:
+    final_response = []
+    for model in model_set_list:
+        model_sets = model.get('model_set_value')
+        model_set_name = model.get('role_name')
+        body = models.WriteModelSet(
+            name=model_set_name.lower(), models=model_sets)
+        try:
+            model = sdk.create_model_set(body=body)
+        except looker_sdk.error.SDKError as modelerror:
+            logger.info(modelerror.args[0])
+            model = sdk.search_model_sets(name=model_set_name)[0]
+            model_set_id = model.id
+            model = sdk.update_model_set(model_set_id=model_set_id, body=body)
+        temp = {}
+        temp['model_set_name'] = model.name
+        temp['model_set_id'] = model.id
+        final_response.append(temp)
+    logger.info(final_response)
+    return final_response
+
+
+def sync_model_set(
+        sdk: looker_sdk,
+        model_set_list: list):
+
+    all_model_sets = sdk.all_model_sets()
+    model_sets_dict = {p.name: p.id for p in all_model_sets}
+    yaml_permissions = [role.get('name') for role in model_set_list]
+
+    for permission_set_name in permissions_dict.keys():
+
+        if permission_set_name not in yaml_permissions:
+            permission_id = sdk.search_permission_sets(
+                name=permission_set_name)[0].id
+            sdk.delete_permission_set(permission_set_id=permission_id)
 
 
 def create_roles(
         sdk: looker_sdk,
-        role_mapping: list) -> list:
+        role_metadata_list: list) -> list:
     role_dict = {role.id: role.name for role in sdk.all_roles()}
     role_output = []
-    for role in role_mapping:
+    for role in role_metadata_list:
         role_name = role['role_name']
         if role_name in role_dict.values():
             logger.info(f'--> Role {role_name} has already been configured.')
             role_output.append(sdk.search_roles(name=role_name))
         else:
-            legacy_model = role['model_set_legacy']
-            standard_model = role['model_set_std']
+            permission_set_name = f'{role_name}_permission_set'
             permission_metadata = sdk.search_permission_sets(
-                name=role['permission'])
-            permission_id = permission_metadata[0].id
+                name=permission_set_name)
             try:
                 model_set_provision = sdk.create_model_set(
                     body=(models.WriteModelSet(
-                        models=[legacy_model, standard_model],
+                        models=role['model_set_value'],
                         name=f'{role_name}_model_set'
                     ))
                 )
