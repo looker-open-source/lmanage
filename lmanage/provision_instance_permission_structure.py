@@ -1,11 +1,11 @@
 import logging
 import coloredlogs
 import looker_sdk
-from create_folder_permissions import create_folder_permissions as cfp
-from create_user_permissions import user_permission as up
-from utils import group_config as gc
-from utils import folder_config as fc
-from utils import parse_yaml as py
+from .create_folder_permissions import create_folder_permissions as cfp
+from .create_user_permissions import user_permission as up
+from .utils import group_config as gc
+from .utils import folder_config as fc
+from .utils import parse_yaml as py
 
 
 logger = logging.getLogger(__name__)
@@ -51,20 +51,39 @@ def main(**kwargs):
         sdk=sdk, permission_set_list=role_metadata)
 
     # # SYNC PERMISSION SETS
+    all_permission_sets = sdk.all_permission_sets()
     up.sync_permission_set(
-        sdk=sdk, permission_set_list=permission_set_metadata)
+        sdk=sdk, all_permission_sets=all_permission_sets,
+        permission_set_list=permission_set_metadata)
 
     # # CREATE MODEL SETS
     model_set_metadata = up.create_model_set(
         sdk=sdk, model_set_list=role_metadata)
 
     # # SYNC MODEL SETS
-    up.sync_model_set(sdk=sdk, model_set_list=model_set_metadata)
+    all_model_sets = sdk.all_model_sets()
+    up.sync_model_set(sdk=sdk,
+                      all_model_sets=all_model_sets,
+                      model_set_list=model_set_metadata)
 
     # # CREATE NEW ROLES
-    up.create_roles(sdk=sdk, role_metadata_list=role_metadata)
+    created_role_metadata = up.create_roles(sdk=sdk,
+                                            all_model_sets=all_model_sets,
+                                            all_permission_sets=all_permission_sets,
+                                            role_metadata_list=role_metadata)
+
+    # # SYNC ROLES
+    all_roles = sdk.all_roles()
+    up.sync_roles(
+        sdk=sdk,
+        all_roles=all_roles,
+        role_metadata_list=created_role_metadata
+    )
     # # ATTACH ROLES TO TEAM GROUPS
-    # # DELETE ALL ROLES THAT DON'T MATCH WITH YAML
+    up.attach_role_to_group(sdk=sdk,
+                            role_metadata=role_metadata,
+                            created_role_metadata=created_role_metadata,
+                            all_roles=all_roles)
 
 ###############################################################
 # Folder Config ################################################
@@ -95,6 +114,7 @@ def main(**kwargs):
                     folder_name_list=unique_folder_names)
 
     logger.info(div)
+
 
     # # update content access
     # logger.info(div)

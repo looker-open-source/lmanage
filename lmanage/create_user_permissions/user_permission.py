@@ -35,9 +35,9 @@ def get_role_metadata(
 
 def sync_permission_set(
         sdk: looker_sdk,
+        all_permission_sets: list,
         permission_set_list: list):
 
-    all_permission_sets = sdk.all_permission_sets()
     permissions_dict = {p.name: p.id for p in all_permission_sets}
     permissions_dict.pop('Admin')
     yaml_permissions = [role.get('name') for role in permission_set_list]
@@ -53,6 +53,7 @@ def sync_permission_set(
 def create_permission_set(
         sdk: looker_sdk,
         permission_set_list: list):
+
     final_response = []
     for permission in permission_set_list:
         permission_set_name = permission.get('role_name')
@@ -82,6 +83,7 @@ def create_permission_set(
 def create_model_set(
         sdk: looker_sdk,
         model_set_list: list) -> list:
+
     final_response = []
     for model in model_set_list:
         model_sets = model.get('model_set_value')
@@ -105,243 +107,250 @@ def create_model_set(
 
 def sync_model_set(
         sdk: looker_sdk,
+        all_model_sets: list,
         model_set_list: list):
 
-    all_model_sets = sdk.all_model_sets()
     model_sets_dict = {p.name: p.id for p in all_model_sets}
-    yaml_permissions = [role.get('name') for role in model_set_list]
+    model_sets_dict.pop('All')
+    yaml_model = [role.get('model_set_name') for role in model_set_list]
 
-    for permission_set_name in permissions_dict.keys():
+    for model_set_name in model_sets_dict.keys():
 
-        if permission_set_name not in yaml_permissions:
-            permission_id = sdk.search_permission_sets(
-                name=permission_set_name)[0].id
-            sdk.delete_permission_set(permission_set_id=permission_id)
+        if model_set_name not in yaml_model:
+            model_id = sdk.search_model_sets(
+                name=model_set_name)[0].id
+            sdk.delete_model_set(model_set_id=model_id)
 
 
 def create_roles(
         sdk: looker_sdk,
+        all_model_sets: list,
+        all_permission_sets: list,
         role_metadata_list: list) -> list:
-    role_dict = {role.id: role.name for role in sdk.all_roles()}
+
+    model_set_dict = {model.name: model.id for model in all_model_sets}
+    permission_set_dict = {perm.name: perm.id for perm in all_permission_sets}
+
     role_output = []
     for role in role_metadata_list:
-        role_name = role['role_name']
-        if role_name in role_dict.values():
-            logger.info(f'--> Role {role_name} has already been configured.')
-            role_output.append(sdk.search_roles(name=role_name))
-        else:
-            permission_set_name = f'{role_name}_permission_set'
-            permission_metadata = sdk.search_permission_sets(
-                name=permission_set_name)
-            try:
-                model_set_provision = sdk.create_model_set(
-                    body=(models.WriteModelSet(
-                        models=role['model_set_value'],
-                        name=f'{role_name}_model_set'
-                    ))
-                )
-                model_id = model_set_provision['id']
-            except looker_sdk.error.SDKError:
-                logger.info('model set already exists')
-                model_set_provision = sdk.search_model_sets(
-                    name=f'{role_name}_model_set')
-                model_id = model_set_provision[0]['id']
-
-            logger.info(f'--> Trying to create role {role_name}')
-            role_metadata = sdk.create_role(
-                body=models.WriteRole(
-                    name=role['role_name'],
-                    permission_set_id=permission_id,
-                    model_set_id=model_id
-                )
+        role_name = role.get('role_name')
+        permission_set_id = permission_set_dict.get(role_name.lower())
+        model_set_id = model_set_dict.get(role_name.lower())
+        body = models.WriteRole(
+            name=role_name,
+            permission_set_id=permission_set_id,
+            model_set_id=model_set_id
+        )
+        try:
+            role = sdk.create_role(
+                body=body
             )
-            role_output.append(role_metadata)
-            logger.info(f'--> Role {role_name} being created on your system.')
+        except looker_sdk.error.SDKError as roleerror:
+            logger.debug(roleerror)
+            role_id = sdk.search_roles(name=role_name)[0].id
+            role = sdk.update_role(role_id=role_id, body=body)
+        temp = {}
+        temp['role_id'] = role.id
+        temp['role_name'] = role_name
+        role_output.append(temp)
+    logger.info(role_output)
     return role_output
+
+
+def sync_roles(
+        sdk: looker_sdk,
+        all_roles: list,
+        role_metadata_list: list):
+
+    all_role_dict = {role.name: role.id for role in all_roles}
+    all_role_dict.pop('Admin')
+    yaml_role = [role.get('role_name') for role in role_metadata_list]
+
+    for role_name in all_role_dict.keys():
+        if role_name not in yaml_role:
+            role_id = sdk.search_roles(name=role_name)[0].id
+            sdk.delete_role(role_id=role_id)
 
 
 def set_role(
         role_id: str,
         sdk: looker_sdk,
-        group_id: str) -> str:
+        group_id: list) -> str:
     try:
-        sdk.set_role_groups(role_id, [group_id])
+        sdk.set_role_groups(role_id, group_id)
         return logger.info(f'attributing {group_id} permissions on instance')
     except looker_sdk.error.SDKError:
         return logger.info('something went wrong')
 
 
 def attach_role_to_group(
-        sdk: looker_sdk,
-        role_metadata: list,
-        group_config: list) -> list:
+    sdk: looker_sdk,
+    role_metadata: list,
+        created_role_metadata: list,
+        all_roles: list):
 
     all_groups = sdk.all_groups()
-    all_roles = sdk.all_roles()
     role_dict = {role.name: role.id for role in all_roles}
     group_dict = {group.name: group.id for group in all_groups}
-    for group_name, group_info in group_config.items():
-        if group_name in group_dict.keys():
-            role_id = role_dict.get(group_name.lower())
 
-            if 'team' in group_info.keys():
-                for team in group_info['team']:
-                    group_id = group_dict.get(team)
-                    set_role(role_id=role_id, group_id=group_id, sdk=sdk)
-            else:
-                group_id = group_dict.get(group_name)
-                set_role(role_id=role_id, group_id=group_id, sdk=sdk)
+    for role in role_metadata:
+        teams = role.get('teams')
+        role_id = role_dict.get(role.get('role_name'))
+        group_id_list = []
+        for team in teams:
+            group_id = group_dict.get(team)
+            group_id_list.append(group_id)
+        set_role(role_id=role_id, group_id=group_id_list, sdk=sdk)
 
+# def folder_output(
+#         sdk: looker_sdk,
+#         group_metadata: list,
+#         group_config: dict) -> list:
+#     response = []
+#     for group_name, group_info in group_config.items():
+#         folder_info = group_info.get('folder', None)
 
-def folder_output(
-        sdk: looker_sdk,
-        group_metadata: list,
-        group_config: dict) -> list:
-    response = []
-    for group_name, group_info in group_config.items():
-        folder_info = group_info.get('folder', None)
+#         if folder_info:
+#             content_metadata_id = sdk.search_folders(
+#                 name=folder_info['name'])
+#             for group in group_metadata:
+#                 folder_provision = {}
+#                 folder_provision['name'] = folder_info['name']
+#                 folder_provision['cmi'] = content_metadata_id[0].content_metadata_id
+#                 # folder_provision['folder_id'] = folder_info['folder_id']
+#                 if folder_info['team_edit'] in group.values():
+#                     folder_provision['group_id'] = group['group_id']
+#                     folder_provision['content_metadata_id'] = group['content_metadata_id']
 
-        if folder_info:
-            content_metadata_id = sdk.search_folders(
-                name=folder_info['name'])
-            for group in group_metadata:
-                folder_provision = {}
-                folder_provision['name'] = folder_info['name']
-                folder_provision['cmi'] = content_metadata_id[0].content_metadata_id
-                # folder_provision['folder_id'] = folder_info['folder_id']
-                if folder_info['team_edit'] in group.values():
-                    folder_provision['group_id'] = group['group_id']
-                    folder_provision['content_metadata_id'] = group['content_metadata_id']
+#                     folder_provision['team_info'] = {}
+#                     folder_provision['team_info']['folder_id'] = group['folder_id']
+#                     folder_provision['team_info']['group_id'] = group['group_id']
+#                     folder_provision['team_info']['group_name'] = group['group_name']
+#                     folder_provision['team_info']['permission'] = 'edit'
+#                     response.append(folder_provision)
+#                 else:
+#                     for team in folder_info['team_view']:
+#                         if team in group.values():
+#                             folder_provision['team_info'] = {}
+#                             folder_provision['group_id'] = group['group_id']
+#                             # folder_provision['content_metadata_id'] = group['content_metadata_id']
+#                             folder_provision['content_metadata_id'] = group['content_metadata_id']
+#                             folder_provision['team_info']['folder_id'] = group['folder_id']
+#                             folder_provision['team_info']['group_id'] = group['group_id']
+#                             folder_provision['team_info']['group_name'] = group['group_name']
+#                             folder_provision['team_info']['permission'] = 'view'
+#                             response.append(folder_provision)
 
-                    folder_provision['team_info'] = {}
-                    folder_provision['team_info']['folder_id'] = group['folder_id']
-                    folder_provision['team_info']['group_id'] = group['group_id']
-                    folder_provision['team_info']['group_name'] = group['group_name']
-                    folder_provision['team_info']['permission'] = 'edit'
-                    response.append(folder_provision)
-                else:
-                    for team in folder_info['team_view']:
-                        if team in group.values():
-                            folder_provision['team_info'] = {}
-                            folder_provision['group_id'] = group['group_id']
-                            # folder_provision['content_metadata_id'] = group['content_metadata_id']
-                            folder_provision['content_metadata_id'] = group['content_metadata_id']
-                            folder_provision['team_info']['folder_id'] = group['folder_id']
-                            folder_provision['team_info']['group_id'] = group['group_id']
-                            folder_provision['team_info']['group_name'] = group['group_name']
-                            folder_provision['team_info']['permission'] = 'view'
-                            response.append(folder_provision)
-
-    return response
+#     return response
 
 
-def ancestor_folder_change():
-    ancestors = sdk.folder_ancestors(folder_id=folder_id)
-    pass
+# def ancestor_folder_change():
+#     ancestors = sdk.folder_ancestors(folder_id=folder_id)
+#     pass
 
 
-def provision_folders_with_group_access(
-        sdk: looker_sdk,
-        folder_permission_metadata: list) -> str:
+# def provision_folders_with_group_access(
+#         sdk: looker_sdk,
+#         folder_permission_metadata: list) -> str:
 
-    for access_item in folder_permission_metadata:
+#     for access_item in folder_permission_metadata:
 
-        content_metadata_id = access_item["cmi"]
+#         content_metadata_id = access_item["cmi"]
 
-        # check for existing access to the folder
-        content_metadata_accesses = {
-            access.group_id: access
-            for access in sdk.all_content_metadata_accesses(
-                content_metadata_id=content_metadata_id)}
+#         # check for existing access to the folder
+#         content_metadata_accesses = {
+#             access.group_id: access
+#             for access in sdk.all_content_metadata_accesses(
+#                 content_metadata_id=content_metadata_id)}
 
-        group_id = access_item['team_info']['group_id']
-        permission = access_item['team_info']['permission']
-        if group_id in content_metadata_accesses.keys():
-            current_access = content_metadata_accesses.get(group_id)
+#         group_id = access_item['team_info']['group_id']
+#         permission = access_item['team_info']['permission']
+#         if group_id in content_metadata_accesses.keys():
+#             current_access = content_metadata_accesses.get(group_id)
 
-            if current_access.permission_type.value == permission:
-                logger.info(
-                    f'--> Group {group_id} already has access, no changes made.')
+#             if current_access.permission_type.value == permission:
+#                 logger.info(
+#                     f'--> Group {group_id} already has access, no changes made.')
 
-            else:
-                # don't want to inherit access from parent folders
-                sdk.update_content_metadata(
-                    content_metadata_id=content_metadata_id,
-                    body={'inherits': False}
-                )
-                sdk.update_content_metadata_access(
-                    content_metadata_access_id=current_access.id,
-                    body=models.ContentMetaGroupUser(
-                        content_metadata_id=content_metadata_id,
-                        permission_type=permission,
-                        group_id=group_id
-                    ))
+#             else:
+#                 # don't want to inherit access from parent folders
+#                 sdk.update_content_metadata(
+#                     content_metadata_id=content_metadata_id,
+#                     body={'inherits': False}
+#                 )
+#                 sdk.update_content_metadata_access(
+#                     content_metadata_access_id=current_access.id,
+#                     body=models.ContentMetaGroupUser(
+#                         content_metadata_id=content_metadata_id,
+#                         permission_type=permission,
+#                         group_id=group_id
+#                     ))
 
-                logging.info(
-                    f'--> Changed permission type to {permission}.')
+#                 logging.info(
+#                     f'--> Changed permission type to {permission}.')
 
-        # no existing access
-        # create from scratch
-        else:
-            # don't want to inherit access from parent folders
-            sdk.update_content_metadata(
-                content_metadata_id=content_metadata_id,
-                body={'inherits': False}
-            )
+#         # no existing access
+#         # create from scratch
+#         else:
+#             # don't want to inherit access from parent folders
+#             sdk.update_content_metadata(
+#                 content_metadata_id=content_metadata_id,
+#                 body={'inherits': False}
+#             )
 
-            sdk.create_content_metadata_access(
-                body=models.ContentMetaGroupUser(
-                    content_metadata_id=content_metadata_id,
-                    permission_type=permission,
-                    group_id=group_id
-                )
-            )
-            logger.info(
-                f'--> Sucessfully permissioned group {group_id} {permission} access.')
+#             sdk.create_content_metadata_access(
+#                 body=models.ContentMetaGroupUser(
+#                     content_metadata_id=content_metadata_id,
+#                     permission_type=permission,
+#                     group_id=group_id
+#                 )
+#             )
+#             logger.info(
+#                 f'--> Sucessfully permissioned group {group_id} {permission} access.')
 
 
-def remove_all_user_group(
-        sdk: looker_sdk,
-        folder_permission_metadata: list):
+# def remove_all_user_group(
+#         sdk: looker_sdk,
+#         folder_permission_metadata: list):
 
-    # remove parent Shared group instance access
-    try:
-        sdk.update_content_metadata_access(
-            content_metadata_access_id=1,
-            body=models.ContentMetaGroupUser(
-                permission_type='view',
-                content_metadata_id=1,
-                group_id=1
-            )
-        )
-    except looker_sdk.error.SDKError:
-        logger.info('All Users group already configured')
-    clean = list()
-    for avt in folder_permission_metadata:
-        temp = {}
-        temp['name'] = avt['name']
-        temp['cmi'] = avt['cmi']
-        clean.append(temp)
-    res_list = [i for n, i in enumerate(clean) if i not in clean[n + 1:]]
+#     # remove parent Shared group instance access
+#     try:
+#         sdk.update_content_metadata_access(
+#             content_metadata_access_id=1,
+#             body=models.ContentMetaGroupUser(
+#                 permission_type='view',
+#                 content_metadata_id=1,
+#                 group_id=1
+#             )
+#         )
+#     except looker_sdk.error.SDKError:
+#         logger.info('All Users group already configured')
+#     clean = list()
+#     for avt in folder_permission_metadata:
+#         temp = {}
+#         temp['name'] = avt['name']
+#         temp['cmi'] = avt['cmi']
+#         clean.append(temp)
+#     res_list = [i for n, i in enumerate(clean) if i not in clean[n + 1:]]
 
-    for access_item in res_list:
-        time.sleep(1)
+#     for access_item in res_list:
+#         time.sleep(1)
 
-        content_metadata_id = access_item["cmi"]
+#         content_metadata_id = access_item["cmi"]
 
-        # check for existing access to the folder
-        content_metadata_accesses = {
-            access.group_id: access
-            for access in sdk.all_content_metadata_accesses(
-                content_metadata_id=content_metadata_id)}
+#         # check for existing access to the folder
+#         content_metadata_accesses = {
+#             access.group_id: access
+#             for access in sdk.all_content_metadata_accesses(
+#                 content_metadata_id=content_metadata_id)}
 
-        for id, value in content_metadata_accesses.items():
-            logger.debug(f'Checking item {value.id}')
-            if value.group_id == 1:
-                cmaid = value['id']
-                sdk.delete_content_metadata_access(
-                    content_metadata_access_id=cmaid)
-                break
+#         for id, value in content_metadata_accesses.items():
+#             logger.debug(f'Checking item {value.id}')
+#             if value.group_id == 1:
+#                 cmaid = value['id']
+#                 sdk.delete_content_metadata_access(
+#                     content_metadata_access_id=cmaid)
+#                 break
 
 
 def main(**kwargs):

@@ -44,7 +44,7 @@ role_BusinessOperations_Developer:
     - lk2_test_model
   team:
     - BusinessOperations_BO_Dev
-    - Cameos_BO_Dev
+    - Freddy
 
 role_BusinessOperations_User:
   role: BOUser 
@@ -70,6 +70,7 @@ role_BusinessOperations_User:
     - lk2_jungy
   team:
     - BusinessOperations
+    - Freddy
 
 #####################
 # FOLDER PERMISSONS #
