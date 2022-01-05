@@ -65,7 +65,7 @@ def mapview(**kwargs):
 @ click.option("-l", "--level",
                default='INFO',
                help="**OPTIONAL** Add the value 'DEBUG' to get a more verbose version of the returned stout text")
-def instance_config(**kwargs):
+def configurator(**kwargs):
     level = kwargs.get('level', 'INFO')
     coloredlogs.install(level=level, logger=logger)
     for k, v in kwargs.items():

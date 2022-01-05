@@ -87,13 +87,16 @@ def provision_folders_with_group_access(
                         content_metadata_id=content_metadata_id,
                         body=models.WriteContentMeta(inherits=False)
                     )
-                    sdk.update_content_metadata_access(
-                        content_metadata_access_id=current_access.id,
-                        body=models.ContentMetaGroupUser(
-                            content_metadata_id=content_metadata_id,
-                            permission_type=permission,
-                            group_id=group_id
-                        ))
+                    try:
+                        sdk.update_content_metadata_access(
+                            content_metadata_access_id=current_access.id,
+                            body=models.ContentMetaGroupUser(
+                                content_metadata_id=content_metadata_id,
+                                permission_type=permission,
+                                group_id=group_id
+                            ))
+                    except looker_sdk.error.SDKError as foldererror:
+                        logger.debug(foldererror.args[0])
 
                     logging.info(
                         f'--> Changed permission type to {permission}.')

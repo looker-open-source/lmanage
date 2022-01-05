@@ -15,12 +15,13 @@ role_admin:
   role: Admin
   team:
   - Cameos
+
 role_BusinessOperations_Developer:
-  role: BODeveloper
+  role: BODevelopers
   permissions:
+    - access_data
     - can_see_system_activity
     - see_dashboards
-    - access_data 
     - clear_cache_refresh
     - create_table_calculations
     - deploy
@@ -33,18 +34,16 @@ role_BusinessOperations_Developer:
     - schedule_look_emails
     - see_drill_overlay
     - see_lookml
-    - see_lookml_dashboards
-    - see_looks
     - see_sql
     - see_user_dashboards
-    - send_to_integration, 
+    - send_to_integration 
     - use_sql_runner
   model_set:
     - lk2_business_operations 
-    - lk2_test_model
+    - DrewsModel
   team:
     - BusinessOperations_BO_Dev
-    - Freddy
+    - DrewEdit
 
 role_BusinessOperations_User:
   role: BOUser 
@@ -71,6 +70,8 @@ role_BusinessOperations_User:
   team:
     - BusinessOperations
     - Freddy
+
+
 
 #####################
 # FOLDER PERMISSONS #
@@ -100,6 +101,18 @@ Hugo_folder_permissions:
     team_view:
     - BusinessOperations
     - NotHugoGroup
+
+Drews_folder_permissions:
+  folder:
+    name: Drew 
+    team_edit:  
+    - DrewEdit
+    team_view:
+    - BusinessOperations
+
+
+
+
 ###################
 # User Attributes #
 ###################
