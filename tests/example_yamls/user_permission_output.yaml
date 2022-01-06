@@ -1,0 +1,384 @@
+role_BusinessOperations_developer:
+  role: developer
+  team:
+  - BusinessOperations
+role_BusinessOperations_explorer:
+  role: explorer
+  team:
+  - BusinessOperations
+role_BusinessOperations_viewer:
+  role: viewer
+  team:
+  - BusinessOperations
+role_Cameos_developer:
+  role: developer
+  team:
+  - Cameos
+role_Cameos_explorer:
+  role: explorer
+  team:
+  - Cameos
+role_Cameos_viewer:
+  role: viewer
+  team:
+  - Cameos
+role_CameraPlatform_developer:
+  role: developer
+  team:
+  - CameraPlatform
+role_CameraPlatform_explorer:
+  role: explorer
+  team:
+  - CameraPlatform
+role_CameraPlatform_viewer:
+  role: viewer
+  team:
+  - CameraPlatform
+role_Camera_developer:
+  role: developer
+  team:
+  - Camera
+role_Camera_explorer:
+  role: explorer
+  team:
+  - Camera
+role_Camera_viewer:
+  role: viewer
+  team:
+  - Camera
+role_ClientPlatform_Frameworks_developer:
+  role: developer
+  team:
+  - ClientPlatform_Frameworks
+role_ClientPlatform_Frameworks_explorer:
+  role: explorer
+  team:
+  - ClientPlatform_Frameworks
+role_ClientPlatform_Frameworks_viewer:
+  role: viewer
+  team:
+  - ClientPlatform_Frameworks
+role_CommunityOperations_developer:
+  role: developer
+  team:
+  - CommunityOperations
+role_CommunityOperations_explorer:
+  role: explorer
+  team:
+  - CommunityOperations
+role_CommunityOperations_viewer:
+  role: viewer
+  team:
+  - CommunityOperations
+role_Content_developer:
+  role: developer
+  team:
+  - Content
+role_Content_explorer:
+  role: explorer
+  team:
+  - Content
+role_Content_viewer:
+  role: viewer
+  team:
+  - Content
+role_CoreExperience_developer:
+  role: developer
+  team:
+  - CoreExperience
+role_CoreExperience_explorer:
+  role: explorer
+  team:
+  - CoreExperience
+role_CoreExperience_viewer:
+  role: viewer
+  team:
+  - CoreExperience
+role_DataScience_developer:
+  role: developer
+  team:
+  - DataScience
+role_DataScience_explorer:
+  role: explorer
+  team:
+  - DataScience
+role_DataScience_viewer:
+  role: viewer
+  team:
+  - DataScience
+role_Discover_developer:
+  role: developer
+  team:
+  - Discover
+role_Discover_explorer:
+  role: explorer
+  team:
+  - Discover
+role_Discover_viewer:
+  role: viewer
+  team:
+  - Discover
+role_EngineeringSecurity_developer:
+  role: developer
+  team:
+  - EngineeringSecurity
+role_EngineeringSecurity_explorer:
+  role: explorer
+  team:
+  - EngineeringSecurity
+role_EngineeringSecurity_viewer:
+  role: viewer
+  team:
+  - EngineeringSecurity
+role_EnterpriseServices_developer:
+  role: developer
+  team:
+  - EnterpriseServices
+role_EnterpriseServices_explorer:
+  role: explorer
+  team:
+  - EnterpriseServices
+role_EnterpriseServices_viewer:
+  role: viewer
+  team:
+  - EnterpriseServices
+role_Friends_Maps_developer:
+  role: developer
+  team:
+  - Friends_Maps
+role_Friends_Maps_explorer:
+  role: explorer
+  team:
+  - Friends_Maps
+role_Friends_Maps_viewer:
+  role: viewer
+  team:
+  - Friends_Maps
+role_Growth_developer:
+  role: developer
+  team:
+  - Growth
+role_Growth_explorer:
+  role: explorer
+  team:
+  - Growth
+role_Growth_viewer:
+  role: viewer
+  team:
+  - Growth
+role_InformationTechnology_developer:
+  role: developer
+  team:
+  - InformationTechnology
+role_InformationTechnology_explorer:
+  role: explorer
+  team:
+  - InformationTechnology
+role_InformationTechnology_viewer:
+  role: viewer
+  team:
+  - InformationTechnology
+role_Lenses_developer:
+  role: developer
+  team:
+  - Lenses
+role_Lenses_explorer:
+  role: explorer
+  team:
+  - Lenses
+role_Lenses_viewer:
+  role: viewer
+  team:
+  - Lenses
+role_MediaDeliveryPlatform_developer:
+  role: developer
+  team:
+  - MediaDeliveryPlatform
+role_MediaDeliveryPlatform_explorer:
+  role: explorer
+  team:
+  - MediaDeliveryPlatform
+role_MediaDeliveryPlatform_viewer:
+  role: viewer
+  team:
+  - MediaDeliveryPlatform
+role_Metrics_Insights_developer:
+  role: developer
+  team:
+  - Metrics_Insights
+role_Metrics_Insights_explorer:
+  role: explorer
+  team:
+  - Metrics_Insights
+role_Metrics_Insights_viewer:
+  role: viewer
+  team:
+  - Metrics_Insights
+role_Monetization_developer:
+  role: developer
+  team:
+  - Monetization
+role_Monetization_explorer:
+  role: explorer
+  team:
+  - Monetization
+role_Monetization_viewer:
+  role: viewer
+  team:
+  - Monetization
+role_Perception_developer:
+  role: developer
+  team:
+  - Perception
+role_Perception_explorer:
+  role: explorer
+  team:
+  - Perception
+role_Perception_viewer:
+  role: viewer
+  team:
+  - Perception
+role_PlatformIntegrityG_A_developer:
+  role: developer
+  team:
+  - PlatformIntegrityG_A
+role_PlatformIntegrityG_A_explorer:
+  role: explorer
+  team:
+  - PlatformIntegrityG_A
+role_PlatformIntegrityG_A_viewer:
+  role: viewer
+  team:
+  - PlatformIntegrityG_A
+role_ProductManagement_developer:
+  role: developer
+  team:
+  - ProductManagement
+role_ProductManagement_explorer:
+  role: explorer
+  team:
+  - ProductManagement
+role_ProductManagement_viewer:
+  role: viewer
+  team:
+  - ProductManagement
+role_Product_developer:
+  role: developer
+  team:
+  - Product
+role_Product_explorer:
+  role: explorer
+  team:
+  - Product
+role_Product_viewer:
+  role: viewer
+  team:
+  - Product
+role_QualityAssurance_Tools_developer:
+  role: developer
+  team:
+  - QualityAssurance_Tools
+role_QualityAssurance_Tools_explorer:
+  role: explorer
+  team:
+  - QualityAssurance_Tools
+role_QualityAssurance_Tools_viewer:
+  role: viewer
+  team:
+  - QualityAssurance_Tools
+role_Research_developer:
+  role: developer
+  team:
+  - Research
+role_Research_explorer:
+  role: explorer
+  team:
+  - Research
+role_Research_viewer:
+  role: viewer
+  team:
+  - Research
+role_RevenueStrategy_developer:
+  role: developer
+  team:
+  - RevenueStrategy
+role_RevenueStrategy_explorer:
+  role: explorer
+  team:
+  - RevenueStrategy
+role_RevenueStrategy_viewer:
+  role: viewer
+  team:
+  - RevenueStrategy
+role_Revenue_developer:
+  role: developer
+  team:
+  - Revenue
+role_Revenue_explorer:
+  role: explorer
+  team:
+  - Revenue
+role_Revenue_viewer:
+  role: viewer
+  team:
+  - Revenue
+role_SalesOperations_developer:
+  role: developer
+  team:
+  - SalesOperations
+role_SalesOperations_explorer:
+  role: explorer
+  team:
+  - SalesOperations
+role_SalesOperations_viewer:
+  role: viewer
+  team:
+  - SalesOperations
+role_SnapLabProduct_developer:
+  role: developer
+  team:
+  - SnapLabProduct
+role_SnapLabProduct_explorer:
+  role: explorer
+  team:
+  - SnapLabProduct
+role_SnapLabProduct_viewer:
+  role: viewer
+  team:
+  - SnapLabProduct
+role_SnapLabSoftwareEngineering_developer:
+  role: developer
+  team:
+  - SnapLabSoftwareEngineering
+role_SnapLabSoftwareEngineering_explorer:
+  role: explorer
+  team:
+  - SnapLabSoftwareEngineering
+role_SnapLabSoftwareEngineering_viewer:
+  role: viewer
+  team:
+  - SnapLabSoftwareEngineering
+role_Strategy_developer:
+  role: developer
+  team:
+  - Strategy
+role_Strategy_explorer:
+  role: explorer
+  team:
+  - Strategy
+role_Strategy_viewer:
+  role: viewer
+  team:
+  - Strategy
+role_lk2bitmoji_developer:
+  role: developer
+  team:
+  - lk2bitmoji
+role_lk2bitmoji_explorer:
+  role: explorer
+  team:
+  - lk2bitmoji
+role_lk2bitmoji_viewer:
+  role: viewer
+  team:
+  - lk2bitmoji

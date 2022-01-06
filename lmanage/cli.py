@@ -16,7 +16,7 @@
 
 import click
 from lmanage import get_content_with_views
-import snoop
+from lmanage import provision_instance_permission_structure
 import coloredlogs
 import logging
 from lmanage.utils import create_df
@@ -55,3 +55,42 @@ def mapview(**kwargs):
             logger.debug(
                 f'There is no value set for {k} please use the `--help` flag to see input parameters')
     get_content_with_views.main(**kwargs)
+
+
+@lmanage.command()
+@ click.option("-i", "--ini-file",
+               help="Path to the ini file to use for sdk authentication")
+@ click.option("-yp", "--yaml-config-path",
+               help="Path to the yaml file to use for instance configuration")
+@ click.option("-l", "--level",
+               default='INFO',
+               help="**OPTIONAL** Add the value 'DEBUG' to get a more verbose version of the returned stout text")
+def configurator(**kwargs):
+    level = kwargs.get('level', 'INFO')
+    coloredlogs.install(level=level, logger=logger)
+    for k, v in kwargs.items():
+        if {v} != None:
+            logger.info(
+                f'You have set {v} for your {k} variable')
+        else:
+            logger.debug(
+                f'There is no value set for {k} please use the `--help` flag to see input parameters')
+    provision_instance_permission_structure.main(**kwargs)
+
+
+# @instance_config.command()
+# @click.option("-t", "--test")
+# def update_configs(**kwargs):
+#     print(kwargs.items())
+
+
+# @instance_config.command()
+# @click.option("-t", "--test")
+# def user_permissions(**kwargs):
+#     print('users')
+
+
+# @instance_config.command()
+# @click.option("-t", "--test")
+# def full_instance_config(**kwargs):
+#     print('full')

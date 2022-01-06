@@ -1,0 +1,26 @@
+BusinessOperations_folder_permissions:
+  folder:
+    name: BusinessOperations
+    team_edit: BusinessOperations
+    team_view:
+    - Product
+    - EngineeringSecurity
+    - Friends_Maps
+Cameos_folder_permissions:
+  folder:
+    name: Cameos
+    team_edit: Cameos
+    team_view:
+    - Product
+    - InformationTechnology
+    - DataScience
+    - ProductManagement
+lk2bitmoji_folder_permissions:
+  folder:
+    name: lk2bitmoji
+    team_edit: lk2bitmoji
+    team_view:
+    - Product
+    - InformationTechnology
+    - Strategy
+ 

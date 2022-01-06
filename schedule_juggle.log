@@ -1,0 +1,129 @@
+2021-11-23 21:33:01,153 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-23 21:33:01,525 - create_user_permissions.user_permission - INFO - --> Trying to create role role_businessoperations_user
+2021-11-23 21:33:01,661 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_user being created on your system.
+2021-11-23 21:40:53,273 - lmanage.create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-23 21:40:53,378 - lmanage.create_user_permissions.user_permission - INFO - --> Role role_businessoperations_user has already been configured.
+2021-11-23 22:01:46,149 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-23 22:01:46,271 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_user has already been configured.
+2021-11-23 22:13:37,526 - lmanage.create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-23 22:13:37,636 - lmanage.create_user_permissions.user_permission - INFO - --> Role role_businessoperations_user has already been configured.
+2021-11-23 22:13:37,954 - lmanage.create_user_permissions.user_permission - INFO - --> Trying to create role role_businessoperations_viewer
+2021-11-23 22:13:38,102 - lmanage.create_user_permissions.user_permission - INFO - --> Role role_businessoperations_viewer being created on your system.
+2021-11-23 22:13:38,103 - lmanage.create_user_permissions.user_permission - INFO - --> Role role_cameos_developer has already been configured.
+2021-11-23 22:13:38,206 - lmanage.create_user_permissions.user_permission - INFO - --> Role role_cameos_explore has already been configured.
+2021-11-23 22:13:38,310 - lmanage.create_user_permissions.user_permission - INFO - --> Role role_cameos_view has already been configured.
+2021-11-23 22:13:38,901 - lmanage.create_user_permissions.user_permission - INFO - attributing role_Cameos_developer permissions on instance
+2021-11-23 22:13:39,033 - lmanage.create_user_permissions.user_permission - INFO - attributing role_Cameos_explore permissions on instance
+2021-11-23 22:13:39,162 - lmanage.create_user_permissions.user_permission - INFO - attributing role_Cameos_view permissions on instance
+2021-11-23 22:13:39,242 - lmanage.create_user_permissions.user_permission - INFO - something went wrong
+2021-11-23 22:13:39,322 - lmanage.create_user_permissions.user_permission - INFO - something went wrong
+2021-11-23 22:13:39,397 - lmanage.create_user_permissions.user_permission - INFO - something went wrong
+2021-11-23 22:13:39,487 - lmanage.create_user_permissions.user_permission - INFO - All Users group already configured
+2021-11-23 22:20:47,404 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-23 22:20:47,517 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_user has already been configured.
+2021-11-23 22:20:47,629 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_viewer has already been configured.
+2021-11-23 22:20:47,747 - create_user_permissions.user_permission - INFO - --> Role role_cameos_developer has already been configured.
+2021-11-23 22:20:47,855 - create_user_permissions.user_permission - INFO - --> Role role_cameos_explore has already been configured.
+2021-11-23 22:20:47,949 - create_user_permissions.user_permission - INFO - --> Role role_cameos_view has already been configured.
+2021-11-23 22:23:26,948 - create_user_permissions.user_permission - INFO - attributing role_Cameos_developer permissions on instance
+2021-11-23 22:23:32,439 - create_user_permissions.user_permission - INFO - attributing role_Cameos_explore permissions on instance
+2021-11-23 22:23:58,467 - create_user_permissions.user_permission - INFO - attributing role_Cameos_view permissions on instance
+2021-11-23 22:24:43,450 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 01:06:51,663 - lmanage.create_user_permissions.user_permission - INFO - --> Trying to create role role_businessoperations_developer
+2021-11-24 01:06:51,840 - lmanage.create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer being created on your system.
+2021-11-24 01:08:56,137 - lmanage.create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-24 01:13:00,269 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-24 01:18:01,383 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-24 01:21:44,978 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-24 01:21:45,350 - create_user_permissions.user_permission - INFO - --> Trying to create role role_businessoperations_user
+2021-11-24 01:21:45,505 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_user being created on your system.
+2021-11-24 01:21:45,724 - create_user_permissions.user_permission - INFO - --> Trying to create role role_businessoperations_viewer
+2021-11-24 01:21:45,862 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_viewer being created on your system.
+2021-11-24 01:21:46,086 - create_user_permissions.user_permission - INFO - --> Trying to create role role_cameos_developer
+2021-11-24 01:21:46,233 - create_user_permissions.user_permission - INFO - --> Role role_cameos_developer being created on your system.
+2021-11-24 01:21:46,469 - create_user_permissions.user_permission - INFO - --> Trying to create role role_cameos_user
+2021-11-24 01:21:46,608 - create_user_permissions.user_permission - INFO - --> Role role_cameos_user being created on your system.
+2021-11-24 01:21:46,820 - create_user_permissions.user_permission - INFO - --> Trying to create role role_cameos_viewer
+2021-11-24 01:21:46,959 - create_user_permissions.user_permission - INFO - --> Role role_cameos_viewer being created on your system.
+2021-11-24 01:21:54,442 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_Developer permissions on instance
+2021-11-24 01:21:58,114 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_User permissions on instance
+2021-11-24 01:22:01,065 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_Viewer permissions on instance
+2021-11-24 01:22:12,546 - create_user_permissions.user_permission - INFO - attributing role_Cameos_User permissions on instance
+2021-11-24 01:22:12,675 - create_user_permissions.user_permission - INFO - attributing role_Cameos_Viewer permissions on instance
+2021-11-24 01:22:12,773 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 01:22:12,868 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 01:22:12,974 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 01:22:14,199 - create_user_permissions.user_permission - DEBUG - Checking item 5
+2021-11-24 01:22:15,446 - create_user_permissions.user_permission - DEBUG - Checking item 7
+2021-11-24 01:23:13,066 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-24 01:23:13,179 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_user has already been configured.
+2021-11-24 01:23:13,289 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_viewer has already been configured.
+2021-11-24 01:23:13,392 - create_user_permissions.user_permission - INFO - --> Role role_cameos_developer has already been configured.
+2021-11-24 01:23:13,487 - create_user_permissions.user_permission - INFO - --> Role role_cameos_user has already been configured.
+2021-11-24 01:23:13,581 - create_user_permissions.user_permission - INFO - --> Role role_cameos_viewer has already been configured.
+2021-11-24 01:23:22,819 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_Developer permissions on instance
+2021-11-24 01:23:22,962 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_User permissions on instance
+2021-11-24 01:23:23,093 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_Viewer permissions on instance
+2021-11-24 01:23:23,232 - create_user_permissions.user_permission - INFO - attributing role_Cameos_User permissions on instance
+2021-11-24 01:23:23,363 - create_user_permissions.user_permission - INFO - attributing role_Cameos_Viewer permissions on instance
+2021-11-24 01:23:23,455 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 01:23:23,541 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 01:23:23,628 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 01:23:23,722 - create_user_permissions.user_permission - INFO - All Users group already configured
+2021-11-24 01:23:24,824 - create_user_permissions.user_permission - DEBUG - Checking item 6
+2021-11-24 01:23:25,930 - create_user_permissions.user_permission - DEBUG - Checking item 8
+2021-11-24 01:23:25,931 - create_user_permissions.user_permission - DEBUG - Checking item 9
+2021-11-24 18:37:48,118 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-24 18:37:48,234 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_user has already been configured.
+2021-11-24 18:37:48,330 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_viewer has already been configured.
+2021-11-24 18:37:48,433 - create_user_permissions.user_permission - INFO - --> Role role_cameos_developer has already been configured.
+2021-11-24 18:37:48,521 - create_user_permissions.user_permission - INFO - --> Role role_cameos_user has already been configured.
+2021-11-24 18:37:48,617 - create_user_permissions.user_permission - INFO - --> Role role_cameos_viewer has already been configured.
+2021-11-24 18:37:49,086 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_Developer permissions on instance
+2021-11-24 18:37:49,220 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_User permissions on instance
+2021-11-24 18:37:49,347 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_Viewer permissions on instance
+2021-11-24 18:37:49,483 - create_user_permissions.user_permission - INFO - attributing role_Cameos_User permissions on instance
+2021-11-24 18:37:49,619 - create_user_permissions.user_permission - INFO - attributing role_Cameos_Viewer permissions on instance
+2021-11-24 18:37:49,717 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 18:37:49,796 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 18:37:49,892 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 18:37:50,045 - create_user_permissions.user_permission - INFO - All Users group already configured
+2021-11-24 18:37:51,133 - create_user_permissions.user_permission - DEBUG - Checking item 6
+2021-11-24 18:37:52,227 - create_user_permissions.user_permission - DEBUG - Checking item 8
+2021-11-24 18:37:52,228 - create_user_permissions.user_permission - DEBUG - Checking item 9
+2021-11-24 18:38:48,026 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-24 18:38:48,119 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_user has already been configured.
+2021-11-24 18:38:48,209 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_viewer has already been configured.
+2021-11-24 18:38:48,300 - create_user_permissions.user_permission - INFO - --> Role role_cameos_developer has already been configured.
+2021-11-24 18:38:48,400 - create_user_permissions.user_permission - INFO - --> Role role_cameos_user has already been configured.
+2021-11-24 18:38:48,504 - create_user_permissions.user_permission - INFO - --> Role role_cameos_viewer has already been configured.
+2021-11-24 18:38:48,931 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_Developer permissions on instance
+2021-11-24 18:38:49,057 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_User permissions on instance
+2021-11-24 18:38:49,185 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_Viewer permissions on instance
+2021-11-24 18:38:49,310 - create_user_permissions.user_permission - INFO - attributing role_Cameos_User permissions on instance
+2021-11-24 18:38:49,435 - create_user_permissions.user_permission - INFO - attributing role_Cameos_Viewer permissions on instance
+2021-11-24 18:38:49,521 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 18:38:49,605 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 18:38:49,692 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 18:38:49,781 - create_user_permissions.user_permission - INFO - All Users group already configured
+2021-11-24 18:38:50,865 - create_user_permissions.user_permission - DEBUG - Checking item 6
+2021-11-24 18:38:51,955 - create_user_permissions.user_permission - DEBUG - Checking item 8
+2021-11-24 18:38:51,955 - create_user_permissions.user_permission - DEBUG - Checking item 9
+2021-11-24 18:42:38,851 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_developer has already been configured.
+2021-11-24 18:42:38,948 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_user has already been configured.
+2021-11-24 18:42:39,043 - create_user_permissions.user_permission - INFO - --> Role role_businessoperations_viewer has already been configured.
+2021-11-24 18:42:39,138 - create_user_permissions.user_permission - INFO - --> Role role_cameos_developer has already been configured.
+2021-11-24 18:42:39,231 - create_user_permissions.user_permission - INFO - --> Role role_cameos_user has already been configured.
+2021-11-24 18:42:39,323 - create_user_permissions.user_permission - INFO - --> Role role_cameos_viewer has already been configured.
+2021-11-24 18:42:39,803 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_Developer permissions on instance
+2021-11-24 18:42:39,940 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_User permissions on instance
+2021-11-24 18:42:40,080 - create_user_permissions.user_permission - INFO - attributing role_BusinessOperations_Viewer permissions on instance
+2021-11-24 18:42:40,208 - create_user_permissions.user_permission - INFO - attributing role_Cameos_User permissions on instance
+2021-11-24 18:42:40,335 - create_user_permissions.user_permission - INFO - attributing role_Cameos_Viewer permissions on instance
+2021-11-24 18:42:40,424 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 18:42:40,507 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 18:42:40,591 - create_user_permissions.user_permission - INFO - something went wrong
+2021-11-24 18:42:40,682 - create_user_permissions.user_permission - INFO - All Users group already configured
+2021-11-24 18:42:41,772 - create_user_permissions.user_permission - DEBUG - Checking item 6
+2021-11-24 18:42:42,862 - create_user_permissions.user_permission - DEBUG - Checking item 8
+2021-11-24 18:42:42,862 - create_user_permissions.user_permission - DEBUG - Checking item 9

@@ -1,0 +1,15 @@
+{
+  "configurations": {
+    "run": {
+      "adapter": "debugpy",
+      "configuration": {
+        "request": "launch",
+        "protocol": "auto",
+        "stopOnEntry": true,
+        "console": "integratedTerminal",
+        "program": "${workspaceRoot}/provision_instance_permission_structure.py",
+        "cwd": "${workspaceRoot}"
+      }
+    }
+  }
+}
