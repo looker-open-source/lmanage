@@ -21,7 +21,10 @@ def main(**kwargs):
     logger.info('parsing yaml file')
     yaml = py.Yaml(yaml_path=yaml_path)
     instance_config = yaml.read_provision_yaml()
-    sdk = looker_sdk.init31(config_file=ini_file)
+    if ini_file:
+        sdk = looker_sdk.init31(config_file=ini_file)
+    else:
+        sdk = looker_sdk.init31()
 
 ###############################################################
 # Group Config ################################################
