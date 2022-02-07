@@ -117,7 +117,12 @@ Drews_folder_permissions:
 # User Attributes #
 ###################
 # attr_region:
-region_all:
+ua_region_all:
+  name: region_all
+  type: string
+  hidden_value: false 
+  user_view: true
+  user_edit: false
   value:
     - us
     - ag
@@ -125,7 +130,12 @@ region_all:
   team:
     - Cameos
     - AudreyGroup
-region_europe:
+ua_region_europe:
+  name: region_europe
+  type: string
+  hidden_value: false 
+  user_view: true
+  user_edit: false
   value:
     - ad
     - at
@@ -134,7 +144,12 @@ region_europe:
   team:
     - BusinessOperations
 
-attr_can_see_dau:
+ua_attr_can_see_dau:
+  name: can_see_dau
+  type: string
+  hidden_value: false 
+  user_view: true
+  user_edit: false
   value:
     - True
   team:
