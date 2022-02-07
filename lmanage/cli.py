@@ -59,14 +59,14 @@ def mapview(**kwargs):
 
 @lmanage.command()
 @ click.option("-i", "--ini-file",
-               help="**OPTIONAL ** Specify API Credentials in an ini file, if no path is given program will assume these values are set as environmental variables as denoted at https: // github.com/looker-open-source/sdk-codegen  # environment-variable-configuration)
+               help="**OPTIONAL ** Specify API Credentials in an ini file, if no path is given program will assume these values are set as environmental variables as denoted at https: // github.com/looker-open-source/sdk-codegen  # environment-variable-configuration")
 @ click.option("-yp", "--yaml-config-path",
                help="Path to the yaml file to use for instance configuration")
 @ click.option("-l", "--level",
                default='INFO',
                help="**OPTIONAL** Add the value 'DEBUG' to get a more verbose version of the returned stout text")
 def configurator(**kwargs):
-    level=kwargs.get('level', 'INFO')
+    level = kwargs.get('level', 'INFO')
     coloredlogs.install(level=level, logger=logger)
     for k, v in kwargs.items():
         if {v} != None:
