@@ -153,5 +153,3 @@ if __name__ == "__main__":
 
     main(
         ini_file=IP,
-        yaml_config_path=YP)
-    logger.info('I have finished')

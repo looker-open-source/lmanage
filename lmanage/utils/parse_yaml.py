@@ -15,7 +15,7 @@ class Yaml:
         """ Load YAML configuration file to a dictionary
         """
         with open(self.yaml_path, 'r') as file:
-            parsed_yaml = yaml.safe_load(file)
+            parsed_yaml = yaml.load(file, Loader=yaml.BaseLoader)
             logger.debug(parsed_yaml)
             return parsed_yaml
 

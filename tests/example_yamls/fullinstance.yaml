@@ -167,7 +167,7 @@ ua_attr_can_see_dau:
   user_view: true
   user_edit: false
   value:
-    - 'yes'
+    - yes
   team:
     - Cameos
     - CanSeeDAUGroup
