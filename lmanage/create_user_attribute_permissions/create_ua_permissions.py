@@ -85,14 +85,24 @@ def sync_user_attributes(sdk: looker_sdk,
 def add_group_values_to_ua(sdk: looker_sdk,
                            ua_metadata: list) -> None:
 
-    # for ua in ua_metadata:
-    #     group_
-    params_to_add = models.UserAttributeGroupValue(
-        value='hugo, selbie',
-        value_is_hidden=False
-    )
+    instance_ua = existing_user_attributes(sdk=sdk)
+    all_instance_groups = sdk.all_groups()
+    group_metadata = {group.name: group.id for group in all_instance_groups}
+    for ua in ua_metadata:
+        meta_value = ','.join(ua['value'])
+        for group in ua['team']:
+            try:
+                group_id = group_metadata.get(group)
+            except looker_sdk.error.SDKError:
+                logger.info('group dont exist mofo')
+        ua_id = instance_ua.get(ua['name'])
 
-    sdk.update_user_attribute_group_value(
-        group_id=16,
-        user_attribute_id=17,
-        body=params_to_add)
+        params_to_add = models.UserAttributeGroupValue(
+            value=meta_value,
+            value_is_hidden=False
+        )
+
+        sdk.update_user_attribute_group_value(
+            group_id=group_id,
+            user_attribute_id=ua_id,
+            body=params_to_add)

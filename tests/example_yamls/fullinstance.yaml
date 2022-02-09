@@ -127,8 +127,10 @@ ua_region_all:
     - us
     - ag
     - bb
+    - dd
   team:
     - Cameos
+    - Freddy
     - AudreyGroup
 
 ua_region_testy:
@@ -153,7 +155,7 @@ ua_attr_can_see_hugo:
   user_view: true
   user_edit: false
   value:
-    - True
+    - 'No'
   team:
     - Cameos
     - CanSeeDAUGroup
@@ -165,7 +167,7 @@ ua_attr_can_see_dau:
   user_view: true
   user_edit: false
   value:
-    - True
+    - 'yes'
   team:
     - Cameos
     - CanSeeDAUGroup
