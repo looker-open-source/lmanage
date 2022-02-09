@@ -127,18 +127,24 @@ def main(**kwargs):
         sdk=sdk,
         parsed_yaml=instance_config)
 
-    # # CREATE NEW FOLDERS
+    # # CREATE NEW USER ATTRIBUTES
 
-    cuap.create_user_attribute(
+    cuap.create_user_attribute_if_not_exists(
         sdk=sdk,
         ua_metadata=ua_metadata
     )
 
-    # # CONFIGURE FOLDERS WITH EDIT AND VIEW ACCESS
+    # # DELETE ALL USER ATTRIBUTES THAT DON'T MATCH WITH YAML
+    cuap.sync_user_attributes(
+        sdk=sdk,
+        ua_metadata=ua_metadata
+    )
 
-    # # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
-
-    # # DELETE ALL FOLDERS THAT DON'T MATCH WITH YAML
+    # # ADD VALUES TO INSCOPE USER ATTRIBUTES
+    cuap.add_group_values_to_ua(
+        sdk=sdk,
+        ua_metadata=ua_metadata
+    )
 
 
 if __name__ == "__main__":
