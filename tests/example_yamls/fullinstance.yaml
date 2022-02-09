@@ -127,22 +127,38 @@ ua_region_all:
     - us
     - ag
     - bb
+    - dd
   team:
     - Cameos
+    - Freddy
     - AudreyGroup
-ua_region_europe:
-  name: region_europe
+
+ua_region_testy:
+  name: region_testy
   type: string
   hidden_value: false 
   user_view: true
   user_edit: false
   value:
-    - ad
-    - at
-    - ua
-    - xk
+    - us
+    - ag
+    - bb
   team:
-    - BusinessOperations
+    - Cameos
+    - AudreyGroup
+
+
+ua_attr_can_see_hugo:
+  name: can_see_hugo
+  type: string
+  hidden_value: false 
+  user_view: true
+  user_edit: false
+  value:
+    - 'No'
+  team:
+    - Cameos
+    - CanSeeDAUGroup
 
 ua_attr_can_see_dau:
   name: can_see_dau
@@ -151,7 +167,7 @@ ua_attr_can_see_dau:
   user_view: true
   user_edit: false
   value:
-    - True
+    - yes
   team:
     - Cameos
     - CanSeeDAUGroup
