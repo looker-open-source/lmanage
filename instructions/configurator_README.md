@@ -23,7 +23,7 @@ Yaml configurations are set in 3 stages, Roles (which creates model sets and per
 There is no need to specfically create groups, Lmanage will scan for all instances of the team values in the following parameters and create the necessary group names. These groups will be attributed with the parameters that you specify in your yaml file.
 
 ###### Roles
-####### Example Usage
+###### Example Usage
 ```
 role_BusinessOperations_Develope:
   role: BODevelopers
@@ -57,7 +57,7 @@ role_BusinessOperations_Develope:
 The looker `role` title should be prefaced by `role_` as lmanage uses this key to identify that this is a role, the role name can be whatever you want. Looker permissions are intricate and relate to what actions you are able to do on a Looker Instance, please review these links before constructing your [role](https://docs.looker.com/admin-options/settings/roles)
 
 ###### Folders
-####### Example Usage
+###### Example Usage
 ```
 #####################
 # FOLDER PERMISSONS #
@@ -75,7 +75,7 @@ BusinessOperations_folder_permissions:
 Similarly to `role` lmanage uses a specific keyphrase `_folder_permissions`, to denote an entry with folder permissions. Each member of the team values for `_edit` and `_view` will be created as a group.
 
 ###### User Attributes
-####### Example Usage
+###### Example Usage
 
 ```
 ###################

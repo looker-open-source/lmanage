@@ -13,8 +13,8 @@ pip install lmanage
 LManage will ultimately will have many different commands as development continues 
 | Status  | Command    | Rationale                                                                                                                                                                                            |
 |---------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Live    | mapview    | Find the LookML fields and tables that are associated with a piece of Looker content                                                                                                                 |
-| Live    | configurator| Configure your Looker Instance Group, Folder, Role and User Attributes via a Yaml based Config File |
+| Live    | [mapview](https://github.com/looker-open-source/lmanage/tree/main/instructions/mapview_README.md) | Find the LookML fields and tables that are associated with a piece of Looker content                          |
+| Live    | [configurator](https://github.com/looker-open-source/lmanage/tree/main/instructions/configurator_README.md)| Configure your Looker Instance Group, Folder, Role and User Attributes via a Yaml based Config File |
 | Planned | removeuser | Based on last time logged in, prune Looker users to ensure a performant, compliant Looker instance                                                                                                   |
 | Planned | dcontent   | Iterate through an input of content, delete content and back it up using [gzr](https://github.com/looker-open-source/gzr) for easy restoration                                                                                               |
 | Planned | bcontent   | Iterate through all broken content (using content validator) and email a customized message to each dashboard owner                                                                                  |
