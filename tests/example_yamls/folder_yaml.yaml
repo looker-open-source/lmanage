@@ -1,0 +1,179 @@
+# We implement three categories of Looker user groups:
+#
+# 1. Roles: these groups are assigned Looker Roles, which control what
+#    functionality a user has access to in Looker.
+# 2. Content: these groups control access to Folders, which organize
+#    content (dashboards and Looks) in Looker.
+# 3. Attributes: these groups are assigned attributes, which are used to
+#    control access to rows and columns of data via access filters and
+#    access frants.
+
+#########
+# MODEL_SET_ROLES #
+#########
+role_admin:
+  role: Admin
+  team:
+  - Cameos
+
+role_BusinessOperations_Developer:
+  role: BODevelopers
+  permissions:
+    - access_data
+    - can_see_system_activity
+    - see_dashboards
+    - clear_cache_refresh
+    - create_table_calculations
+    - deploy
+    - develop
+    - download_without_limit
+    - explore
+    - manage_spaces
+    - mobile_app_access
+    - save_content
+    - schedule_look_emails
+    - see_drill_overlay
+    - see_lookml
+    - see_sql
+    - see_user_dashboards
+    - send_to_integration 
+    - use_sql_runner
+  model_set:
+    - lk2_business_operations 
+    - DrewsModel
+  team:
+    - BusinessOperations_BO_Dev
+    - DrewEdit
+
+role_BusinessOperations_User:
+  role: BOUser 
+  permissions:
+    - access_data
+    - clear_cache_refresh
+    - create_table_calculations
+    - download_without_limit
+    - explore
+    - manage_spaces
+    - mobile_app_access
+    - save_content
+    - schedule_look_emails
+    - see_drill_overlay
+    - see_lookml
+    - see_lookml_dashboards
+    - see_looks
+    - see_sql
+    - see_user_dashboards
+    - send_to_integration
+  model_set:
+    - lk4_huggy
+    models:
+      - testy
+      - buggy
+      - lk2_jungy
+  team:
+    - BusinessOperations
+    - Freddy
+
+
+
+#####################
+# FOLDER PERMISSONS #
+#####################
+BusinessOperations_folder_permissions:
+  folder:
+    name: BusinessOperations
+    team_edit: 
+    - BusinessOperations
+    team_view:
+    - Snaptest
+    - Cameos
+    path:
+      - Shared/
+      
+Cameos_folder_permissions:
+  folder:
+    name: Cameos
+    team_edit: 
+    - Cameos
+    team_view:
+    - BusinessOperations
+    - HugoGroup
+Hugo_folder_permissions:
+  folder:
+    name: Hugo 
+    team_edit: 
+    - Hugo 
+    - HugoEdit
+    team_view:
+    - BusinessOperations
+    - NotHugoGroup
+
+Drews_folder_permissions:
+  folder:
+    name: Drew 
+    team_edit:  
+    - DrewEdit
+    team_view:
+    - BusinessOperations
+
+
+
+
+###################
+# User Attributes #
+###################
+# attr_region:
+ua_region_all:
+  name: region_all
+  type: string
+  hidden_value: false 
+  user_view: true
+  user_edit: false
+  value:
+    - us
+    - ag
+    - bb
+    - dd
+  team:
+    - Cameos
+    - Freddy
+    - AudreyGroup
+
+ua_region_testy:
+  name: region_testy
+  type: string
+  hidden_value: false 
+  user_view: true
+  user_edit: false
+  value:
+    - us
+    - ag
+    - bb
+  team:
+    - Cameos
+    - AudreyGroup
+
+
+ua_attr_can_see_hugo:
+  name: can_see_hugo
+  type: string
+  hidden_value: false 
+  user_view: true
+  user_edit: false
+  value:
+    - 'No'
+  team:
+    - Cameos
+    - CanSeeDAUGroup
+
+ua_attr_can_see_dau:
+  name: can_see_dau
+  type: string
+  hidden_value: false 
+  user_view: true
+  user_edit: false
+  value:
+    - yes
+  team:
+    - Cameos
+    - CanSeeDAUGroup

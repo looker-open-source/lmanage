@@ -60,7 +60,7 @@ tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>
 name = "autopep8"
 version = "1.6.0"
 description = "A tool that automatically formats Python code to conform to the PEP 8 style guide"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -898,7 +898,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7.1,<3.9"
-content-hash = "bf7c944d8589bc825e236646b3485ec02fcc3ed2b489ef365a2ffba4e5f3e187"
+content-hash = "4d620df84764531fc9fe9f5695f055faaf2ca632a895ac741471a22c99ce285f"
 
 [metadata.files]
 appnope = [
