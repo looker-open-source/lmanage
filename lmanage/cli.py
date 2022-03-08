@@ -13,13 +13,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+import coloredlogs
+import logging
 import click
 from lmanage import get_content_with_views
 from lmanage import provision_instance_permission_structure
-import coloredlogs
-import logging
-from lmanage.utils import create_df
 
 logger = logging.getLogger(__name__)
 

@@ -1,5 +1,4 @@
 import logging
-import time
 import coloredlogs
 from looker_sdk import models
 import looker_sdk
@@ -79,7 +78,8 @@ def sync_user_attributes(sdk: looker_sdk,
             ua_id = instance_ua.get(ua_name)
             sdk.delete_user_attribute(ua_id)
             logger.info(
-                f'deleting ua {ua_name} because it is not listed in the yaml config')
+                f'''deleting ua {ua_name} because
+                it is not listed in the yaml config''')
 
 
 def add_group_values_to_ua(sdk: looker_sdk,

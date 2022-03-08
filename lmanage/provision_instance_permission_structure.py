@@ -71,10 +71,11 @@ def main(**kwargs):
                       model_set_list=model_set_metadata)
 
     # # CREATE NEW ROLES
-    created_role_metadata = up.create_roles(sdk=sdk,
-                                            all_model_sets=all_model_sets,
-                                            all_permission_sets=all_permission_sets,
-                                            role_metadata_list=role_metadata)
+    created_role_metadata = up.create_roles(
+        sdk=sdk,
+        all_model_sets=all_model_sets,
+        all_permission_sets=all_permission_sets,
+        role_metadata_list=role_metadata)
 
     # # SYNC ROLES
     all_roles = sdk.all_roles()
@@ -146,10 +147,11 @@ def main(**kwargs):
                       model_set_list=model_set_metadata)
 
     # # CREATE NEW ROLES
-    created_role_metadata = up.create_roles(sdk=sdk,
-                                            all_model_sets=all_model_sets,
-                                            all_permission_sets=all_permission_sets,
-                                            role_metadata_list=role_metadata)
+    created_role_metadata = up.create_roles(
+        sdk=sdk,
+        all_model_sets=all_model_sets,
+        all_permission_sets=all_permission_sets,
+        role_metadata_list=role_metadata)
 
     # # SYNC ROLES
     all_roles = sdk.all_roles()
@@ -159,10 +161,11 @@ def main(**kwargs):
         role_metadata_list=created_role_metadata
     )
     # # ATTACH ROLES TO TEAM GROUPS
-    up.attach_role_to_group(sdk=sdk,
-                            role_metadata=role_metadata,
-                            created_role_metadata=created_role_metadata,
-                            all_roles=all_roles)
+    up.attach_role_to_group(
+        sdk=sdk,
+        role_metadata=role_metadata,
+        created_role_metadata=created_role_metadata,
+        all_roles=all_roles)
 
 ###############################################################
 # Folder Config ################################################

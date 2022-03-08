@@ -14,39 +14,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import looker_sdk
-from looker_sdk import models
+import logging
 import json
-from pathlib import Path
 from collections import defaultdict
-import pandas as pd
-import lookml
 import configparser as ConfigParser
-import snoop
 import re
 from itertools import chain
+
+import coloredlogs
+import looker_sdk
+from looker_sdk import models
+import pandas as pd
+import lookml
 from lmanage.utils import parsing_sql
 from lmanage.utils import create_df
-import coloredlogs
-import logging
-import sys
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
-fh = logging.FileHandler('map_view.log')
-fh.setLevel(logging.DEBUG)
-formatter = logging.Formatter(
-    '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-fh.setFormatter(formatter)
-logger.addHandler(fh)
-
-logger = logging.getLogger(__name__)
+coloredlogs.install(level='INFO')
 
 
 def find_model_files(proj):
     """Fetches model files from PyLookML obj.
-    Scans all files in PyLookML object and returns a file if that file has a type of Model.
+    Scans all files in PyLookML object and returns a file
+    if that file has a type of Model.
 
     Args:
         proj: The project from PyLookML
@@ -63,13 +53,17 @@ def find_model_files(proj):
 def get_view_path(proj):
     """Fetches the file path of a PyLookML Oject.
 
-    Iterates over a list of PyLookML files and returns a list of the files if they are of type 'View'
+    Iterates over a list of PyLookML files and returns a list of the files
+    if they are of type 'View'
     Args:
         proj: The project from PyLookML
     Returns:
-        A list of all the file paths pointing towards view objects that are kept in a PyLookML object.
+        A list of all the file paths pointing towards view objects that are
+        kept in a PyLookML object.
         For example:
-        ['proj/views/order_items.view.lkml','proj/views/inventory_items.view.lkml','proj/views/products.view.lkml']
+        ['proj/views/order_items.view.lkml',
+        'proj/views/inventory_items.view.lkml',
+        'proj/views/products.view.lkml']
     """
     view_list = defaultdict(list)
     for file in proj.files():
@@ -83,14 +77,25 @@ def get_view_path(proj):
 
 
 def fetch_view_files(proj):
-    """Fetches the all the named view objects listed in explores of a Model file specifically.
-    Identifies a model file, iterates over all the explore objects in the model file, appends their base view and joined views to a dict object
+    """Fetches the all the named view objects listed in explores of a
+    Model file specifically.
+    Identifies a model file, iterates over all the explore objects in the
+    model file, appends their base view and joined views to a dict object
     Args:
         proj: The project from PyLookML
     Returns:
-        A dict with key: being the base view and values: list of all the used views in the explore object.
+        A dict with key: being the base view and values: list of all the
+        used views in the explore object.
         For example:
-         defaultdict(<class 'list'>, {'order_items': ['order_items', 'order_facts', 'inventory_items', 'users', 'user_order_facts', 'products', 'repeat_purchase_facts', 'distribution_centers', 'test_ndt'], 'events':['events', 'sessions', 'session_landing_page', 'session_bounce_page', 'product_viewed', 'users', 'user_order_facts']})    """
+         defaultdict(<class 'list'>,
+         {'order_items':
+            ['order_items',
+             'order_facts',
+             'inventory_items'],
+         'events':
+            ['events',
+             'sessions',
+             'session_landing_page']})"""
 
     true_view_names = defaultdict(list)
 
@@ -124,11 +129,13 @@ def fetch_view_files(proj):
 def get_sql_table_name(proj):
     """Fetches the sql_table_name of view files listed in a PyLookML Oject.
 
-    Iterates over a list of PyLookML files identifies view files aand returns a list of the sql_table_names if they exist in an object of type 'View'
+    Iterates over a list of PyLookML files identifies view files aand returns a
+    list of the sql_table_names if they exist in an object of type 'View'
     Args:
         proj: The project from PyLookML
     Returns:
-        A list of all the sql_table_names that are found in a series of view objects.
+        A list of all the sql_table_names that are found in a series of view
+        objects.
         For example:
         ['public.order_items','public.inventory_items','public.events']
     """
@@ -159,14 +166,18 @@ def get_sql_table_name_list(sql_table_name_dict, key: True):
 def parse_sql(sdk, qid: int):
     """Idenfies the base tables and joins used by a Looker query.
 
-    Iterates over a list of PyLookML files identifies view files aand returns a list of the sql_table_names if they exist in an object of type 'View'
-        qid: (int) query_id from a  Looker query (n.b. NOT THE SAME AS A QID in the url)
+    Iterates over a list of PyLookML files identifies view files aand returns a
+    list of the sql_table_names if they exist in an object of type 'View'
+        qid: (int) query_id from a  Looker query
+        (n.b. NOT THE SAME AS A QID in the url)
     Returns:
-        A list of all the tables that are found from a Looker generated SQL query.
+        A list of all the tables that are found from a Looker generated
+        SQL query.
         For example:
         ['public.order_items','public.inventory_items','public.events']
     Exception:
-        If a query is broken for whatever reason an Exception is raised to continue the program running
+        If a query is broken for whatever reason an Exception is raised to
+        continue the program running
     """
     try:
         sql_response = sdk.run_query(query_id=qid, result_format='sql')
@@ -180,14 +191,18 @@ def parse_sql(sdk, qid: int):
 
 
 def get_sql_from_elements(sdk, content_results):
-    """Amends returned SDK System__Activity reponse with sql tables used from the `parse_sql` function.
+    """Amends returned SDK System__Activity reponse with sql tables used
+    from the `parse_sql` function.
 
-    Iterates over the response from get_dashboards and runs the parse_sql function for each returned dashboard element, returns the list of tables and amends the dict response and returns it
+    Iterates over the response from get_dashboards and runs the parse_sql
+    function for each returned dashboard element, returns the list of tables
+    and amends the dict response and returns it
     Args:
         sdk: Looker SDK object
         content_results: (dict) response from get_dashboards function call
     Returns:
-        An amended dict response with the sql columns used by each element extracted our of the Looker generated SQL for each dashboard object.
+        An amended dict response with the sql columns used by each element
+        extracted our of the Looker generated SQL for each dashboard object.
         For example:
     [{'dashboard.id': 1,
          'dashboard_element.id': 1,
@@ -195,7 +210,7 @@ def get_sql_from_elements(sdk, content_results):
          'dashboard_element.result_source': 'Lookless',
          'query.model': 'bq',
          'query.view': 'order_items',
-         'query.formatted_fields': '["order_items.created_month", "order_items.count"]',
+         'query.formatted_fields': '["order_items.count"]',
          'query.id': 59,
          'dashboard.title': 'dash_1',
          'look.id': None,
@@ -211,7 +226,8 @@ def get_sql_from_elements(sdk, content_results):
 
 
 def get_dashboards(sdk):
-    """Uses the Looker SDK System__Activity model to extract dashboard and dashboard_element metadata.
+    """Uses the Looker SDK System__Activity model to extract dashboard
+    and dashboard_element metadata.
 
     Simple run_inline_query call to Looker SDK
     Args:
@@ -225,7 +241,7 @@ def get_dashboards(sdk):
          'dashboard_element.result_source': 'Lookless',
          'query.model': 'bq',
          'query.view': 'order_items',
-         'query.formatted_fields': '["order_items.created_month", "order_items.count"]',
+         'query.formatted_fields': '["order_items.count"]',
          'query.id': 59,
          'dashboard.title': 'dash_1',
          'look.id': None}]
@@ -382,7 +398,6 @@ def match_view_to_dash(content_results, explore_results, sql_table_name, proj):
 
 
 def main(**kwargs):
-    cwd = Path.cwd()
     ini_file = kwargs.get("ini_file")
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read(ini_file)
@@ -425,13 +440,13 @@ def main(**kwargs):
     del df['potential_join']
     del df['sql_joins']
 
-    if table_mask == None and field_mask == None:
+    if table_mask is None and field_mask is None:
         logger.info('you have not set any field or table filters')
 
         df.to_csv(f'{file_path}')
         logger.info(df)
 
-    elif table_mask != None:
+    elif table_mask is not None:
         logger.info(f'your table filter = {table_mask}')
 
         mask = df['used_view_names'].apply(lambda x: table_mask in x)
@@ -440,7 +455,7 @@ def main(**kwargs):
 
         logger.info(df)
 
-    elif field_mask != None:
+    elif field_mask is not None:
         logger.info(f'your field filter = {field_mask}')
 
         mask = df['fields_used'].apply(lambda x: field_mask in x)
@@ -448,10 +463,3 @@ def main(**kwargs):
         df.to_csv(f'{file_path}')
 
         logger.info(df)
-
-
-if __name__ == "__main__":
-    main(
-        ini_file="/usr/local/google/home/hugoselbie/code_sample/py/projects/ini/k8.ini",
-        path='./output.csv',
-        project='./tests/test_lookml_files/the_look')

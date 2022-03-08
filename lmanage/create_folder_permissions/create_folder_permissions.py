@@ -63,8 +63,9 @@ def provision_folders_with_group_access(
                 content_metadata_id=content_metadata_id)}
 
         # sync content_metadata back to yaml file
-        true_group_id = [access_item['group_permissions'][elem]['id']
-                         for elem in range(0, len(access_item['group_permissions']))]
+        true_group_id = [
+            access_item['group_permissions'][elem]['id']
+            for elem in range(0, len(access_item['group_permissions']))]
         for group_id in content_metadata_accesses.keys():
             if group_id not in true_group_id:
                 delete_cmi = content_metadata_accesses.get(group_id).id
@@ -79,7 +80,8 @@ def provision_folders_with_group_access(
 
                 if current_access.permission_type == permission:
                     logger.info(
-                        f'--> Group {group_id} already has access, no changes made.')
+                        f'''--> Group {group_id} already has access,
+                        no changes made.''')
 
                 else:
                     # don't want to inherit access from parent folders
@@ -118,7 +120,8 @@ def provision_folders_with_group_access(
                     )
                 )
                 logger.info(
-                    f'--> Sucessfully permissioned group {group_id} {permission} access.')
+                    f'''--> Sucessfully permissioned group
+                    {group_id} {permission} access.''')
 
 
 def remove_all_user_group(

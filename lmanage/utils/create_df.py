@@ -13,12 +13,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+import os
+import logging
 from pathlib import Path
 import json
 import pandas as pd
-import os
-import coloredlogs
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -44,8 +43,3 @@ def check_ini(ini):
     else:
         logger.debug(
             f'the path to your ini file is not valid at {parsed_ini_file}')
-
-
-if __name__ == '__main__':
-
-    check_ini('../ini/k8.ini')
