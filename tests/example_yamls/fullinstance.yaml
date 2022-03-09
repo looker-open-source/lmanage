@@ -39,8 +39,10 @@ role_BusinessOperations_Developer:
     - send_to_integration 
     - use_sql_runner
   model_set:
-    - lk2_business_operations 
-    - DrewsModel
+    - name: lk1_test_set
+      models:
+        - test
+        - test2
   team:
     - BusinessOperations_BO_Dev
     - DrewEdit
@@ -65,8 +67,11 @@ role_BusinessOperations_User:
     - see_user_dashboards
     - send_to_integration
   model_set:
-    - lk4_huggy
-    - lk2_jungy
+    - name: lk4_huggy
+      models:
+        - test
+        - test1
+        - test2
   team:
     - BusinessOperations
     - Freddy
