@@ -84,6 +84,7 @@ role_BusinessOperations_User:
 BusinessOperations_folder_permissions:
   folder:
     name: BusinessOperations
+    folder_path: /Shared/Cameos
     team_edit: 
     - BusinessOperations
     team_view:
