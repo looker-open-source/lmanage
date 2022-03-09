@@ -82,21 +82,24 @@ def create_model_set(
 
     final_response = []
     for model in model_set_list:
-        model_sets = model.get('model_set_value')
-        model_set_name = model.get('role_name')
-        body = models.WriteModelSet(
-            name=model_set_name.lower(), models=model_sets)
-        try:
-            model = sdk.create_model_set(body=body)
-        except looker_sdk.error.SDKError as modelerror:
-            logger.info(modelerror.args[0])
-            model = sdk.search_model_sets(name=model_set_name)[0]
-            model_set_id = model.id
-            model = sdk.update_model_set(model_set_id=model_set_id, body=body)
-        temp = {}
-        temp['model_set_name'] = model.name
-        temp['model_set_id'] = model.id
-        final_response.append(temp)
+        model_set_metadata = model.get('model_set_value')
+        for model_set in model_set_metadata:
+            model_set_name = model_set.get('name')
+            attributed_models = model_set.get('models')
+            body = models.WriteModelSet(
+                name=model_set_name.lower(), models=attributed_models)
+            try:
+                model = sdk.create_model_set(body=body)
+            except looker_sdk.error.SDKError as modelerror:
+                logger.info(modelerror.args[0])
+                model = sdk.search_model_sets(name=model_set_name)[0]
+                model_set_id = model.id
+                model = sdk.update_model_set(
+                    model_set_id=model_set_id, body=body)
+            temp = {}
+            temp['model_set_name'] = model.name
+            temp['model_set_id'] = model.id
+            final_response.append(temp)
     logger.info(final_response)
     return final_response
 
@@ -131,7 +134,8 @@ def create_roles(
     for role in role_metadata_list:
         role_name = role.get('role_name')
         permission_set_id = permission_set_dict.get(role_name.lower())
-        model_set_id = model_set_dict.get(role_name.lower())
+        applied_model_set_name = role['model_set_value'][0]['name']
+        model_set_id = model_set_dict.get(applied_model_set_name.lower())
         body = models.WriteRole(
             name=role_name,
             permission_set_id=permission_set_id,

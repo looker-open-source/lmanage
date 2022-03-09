@@ -48,8 +48,10 @@ role_BusinessOperations_Develope:
     - send_to_integration 
     - use_sql_runner
   model_set:
-    - business_operations 
-    - marketing
+    - name: model_set_1
+      models:
+        - model_1 
+        - model_2
   team:
     - BusinessOperations_BO_Dev
     - SpecialTeam
