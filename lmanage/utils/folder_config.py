@@ -39,21 +39,21 @@ def create_folder_if_not_exists(
     return folder
 
 
-def get_folder_metadata(
-        sdk: looker_sdk,
-        unique_folder_list: list) -> list:
+# def get_folder_metadata(
+#         sdk: looker_sdk,
+#         unique_folder_list: list) -> list:
 
-    folder_metadata = []
+#     folder_metadata = []
 
-    for folder_name in unique_folder_list:
-        folder = create_folder_if_not_exists(sdk, folder_name)
-        temp = {}
-        temp['folder_id'] = folder.id
-        temp['folder_name'] = folder.name
-        temp['content_metadata_id'] = folder.content_metadata_id
-        folder_metadata.append(temp)
+#     for folder_name in unique_folder_list:
+#         folder = create_folder_if_not_exists(sdk, folder_name)
+#         temp = {}
+#         temp['folder_id'] = folder.id
+#         temp['folder_name'] = folder.name
+#         temp['content_metadata_id'] = folder.content_metadata_id
+#         folder_metadata.append(temp)
 
-    return folder_metadata
+#     return folder_metadata
 
 
 def sync_folders(
@@ -72,3 +72,31 @@ def sync_folders(
                 f'deleting folder {folder_name} to sync with yaml config')
 
     return 'your folders are in sync with your yaml file'
+
+
+def get_folder_metadata(
+        parsed_yaml: dict):
+    folder_metadata = []
+    for k, v in parsed_yaml['folder_permissions'].items():
+        if 'folder' in k:
+            folder_metadata.append(v[0])
+
+    print(folder_metadata)
+    nested_dict_pairs_iterator(folder_metadata[0])
+
+    return folder_metadata
+
+
+def nested_dict_pairs_iterator(dict_obj):
+    # Iterate over all key-value pairs of dict argument
+    for key, value in dict_obj.items():
+        # Check if value is of dict type
+        if 'subfolder' in key:
+            # If value is dict then iterate over all its values
+            for pair in nested_dict_pairs_iterator(value[0]):
+                print(key, *pair)
+            # yield (key, *pair)
+        else:
+            # If value is not dict type then yield the value
+            print(key, value)
+        # yield (key, value)
