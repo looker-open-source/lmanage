@@ -164,5 +164,3 @@ def remove_all_user_group(
             if value.group_id == 1:
                 cmaid = value.id
                 sdk.delete_content_metadata_access(
-                    content_metadata_access_id=cmaid)
-                break

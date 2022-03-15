@@ -88,78 +88,31 @@ folder_permissions:
       - BusinessOperations
     team_view:
       - Snaptest
-    test_sub_subfolder:
+    subfolder:
       - name: test_sub
         team_edit:
           - BusinessOperations
           - Freddy
         team_view:
           - hugo
-    test_sub2_subfolder:
       - name: test_sub2
-        test_sub_subfolder:
+        subfolder:
           - name: test_sub_sub
             team_edit:
-              - BusinessOperations
-              - Freddy
+              - Frankie 
+              - Famke
             team_view:
-              - hugo
-    # - subfolder_name: test_2
-  # folder_name: BusinessOperations
-  # team_edit:
-  #   - BusinessOperations
-  # team_view:
-  #   - Snaptest
-  #   - Cameos
-  # subfolder_name: bo_sub
-  # team_edit:
-  #   - BusinessOperations
-  # team_view:
-  #   - Snaptest
-  #   - subfolder:
-  #       name: bo_sub_sub
-  #       team_edit:
-  #         - BusinessOperations
-  #       team_view:
-  #         - Snaptest
-  #     - subfolder:
-  #       name: bo_sub_1
-  #       team_edit:
-  #         - Snaptest
-  #       team_view:
-  #         - BusinessOperations
+              - hugle
+          - name: subdiddy 
 
-
-
-
-
-# Cameos_folder_permissions:
-#   folder:
-#     name: Cameos
-#     team_edit: 
-#     - Cameos
-#     team_view:
-#     - BusinessOperations
-#     - HugoGroup
-# Hugo_folder_permissions:
-#   folder:
-#     name: Hugo 
-#     team_edit: 
-#     - Hugo 
-#     - HugoEdit
-#     team_view:
-#     - BusinessOperations
-#     - NotHugoGroup
-
-# Drews_folder_permissions:
-#   folder:
-#     name: Drew 
-#     team_edit:  
-#     - DrewEdit
-#     team_view:
-#     - BusinessOperations
-
-
+  sexy_time_folder:
+  - name: 'sexy time'
+    team_edit:
+      - sexy_group1
+    team_view:
+      - sexy_group2
+    sexy_subfolder:
+      - name: sexy_sub
 
 
 ###################

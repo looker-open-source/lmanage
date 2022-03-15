@@ -3,6 +3,8 @@ from looker_sdk import models
 import coloredlogs
 import logging
 
+from looker_sdk.sdk.api31.models import DataActionFormSelectOption
+
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
 
@@ -80,23 +82,29 @@ def get_folder_metadata(
     for k, v in parsed_yaml['folder_permissions'].items():
         if 'folder' in k:
             folder_metadata.append(v[0])
+    response = []
 
-    print(folder_metadata)
-    nested_dict_pairs_iterator(folder_metadata[0])
+    for d in folder_metadata:
+        metadata_list = []
+        metadata_list = walk_folder_structure(
+            dict_obj=d, data_storage=metadata_list, parent_id='0')
+        response.append(metadata_list)
 
-    return folder_metadata
+    return response
 
 
-def nested_dict_pairs_iterator(dict_obj):
-    # Iterate over all key-value pairs of dict argument
-    for key, value in dict_obj.items():
-        # Check if value is of dict type
-        if 'subfolder' in key:
-            # If value is dict then iterate over all its values
-            for pair in nested_dict_pairs_iterator(value[0]):
-                print(key, *pair)
-            # yield (key, *pair)
-        else:
-            # If value is not dict type then yield the value
-            print(key, value)
-        # yield (key, value)
+def walk_folder_structure(dict_obj: dict, data_storage: list, parent_id: str):
+    temp = {}
+    temp['name'] = dict_obj.get('name')
+    temp['team_edit'] = dict_obj.get('team_edit')
+    temp['team_view'] = dict_obj.get('team_view')
+    temp['parent_id'] = parent_id
+    logger.debug(f'data_structure to be appended = {temp}')
+    data_storage.append(temp)
+
+    if isinstance(dict_obj.get('subfolder'), list):
+        for subfolder in dict_obj.get('subfolder'):
+            walk_folder_structure(subfolder, data_storage,
+                                  parent_id=dict_obj.get('name'))
+
+    return data_storage
