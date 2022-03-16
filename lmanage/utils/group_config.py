@@ -8,7 +8,8 @@ coloredlogs.install(level='DEBUG')
 
 
 def get_unique_groups(
-        parsed_yaml: dict) -> list:
+        parsed_yaml: dict,
+        yaml_folders: list) -> list:
 
     temp_list = []
     for k, v in parsed_yaml.items():
@@ -16,13 +17,20 @@ def get_unique_groups(
             team_list = parsed_yaml[k]['team']
             for team in team_list:
                 temp_list.append(team)
-        else:
-            edit_list = parsed_yaml[k]['folder']['team_edit']
-            view_list = parsed_yaml[k]['folder']['team_view']
-            for team in edit_list:
-                temp_list.append(team)
-            for team in view_list:
-                temp_list.append(team)
+
+    for folder_element in yaml_folders:
+        for folder in folder_element:
+            if isinstance(folder.get('team_edit'), list):
+                edit_group = folder.get('team_edit')
+                for group in edit_group:
+                    temp_list.append(group)
+            if isinstance(folder.get('team_view'), list):
+                view_group = folder.get('team_view')
+                for group in view_group:
+                    temp_list.append(group)
+            else:
+                pass
+
     final_return = list(set(temp_list))
     return final_return
 

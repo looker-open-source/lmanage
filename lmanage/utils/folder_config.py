@@ -24,38 +24,51 @@ def get_unique_folders(
 
 def create_folder_if_not_exists(
         sdk: looker_sdk,
-        folder_name: str) -> dict:
+        folder_name: str,
+        parent_id: str) -> dict:
 
     folder = sdk.search_folders(name=folder_name)
+
     if folder:
         logger.info(f"Folder {folder_name} already exists")
         folder = folder[0]
     else:
+        if parent_id == '1':
+            pass
+        else:
+            parent_id = sdk.search_folders(name=parent_id)[0].id
+
         logger.info(f'Creating folder "{folder_name}"')
         folder = sdk.create_folder(
             body=models.CreateFolder(
                 name=folder_name,
-                parent_id="1"
+                parent_id=parent_id
             )
         )
     return folder
 
 
-# def get_folder_metadata(
-#         sdk: looker_sdk,
-#         unique_folder_list: list) -> list:
+def create_looker_folder_metadata(
+        sdk: looker_sdk,
+        unique_folder_list: list) -> list:
 
-#     folder_metadata = []
+    folder_metadata = []
 
-#     for folder_name in unique_folder_list:
-#         folder = create_folder_if_not_exists(sdk, folder_name)
-#         temp = {}
-#         temp['folder_id'] = folder.id
-#         temp['folder_name'] = folder.name
-#         temp['content_metadata_id'] = folder.content_metadata_id
-#         folder_metadata.append(temp)
+    for folder_group in unique_folder_list:
+        for folder in folder_group:
+            fname = folder.get('name')
+            pid = folder.get('parent_id')
+            fmetadata = create_folder_if_not_exists(
+                sdk=sdk, folder_name=fname, parent_id=pid)
+            temp = {}
+            temp['folder_id'] = fmetadata.id
+            temp['folder_name'] = fmetadata.name
+            temp['content_metadata_id'] = fmetadata.content_metadata_id
+            temp['team_edit'] = folder.get('team_edit')
+            temp['team_view'] = folder.get('team_view')
+            folder_metadata.append(temp)
 
-#     return folder_metadata
+    return folder_metadata
 
 
 def sync_folders(
@@ -87,7 +100,7 @@ def get_folder_metadata(
     for d in folder_metadata:
         metadata_list = []
         metadata_list = walk_folder_structure(
-            dict_obj=d, data_storage=metadata_list, parent_id='0')
+            dict_obj=d, data_storage=metadata_list, parent_id='1')
         response.append(metadata_list)
 
     return response

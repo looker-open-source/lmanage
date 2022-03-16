@@ -111,7 +111,7 @@ folder_permissions:
       - sexy_group1
     team_view:
       - sexy_group2
-    sexy_subfolder:
+    subfolder:
       - name: sexy_sub
 
 

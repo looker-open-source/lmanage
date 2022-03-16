@@ -10,42 +10,39 @@ coloredlogs.install(level='DEBUG')
 
 def get_content_access_metadata(
         sdk: looker_sdk,
-        parsed_yaml: dict) -> list:
+        instance_folder_metadata: list) -> list:
     response = []
-    for folder_name, folder_info in parsed_yaml.items():
-        folder_provision = {}
-        if 'folder' in folder_name:
-            fname = folder_info['folder']['name']
-            fmetadata = sdk.search_folders(name=fname)
-            folder_provision['cmi'] = fmetadata[0].content_metadata_id
-            folder_provision['name'] = fname
 
-            edit_group = folder_info['folder']['team_edit']
-            view_group = folder_info['folder']['team_view']
-            temp = []
+    for folder in instance_folder_metadata:
+        temp_dict = {}
+        temp_dict['name'] = folder.get('name')
+        temp_dict['cmi'] = folder.get('content_metadata_id')
+        edit_group = folder.get('team_edit')
+        view_group = folder.get('team_view')
+
+        perms = []
+        if isinstance(edit_group, list):
             for group in edit_group:
-                temp_dict = {}
+                group_dict = {}
                 egmetadata = sdk.search_groups(name=group)
-                temp_dict['name'] = group
-                temp_dict['id'] = egmetadata[0].id
-                temp_dict['permission'] = 'edit'
-                temp.append(temp_dict)
+                group_dict['name'] = group
+                group_dict['id'] = egmetadata[0].id
+                group_dict['permission'] = 'edit'
+                perms.append(group_dict)
 
+        if isinstance(view_group, list):
             for group in view_group:
-                temp_dict = {}
+                group_dict = {}
                 vgmetadata = sdk.search_groups(name=group)
-                temp_dict['name'] = group
-                temp_dict['id'] = vgmetadata[0].id
-                temp_dict['permission'] = 'view'
-                temp.append(temp_dict)
-            folder_provision['group_permissions'] = temp
-            response.append(folder_provision)
+                group_dict['name'] = group
+                group_dict['id'] = vgmetadata[0].id
+                group_dict['permission'] = 'view'
+                perms.append(group_dict)
+
+        temp_dict['group_permissions'] = perms
+        response.append(temp_dict)
+    print(response)
     return response
-
-
-def ancestor_folder_change():
-    pass
-    # ancestors = sdk.folder_ancestors(folder_id=folder_id)
 
 
 def provision_folders_with_group_access(
@@ -53,9 +50,7 @@ def provision_folders_with_group_access(
         content_access_metadata_list: list) -> str:
 
     for access_item in content_access_metadata_list:
-
         content_metadata_id = access_item["cmi"]
-
         # check for existing access to the folder
         content_metadata_accesses = {
             access.group_id: access
@@ -63,9 +58,11 @@ def provision_folders_with_group_access(
                 content_metadata_id=content_metadata_id)}
 
         # sync content_metadata back to yaml file
+        # make sure the group_id's are in the yaml file
         true_group_id = [
             access_item['group_permissions'][elem]['id']
             for elem in range(0, len(access_item['group_permissions']))]
+        # loop through the accesses and if id is not in true group delete it
         for group_id in content_metadata_accesses.keys():
             if group_id not in true_group_id:
                 delete_cmi = content_metadata_accesses.get(group_id).id
@@ -164,3 +161,4 @@ def remove_all_user_group(
             if value.group_id == 1:
                 cmaid = value.id
                 sdk.delete_content_metadata_access(
+                    content_metadata_access_id=cmaid)
