@@ -84,14 +84,12 @@ role_BusinessOperations_User:
 folder_permissions:
   business_operations_folder: 
   - name: 'Business Operations' 
-    team_edit:
-      - BusinessOperations
     team_view:
+      - BusinessOperations
       - Snaptest
     subfolder:
       - name: test_sub
         team_edit:
-          - BusinessOperations
           - Freddy
         team_view:
           - hugo
@@ -99,11 +97,12 @@ folder_permissions:
         subfolder:
           - name: test_sub_sub
             team_edit:
-              - Frankie 
+              - Freddy
               - Famke
             team_view:
               - hugle
           - name: subdiddy 
+
 
   sexy_time_folder:
   - name: 'sexy time'
