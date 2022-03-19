@@ -15,7 +15,7 @@ def get_content_access_metadata(
 
     for folder in instance_folder_metadata:
         temp_dict = {}
-        temp_dict['name'] = folder.get('name')
+        temp_dict['name'] = folder.get('folder_name')
         temp_dict['cmi'] = folder.get('content_metadata_id')
         edit_group = folder.get('team_edit')
         view_group = folder.get('team_view')
@@ -131,6 +131,25 @@ def check_folder_inheritance(
     return r
 
 
+def check_folder_inheritance_change(
+        sdk: looker_sdk,
+        folder_input: dict) -> bool:
+    check = []
+    perms = folder_input['group_permissions']
+    for permission in perms:
+        if permission['permission'] == 'view':
+            check.append('true')
+        elif permission['permission'] == 'edit':
+            check.append('true')
+        else:
+            check.append('false')
+
+    if 'true' in check:
+        return True
+    else:
+        return False
+
+
 def update_folder_inheritance(
         sdk: looker_sdk,
         cmaid: int,
@@ -228,6 +247,10 @@ def provision_folders_with_group_access(
 
     for access_item in content_access_metadata_list:
         content_metadata_id = access_item["cmi"]
+
+        update_folder_inheritance(
+            sdk=sdk, cmaid=content_metadata_id, inheritance=False)
+
         # check for existing access to the folder
         content_metadata_accesses = check_existing_access(
             sdk=sdk, content_metadata_id=content_metadata_id)
@@ -248,7 +271,9 @@ def provision_folders_with_group_access(
                 f'You have an inheritance error in your YAML file, please verify that your group can be removed {error}') from error
 
         gp_permissions = access_item.get('group_permissions')
-        if gp_permissions[0].get('id') == 'no_id':
+        gp_permissions = [
+            perms for perms in gp_permissions if perms.get('id') != 'no_id']
+        if len(gp_permissions) == 0:
             pass
         else:
             add_content_access(

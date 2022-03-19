@@ -77,8 +77,15 @@ def sync_folders(
         folder_name_list: list) -> str:
 
     all_folders = sdk.all_folders()
-    folder_dict = {
-        folder.name: folder.id for folder in all_folders if folder.parent_id == "1"}
+    folder_dict = {}
+
+    for folder in all_folders:
+        if folder.is_personal:
+            pass
+        elif folder.parent_id is None:
+            pass
+        else:
+            folder_dict[folder.name] = folder.id
 
     for folder_name in folder_dict.keys():
         if folder_name not in folder_name_list:
