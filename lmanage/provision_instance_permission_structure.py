@@ -1,20 +1,21 @@
 import logging
 import coloredlogs
 import looker_sdk
-from create_folder_permissions import create_folder_permissions as cfp
-from create_user_permissions import user_permission as up
-from create_user_attribute_permissions import create_ua_permissions as cuap
-from utils import group_config as gc
-from utils import folder_config as fc
-from utils import parse_yaml as py
+from .create_folder_permissions import create_folder_permissions as cfp
+from .create_user_permissions import user_permission as up
+from .create_user_attribute_permissions import create_ua_permissions as cuap
+from .utils import group_config as gc
+from .utils import folder_config as fc
+from .utils import parse_yaml as py
 
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
+logging.getLogger("looker_sdk").setLevel(logging.WARNING)
 
 
 def main(**kwargs):
-    div = '--------------------------------------'
+    div = '----------------------------------------------------------------------------------------'
 
     ini_file = kwargs.get("ini_file")
     yaml_path = kwargs.get("yaml_config_path")
@@ -114,8 +115,7 @@ def main(**kwargs):
     cfp.remove_all_user_group(
         sdk=sdk, content_access_metadata_list=content_access_metadata)
     # # DELETE ALL FOLDERS THAT DON'T MATCH WITH YAML
-    fc.sync_folders(sdk=sdk, folder_metadata_list=instance_folder_metadata,
-                    folder_name_list=instance_folder_metadata)
+    fc.sync_folders(sdk=sdk, folder_metadata_list=instance_folder_metadata)
 
     logger.info(div)
 
@@ -144,6 +144,8 @@ def main(**kwargs):
         sdk=sdk,
         ua_metadata=ua_metadata
     )
+
+    logger.info('Lmanage has finished configuring your Looker instance!')
 
 
 if __name__ == "__main__":

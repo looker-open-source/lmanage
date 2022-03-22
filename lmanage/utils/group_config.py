@@ -32,6 +32,8 @@ def get_unique_groups(
                 pass
 
     final_return = list(set(temp_list))
+    logger.info('retrieved unique groups from yaml file')
+    logger.debug(f'unique groups to create {final_return}')
     return final_return
 
 

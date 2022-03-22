@@ -56,22 +56,6 @@ def get_content_access_metadata(
     return response
 
 
-def remove_content_access(
-        sdk: looker_sdk,
-        cm_accesses: dict,
-        yaml_group_ids: list):
-
-    # loop through the accesses and if id is not in true group delete it
-    for group_id in cm_accesses.keys():
-        if group_id not in yaml_group_ids:
-            delete_cmi = cm_accesses.get(group_id).id
-            sdk.delete_content_metadata_access(
-                content_metadata_access_id=delete_cmi)
-            logger.info(f'deleting access for group {group_id}')
-        elif 'no_id' in yaml_group_ids:
-            pass
-
-
 def create_content_metadata_access(
         sdk: looker_sdk,
         group_id: int,
@@ -85,9 +69,21 @@ def create_content_metadata_access(
             group_id=group_id
         )
     )
+    folder = sdk.content_metadata(content_metadata_id=content_metadata_id).name
+    group = sdk.search_groups(id=group_id)[0].name
     logger.info(
-        f'''--> Sucessfully permissioned group
-                {group_id} {permission_input} access.''')
+        f'''--> Successfully permissioned group {group} with {permission_input} access, on folder {folder}.''')
+
+
+def check_existing_access(
+        sdk: looker_sdk,
+        content_metadata_id: int) -> dict:
+    # check for existing access to the folder
+    response = {
+        access.group_id: access
+        for access in sdk.all_content_metadata_accesses(
+            content_metadata_id=content_metadata_id)}
+    return response
 
 
 def check_folder_ancestors(
@@ -97,6 +93,8 @@ def check_folder_ancestors(
 
     folder_id = sdk.content_metadata(content_metadata_id=cmaid).folder_id
     ancestors_list = sdk.folder_ancestors(folder_id=folder_id)
+    ancestors_list = [
+        folder for folder in ancestors_list if folder.id != '1']
 
     for ancestor in ancestors_list:
         ancestor_cmaid = ancestor.content_metadata_id
@@ -104,7 +102,8 @@ def check_folder_ancestors(
             sdk=sdk,
             content_metadata_id=ancestor_cmaid)
         if group_id not in folder_access:
-            if check_folder_inheritance(sdk=sdk, content_metadata_id=ancestor_cmaid):
+            if check_folder_inheritance(
+                    sdk=sdk, content_metadata_id=ancestor_cmaid):
                 update_folder_inheritance(
                     sdk=sdk, cmaid=ancestor_cmaid, inheritance=False)
 
@@ -171,35 +170,26 @@ def add_content_access(
     for group in group_permissions:
         group_id = group.get('id')
         permission = group.get('permission')
-        if permission == 'no_permission':
-
-            check_folder_ancestors(
-                sdk=sdk,
-                group_id=group_id,
-                cmaid=cmaid)
-            update_folder_inheritance(
-                sdk=sdk,
-                cmaid=cmaid,
-                inheritance=True
-            )
-        else:
-            check_folder_ancestors(
-                sdk=sdk,
-                group_id=group_id,
-                cmaid=cmaid
-            )
-            update_folder_inheritance(
-                sdk=sdk,
-                cmaid=cmaid,
-                inheritance=False
-            )
+        check_folder_ancestors(
+            sdk=sdk,
+            group_id=group_id,
+            cmaid=cmaid
+        )
+        update_folder_inheritance(
+            sdk=sdk,
+            cmaid=cmaid,
+            inheritance=False
+        )
+        folder_name = sdk.content_metadata(
+            content_metadata_id=cmaid).name
+        group_name = sdk.search_groups(id=group_id)[0].name
 
         if group_id in cm_accesses.keys():
             current_access = cm_accesses.get(group_id)
 
             if current_access.permission_type == permission:
                 logger.info(
-                    f'''--> Group {group_id} already has access,
+                    f'''--> Group {group_name} already has access, to folder {folder_name}
                     no changes made.''')
 
             else:
@@ -213,9 +203,12 @@ def add_content_access(
                         ))
                 except looker_sdk.error.SDKError as foldererror:
                     logger.debug(foldererror.args[0])
+                folder_name = sdk.content_metadata(
+                    content_metadata_id=cmaid).name
+                group_name = sdk.search_groups(id=group_id)[0].name
 
                 logging.info(
-                    f'--> Changed permission type to {permission}.')
+                    f'--> Updating group id {group_name} permission type to {permission} on folder {folder_name}.')
 
         # no existing access
         # create from scratch
@@ -230,17 +223,6 @@ def add_content_access(
             )
 
 
-def check_existing_access(
-        sdk: looker_sdk,
-        content_metadata_id: int) -> dict:
-    # check for existing access to the folder
-    response = {
-        access.group_id: access
-        for access in sdk.all_content_metadata_accesses(
-            content_metadata_id=content_metadata_id)}
-    return response
-
-
 def provision_folders_with_group_access(
         sdk: looker_sdk,
         content_access_metadata_list: list) -> str:
@@ -251,36 +233,57 @@ def provision_folders_with_group_access(
         update_folder_inheritance(
             sdk=sdk, cmaid=content_metadata_id, inheritance=False)
 
+        gp_permissions = access_item.get('group_permissions')
+
+        sync_folder_permission(sdk=sdk,
+                               cmaid=content_metadata_id,
+                               gp_permissions=gp_permissions)
+
+
+def remove_content_access(
+        sdk: looker_sdk,
+        cm_accesses: dict):
+
+    # remove all accesses
+    for group_id in cm_accesses.keys():
+        try:
+            delete_cmi = cm_accesses.get(group_id).id
+            sdk.delete_content_metadata_access(
+                content_metadata_access_id=delete_cmi)
+        except looker_sdk.error.SDKError as error:
+            logger.info(f'''You have an inheritance error in your YAML file possibly 
+                        around {delete_cmi}, skipping group_id {group_id}''')
+
+
+def sync_folder_permission(
+    sdk: looker_sdk,
+    cmaid: int,
+        gp_permissions: list):
+
+    # check for existing access to the folder
+    content_metadata_accesses = check_existing_access(
+        sdk=sdk, content_metadata_id=cmaid)
+
+    # check group permissions and add back 1 by 1
+    gp_permissions = [
+        perms for perms in gp_permissions if perms.get('id') != 'no_id']
+
+    if len(gp_permissions) == 0:
+        update_folder_inheritance(
+            sdk=sdk, cmaid=cmaid, inheritance=True)
+        update_folder_inheritance(sdk=sdk, cmaid=cmaid, inheritance=False)
+    else:
+        # remove folder content accesses
+        remove_content_access(sdk=sdk, cm_accesses=content_metadata_accesses)
         # check for existing access to the folder
         content_metadata_accesses = check_existing_access(
-            sdk=sdk, content_metadata_id=content_metadata_id)
+            sdk=sdk, content_metadata_id=cmaid)
 
-        # sync content_metadata back to yaml file
-        # make sure the group_id's are in the yaml file
-        true_group_id = [
-            access_item['group_permissions'][elem]['id']
-            for elem in range(0, len(access_item['group_permissions']))]
-
-        try:
-            remove_content_access(
-                sdk=sdk,
-                cm_accesses=content_metadata_accesses,
-                yaml_group_ids=true_group_id)
-        except looker_sdk.error.SDKError as error:
-            raise Exception(
-                f'You have an inheritance error in your YAML file, please verify that your group can be removed {error}') from error
-
-        gp_permissions = access_item.get('group_permissions')
-        gp_permissions = [
-            perms for perms in gp_permissions if perms.get('id') != 'no_id']
-        if len(gp_permissions) == 0:
-            pass
-        else:
-            add_content_access(
-                sdk=sdk,
-                cm_accesses=content_metadata_accesses,
-                cmaid=content_metadata_id,
-                group_permissions=gp_permissions)
+        add_content_access(
+            sdk=sdk,
+            cm_accesses=content_metadata_accesses,
+            cmaid=cmaid,
+            group_permissions=gp_permissions)
 
 
 def remove_all_user_group(

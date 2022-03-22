@@ -7,6 +7,7 @@ from looker_sdk.sdk.api31.models import DataActionFormSelectOption
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
+logging.getLogger("requests").setLevel(logging.WARNING)
 
 
 def get_unique_folders(
@@ -73,11 +74,13 @@ def create_looker_folder_metadata(
 
 def sync_folders(
         sdk: looker_sdk,
-        folder_metadata_list: list,
-        folder_name_list: list) -> str:
+        folder_metadata_list: list) -> str:
 
     all_folders = sdk.all_folders()
     folder_dict = {}
+
+    folder_metadata_list = {
+        folder.get('folder_name'): folder.get('folder_id') for folder in folder_metadata_list}
 
     for folder in all_folders:
         if folder.is_personal:
@@ -88,7 +91,7 @@ def sync_folders(
             folder_dict[folder.name] = folder.id
 
     for folder_name in folder_dict.keys():
-        if folder_name not in folder_name_list:
+        if folder_name not in folder_metadata_list.keys():
             sdk.delete_folder(folder_id=folder_dict[folder_name])
             logger.info(
                 f'deleting folder {folder_name} to sync with yaml config')
@@ -109,6 +112,9 @@ def get_folder_metadata(
         metadata_list = walk_folder_structure(
             dict_obj=d, data_storage=metadata_list, parent_id='1')
         response.append(metadata_list)
+
+    logger.info('retrieved yaml folder files')
+    logger.debug(f'folder metadata = {response}')
 
     return response
 

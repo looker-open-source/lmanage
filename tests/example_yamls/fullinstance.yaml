@@ -102,8 +102,13 @@ folder_permissions:
             team_view:
               - hugle
           - name: subdiddy 
-
-
+            subfolder:
+              - name: hugle_testy
+                team_edit:
+                  - Freddy
+                team_view:
+                  - hugle
+                
   sexy_time_folder:
   - name: 'sexy time'
     team_edit:
@@ -113,6 +118,19 @@ folder_permissions:
     subfolder:
       - name: sexy_sub
 
+  suffering_succotash_folder:
+  - name: 'suffering succotash'
+    team_edit:
+      - sexy_group1
+    team_view:
+      - sexy_group2
+    subfolder:
+      - name: another_one
+        team_edit:
+          - sexy_group1
+          - new_group
+        team_view:
+          - newer_group
 
 ###################
 # User Attributes #
