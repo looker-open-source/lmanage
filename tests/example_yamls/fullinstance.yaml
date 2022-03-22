@@ -97,7 +97,6 @@ folder_permissions:
         subfolder:
           - name: test_sub_sub
             team_edit:
-              - Freddy
               - Famke
             team_view:
               - hugle

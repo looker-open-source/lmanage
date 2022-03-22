@@ -64,17 +64,42 @@ The looker `role` title should be prefaced by `role_` as lmanage uses this key t
 #####################
 # FOLDER PERMISSONS #
 #####################
-BusinessOperations_folder_permissions:
-  folder:
-    name: BusinessOperations
-    team_edit: 
-    - BusinessOperations
+folder_permissions:
+  business_operations_folder: 
+  - name: 'Business Operations' 
     team_view:
-    - Snaptest
-    - Cameos
-
+      - BusinessOperations
+      - Marketing
+    subfolder:
+      - name: APAC 
+        team_edit:
+          - APAC_group
+        team_view:
+          - RestOfWorld_group 
+      - name: 'Rest of World'
+        subfolder:
+          - name: EMEA
+            team_edit:
+              - EMEA_group
+            team_view:
+              - RestOfWorld_group
+          - name: USA
+            subfolder:
+              - name: 'West Region'
+                team_edit:
+                  - WestRegion_group 
+                team_view:
+                  - RestOfWorld_group
+ 
 ```
-Similarly to `role` lmanage uses a specific keyphrase `_folder_permissions`, to denote an entry with folder permissions. Each member of the team values for `_edit` and `_view` will be created as a group.
+Similarly to `role` LManage uses a specific keyphrase `folder_permissions`, to denote an entry with folder permissions. Each folder at the highest level will be nested beneath the `/Shared` folder on Looker. To create a nested folder structure, use the keyword `subfolder`. LManage will then recurse through this nested structure to create each folder and assign appropriate permissions. Folder permissions are attributed using the keywords `team_edit` and `team_view`. If no values are presented then LManage will assume inheritance of the permission of it's parent folder.
+
+####### Important
+
+Please try to understand how folder permissions are inherited in Looker, familiarize yourself with these useful docs. 
+- [Looker Docs](https://docs.looker.com/sharing-and-publishing/organizing-spaces)
+- [Designing and configuring a system of access levels](https://docs.looker.com/admin-options/tutorials/access-controls)
+- [Best Practice, Secure your Folders](https://help.looker.com/hc/en-us/articles/360001897687-Best-Practice-Secure-Your-Spaces-A-Content-Access-Walk-through)
 
 ###### User Attributes
 ###### Example Usage
