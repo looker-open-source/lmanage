@@ -1,15 +1,15 @@
 # configurator
-The configurator command aims to streamline your security access settings in Looker. using it you can easily set up a full security model that is controlled from a simple declarative yaml file, regardless of instance drift, each time the configurator is run it will reset a Looker instance back to the values defined in your descriptive yaml file. 
+The configurator command aims to streamline your security access settings in Looker. Using it you can easily set up a full security model that is controlled from a simple declarative yaml file, regardless of instance drift, each time the configurator is run it will reset a Looker instance back to the values defined in your descriptive yaml file. 
 
-The advantages of having your security permissioning set out in a text file are numerous, for example, 
+The advantages of having your security permissioning set out in a text file are numerous, for example: 
 - version controlling your security updates (or even setting up automated processes such as gitops)
 - massively reducing number of clicks required to set up an instance from scratch, or revert an instance back to desired state
 - mirroring permissions across multiple looker instances
 - having a clearly defined security permission doc that can interact with other services such as SAML.
 
-##### example usage
-`lmanage configurator --yaml-config-path ./output/my_output.csv --ini-file ~/py/projects/ini/k8.ini`
-##### flags
+##### Example usage
+`lmanage configurator --yaml-config-path ./config/my_full_instance_config.yaml --ini-file ~/my_permissions/looker.ini`
+##### Flags
 - **path** (`--yaml-config-path`, `-yp`) This is the path to the yaml file to use for instance configuration. 
 - **ini-file** (`--ini-file`, `-i`) This is the file path to the ini file that you've created to use the Looker SDK
 ```
@@ -22,7 +22,7 @@ verify_ssl=True
 ```
 - **level** (`--level`, `-l`) **Optional** Set this flag to DEBUG to receive expanded results in stdout for debugging  
 
-##### yaml configurations
+##### Yaml configurations
 Yaml configurations are set in 3 stages, Roles (which creates model sets and permission sets), Folders (where you can manage view and edit access), and User Attributes (where you can add or remove user attribute and associated values in your)
 
 ###### Group Creation
@@ -100,7 +100,7 @@ folder_permissions:
 ```
 Similarly to `role` LManage uses a specific keyphrase `folder_permissions`, to denote an entry with folder permissions. Each folder at the highest level will be nested beneath the `/Shared` folder on Looker. To create a nested folder structure, use the keyword `subfolder`. LManage will then recurse through this nested structure to create each folder and assign appropriate permissions. Folder permissions are attributed using the keywords `team_edit` and `team_view`. If no values are presented then LManage will assume inheritance of the permission of it's parent folder.
 
-####### Important
+###### Important
 
 Please try to understand how folder permissions are inherited in Looker, familiarize yourself with these useful docs. 
 - [Looker Docs](https://docs.looker.com/sharing-and-publishing/organizing-spaces)
