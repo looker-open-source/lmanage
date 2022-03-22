@@ -1,5 +1,11 @@
 # configurator
-The mapview command will find the etymology of the content on your dashboard, exporting a CSV that looks like [this](https://docs.google.com/spreadsheets/d/1TzeJW46ml0uzO9RdLOOLxwtvUWjhmZxoa-xq4pbznV0/edit?resourcekey=0-xbWC87hXYFNgy1As06NncA#gid=900312158).
+The configurator command aims to streamline your security access settings in Looker. using it you can easily set up a full security model that is controlled from a simple declarative yaml file, regardless of instance drift, each time the configurator is run it will reset a Looker instance back to the values defined in your descriptive yaml file. 
+
+The advantages of having your security permissioning set out in a text file are numerous, for example, 
+- version controlling your security updates (or even setting up automated processes such as gitops)
+- massively reducing number of clicks required to set up an instance from scratch, or revert an instance back to desired state
+- mirroring permissions across multiple looker instances
+- having a clearly defined security permission doc that can interact with other services such as SAML.
 
 ##### example usage
 `lmanage configurator --yaml-config-path ./output/my_output.csv --ini-file ~/py/projects/ini/k8.ini`
