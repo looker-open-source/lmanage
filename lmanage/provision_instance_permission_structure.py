@@ -1,12 +1,12 @@
 import logging
 import coloredlogs
 import looker_sdk
-from .create_folder_permissions import create_folder_permissions as cfp
-from .create_user_permissions import user_permission as up
-from .create_user_attribute_permissions import create_ua_permissions as cuap
-from .utils import group_config as gc
-from .utils import folder_config as fc
-from .utils import parse_yaml as py
+from create_folder_permissions import create_folder_permissions as cfp
+from create_user_permissions import user_permission as up
+from create_user_attribute_permissions import create_ua_permissions as cuap
+from utils import group_config as gc
+from utils import folder_config as fc
+from utils import parse_yaml as py
 
 
 logger = logging.getLogger(__name__)
@@ -33,6 +33,7 @@ def main(**kwargs):
 ################################################################
     # FIND UNIQUE GROUPS FROM YAML FILE
     yaml_folder_metadata = fc.get_folder_metadata(parsed_yaml=instance_config)
+    print(instance_config)
     logger.info(div)
 
     unique_group_names = gc.get_unique_groups(

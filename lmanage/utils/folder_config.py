@@ -1,26 +1,12 @@
+from ast import parse
 import looker_sdk
 from looker_sdk import models
 import coloredlogs
 import logging
 
-from looker_sdk.sdk.api31.models import DataActionFormSelectOption
-
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
 logging.getLogger("requests").setLevel(logging.WARNING)
-
-
-def get_unique_folders(
-        sdk: looker_sdk,
-        parsed_yaml: dict) -> list:
-
-    folder_metadata = []
-    for k, v in parsed_yaml.items():
-        if 'folder' in k:
-            folder_name = parsed_yaml[k]['folder']['name']
-            folder_metadata.append(folder_name)
-
-    return folder_metadata
 
 
 def create_folder_if_not_exists(
@@ -31,11 +17,12 @@ def create_folder_if_not_exists(
     folder = sdk.search_folders(name=folder_name)
 
     if folder:
-        logger.info(f"Folder {folder_name} already exists")
         folder = folder[0]
+        raise Exception(f"Folder {folder_name} already exists")
     else:
         if parent_id == '1':
-            pass
+            folder = folder[0]
+            raise Exception(f'Folder {folder_name}')
         else:
             parent_id = sdk.search_folders(name=parent_id)[0].id
 
