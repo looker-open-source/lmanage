@@ -10,7 +10,9 @@ coloredlogs.install(level='DEBUG')
 def get_unique_groups(
         parsed_yaml: dict,
         yaml_folders: list) -> list:
-
+    """
+    Takes all inputs from yaml file in the team section and extracts them returning a list of groups that has to be created.
+    """
     temp_list = []
     for k, v in parsed_yaml.items():
         if 'team' in v.keys():
@@ -49,8 +51,7 @@ def create_group_if_not_exists(
     # get group if exists
     group = sdk.search_groups(name=group_name)
     if group:
-        logger.info(f"Group {group_name} already exists")
-        group = group[0]
+        raise Exception(f"Group {group_name} already exists")
     else:
         logger.info(f'Creating group "{group_name}"')
         group = sdk.create_group(

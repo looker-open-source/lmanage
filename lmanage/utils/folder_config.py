@@ -12,19 +12,16 @@ logging.getLogger("requests").setLevel(logging.WARNING)
 def create_folder_if_not_exists(
         sdk: looker_sdk,
         folder_name: str,
-        parent_id: str) -> dict:
+        parent_folder_name: str) -> dict:
 
     folder = sdk.search_folders(name=folder_name)
 
-    if folder:
+    if folder or parent_folder_name == '1':
         folder = folder[0]
-        raise Exception(f"Folder {folder_name} already exists")
+        raise Exception(
+            f"Folder {folder_name} already exists or is a reserved folder")
     else:
-        if parent_id == '1':
-            folder = folder[0]
-            raise Exception(f'Folder {folder_name}')
-        else:
-            parent_id = sdk.search_folders(name=parent_id)[0].id
+        parent_id = sdk.search_folders(name=parent_folder_name)[0].id
 
         logger.info(f'Creating folder "{folder_name}"')
         folder = sdk.create_folder(

@@ -33,7 +33,6 @@ def main(**kwargs):
 ################################################################
     # FIND UNIQUE GROUPS FROM YAML FILE
     yaml_folder_metadata = fc.get_folder_metadata(parsed_yaml=instance_config)
-    print(instance_config)
     logger.info(div)
 
     unique_group_names = gc.get_unique_groups(
