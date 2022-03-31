@@ -3,56 +3,13 @@ from looker_sdk import models
 import looker_sdk
 from lmanage.utils import group_config as gc
 import pytest
+from tests import fake_methods_data
 
-input_data = {'role_BusinessOperations_Developer':
-              {'role': 'BODevelopers',
-               'permissions': ['access_data', 'use_sql_runner'],
-               'model_set': [{'name': 'lk1_test_set', 'models': ['test', 'test2']}],
-               'team': ['BusinessOperations_BO_Dev']},
-              'folder_permissions':
-              {'business_operations_folder': [
-                  {'name': 'Business Operations',
-                   'team_view': ['Snaptest'],
-                   'subfolder': [{'name': 'test_sub', 'team_edit': ['Freddy'], 'team_view': ['hugo']},
-                                 {'name': 'test_sub2',
-                                  'subfolder':
-                                  [{'name': 'test_sub_sub',
-                                    'team_edit': ['Famke'],
-                                    'team_view': ['hugle']},
-                                   {'name': 'subdiddy',
-                                    'subfolder': [{'name': 'hugle_testy', 'team_edit': ['Freddy'], 'team_view': ['hugle']}]}]}]}],
-
-               'ua_region_all':
-               {'name': 'region_all',
-                'type': 'string',
-                'hidden_value': 'false',
-                'user_view': 'true',
-                'user_edit': 'false',
-                'value': ['us', 'ag', 'bb', 'dd'],
-                'team': ['Cameos', 'Freddy', 'AudreyGroup']}}}
-
-
-class MockSDK():
-    def search_groups(self):
-        pass
-
-    def create_group(self):
-        pass
-
-
-class MockSearchGroup():
-    def __init__(self, group_name):
-        self.group_name = group_name
-
-
-class MockCreateFolder():
-    def __init__(self, id, name, content_metadata_id):
-        self.id = id
-        self.name = name
-        self.content_metadata_id = content_metadata_id
+input_data = fake_methods_data.input_data
 
 
 def test_get_unique_groups():
+    # Test to determine if unique groups are taken out for creation of the input_data
     yaml = input_data
     folder_data = [[{
         'team_edit': ['test_edit_group'],
@@ -68,9 +25,10 @@ def test_get_unique_groups():
 
 
 def test_create_group_if_exists(mocker):
-    sdk = MockSDK()
+    # Test to determine if there is an existing group an exception is raised
+    sdk = fake_methods_data.MockSDK()
     mocker.patch.object(sdk, 'search_groups')
-    gdata = MockSearchGroup(group_name='foo')
+    gdata = fake_methods_data.MockSearchGroup(group_name='foo')
     sdk.search_groups.return_value = gdata
     with pytest.raises(Exception):
         gc.create_group_if_not_exists(
@@ -80,7 +38,8 @@ def test_create_group_if_exists(mocker):
 
 
 def test_create_group_if_not_exists(mocker):
-    sdk = MockSDK()
+    # Test to determine if there isn't a group the make group call is created with the appropriate parameters
+    sdk = fake_methods_data.MockSDK()
     mocker.patch.object(sdk, 'search_groups')
     sdk.search_groups.return_value = None
     mocker.patch.object(sdk, 'create_group')
@@ -93,3 +52,19 @@ def test_create_group_if_not_exists(mocker):
             name='olivia',
             can_add_to_content_metadata=True)
     )
+
+
+def test_get_group_metadata(mocker):
+    gc_data = fake_methods_data.MockCreateGroup(id=4, name='karen')
+    gc_data1 = fake_methods_data.MockCreateGroup(id=5, name='jimmy')
+    mock_folder_list = ['frankiefish', 'tommy']
+    mocker.patch('lmanage.utils.group_config.create_group_if_not_exists',
+                 side_effect=[gc_data, gc_data1])
+
+    gc.create_group_if_not_exists.return_value = gc_data
+
+    test = gc.get_group_metadata(sdk=sdk, unique_group_list=mock_folder_list)
+
+    assert isinstance(test, list)
+    assert test[0].get('group_id') == 4
+    assert test[1].get('group_name') == 'jimmy'

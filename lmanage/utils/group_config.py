@@ -98,38 +98,38 @@ def sync_groups(
     return 'your groups are in sync with your yaml file'
 
 
-def search_group_id(sdk: looker_sdk, group_config: dict) -> list:
-    group_metadata = []
-    for group_name, group_info in group_config.items():
-        if 'folder' in group_name:
-            logger.debug(group_name)
-            folder_name = group_info['folder']['name']
-            group = create_group_if_not_exists(sdk, folder_name)
-            temp = {}
-            temp['group_id'] = group.id
-            temp['group_name'] = group.name
-            logger.info(f'creating folder {folder_name}')
-            try:
-                folder = sdk.create_folder(
-                    body=models.Folder(
-                        name=folder_name,
-                        parent_id=1
-                    )
-                )
-                temp['folder_id'] = folder.id
-                temp['content_metadata_id'] = folder.content_metadata_id
-            except looker_sdk.error.SDKError:
-                logger.info('folder has already been created')
-                folder = sdk.search_folders(name=folder_name)
-                temp['folder_id'] = folder[0]['id']
-                temp['content_metadata_id'] = folder[0]['content_metadata_id']
-            group_metadata.append(temp)
+# def search_group_id(sdk: looker_sdk, group_config: dict) -> list:
+#     group_metadata = []
+#     for group_name, group_info in group_config.items():
+#         if 'folder' in group_name:
+#             logger.debug(group_name)
+#             folder_name = group_info['folder']['name']
+#             group = create_group_if_not_exists(sdk, folder_name)
+#             temp = {}
+#             temp['group_id'] = group.id
+#             temp['group_name'] = group.name
+#             logger.info(f'creating folder {folder_name}')
+#             try:
+#                 folder = sdk.create_folder(
+#                     body=models.Folder(
+#                         name=folder_name,
+#                         parent_id=1
+#                     )
+#                 )
+#                 temp['folder_id'] = folder.id
+#                 temp['content_metadata_id'] = folder.content_metadata_id
+#             except looker_sdk.error.SDKError:
+#                 logger.info('folder has already been created')
+#                 folder = sdk.search_folders(name=folder_name)
+#                 temp['folder_id'] = folder[0]['id']
+#                 temp['content_metadata_id'] = folder[0]['content_metadata_id']
+#             group_metadata.append(temp)
 
-        else:
-            group = create_group_if_not_exists(sdk, group_name)
-            logger.info(group)
-            temp = {}
-            temp['group_id'] = group.id
-            temp['group_name'] = group.name
-            group_metadata.append(temp)
-    return group_metadata
+#         else:
+#             group = create_group_if_not_exists(sdk, group_name)
+#             logger.info(group)
+#             temp = {}
+#             temp['group_id'] = group.id
+#             temp['group_name'] = group.name
+#             group_metadata.append(temp)
+#     return group_metadata
