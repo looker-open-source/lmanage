@@ -14,23 +14,28 @@ def create_folder_if_not_exists(
         folder_name: str,
         parent_folder_name: str) -> dict:
 
-    folder = sdk.search_folders(name=folder_name)
+    folder = sdk.search_folders(name=folder_name)[0]
+    try:
+        if parent_folder_name == '1':
+            logger.debug(
+                f"Folder {folder_name} is a reserved top level folder")
 
-    if folder or parent_folder_name == '1':
-        folder = folder[0]
-        raise Exception(
-            f"Folder {folder_name} already exists or is a reserved folder")
-    else:
-        parent_id = sdk.search_folders(name=parent_folder_name)[0].id
+        else:
+            parent_id = sdk.search_folders(name=parent_folder_name)[0].id
 
-        logger.info(f'Creating folder "{folder_name}"')
-        folder = sdk.create_folder(
-            body=models.CreateFolder(
-                name=folder_name,
-                parent_id=parent_id
+            logger.info(f'Creating folder "{folder_name}"')
+            folder = sdk.create_folder(
+                body=models.CreateFolder(
+                    name=folder_name,
+                    parent_id=parent_id
+                )
             )
-        )
-    return folder
+        print(folder)
+        return folder
+
+    except looker_sdk.error.SDKError as err:
+        logger.error(err.args[0])
+        return folder
 
 
 def create_looker_folder_metadata(
@@ -44,7 +49,7 @@ def create_looker_folder_metadata(
             fname = folder.get('name')
             pid = folder.get('parent_id')
             fmetadata = create_folder_if_not_exists(
-                sdk=sdk, folder_name=fname, parent_id=pid)
+                sdk=sdk, folder_name=fname, parent_folder_name=pid)
             temp = {}
             temp['folder_id'] = fmetadata.id
             temp['folder_name'] = fmetadata.name

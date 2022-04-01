@@ -44,15 +44,11 @@ def create_group_if_not_exists(
         group_name: str) -> dict:
     """ Create a Looker Group and add Group attributes
 
-    :param str group_name: Name of a Looker group to create.
-    :param dict attributes: Dictionary of attribute names and values (default is None).
+    :group_name: Name of a Looker group to create.
     :rtype: Looker Group object.
     """
     # get group if exists
-    group = sdk.search_groups(name=group_name)
-    if group:
-        raise Exception(f"Group {group_name} already exists")
-    else:
+    try:
         logger.info(f'Creating group "{group_name}"')
         group = sdk.create_group(
             body=models.WriteGroup(
@@ -60,7 +56,11 @@ def create_group_if_not_exists(
                 name=group_name
             )
         )
-    return group
+        return group
+    except looker_sdk.error.SDKError as err:
+        logger.debug(err.args[0])
+        group = sdk.search_groups()
+        return group[0]
 
 
 def get_group_metadata(
