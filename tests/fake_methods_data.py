@@ -40,6 +40,11 @@ class MockSDK():
         pass
 
 
+class SDKError(Exception):
+    """API error class
+    """
+
+
 class MockSearchGroup():
     def __init__(self, group_name):
         self.group_name = group_name

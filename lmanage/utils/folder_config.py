@@ -17,8 +17,9 @@ def create_folder_if_not_exists(
     folder = sdk.search_folders(name=folder_name)[0]
     try:
         if parent_folder_name == '1':
-            logger.debug(
+            logger.warning(
                 f"Folder {folder_name} is a reserved top level folder")
+            return folder
 
         else:
             parent_id = sdk.search_folders(name=parent_folder_name)[0].id
@@ -30,11 +31,10 @@ def create_folder_if_not_exists(
                     parent_id=parent_id
                 )
             )
-        print(folder)
-        return folder
+            return folder
 
     except looker_sdk.error.SDKError as err:
-        logger.error(err.args[0])
+        logger.warning(err.args[0])
         return folder
 
 
