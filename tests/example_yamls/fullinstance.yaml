@@ -11,11 +11,6 @@
 #########
 # MODEL_SET_ROLES #
 #########
-role_admin:
-  role: Admin
-  team:
-  - Cameos
-
 role_BusinessOperations_Developer:
   role: BODevelopers
   permissions:

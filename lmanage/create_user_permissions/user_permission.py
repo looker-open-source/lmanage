@@ -10,7 +10,6 @@ coloredlogs.install(level='INFO')
 def get_role_metadata(
         parsed_yaml: dict) -> list:
     role_permission = []
-    del parsed_yaml['role_admin']
     for group_name, group_info in parsed_yaml.items():
         if 'role' in group_name:
             role_name = group_info['role']

@@ -45,14 +45,12 @@ def test_create_folder_if_not_exists_parent1(mocker, caplog):
         name='goog', parent_id=1, id=3)
     mocker.patch.object(sdk, "search_folders")
     mocker.patch.object(sdk, "create_folder",
-                        side_effect=error.SDKError())
+                        side_effect=error.SDKError("test_error"))
     sdk.search_folders.return_value = [sf_data]
     fc.create_folder_if_not_exists(
         sdk=sdk, folder_name='googn', parent_folder_name='1')
+
     assert 'Folder googn is a reserved top level folder' in caplog.text
-    # with pytest.raises(IndexError) as err:
-    #     fc.create_folder_if_not_exists(
-    #         sdk=sdk, folder_name='googn', parent_folder_name='2')
 
 
 def test_create_folder_error_if_exists(mocker, caplog):
@@ -63,12 +61,11 @@ def test_create_folder_error_if_exists(mocker, caplog):
         name='goog', parent_id=1, id=3)
     mocker.patch.object(sdk, "search_folders")
     mocker.patch.object(sdk, "create_folder",
-                        side_effect=error.SDKError())
+                        side_effect=error.SDKError("logger error captured"))
     sdk.search_folders.return_value = [sf_data]
-    with pytest.raises(IndexError):
-        fc.create_folder_if_not_exists(
-            sdk=sdk, folder_name='googn', parent_folder_name='2')
-    assert 'ERROR' in caplog.text
+    fc.create_folder_if_not_exists(
+        sdk=sdk, folder_name='googn', parent_folder_name='2')
+    assert 'logger error captured' in caplog.text
 
 
 def test_create_looker_folder_metadata(mocker):
@@ -90,5 +87,3 @@ def test_create_looker_folder_metadata(mocker):
 
     assert isinstance(test, list)
     assert test[0].get('folder_id') == 3
-    assert isinstance(test[0].get('team_edit'), list)
-    assert test[0].get('folder_name') == 'Frankie'

@@ -25,6 +25,14 @@ input_data = {'role_BusinessOperations_Developer':
                 'value': ['us', 'ag', 'bb', 'dd'],
                 'team': ['Cameos', 'Freddy', 'AudreyGroup']}}}
 
+fake_permission_set = [
+    {'role_name': 'BODevelopers',
+     'permission': ['access_data', 'use_sql_runner'],
+     'model_set_value': [
+         {'name': 'lk1_test_set',
+          'models': ['test', 'test2']}],
+     'teams': ['BusinessOperations_BO_Dev']}]
+
 
 class MockSDK():
     def search_folders(self):
@@ -39,10 +47,14 @@ class MockSDK():
     def create_group(self):
         pass
 
+    def create_permission_set(self):
+        pass
 
-class SDKError(Exception):
-    """API error class
-    """
+    def search_permission_sets(self):
+        pass
+
+    def update_permission_set(self):
+        pass
 
 
 class MockSearchGroup():
@@ -66,5 +78,3 @@ class MockSearchFolder():
 class MockCreateFolder():
     def __init__(self, id, name, content_metadata_id):
         self.id = id
-        self.name = name
-        self.content_metadata_id = content_metadata_id
