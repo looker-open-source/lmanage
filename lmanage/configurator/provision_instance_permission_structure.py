@@ -1,12 +1,12 @@
 import logging
 import coloredlogs
 import looker_sdk
-from .create_folder_permissions import create_folder_permissions as cfp
-from .create_user_permissions import user_permission as up
-from .create_user_attribute_permissions import create_ua_permissions as cuap
-from .utils import group_config as gc
-from .utils import folder_config as fc
-from .utils import parse_yaml as py
+from create_folder_permissions import create_folder_permissions as cfp
+from create_user_permissions import user_permission as up
+from create_user_attribute_permissions import create_ua_permissions as cuap
+from utils import group_config as gc
+from utils import folder_config as fc
+from utils import parse_yaml as py
 
 
 logger = logging.getLogger(__name__)
@@ -23,6 +23,7 @@ def main(**kwargs):
     logger.info('parsing yaml file')
     yaml = py.Yaml(yaml_path=yaml_path)
     instance_config = yaml.read_provision_yaml()
+    print(instance_config)
     if ini_file:
         sdk = looker_sdk.init31(config_file=ini_file)
     else:
