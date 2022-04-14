@@ -11,65 +11,73 @@
 #########
 # MODEL_SET_ROLES #
 #########
-role_BusinessOperations_Developer:
-  role: BODevelopers
-  permissions:
-    - access_data
-    - can_see_system_activity
-    - see_dashboards
-    - clear_cache_refresh
-    - create_table_calculations
-    - deploy
-    - develop
-    - download_without_limit
-    - explore
-    - manage_spaces
-    - mobile_app_access
-    - save_content
-    - schedule_look_emails
-    - see_drill_overlay
-    - see_lookml
-    - see_sql
-    - see_user_dashboards
-    - send_to_integration 
-    - use_sql_runner
-  model_set:
-    - name: lk1_test_set
-      models:
-        - test
-        - test2
-  team:
-    - BusinessOperations_BO_Dev
-    - DrewEdit
+permission_sets:
+  developer: 
+    permissions:
+      - access_data
+      - can_see_system_activity
+      - see_dashboards
+      - clear_cache_refresh
+      - create_table_calculations
+      - deploy
+      - develop
+      - download_without_limit
+      - explore
+      - manage_spaces
+      - mobile_app_access
+      - save_content
+      - schedule_look_emails
+      - see_drill_overlay
+      - see_lookml
+      - see_sql
+      - see_user_dashboards
+      - send_to_integration 
+      - use_sql_runner
 
-role_BusinessOperations_User:
-  role: BOUser 
-  permissions:
-    - access_data
-    - clear_cache_refresh
-    - create_table_calculations
-    - download_without_limit
-    - explore
-    - manage_spaces
-    - mobile_app_access
-    - save_content
-    - schedule_look_emails
-    - see_drill_overlay
-    - see_lookml
-    - see_lookml_dashboards
-    - see_looks
-    - see_sql
-    - see_user_dashboards
-    - send_to_integration
-  model_set:
-    - name: lk4_huggy
-      models:
-        - test
-        - test1
-        - test2
-  team:
-    - BusinessOperations
-    - Freddy
+  user:
+    permissions:
+      - access_data
+      - clear_cache_refresh
+      - create_table_calculations
+      - download_without_limit
+      - explore
+      - manage_spaces
+      - mobile_app_access
+      - save_content
+      - schedule_look_emails
+      - see_drill_overlay
+      - see_lookml
+      - see_lookml_dashboards
+      - see_looks
+      - see_sql
+      - see_user_dashboards
+      - send_to_integration
+
+model_sets:
+  lk1_test_set:
+    models:
+      - test
+      - test2
+  lk4_huggy:
+    models:
+      - test
+      - test1
+      - test2
+
+roles:
+  BusinessOperations_Developer:
+    permissions_set: test_perm1
+    model_set: developer 
+    team:
+      - BusinessOperations_BO_Dev
+      - DrewEdit
+
+  BusinessOperations_User:
+    permissions: user
+    model_set: lk4_huggy
+    team:
+      - BusinessOperations
+      - Freddy
 
 
 
@@ -130,57 +138,45 @@ folder_permissions:
 # User Attributes #
 ###################
 # attr_region:
-ua_region_all:
-  name: region_all
-  type: string
-  hidden_value: false 
-  user_view: true
-  user_edit: false
-  value:
-    - us
-    - ag
-    - bb
-    - dd
-  team:
-    - Cameos
-    - Freddy
-    - AudreyGroup
+user_attributes:
+  region_all:
+    type: string
+    hidden_value: false 
+    user_view: true
+    user_edit: false
+    value:
+      - us
+      - ag
+      - bb
+      - dd
+    team:
+      - Cameos
+      - Freddy
+      - AudreyGroup
 
-ua_region_testy:
-  name: region_testy
-  type: string
-  hidden_value: false 
-  user_view: true
-  user_edit: false
-  value:
-    - us
-    - ag
-    - bb
-  team:
-    - Cameos
-    - AudreyGroup
+  region_testy:
+    type: string
+    hidden_value: false 
+    user_view: true
+    user_edit: false
+    value:
+      - us
+      - ag
+      - bb
+    team:
+      - Cameos
+      - AudreyGroup
 
 
-ua_attr_can_see_hugo:
-  name: can_see_hugo
-  type: string
-  hidden_value: false 
-  user_view: true
-  user_edit: false
-  value:
-    - 'No'
-  team:
-    - Cameos
-    - CanSeeDAUGroup
+  can_see_hugo:
+    type: string
+    hidden_value: false 
+    user_view: true
+    user_edit: false
+    value:
+      - 'No'
+    team:
+      - Cameos
+      - CanSeeDAUGroup
 
-ua_attr_can_see_dau:
-  name: can_see_dau
-  type: string
-  hidden_value: false 
-  user_view: true
-  user_edit: false
-  value:
-    - yes
-  team:
-    - Cameos
-    - CanSeeDAUGroup
+  
