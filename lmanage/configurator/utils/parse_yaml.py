@@ -10,15 +10,30 @@ coloredlogs.install(level='INFO')
 class Yaml:
     def __init__(self, yaml_path):
         self.yaml_path = yaml_path
-
-    def read_provision_yaml(self) -> json:
-        """ Load YAML configuration file to a dictionary
-        """
         with open(self.yaml_path, 'r') as file:
-            parsed_yaml = yaml.load(file, Loader=yaml.BaseLoader)
-            logger.debug(parsed_yaml)
-            return parsed_yaml
+            self.parsed_yaml = yaml.load(file, Loader=yaml.BaseLoader)
 
+    def get_permission_metadata(self):
+        if 'permission_sets' in self.parsed_yaml:
+            return self.parsed_yaml.get('permission_sets')
+        return None
 
-# x = Yaml(yaml_path='/usr/local/google/home/hugoselbie/code_sample/py/clients/snap/okta_groups/snap_group_mapping.yaml')
-# print(x.read_provision_yaml())
+    def get_model_set_metadata(self):
+        if 'model_sets' in self.parsed_yaml:
+            return self.parsed_yaml.get('model_sets')
+        return None
+
+    def get_role_metadata(self):
+        if 'roles' in self.parsed_yaml:
+            return self.parsed_yaml.get('roles')
+        return None
+
+    def get_folder_metadata(self):
+        if 'folder_permissions' in self.parsed_yaml:
+            return self.parsed_yaml.get('folder_permissions')
+        return None
+
+    def get_user_attribute_metadata(self):
+        if 'user_attributes' in self.parsed_yaml:
+            return self.parsed_yaml.get('user_attributes')
+        return None

@@ -89,17 +89,14 @@ def sync_folders(
 
 
 def get_folder_metadata(
-        parsed_yaml: dict):
-    folder_metadata = []
-    for k, v in parsed_yaml['folder_permissions'].items():
-        if 'folder' in k:
-            folder_metadata.append(v[0])
+        folder_metadata: dict):
     response = []
 
     for d in folder_metadata:
+        folder_dict = folder_metadata.get(d)[0]
         metadata_list = []
         metadata_list = walk_folder_structure(
-            dict_obj=d, data_storage=metadata_list, parent_id='1')
+            dict_obj=folder_dict, data_storage=metadata_list, parent_id='1')
         response.append(metadata_list)
 
     logger.info('retrieved yaml folder files')
