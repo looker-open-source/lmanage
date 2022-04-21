@@ -1,10 +1,12 @@
 import logging
 import coloredlogs
 import looker_sdk
-from folder_configuration import create_folder_permissions as cfp, folder_config as fc
-from lmanage.configurator import user_attribute_configuration
-from user_group_configuration import user_permission as up, group_config as gc, role_config as rc
+# from folder_configuration import create_folder_permissions as cfp, folder_config as fc
+# from user_group_configuration import user_permission as up, group_config as gc, role_config as rc
 from user_attribute_configuration import create_ua_permissions as cuap
+from folder_configuration import folder_config as fc
+from user_group_configuration import role_config as rc
+from user_group_configuration import group_config as gc
 from utils import parse_yaml as py
 
 
@@ -28,6 +30,8 @@ def main(**kwargs):
         sdk = looker_sdk.init31()
 
     folder_metadata = yaml.get_folder_metadata()
+    unnested_folder_metadata = fc.FolderConfig(
+        folders=folder_metadata).unnest_folder_data()
     permission_set_metadata = yaml.get_permission_metadata()
     model_set_metadata = yaml.get_model_set_metadata()
     role_metadata = yaml.get_role_metadata()
@@ -37,31 +41,16 @@ def main(**kwargs):
 # Role Config ################################################
 ################################################################
     # Create Permission and Model Sets
-    role_base = rc.CreateRoleBase(permissions=permission_set_metadata,
-                                  model_sets=model_set_metadata, sdk=sdk)
-    role_base.create_role_building_blocks()
+    rc.CreateRoleBase(permissions=permission_set_metadata,
+                      model_sets=model_set_metadata, sdk=sdk). create_role_building_blocks()
 
 ################################################################
 # Group Config ################################################
 ################################################################
-    # FIND UNIQUE GROUPS FROM YAML FILE
-    yaml_folder_metadata = fc.get_folder_metadata(
-        folder_metadata=yaml.get_folder_metadata())
-    logger.info(div)
+    # CREATE NEW GROUPS FROM YAML FILE TEAM VALUES
+    gc.CreateInstanceGroups(
+        folders=unnested_folder_metadata, user_attributes=user_attribute_metadata, roles=role_metadata, sdk=sdk).create_groups()
 
-    unique_group_names = gc.get_unique_groups(
-        parsed_yaml=yaml.get_role_metadata(), yaml_folders=yaml_folder_metadata)
-    logger.info(div)
-    sdk.lj
-
-    # CREATE NEW GROUPS
-    group_metadata = gc.get_group_metadata(
-        sdk=sdk, unique_group_list=unique_group_names)
-    logger.info(div)
-
-    # DELETE ALL GROUPS THAT DO NOT MATCH WITH YAML
-    gc.sync_groups(group_name_list=unique_group_names,
-                   group_metadata_list=group_metadata, sdk=sdk)
     logger.info(div)
 
 ################################################################
