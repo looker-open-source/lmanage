@@ -97,7 +97,7 @@ class CreateRoleBase():
         r = sdk.all_model_sets()
         return r
 
-    def create_role_building_blocks(self):
+    def execute(self):
         # Creating permission sets if they don't exits already on instance
         self.create_permission_set(
             sdk=self.sdk, permission_set_dict=self.permission_set_metadata)
@@ -108,5 +108,3 @@ class CreateRoleBase():
         # Syncing Permission and Model sets with Yaml file.
         self.sync_permission_set(
             sdk=self.sdk, all_perms=self.get_all_permission_sets(), permission_set_dict=self.permission_set_metadata)
-        self.sync_model_set(
-            sdk=self.sdk, all_models=self.get_all_model_sets(), model_set_list=self.model_set_metadata)

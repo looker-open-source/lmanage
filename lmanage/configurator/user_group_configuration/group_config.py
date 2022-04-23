@@ -90,7 +90,7 @@ class CreateInstanceGroups():
 
         return 'your groups are in sync with your yaml file'
 
-    def create_groups(self):
+    def execute(self):
         team_list = []
         # extracting user attribute teams
         self.extract_teams(container=self.user_attribute_metadata,
@@ -107,6 +107,3 @@ class CreateInstanceGroups():
         # create all the groups
         self.get_instance_group_metadata(
             sdk=self.sdk, unique_group_list=team_list)
-
-        # sync groups to instance yaml file
-        self.sync_groups(sdk=self.sdk, group_name_list=team_list)

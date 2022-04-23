@@ -47,12 +47,17 @@ class FolderConfig():
 
         return data_storage
 
-    def create_folder_if_not_exists(
-            sdk: looker_sdk,
-            folder_name: str,
-            parent_folder_name: str) -> dict:
 
-        folder = sdk.search_folders(name=folder_name)[0]
+class CreateInstanceFolders(FolderConfig):
+    def __init__(self, folders, sdk):
+        super().__init__(folders)
+        self.sdk = sdk
+
+    def create_folder_if_not_exists(self,
+                                    folder_name: str,
+                                    parent_folder_name: str) -> dict:
+
+        folder = self.sdk.search_folders(name=folder_name)[0]
         try:
             if parent_folder_name == '1':
                 logger.warning(
@@ -60,10 +65,11 @@ class FolderConfig():
                 return folder
 
             else:
-                parent_id = sdk.search_folders(name=parent_folder_name)[0].id
+                parent_id = self.sdk.search_folders(
+                    name=parent_folder_name)[0].id
 
                 logger.info(f'Creating folder "{folder_name}"')
-                folder = sdk.create_folder(
+                folder = self.sdk.create_folder(
                     body=models.CreateFolder(
                         name=folder_name,
                         parent_id=parent_id
@@ -75,37 +81,28 @@ class FolderConfig():
             logger.warning(err.args[0])
             return folder
 
-    def create_looker_folder_metadata(
-            sdk: looker_sdk,
-            unique_folder_list: list) -> list:
+    def create_looker_folder_metadata(self, unique_folder_list: list, data_storage: list) -> list:
 
-        folder_metadata = []
+        for folder in unique_folder_list:
+            fname = folder.get('name')
+            pid = folder.get('parent_id')
+            fmetadata = self.create_folder_if_not_exists(
+                folder_name=fname, parent_folder_name=pid)
+            temp = {}
+            temp['folder_id'] = fmetadata.id
+            temp['folder_name'] = fmetadata.name
+            temp['content_metadata_id'] = fmetadata.content_metadata_id
+            temp['team_edit'] = folder.get('team_edit')
+            temp['team_view'] = folder.get('team_view')
+            data_storage.append(temp)
+        return data_storage
 
-        for folder_group in unique_folder_list:
-            for folder in folder_group:
-                fname = folder.get('name')
-                pid = folder.get('parent_id')
-                fmetadata = create_folder_if_not_exists(
-                    sdk=sdk, folder_name=fname, parent_folder_name=pid)
-                temp = {}
-                temp['folder_id'] = fmetadata.id
-                temp['folder_name'] = fmetadata.name
-                temp['content_metadata_id'] = fmetadata.content_metadata_id
-                temp['team_edit'] = folder.get('team_edit')
-                temp['team_view'] = folder.get('team_view')
-                folder_metadata.append(temp)
-
-        return folder_metadata
-
-    def sync_folders(
-            sdk: looker_sdk,
-            folder_metadata_list: list) -> str:
-
-        all_folders = sdk.all_folders()
+    def sync_folders(self, created_folder: list):
+        all_folders = self.sdk.all_folders()
         folder_dict = {}
 
         folder_metadata_list = {
-            folder.get('folder_name'): folder.get('folder_id') for folder in folder_metadata_list}
+            folder.get('folder_name'): folder.get('folder_id') for folder in created_folder}
 
         for folder in all_folders:
             if folder.is_personal:
@@ -117,8 +114,18 @@ class FolderConfig():
 
         for folder_name in folder_dict.keys():
             if folder_name not in folder_metadata_list.keys():
-                sdk.delete_folder(folder_id=folder_dict[folder_name])
+                self.sdk.delete_folder(folder_id=folder_dict[folder_name])
                 logger.info(
                     f'deleting folder {folder_name} to sync with yaml config')
 
         return 'your folders are in sync with your yaml file'
+
+    def execute(self):
+        unested_folder_data = self.unnest_folder_data()
+        folder_metadata_list = []
+        for folder_tree in unested_folder_data:
+            self.create_looker_folder_metadata(
+                folder_tree, folder_metadata_list)
+
+        self.sync_folders(folder_metadata_list)
+        return folder_metadata_list

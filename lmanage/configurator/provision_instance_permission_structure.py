@@ -1,12 +1,12 @@
 import logging
 import coloredlogs
 import looker_sdk
-# from folder_configuration import create_folder_permissions as cfp, folder_config as fc
-# from user_group_configuration import user_permission as up, group_config as gc, role_config as rc
 from user_attribute_configuration import create_ua_permissions as cuap
 from folder_configuration import folder_config as fc
+from folder_configuration import create_folder_permissions as cfp
 from user_group_configuration import role_config as rc
 from user_group_configuration import group_config as gc
+from user_group_configuration import user_permission as up
 from utils import parse_yaml as py
 
 
@@ -42,84 +42,48 @@ def main(**kwargs):
 ################################################################
     # Create Permission and Model Sets
     rc.CreateRoleBase(permissions=permission_set_metadata,
-                      model_sets=model_set_metadata, sdk=sdk). create_role_building_blocks()
+                      model_sets=model_set_metadata, sdk=sdk). execute()
 
 ################################################################
 # Group Config ################################################
 ################################################################
     # CREATE NEW GROUPS FROM YAML FILE TEAM VALUES
     gc.CreateInstanceGroups(
-        folders=unnested_folder_metadata, user_attributes=user_attribute_metadata, roles=role_metadata, sdk=sdk).create_groups()
+        folders=unnested_folder_metadata, user_attributes=user_attribute_metadata, roles=role_metadata, sdk=sdk).execute()
 
     logger.info(div)
 
 ################################################################
-## Role Config ################################################
+# Role Config ################################################
 ################################################################
-    # # FIND UNIQUE ROLES
-    role_metadata = up.get_role_metadata(parsed_yaml=yaml.get_role_metadata())
+    up.CreateInstanceRoles(roles=role_metadata, sdk=sdk).execute()
 
-    # # CREATE PERMISSION SETS
-    permission_set_metadata = up.create_permission_set(
-        sdk=sdk, permission_set_list=role_metadata)
-
-    # # SYNC PERMISSION SETS
-    all_permission_sets = sdk.all_permission_sets()
-    up.sync_permission_set(
-        sdk=sdk, all_permission_sets=all_permission_sets,
-        permission_set_list=permission_set_metadata)
-
-    # # CREATE MODEL SETS
-    model_set_metadata = up.create_model_set(
-        sdk=sdk, model_set_list=role_metadata)
-
-    # # SYNC MODEL SETS
-    all_model_sets = sdk.all_model_sets()
-    up.sync_model_set(sdk=sdk,
-                      all_model_sets=all_model_sets,
-                      model_set_list=model_set_metadata)
-
-    # # CREATE NEW ROLES
-    created_role_metadata = up.create_roles(
-        sdk=sdk,
-        all_model_sets=all_model_sets,
-        all_permission_sets=all_permission_sets,
-        role_metadata_list=role_metadata)
-
-    # # SYNC ROLES
-    all_roles = sdk.all_roles()
-    up.sync_roles(
-        sdk=sdk,
-        all_roles=all_roles,
-        role_metadata_list=created_role_metadata
-    )
-    # # ATTACH ROLES TO TEAM GROUPS
-    up.attach_role_to_group(sdk=sdk,
-                            role_metadata=role_metadata,
-                            created_role_metadata=created_role_metadata,
-                            all_roles=all_roles)
+    logger.info(div)
 
 ###############################################################
 # Folder Config ################################################
 ###############################################################
     # CREATE NEW FOLDERS
-    instance_folder_metadata = fc.create_looker_folder_metadata(
-        sdk=sdk, unique_folder_list=yaml_folder_metadata)
-    logger.info(div)
+    cfp.CreateAndProvisionInstanceFolders(
+        folders=folder_metadata, sdk=sdk).execute()
+    # fc.FolderConfig.execute()
+    # instance_folder_metadata = fc.create_looker_folder_metadata(
+    #     sdk=sdk, unique_folder_list=yaml_folder_metadata)
+    # logger.info(div)
 
-    # CONFIGURE FOLDERS WITH EDIT AND VIEW ACCESS
-    content_access_metadata = cfp.get_content_access_metadata(
-        sdk=sdk,
-        instance_folder_metadata=instance_folder_metadata)
+    # # CONFIGURE FOLDERS WITH EDIT AND VIEW ACCESS
+    # content_access_metadata = cfp.get_content_access_metadata(
+    #     sdk=sdk,
+    #     instance_folder_metadata=instance_folder_metadata)
 
-    # # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
-    cfp.provision_folders_with_group_access(
-        sdk=sdk, content_access_metadata_list=content_access_metadata)
+    # # # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
+    # cfp.provision_folders_with_group_access(
+    #     sdk=sdk, content_access_metadata_list=content_access_metadata)
 
-    cfp.remove_all_user_group(
-        sdk=sdk, content_access_metadata_list=content_access_metadata)
-    # # DELETE ALL FOLDERS THAT DON'T MATCH WITH YAML
-    fc.sync_folders(sdk=sdk, folder_metadata_list=instance_folder_metadata)
+    # cfp.remove_all_user_group(
+    #     sdk=sdk, content_access_metadata_list=content_access_metadata)
+    # # # DELETE ALL FOLDERS THAT DON'T MATCH WITH YAML
+    # fc.sync_folders(sdk=sdk, folder_metadata_list=instance_folder_metadata)
 
     logger.info(div)
 

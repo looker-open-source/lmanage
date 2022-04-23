@@ -66,14 +66,14 @@ model_sets:
 
 roles:
   BusinessOperations_Developer:
-    permissions_set: test_perm1
-    model_set: developer 
+    permission_set: developer 
+    model_set: lk1_test_set 
     team:
       - BusinessOperations_BO_Dev
       - DrewEdit
 
   BusinessOperations_User:
-    permissions: user
+    permission_set: user
     model_set: lk4_huggy
     team:
       - BusinessOperations
