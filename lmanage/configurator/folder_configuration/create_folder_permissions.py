@@ -1,8 +1,7 @@
 import logging
 import time
 import coloredlogs
-from looker_sdk import models
-import looker_sdk
+from looker_sdk import models, error
 from folder_configuration.folder_config import CreateInstanceFolders
 
 logger = logging.getLogger(__name__)
@@ -14,17 +13,10 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
         super().__init__(folders, sdk)
         self.instance_folder_metadata = super().execute()
 
-    def execute(self):
-        print('hugo')
-        x = self.instance_folder_metadata
-        return super().execute()
-
-    def get_content_access_metadata(
-            sdk: looker_sdk,
-            instance_folder_metadata: list) -> list:
+    def get_content_access_metadata(self) -> list:
         response = []
 
-        for folder in instance_folder_metadata:
+        for folder in self.instance_folder_metadata:
             temp_dict = {}
             temp_dict['name'] = folder.get('folder_name')
             temp_dict['cmi'] = folder.get('content_metadata_id')
@@ -35,7 +27,7 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
             if isinstance(edit_group, list):
                 for group in edit_group:
                     group_dict = {}
-                    egmetadata = sdk.search_groups(name=group)
+                    egmetadata = self.sdk.search_groups(name=group)
                     group_dict['name'] = group
                     group_dict['id'] = egmetadata[0].id
                     group_dict['permission'] = 'edit'
@@ -50,7 +42,7 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
             if isinstance(view_group, list):
                 for group in view_group:
                     group_dict = {}
-                    vgmetadata = sdk.search_groups(name=group)
+                    vgmetadata = self.sdk.search_groups(name=group)
                     group_dict['name'] = group
                     group_dict['id'] = vgmetadata[0].id
                     group_dict['permission'] = 'view'
@@ -67,80 +59,74 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
         return response
 
     def create_content_metadata_access(
-            sdk: looker_sdk,
+        self,
             group_id: int,
             permission_input: str,
             content_metadata_id: int) -> dict:
 
-        sdk.create_content_metadata_access(
+        self.sdk.create_content_metadata_access(
             body=models.ContentMetaGroupUser(
                 content_metadata_id=content_metadata_id,
                 permission_type=permission_input,
                 group_id=group_id
             )
         )
-        folder = sdk.content_metadata(
+        folder = self.sdk.content_metadata(
             content_metadata_id=content_metadata_id).name
-        group = sdk.search_groups(id=group_id)[0].name
+        group = self.sdk.search_groups(id=group_id)[0].name
         logger.info(
             f'''--> Successfully permissioned group {group} with {permission_input} access, on folder {folder}.''')
 
-    def check_existing_access(
-            sdk: looker_sdk,
-            content_metadata_id: int) -> dict:
+    def check_existing_access(self,
+                              content_metadata_id: int) -> dict:
         # check for existing access to the folder
         response = {
             access.group_id: access
-            for access in sdk.all_content_metadata_accesses(
+            for access in self.sdk.all_content_metadata_accesses(
                 content_metadata_id=content_metadata_id)}
         return response
 
-    def check_folder_ancestors(
-            sdk: looker_sdk,
-            group_id: int,
-            cmaid: int):
+    def check_folder_ancestors(self,
+                               group_id: int,
+                               cmaid: int):
 
-        folder_id = sdk.content_metadata(content_metadata_id=cmaid).folder_id
-        ancestors_list = sdk.folder_ancestors(folder_id=folder_id)
+        folder_id = self.sdk.content_metadata(
+            content_metadata_id=cmaid).folder_id
+        ancestors_list = self.sdk.folder_ancestors(folder_id=folder_id)
         ancestors_list = [
             folder for folder in ancestors_list if folder.id != '1']
 
         for ancestor in ancestors_list:
             ancestor_cmaid = ancestor.content_metadata_id
-            folder_access = check_existing_access(
-                sdk=sdk,
+            folder_access = self.check_existing_access(
                 content_metadata_id=ancestor_cmaid)
             if group_id not in folder_access:
-                if check_folder_inheritance(
-                        sdk=sdk, content_metadata_id=ancestor_cmaid):
-                    update_folder_inheritance(
-                        sdk=sdk, cmaid=ancestor_cmaid, inheritance=False)
+                if self.check_folder_inheritance(
+                        content_metadata_id=ancestor_cmaid):
+                    self.update_folder_inheritance(
+                        cmaid=ancestor_cmaid, inheritance=False)
 
-                    create_content_metadata_access(
-                        sdk=sdk,
+                    self.create_content_metadata_access(
                         group_id=group_id,
                         permission_input='view',
                         content_metadata_id=ancestor_cmaid)
-                    update_folder_inheritance(
-                        sdk=sdk, cmaid=ancestor_cmaid, inheritance=True)
+                    self.update_folder_inheritance(
+                        cmaid=ancestor_cmaid, inheritance=True)
                 else:
-                    create_content_metadata_access(
-                        sdk=sdk,
+                    self.create_content_metadata_access(
                         group_id=group_id,
                         permission_input='view',
                         content_metadata_id=ancestor_cmaid)
 
-    def check_folder_inheritance(
-            sdk: looker_sdk,
-            content_metadata_id: int) -> bool:
-        response = sdk.content_metadata(
+    def check_folder_inheritance(self,
+                                 content_metadata_id: int) -> bool:
+        response = self.sdk.content_metadata(
             content_metadata_id=content_metadata_id)
         r = response.inherits
         return r
 
-    def check_folder_inheritance_change(
-            sdk: looker_sdk,
-            folder_input: dict) -> bool:
+    def check_folder_inheritance_change(self,
+                                        folder_input: dict) -> bool:
         check = []
         perms = folder_input['group_permissions']
         for permission in perms:
@@ -157,18 +143,18 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
             return False
 
     def update_folder_inheritance(
-            sdk: looker_sdk,
+        self,
             cmaid: int,
             inheritance: bool):
 
         # don't want to inherit access from parent folders
-        sdk.update_content_metadata(
+        self.sdk.update_content_metadata(
             content_metadata_id=cmaid,
             body=models.WriteContentMeta(inherits=inheritance)
         )
 
     def add_content_access(
-            sdk: looker_sdk,
+        self,
             cm_accesses: dict,
             cmaid: int,
             group_permissions: list) -> dict:
@@ -176,19 +162,17 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
         for group in group_permissions:
             group_id = group.get('id')
             permission = group.get('permission')
-            check_folder_ancestors(
-                sdk=sdk,
+            self.check_folder_ancestors(
                 group_id=group_id,
                 cmaid=cmaid
             )
-            update_folder_inheritance(
-                sdk=sdk,
+            self.update_folder_inheritance(
                 cmaid=cmaid,
                 inheritance=False
             )
-            folder_name = sdk.content_metadata(
+            folder_name = self.sdk.content_metadata(
                 content_metadata_id=cmaid).name
-            group_name = sdk.search_groups(id=group_id)[0].name
+            group_name = self.sdk.search_groups(id=group_id)[0].name
 
             if group_id in cm_accesses.keys():
                 current_access = cm_accesses.get(group_id)
@@ -200,18 +184,18 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
 
                 else:
                     try:
-                        sdk.update_content_metadata_access(
+                        self.sdk.update_content_metadata_access(
                             content_metadata_access_id=current_access.id,
                             body=models.ContentMetaGroupUser(
                                 content_metadata_id=cmaid,
                                 permission_type=permission,
                                 group_id=group_id
                             ))
-                    except looker_sdk.error.SDKError as foldererror:
+                    except error.SDKError as foldererror:
                         logger.debug(foldererror.args[0])
-                    folder_name = sdk.content_metadata(
+                    folder_name = self.sdk.content_metadata(
                         content_metadata_id=cmaid).name
-                    group_name = sdk.search_groups(id=group_id)[0].name
+                    group_name = self.sdk.search_groups(id=group_id)[0].name
 
                     logging.info(
                         f'--> Updating group id {group_name} permission type to {permission} on folder {folder_name}.')
@@ -221,81 +205,75 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
             elif permission == 'no_permission':
                 pass
             else:
-                create_content_metadata_access(
-                    sdk=sdk,
+                self.create_content_metadata_access(
                     content_metadata_id=cmaid,
                     permission_input=permission,
                     group_id=group_id
                 )
 
-    def provision_folders_with_group_access(
-            sdk: looker_sdk,
-            content_access_metadata_list: list) -> str:
+    def provision_folders_with_group_access(self, content_access_metadata_list: list):
 
         for access_item in content_access_metadata_list:
             content_metadata_id = access_item["cmi"]
 
-            update_folder_inheritance(
-                sdk=sdk, cmaid=content_metadata_id, inheritance=False)
+            self.update_folder_inheritance(
+                cmaid=content_metadata_id, inheritance=False)
 
             gp_permissions = access_item.get('group_permissions')
 
-            sync_folder_permission(sdk=sdk,
-                                   cmaid=content_metadata_id,
-                                   gp_permissions=gp_permissions)
+            self.sync_folder_permission(cmaid=content_metadata_id,
+                                        gp_permissions=gp_permissions)
 
-    def remove_content_access(
-            sdk: looker_sdk,
-            cm_accesses: dict):
+    def remove_content_access(self,
+                              cm_accesses: dict):
 
         # remove all accesses
         for group_id in cm_accesses.keys():
             try:
                 delete_cmi = cm_accesses.get(group_id).id
-                sdk.delete_content_metadata_access(
+                self.sdk.delete_content_metadata_access(
                     content_metadata_access_id=delete_cmi)
-            except looker_sdk.error.SDKError as error:
+            except error.SDKError as InheirtanceError:
                 logger.info(f'''You have an inheritance error in your YAML file possibly 
                             around {delete_cmi}, skipping group_id {group_id}''')
 
     def sync_folder_permission(
-        sdk: looker_sdk,
+        self,
         cmaid: int,
             gp_permissions: list):
 
         # check for existing access to the folder
-        content_metadata_accesses = check_existing_access(
-            sdk=sdk, content_metadata_id=cmaid)
+        content_metadata_accesses = self.check_existing_access(
+            content_metadata_id=cmaid)
 
         # check group permissions and add back 1 by 1
         gp_permissions = [
             perms for perms in gp_permissions if perms.get('id') != 'no_id']
 
         if len(gp_permissions) == 0:
-            update_folder_inheritance(
-                sdk=sdk, cmaid=cmaid, inheritance=True)
-            update_folder_inheritance(sdk=sdk, cmaid=cmaid, inheritance=False)
+            self.update_folder_inheritance(
+                cmaid=cmaid, inheritance=True)
+            self.update_folder_inheritance(cmaid=cmaid, inheritance=False)
         else:
             # remove folder content accesses
-            remove_content_access(
-                sdk=sdk, cm_accesses=content_metadata_accesses)
+            self.remove_content_access(
+                cm_accesses=content_metadata_accesses)
             # check for existing access to the folder
-            content_metadata_accesses = check_existing_access(
-                sdk=sdk, content_metadata_id=cmaid)
+            content_metadata_accesses = self.check_existing_access(
+                content_metadata_id=cmaid)
 
-            add_content_access(
-                sdk=sdk,
+            self.add_content_access(
                 cm_accesses=content_metadata_accesses,
                 cmaid=cmaid,
                 group_permissions=gp_permissions)
 
     def remove_all_user_group(
-            sdk: looker_sdk,
+        self,
             content_access_metadata_list: list):
 
         # remove parent Shared group instance access
         try:
-            sdk.update_content_metadata_access(
+            self.sdk.update_content_metadata_access(
                 content_metadata_access_id=1,
                 body=models.ContentMetaGroupUser(
                     permission_type='view',
@@ -303,7 +281,7 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
                     group_id=1
                 )
             )
-        except looker_sdk.error.SDKError:
+        except error.SDKError:
             logger.info('All Users group already configured')
         clean = list()
         for avt in content_access_metadata_list:
@@ -321,12 +299,23 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
             # check for existing access to the folder
             content_metadata_accesses = {
                 access.group_id: access
-                for access in sdk.all_content_metadata_accesses(
+                for access in self.sdk.all_content_metadata_accesses(
                     content_metadata_id=content_metadata_id)}
 
             for id, value in content_metadata_accesses.items():
                 logger.debug(f'Checking item {value.id}')
                 if value.group_id == 1:
                     cmaid = value.id
-                    sdk.delete_content_metadata_access(
+                    self.sdk.delete_content_metadata_access(
                         content_metadata_access_id=cmaid)
+
+    def execute(self):
+        # CONFIGURE FOLDERS WITH EDIT AND VIEW ACCESS
+        content_access_metadata = self.get_content_access_metadata()
+
+        # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
+        self.provision_folders_with_group_access(
+            content_access_metadata_list=content_access_metadata)
+
+        self.remove_all_user_group(
+            content_access_metadata_list=content_access_metadata)

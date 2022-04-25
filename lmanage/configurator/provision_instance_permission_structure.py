@@ -66,52 +66,15 @@ def main(**kwargs):
     # CREATE NEW FOLDERS
     cfp.CreateAndProvisionInstanceFolders(
         folders=folder_metadata, sdk=sdk).execute()
-    # fc.FolderConfig.execute()
-    # instance_folder_metadata = fc.create_looker_folder_metadata(
-    #     sdk=sdk, unique_folder_list=yaml_folder_metadata)
-    # logger.info(div)
-
-    # # CONFIGURE FOLDERS WITH EDIT AND VIEW ACCESS
-    # content_access_metadata = cfp.get_content_access_metadata(
-    #     sdk=sdk,
-    #     instance_folder_metadata=instance_folder_metadata)
-
-    # # # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
-    # cfp.provision_folders_with_group_access(
-    #     sdk=sdk, content_access_metadata_list=content_access_metadata)
-
-    # cfp.remove_all_user_group(
-    #     sdk=sdk, content_access_metadata_list=content_access_metadata)
-    # # # DELETE ALL FOLDERS THAT DON'T MATCH WITH YAML
-    # fc.sync_folders(sdk=sdk, folder_metadata_list=instance_folder_metadata)
 
     logger.info(div)
 
 ###############################################################
 # User Attribute Config #######################################
 ###############################################################
-    # FIND UNIQUE USER ATTRIBUTES
-    ua_metadata = cuap.get_user_attribute_metadata(
-        sdk=sdk,
-        parsed_yaml=instance_config)
-
-    # CREATE NEW USER ATTRIBUTES
-    cuap.create_user_attribute_if_not_exists(
-        sdk=sdk,
-        ua_metadata=ua_metadata
-    )
-
-    # DELETE ALL USER ATTRIBUTES THAT DON'T MATCH WITH YAML
-    cuap.sync_user_attributes(
-        sdk=sdk,
-        ua_metadata=ua_metadata
-    )
-
-    # ADD VALUES TO INSCOPE USER ATTRIBUTES
-    cuap.add_group_values_to_ua(
-        sdk=sdk,
-        ua_metadata=ua_metadata
-    )
+    # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
+    cuap.CreateAndAssignUserAttributes(
+        user_attributes=user_attribute_metadata, sdk=sdk).execute()
 
     logger.info('Lmanage has finished configuring your Looker instance!')
 
