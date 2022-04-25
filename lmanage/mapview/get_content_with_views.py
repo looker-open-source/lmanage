@@ -26,8 +26,8 @@ import looker_sdk
 from looker_sdk import models
 import pandas as pd
 import lookml
-from lmanage.utils import parsing_sql
-from lmanage.utils import create_df
+from .utils import parsing_sql
+from .utils import create_df
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')

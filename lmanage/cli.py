@@ -16,8 +16,8 @@
 import coloredlogs
 import logging
 import click
-from lmanage import get_content_with_views
-from lmanage import provision_instance_permission_structure
+from lmanage.mapview import get_content_with_views
+from lmanage.configurator import provision_instance_permission_structure
 
 logger = logging.getLogger(__name__)
 
@@ -78,7 +78,7 @@ def configurator(**kwargs):
 
 # @instance_config.command()
 # @click.option("-t", "--test")
-# def update_configs(**kwargs):
+# .configurator.configura.configuratortor def update_configs(**kwargs):
 #     print(kwargs.items())
 
 

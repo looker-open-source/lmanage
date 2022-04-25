@@ -2,7 +2,7 @@ import logging
 import time
 import coloredlogs
 from looker_sdk import models, error
-from folder_configuration.folder_config import CreateInstanceFolders
+from lmanage.configurator.folder_configuration.folder_config import CreateInstanceFolders
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -233,9 +233,10 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
                 delete_cmi = cm_accesses.get(group_id).id
                 self.sdk.delete_content_metadata_access(
                     content_metadata_access_id=delete_cmi)
-            except error.SDKError as InheirtanceError:
-                logger.info(f'''You have an inheritance error in your YAML file possibly 
-                            around {delete_cmi}, skipping group_id {group_id}''')
+            except error.SDKError as InheritanceError:
+                logger.info('''You have an inheritance error in your YAML file possibly 
+                            around %s, skipping group_id %s''', delete_cmi, group_id)
+                logger.debug
 
     def sync_folder_permission(
         self,
