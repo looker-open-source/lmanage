@@ -1,6 +1,6 @@
 import logging
-import looker_sdk
-from looker_sdk import models
+from os import name
+from looker_sdk import models, error
 import coloredlogs
 
 logger = logging.getLogger(__name__)
@@ -54,15 +54,32 @@ class CreateInstanceFolders(FolderConfig):
         super().__init__(folders)
         self.sdk = sdk
 
+    def get_all_folders(self):
+        instance_folders = self.sdk.all_folders()
+        response = {folder.name: folder.id for folder in instance_folders}
+        return response
+
     def create_folder_if_not_exists(self,
                                     folder_name: str,
                                     parent_folder_name: str) -> dict:
 
-        folder = self.sdk.search_folders(name=folder_name)[0]
-        try:
+        existing_instance_folders = self.get_all_folders()
+
+        if folder_name in existing_instance_folders:
+            logger.warning(
+                'folder %s already exists on current instance', folder_name)
+            folder = self.sdk.search_folders(name=folder_name)[0]
+            return folder
+        else:
             if parent_folder_name == '1':
                 logger.warning(
-                    f"Folder {folder_name} is a reserved top level folder")
+                    f"Folder {folder_name} is a top level folder")
+                folder = self.sdk.create_folder(
+                    body=models.CreateFolder(
+                        name=folder_name,
+                        parent_id=parent_folder_name
+                    )
+                )
                 return folder
 
             else:
@@ -77,10 +94,6 @@ class CreateInstanceFolders(FolderConfig):
                     )
                 )
                 return folder
-
-        except looker_sdk.error.SDKError as err:
-            logger.warning(err.args[0])
-            return folder
 
     def create_looker_folder_metadata(self, unique_folder_list: list, data_storage: list) -> list:
 
@@ -115,10 +128,14 @@ class CreateInstanceFolders(FolderConfig):
 
         for folder_name in folder_dict.keys():
             if folder_name not in folder_metadata_list.keys():
-                self.sdk.delete_folder(folder_id=folder_dict[folder_name])
-                logger.info(
-                    f'deleting folder {folder_name} to sync with yaml config')
+                try:
+                    self.sdk.delete_folder(folder_id=folder_dict[folder_name])
+                    logger.info(
+                        'deleting folder %s to sync with yaml config', folder_name)
 
+                except error.SDKError as InheritanceError:
+                    logger.info('root folder has been deleted so %s',
+                                InheritanceError.args[0])
         return 'your folders are in sync with your yaml file'
 
     def execute(self):

@@ -34,6 +34,27 @@ permission_sets:
       - send_to_integration 
       - use_sql_runner
 
+  nodeploy_developer: 
+    permissions:
+      - access_data
+      - can_see_system_activity
+      - see_dashboards
+      - clear_cache_refresh
+      - create_table_calculations
+      - develop
+      - download_without_limit
+      - explore
+      - manage_spaces
+      - mobile_app_access
+      - save_content
+      - schedule_look_emails
+      - see_drill_overlay
+      - see_lookml
+      - see_sql
+      - see_user_dashboards
+      - send_to_integration 
+      - use_sql_runner
+
   user:
     permissions:
       - access_data
@@ -79,7 +100,13 @@ roles:
       - BusinessOperations
       - Freddy
 
-
+  Operations_User:
+    permission_set: user
+    model_set: lk4_huggy
+    team:
+      - BusinessOperations
+      - Freddy
+      - HugoTesty
 
 #####################
 # FOLDER PERMISSONS #
@@ -129,7 +156,7 @@ folder_permissions:
     subfolder:
       - name: another_one
         team_edit:
-          - sexy_group1
+          - HugoTesty
           - new_group
         team_view:
           - newer_group
@@ -154,19 +181,16 @@ user_attributes:
       - Freddy
       - AudreyGroup
 
-  region_testy:
+  can_see_sharky:
     type: string
     hidden_value: false 
     user_view: true
     user_edit: false
     value:
-      - us
-      - ag
-      - bb
+      - 'Sharky'
     team:
-      - Cameos
-      - AudreyGroup
-
+      - HugoTesty 
+      - CanSeeDAUGroup
 
   can_see_hugo:
     type: string

@@ -27,10 +27,10 @@ class CreateAndAssignUserAttributes():
                 logger.info(
                     f'user attribute {name} already exists on this instance')
             else:
-                datatype = ua['type']
-                value_is_hidden = ua['hidden_value']
-                user_view = ua['user_view']
-                user_edit = ua['user_edit']
+                datatype = yaml_user_attributes[ua]['type']
+                value_is_hidden = yaml_user_attributes[ua]['hidden_value']
+                user_view = yaml_user_attributes[ua]['user_view']
+                user_edit = yaml_user_attributes[ua]['user_edit']
 
                 ua_permissions = models.WriteUserAttribute(
                     name=name,
@@ -78,22 +78,20 @@ class CreateAndAssignUserAttributes():
         yaml_user_attributes = self.user_attribute_metadata
         for ua in yaml_user_attributes:
             meta_value = ','.join(yaml_user_attributes[ua].get('value'))
-            for group in yaml_user_attributes[ua].get('team'):
-                try:
-                    group_id = group_metadata.get(group)
-                except error.SDKError:
-                    logger.info('group dont exist mofo')
             ua_id = instance_ua.get(ua)
 
-            params_to_add = models.UserAttributeGroupValue(
-                value=meta_value,
-                value_is_hidden=False
-            )
+            for group in yaml_user_attributes[ua].get('team'):
+                group_id = group_metadata.get(group)
 
-            self.sdk.update_user_attribute_group_value(
-                group_id=group_id,
-                user_attribute_id=ua_id,
-                body=params_to_add)
+                params_to_add = models.UserAttributeGroupValue(
+                    value=meta_value,
+                    value_is_hidden=False
+                )
+
+                self.sdk.update_user_attribute_group_value(
+                    group_id=group_id,
+                    user_attribute_id=ua_id,
+                    body=params_to_add)
 
     def execute(self):
         # CREATE NEW USER ATTRIBUTES
