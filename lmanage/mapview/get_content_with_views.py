@@ -25,7 +25,6 @@ import coloredlogs
 import looker_sdk
 from looker_sdk import models
 import pandas as pd
-import lookml
 from .utils import parsing_sql
 from .utils import create_df
 
@@ -411,10 +410,9 @@ def main(**kwargs):
     create_df.check_ini(ini_file)
 
     sdk = looker_sdk.init31(config_file=ini_file)
+    logger.info
 
-    project = lookml.Project(
-        path=project_repo
-    )
+    project = 'legacy_tool_replacing_with_lkml_parser'
 
     content_results = get_dashboards(sdk)
     logger.debug(f'dashboard_response = {content_results}')
@@ -461,5 +459,3 @@ def main(**kwargs):
         mask = df['fields_used'].apply(lambda x: field_mask in x)
         df = df[mask]
         df.to_csv(f'{file_path}')
-
-        logger.info(df)
