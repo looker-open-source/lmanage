@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lmanage"
-version = "0.2.8"
+version = "0.2.81"
 description = "LManage is a collection of useful tools for Looker admins to help curate and cleanup content and it's associated source LookML."
 keywords = ["keyword", "another_keyword"]
 authors = ["hselbie <hselbie@gmail.com>"]
@@ -9,7 +9,7 @@ homepage = "https://github.com/looker-open-source/lmanage"
 repository = "https://github.com/looker-open-source/lmanage"
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.9"
+python = ">=3.7,<3.9"
 click = "^7.1.2"
 icecream = "^2.1.0"
 pandas = "^1.2.2"
