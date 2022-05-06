@@ -1,0 +1,15 @@
+{
+  "configurations": {
+    "run": {
+      "adapter": "debugpy",
+      "configuration": {
+        "request": "launch",
+        "protocol": "auto",
+        "stopOnEntry": true,
+        "console": "integratedTerminal",
+        "program": "${workspaceRoot}/mapview_execute.py",
+        "cwd": "${workspaceRoot}"
+      }
+    }
+  }
+}

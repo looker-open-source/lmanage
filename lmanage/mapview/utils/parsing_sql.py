@@ -14,8 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 import itertools
-import sqlparse
-
+from sqlparse import parse
 from sqlparse.sql import IdentifierList, Identifier
 from sqlparse.tokens import Keyword, DML
 
@@ -62,7 +61,7 @@ def extract_table_identifiers(token_stream):
 def extract_tables(sql):
     # let's handle multiple statements in one sql string
     extracted_tables = []
-    statements = list(sqlparse.parse(sql))
+    statements = list(parse(sql))
     for statement in statements:
         if statement.get_type() != 'UNKNOWN':
             stream = extract_from_part(statement)

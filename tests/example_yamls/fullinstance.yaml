@@ -1,13 +1,3 @@
-# We implement three categories of Looker user groups:
-#
-# 1. Roles: these groups are assigned Looker Roles, which control what
-#    functionality a user has access to in Looker.
-# 2. Content: these groups control access to Folders, which organize
-#    content (dashboards and Looks) in Looker.
-# 3. Attributes: these groups are assigned attributes, which are used to
-#    control access to rows and columns of data via access filters and
-#    access frants.
-
 #########
 # MODEL_SET_ROLES #
 #########
@@ -92,6 +82,7 @@ roles:
     team:
       - BusinessOperations_BO_Dev
       - DrewEdit
+      - westlake
 
   BusinessOperations_User:
     permission_set: user
@@ -160,6 +151,14 @@ folder_permissions:
           - new_group
         team_view:
           - newer_group
+        subfolder:
+          - name: sharkytesttest
+            team_edit:
+              - colin
+              - sharon
+            team_view:
+              - nick
+
 
 ###################
 # User Attributes #
