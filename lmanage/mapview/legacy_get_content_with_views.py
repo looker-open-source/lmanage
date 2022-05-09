@@ -457,5 +457,3 @@ def main(**kwargs):
         logger.info(f'your field filter = {field_mask}')
 
         mask = df['fields_used'].apply(lambda x: field_mask in x)
-        df = df[mask]
-        df.to_csv(f'{file_path}')

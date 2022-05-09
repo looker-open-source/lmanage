@@ -1,13 +1,13 @@
 import logging
 import coloredlogs
 import looker_sdk
-from .lmanage.configurator.user_attribute_configuration import create_ua_permissions as cuap
-from .lmanage.configurator.folder_configuration import folder_config as fc
-from .lmanage.configurator.folder_configuration import create_folder_permissions as cfp
-from .lmanage.configurator.user_group_configuration import role_config as rc
-from .lmanage.configurator.user_group_configuration import group_config as gc
-from .lmanage.configurator.user_group_configuration import user_permission as up
-from .lmanage.configurator.utils import parse_yaml as py
+from lmanage.configurator.user_attribute_configuration import create_ua_permissions as cuap
+from lmanage.configurator.folder_configuration import folder_config as fc
+from lmanage.configurator.folder_configuration import create_folder_permissions as cfp
+from lmanage.configurator.user_group_configuration import role_config as rc
+from lmanage.configurator.user_group_configuration import group_config as gc
+from lmanage.configurator.user_group_configuration import user_permission as up
+from lmanage.configurator.utils import parse_yaml as py
 
 
 logger = logging.getLogger(__name__)

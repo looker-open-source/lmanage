@@ -1,7 +1,4 @@
-import shlex
-import json
 import os
-import subprocess
 import lkml
 import glob
 import logging
@@ -13,8 +10,10 @@ logging.getLogger("looker_sdk").setLevel(logging.WARNING)
 
 
 def get_all_lkml_filepaths(starting_path):
+    logger.info(starting_path)
     lookml_files = [f for f in glob.glob(
         starting_path + "/**/*" + 'lkml', recursive=True)]
+    logger.debug(lookml_files)
     return lookml_files
 
 

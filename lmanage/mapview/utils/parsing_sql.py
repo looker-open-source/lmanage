@@ -86,40 +86,54 @@ def extract_tables(sql):
 
 
 if __name__ == '__main__':
-    sql = """WITH order_user_sequence_facts AS (select oi.user_id,oi.id as order_id,row_number() over(partition by oi.user_id order by oi.created_at asc ) as order_sequence,
-        oi.created_at,
-        MIN(oi.created_at) OVER(PARTITION BY oi.user_id) as first_ordered_date,
-        LAG(oi.created_at) OVER (PARTITION BY oi.user_id ORDER BY oi.created_at asc) as previous_order_date,
-        LEAD(oi.created_at) OVER(partition by oi.user_id ORDER BY oi.created_at) as next_order_date,
-        DATEDIFF(DAY,CAST(oi.created_at as date),CAST(LEAD(oi.created_at) over(partition by oi.user_id ORDER BY oi.created_at) AS date)) as repurchase_gap
-      from order_items oi
- )
-SELECT * FROM (
-SELECT *, DENSE_RANK() OVER (ORDER BY z___min_rank) as z___pivot_row_rank, RANK() OVER (PARTITION BY z__pivot_col_rank ORDER BY z___min_rank) as z__pivot_col_ordering, CASE WHEN z___min_rank = z___rank THEN 1 ELSE 0 END AS z__is_h
-ighest_ranked_cell FROM (
-SELECT *, MIN(z___rank) OVER (PARTITION BY "order_user_sequence_facts.created_at_month") as z___min_rank FROM (
-SELECT *, RANK() OVER (ORDER BY "order_user_sequence_facts.created_at_month" DESC, z__pivot_col_rank) AS z___rank FROM (
-SELECT *, DENSE_RANK() OVER (ORDER BY "users.gender" NULLS LAST) AS z__pivot_col_rank FROM (
-SELECT
-    users.gender  AS "users.gender",
-        (TO_CHAR(DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_user_sequence_facts.created_at )), 'YYYY-MM')) AS "order_user_sequence_facts.created_at_month",
-    COUNT(DISTINCT order_user_sequence_facts.user_id ) AS "order_user_sequence_facts.count"
-FROM public.order_items  AS order_items
-INNER JOIN public.users  AS users ON order_items.user_id = users.id
-LEFT JOIN public.inventory_items  AS inventory_items ON inventory_items.id = order_items.inventory_item_id
-LEFT JOIN order_user_sequence_facts ON users.id = order_user_sequence_facts.user_id
-WHERE (order_user_sequence_facts.order_sequence = 1
-    )
+    sql = """    
+    -- generate derived table source_query_rank
+-- Building temporary derived table system__activity::source_query_rank on instance 7ecf10dbe337872a19ea64ca19132ba5
+CREATE TEMPORARY TABLE looker_tmp.source_query_rank SELECT
+    history.SOURCE  AS `sorted_source`,
+    COUNT(CASE WHEN (history.status NOT LIKE 'cache_only_miss' OR history.status IS NULL) THEN 1 ELSE NULL END) AS `query_run_count`
+FROM history
+WHERE (((
+            CONVERT(history.CREATED_AT USING utf8mb4)
+            ) >= ((CURDATE())) AND (
+            CONVERT(history.CREATED_AT USING utf8mb4)
+            ) < ((DATE_ADD(CURDATE(),INTERVAL 1 day))))) AND (history.SOURCE ) IS NOT NULL
 GROUP BY
-    (DATE_TRUNC('month', CONVERT_TIMEZONE('UTC', 'America/New_York', order_user_sequence_facts.created_at ))),
-    1) ww
-) bb WHERE z__pivot_col_rank <= 16384
-) aa
-) xx
-) zz
- WHERE (z__pivot_col_rank <= 50 OR z__is_highest_ranked_cell = 1) AND (z___pivot_row_rank <= 500 OR z__pivot_col_ordering = 1) ORDER BY z___pivot_row_rank
+    1
+ORDER BY
+    COUNT(CASE WHEN (history.status NOT LIKE 'cache_only_miss' OR history.status IS NULL) THEN 1 ELSE NULL END) DESC
+-- finished source_query_rank => looker_tmp.source_query_rank
+SELECT
+    (DATE_FORMAT(
+            CONVERT(history.CREATED_AT USING utf8mb4)
+           ,'%Y-%m-%d %H')) AS `history.created_hour`,
+    source_query_rank.query_run_count AS `source_query_rank.query_run_count`,
+    source_query_rank.sorted_source AS `source_query_rank.sorted_source`,
+        (MOD((DAYOFWEEK(
+            CONVERT(history.CREATED_AT USING utf8mb4)
+           ) - 1) - 1 + 7, 7)) AS `history.created_day_of_week_index`,
+        (DATE_FORMAT(
+            CONVERT(history.CREATED_AT USING utf8mb4)
+           ,'%W')) AS `history.created_day_of_week`,
+    COUNT(DISTINCT CASE WHEN (history.status NOT LIKE 'cache_only_miss' OR history.status IS NULL) THEN history.id ELSE NULL END) AS `history.query_run_count`
+FROM history
+LEFT JOIN looker_tmp.source_query_rank AS source_query_rank ON history.SOURCE = source_query_rank.sorted_source
+WHERE (((
+            CONVERT(history.CREATED_AT USING utf8mb4)
+            ) >= ((CURDATE())) AND (
+            CONVERT(history.CREATED_AT USING utf8mb4)
+            ) < ((DATE_ADD(CURDATE(),INTERVAL 1 day)))))
+GROUP BY
+    1,
+    2,
+    3,
+    4,
+    5
+ORDER BY
+    (DATE_FORMAT(
+            CONVERT(history.CREATED_AT USING utf8mb4)
+           ,'%Y-%m-%d %H')) DESC
+LIMIT 5000
     """
 
     print(extract_tables(sql))
-    # tables = ', '.join(extract_tables(sql))
-    # print('Tables: {}'.format(tables))

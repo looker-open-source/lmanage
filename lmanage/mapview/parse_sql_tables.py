@@ -1,5 +1,12 @@
-from utils import parsing_sql
+import logging
+import coloredlogs
+from lmanage.mapview.utils import parsing_sql
 from looker_sdk import error
+
+
+logger = logging.getLogger(__name__)
+coloredlogs.install(level='DEBUG')
+logging.getLogger("looker_sdk").setLevel(logging.WARNING)
 
 
 class ParseSqlTables():
@@ -14,19 +21,18 @@ class ParseSqlTables():
         Iterates over a list of PyLookML files identifies view files aand returns a
         list of the sql_table_names if they exist in an object of type 'View'
             qid: (int) query_id from a  Looker query
-            (n.b. NOT THE SAME AS A QID in the url)
         Returns:
             A list of all the tables that are found from a Looker generated
             SQL query.
             For example:
             ['public.order_items','public.inventory_items','public.events']
         Exception:
-            If a query is broken for whatever reason an Exception is raised to
+            If a query is broken for whatever reason the Exception is caught to
             continue the program running
         """
         try:
             sql_response = self.sdk.run_query(
-                query_id=qid, result_format='sql')
+                query_id=qid, result_format="sql")
             if isinstance(sql_response, str):
                 tables = parsing_sql.extract_tables(sql_response)
                 return tables
@@ -35,7 +41,7 @@ class ParseSqlTables():
         except error.SDKError:
             return('No Content')
 
-    def get_sql_from_elements(self, content_results):
+    def get_sql_from_elements(self):
         """Amends returned SDK System__Activity reponse with sql tables used
         from the `parse_sql` function.
 
@@ -61,10 +67,10 @@ class ParseSqlTables():
              'look.id': None,
              'sql_joins': ['`looker-private-demo.ecomm.order_items`']}]
         """
-        for dash in content_results:
+        for dash in self.dataextract:
             query_id = dash['query.id']
             sql_value = self.parse_sql(query_id)
 
             dash['sql_joins'] = sql_value
 
-        return content_results
+        return self.dataextract

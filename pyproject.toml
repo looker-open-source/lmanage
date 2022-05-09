@@ -29,6 +29,7 @@ autopep8 = "^1.6.0"
 PyYAML = "^6.0"
 looker-sdk = "^22.4.0"
 sqlparse = "^0.4.2"
+XlsxWriter = "^3.0.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

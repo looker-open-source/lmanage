@@ -1,12 +1,7 @@
-# from .utils import parse_lookml
 import ast
 import coloredlogs
 import logging
-import glob
-import lkml
-import sys
-print(
-    "In module products sys.path[0], __package__ ==", sys.path[0], __package__)
+from lmanage.mapview.utils import parse_lookml
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -62,7 +57,6 @@ def match_fields_to_lookml(field_list, lookml):
         if match != 'no match':
             matched_fields.append(field)
 
-    print(matched_fields)
     return matched_fields
 
 
@@ -71,7 +65,7 @@ def extract_view_from_field(field_name):
     return view_name
 
 
-def match_element_to_lookml(instancedata, view_file):
+def create_lookml_field_lookup(view_file):
     field_lookup = {}
     for lookml in view_file:
         parsed_lookml = parse_lookml.LookML(lookml)
@@ -79,6 +73,26 @@ def match_element_to_lookml(instancedata, view_file):
             for v in parsed_lookml.views():
                 extract_field_names_from_lookml(
                     parsed_lookml=v, data_storage=field_lookup)
+    return field_lookup
+
+
+def create_viewname_lookup(view_file):
+    sql_table_name_list = []
+    for lookml in view_file:
+        parsed_lookml = parse_lookml.LookML(lookml)
+        if parsed_lookml.has_views():
+            for v in parsed_lookml.views():
+                try:
+                    sql_table_name = v['sql_table_name']
+                    sql_table_name_list.append(sql_table_name)
+                except KeyError:
+                    logger.warning('no sql_table_name present in view')
+    return sql_table_name_list
+
+
+def match_element_to_lookml(instancedata, view_file):
+    field_lookup = create_lookml_field_lookup(view_file)
+    viewname_lookup = create_viewname_lookup(view_file)
 
     matches = []
     for dashboard in instancedata:
@@ -91,9 +105,15 @@ def match_element_to_lookml(instancedata, view_file):
         matched_fields = match_fields_to_lookml(field_list=fields_used,
                                                 lookml=field_lookup)
 
+        for views in viewname_lookup:
+            if views not in views_in_dash:
+                views_in_dash.append(views)
+
         temp = {}
         temp['used_views'] = views_in_dash
         temp['matched_fields'] = matched_fields
-        temp['dashboard'] = dashboard.get('dashboard.id')
+        temp['dashboard'] = dashboard['dashboard.id']
+        temp['element_id'] = dashboard['dashboard_element.id']
         matches.append(temp)
+    print(matches)
     return matches
