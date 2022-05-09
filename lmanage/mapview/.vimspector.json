@@ -1,0 +1,16 @@
+{
+  "configurations": {
+    "run": {
+      "adapter": "debugpy",
+      "configuration": {
+        "python": "/usr/local/google/home/hugoselbie/.cache/pypoetry/virtualenvs/lmanage-UKKoJ9La-py3.8/bin/python",
+        "request": "launch",
+        "protocol": "auto",
+        "stopOnEntry": true,
+        "console": "integratedTerminal",
+        "program": "${workspaceRoot}/mapview_execute.py",
+        "cwd": "${workspaceRoot}"
+      }
+    }
+  }
+}

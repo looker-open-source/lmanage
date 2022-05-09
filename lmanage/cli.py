@@ -16,7 +16,7 @@
 import coloredlogs
 import logging
 import click
-from lmanage.mapview import get_content_with_views
+from lmanage.mapview import mapview_execute
 from lmanage.configurator import provision_instance_permission_structure
 
 logger = logging.getLogger(__name__)
@@ -29,11 +29,11 @@ def lmanage():
 
 
 @lmanage.command()
-@click.option("-fp", "--path",
-              help="input your file path to save a csv of results")
+@click.option("-op", "--output_path",
+              help="input your file path to save a tabbed xls of results")
 @ click.option("-i", "--ini-file",
                help="Path to the ini file to use for sdk authentication")
-@ click.option("-p", "--project",
+@ click.option("-lfp", "--lookml_file_path",
                help="Path folder containing your lookml files, often taken using a git pull from your connected lookml project repository")
 @ click.option("-t", "--table",
                help="**OPTIONAL** Add a view name to search for elements that rely on this view")
@@ -52,7 +52,7 @@ def mapview(**kwargs):
         else:
             logger.debug(
                 f'There is no value set for {k} please use the `--help` flag to see input parameters')
-    get_content_with_views.main(**kwargs)
+    mapview_execute.main(**kwargs)
 
 
 @lmanage.command()

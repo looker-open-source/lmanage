@@ -5,8 +5,9 @@ The mapview command will find the etymology of the content on your dashboard, ex
 ##### example usage
 `lmanage mapview --path ./output/my_output.csv --ini-file ~/py/projects/ini/k8.ini --project /test_lookml_files/the_look -table "order_items"`
 ##### flags
-- **path** (`--path`, `-fp`) This is the path where you would like the outputfile for your returned dataset to be. 
+- **lookml_file_path** (`--lookml_file_path`, `-lfp`) This is the path where you would like the outputfile for your returned dataset to be. 
 - **ini-file** (`--ini-file`, `-i`) This is the file path to the ini file that you've created to use the Looker SDK
+- **output_path** (`--output_path`, `-op`) File path to export an xlsx tabbed file of your results input your file path to save a tabbed xls of results
 ```
 #example Ini file
 [Looker_Instance]
@@ -15,28 +16,24 @@ client_id=abc
 client_secret=xyz
 verify_ssl=True
 ```
-- **project** (`--project`, `-p`) This is the file path to your local project of LookML files that lmanage will scan to associate connections between your Looker content and LookML
-Lmanage can either return a full dataset of all content mapping, or a prefiltered dataset with all content associated with a specific table or field.
-- **table** (`--table`, `-t`) **Optional** Expecting input of lookml view name
-- **field** (`--field`, `-f`) **Optional** Expecting input of fully scoped LookML field name e.g. viewname.fieldname 
-- **level** (`--level`, `-l`) **Optional** Set this flag to DEBUG to receive expanded results in stdout for debugging  
-
 
 ![](./images/mapview_walkthru.jpeg)
 
 
-## Fields Returneds
-
-- **dashboard_id**: the id of the looker dashboard 	
+## Excel Tabbed Returns 
+### DashboardToLookMLMapping
+- **used_views**: the view_names extracted from the query
+- **matched_fields**: the fields matched with inputted lookml
+- **dashboard**: the id of the looker dashboard
 - **element_id**: the id of the visualization element on the looker dashboard	
-- **sql_joins**: the joins used in a query grouped by element id	
-- **fields_used**: the fields used by the query grouped by element id
-- **sql_table_name**: the underlying sql value being referenced at the view level of the lookml (assuming the view is standard)	
-- **lookml_file_name**: the physical file in which the view files reside
-- **potential_join**: for the explore that powers the element query: what are all the potential joins available	
-- **used_joins**: joins used by the underlying queries obtained by parsing sql of query 	
-- **used_view_names**: views that are used by each query grouped by element_id	
-- **unused_joins**: views that are unused by the specific query of the dashboard element
+
+### MostUsedDimensions 
+- **matched_fields**: the fields matched with inputted lookml
+- **dashboard_count**: how many dashboards are used by this field 
+
+### MostUsedViews
+- **used_views**: the views extracted from the query
+- **dashboard_count**: how many dashboards are used by this field 
 
 ##### n.b.
 **Multi Project Usage**
