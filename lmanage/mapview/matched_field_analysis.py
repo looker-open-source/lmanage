@@ -5,10 +5,7 @@ import logging
 import coloredlogs
 import ast
 import pandas as pd
-<<<<<<< HEAD
-=======
 import xlsxwriter
->>>>>>> mapview_rewrite
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -27,22 +24,13 @@ class MatchedFieldDataAnalysis():
     def most_used_object(self, looker_object):
         if looker_object == 'views':
             xploded = self.df.explode('used_views')
-<<<<<<< HEAD
             xploded = xploded.groupby(['used_views'])['dashboard'].count()
             return xploded
         elif looker_object == 'fields':
             xploded = self.df.explode('matched_fields')
             xploded = xploded.groupby(['matched_fields'])['dashboard'].count()
-=======
             xploded = xploded.groupby(['used_views'])[
                 'dashboard'].count().rename('dashboard_count').sort_values(ascending=False)
-            return xploded
-
-        elif looker_object == 'fields':
-            xploded = self.df.explode('matched_fields')
-            xploded = xploded.groupby(['matched_fields'])[
-                'dashboard'].count().rename('dashboard_count').sort_values(ascending=False)
->>>>>>> mapview_rewrite
             return xploded
 
     def field_to_dashboard_map(self, field_filter=None, dashboard_id_filter=None):
@@ -53,11 +41,10 @@ class MatchedFieldDataAnalysis():
             xploded = xploded.filter(like=dashboard_id_filter)
         return xploded
 
-<<<<<<< HEAD
     def data_analysis(self):
         df = self.create_df()
         print(df)
-=======
+
     def export_to_excel(self, output):
         writer = pd.ExcelWriter(output, engine='xlsxwriter')
         dashboard_match = self.field_to_dashboard_map()
@@ -71,4 +58,3 @@ class MatchedFieldDataAnalysis():
 
         # Close the Pandas Excel writer and output the Excel file.
         writer.save()
->>>>>>> mapview_rewrite
