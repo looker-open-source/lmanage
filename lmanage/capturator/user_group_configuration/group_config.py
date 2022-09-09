@@ -21,12 +21,15 @@ class GetInstanceGroups():
         folders = self.sdk.all_folders()
         test = {}
         for folder in folders:
+            print('high', folder.name)
             if folder.parent_id is not None:
+                print('low', folder.name)
+
                 test[folder.name] = folder.parent_id
             else:
                 print('test', folder.name)
 
-        for x, y in test.items():
+        # for x, y in test.items():
 
         return test
 

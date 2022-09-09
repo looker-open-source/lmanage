@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
 import looker_sdk
-from user_group_configuration import group_config as gc
+from lmanage.capturator.user_group_configuration import group_config as gc
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
