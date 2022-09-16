@@ -1,7 +1,11 @@
 import logging
 import coloredlogs
 import looker_sdk
-from lmanage.capturator.user_group_configuration import group_config as gc
+# import yaml
+import ruamel.yaml
+import sys
+# from lmanage.capturator.user_group_capturation import group_config as gc
+from user_group_capturation import role_config as rc
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -13,23 +17,46 @@ def main(**kwargs):
 
     ini_file = kwargs.get("ini_file")
     logger.info(div)
-    logger.info('parsing yaml file')
+    logger.info('creating yaml configuration file')
 
     if ini_file:
         sdk = looker_sdk.init31(config_file=ini_file)
     else:
         sdk = looker_sdk.init31()
 
+    yaml = ruamel.yaml.YAML()
 
 ##############################################################
 # Folder Config ################################################
 ###############################################################
     # CREATE NEW FOLDERS
-    x = gc.GetInstanceGroups(sdk=sdk).extract_folder_names()
-    print(x)
+    # x = gc.GetInstanceGroups(sdk=sdk).extract_folder_names()
+    # print(x)
 
-    logger.info(div)
+    # logger.info(div)
+###############################################################
+# Capture Roles ###############################################
+###############################################################
+    # CAPTURE ALL ROLES
+    role_metadata = rc.GetRoleBase(sdk=sdk).get_all_roles()
 
+    roles = rc.ExtractRoleInfo(sdk=sdk, role_base=role_metadata)
+
+    pset_dict_yaml_format = roles.extract_permission_sets()
+    mset_dict_yaml_format = roles.extract_model_sets()
+
+    role_meta = roles.extract_role_info()
+    test = {**pset_dict_yaml_format, **mset_dict_yaml_format, **role_meta}
+    with open('./instance_output_settings/output.yaml', 'w') as file:
+        file.write('# MODEL_SET_ROLES\n')
+        yaml.dump(test, file)
+
+    # # yaml.dump({'model_sets': mset_dict_yaml_format}, file)
+
+    # test = roles.get_all_roles()
+    # print(test)
+
+    # print(y)
 ###############################################################
 # User Attribute Config #######################################
 ###############################################################

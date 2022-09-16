@@ -30,6 +30,7 @@ PyYAML = "^6.0"
 looker-sdk = "^22.4.0"
 sqlparse = "^0.4.2"
 XlsxWriter = "^3.0.3"
+"ruamel.yaml" = "^0.17.21"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
