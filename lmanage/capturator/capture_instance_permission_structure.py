@@ -1,11 +1,11 @@
 import logging
 import coloredlogs
 import looker_sdk
-# import yaml
 import ruamel.yaml
 import sys
-# from lmanage.capturator.user_group_capturation import group_config as gc
 from user_group_capturation import role_config as rc
+from user_attribute_capturation import capture_ua_permissions as cup
+from folder_capturation import folder_config as fc
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -26,18 +26,17 @@ def main(**kwargs):
 
     yaml = ruamel.yaml.YAML()
 
-##############################################################
-# Folder Config ################################################
 ###############################################################
-    # CREATE NEW FOLDERS
-    # x = gc.GetInstanceGroups(sdk=sdk).extract_folder_names()
-    # print(x)
+# Capture Folder Config #######################################
+###############################################################
+    folders = fc.CaptureFolderConfig(sdk=sdk).execute()
+    yaml.dump(folders, sys.stdout)
+    print(folders)
 
-    # logger.info(div)
+    logger.info(div)
 ###############################################################
 # Capture Roles ###############################################
 ###############################################################
-    # CAPTURE ALL ROLES
     role_metadata = rc.GetRoleBase(sdk=sdk).get_all_roles()
 
     roles = rc.ExtractRoleInfo(sdk=sdk, role_base=role_metadata)
@@ -47,19 +46,19 @@ def main(**kwargs):
 
     role_meta = roles.extract_role_info()
     test = {**pset_dict_yaml_format, **mset_dict_yaml_format, **role_meta}
-    with open('./instance_output_settings/output.yaml', 'w') as file:
+    with open('./instance_output_settings/role.yaml', 'w') as file:
         file.write('# MODEL_SET_ROLES\n')
         yaml.dump(test, file)
 
-    # # yaml.dump({'model_sets': mset_dict_yaml_format}, file)
-
-    # test = roles.get_all_roles()
-    # print(test)
-
-    # print(y)
 ###############################################################
-# User Attribute Config #######################################
+# Capture User Attributes #####################################
 ###############################################################
+    ua = cup.ExtractUserAttributes(sdk=sdk)
+    metadata = ua.execute()
+    with open('./instance_output_settings/ua.yaml', 'w') as file:
+        file.write('# USER_ATTRIBUTES\n')
+        yaml.dump(metadata, file)
+
     # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
     # cuap.CreateAndAssignUserAttributes(
     #     user_attributes=user_attribute_metadata, sdk=sdk).execute()

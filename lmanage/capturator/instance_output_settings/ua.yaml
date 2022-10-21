@@ -1,0 +1,83 @@
+# USER_ATTRIBUTES
+user_attributes:
+  can_see_hugo:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: false
+    teams:
+    - CanSeeDAUGroup
+    - Cameos
+    value:
+    - No
+  can_see_sharky:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: false
+    teams:
+    - CanSeeDAUGroup
+    - HugoTesty
+    value:
+    - Yes
+    - Sharky
+  email:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: false
+    teams: []
+    value: []
+  first_name:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: true
+    teams: []
+    value: []
+  id:
+    type: number
+    hidden_value: false
+    user_view: true
+    user_edit: false
+    teams: []
+    value: []
+  landing_page:
+    type: relative_url
+    hidden_value: false
+    user_view: true
+    user_edit: true
+    teams: []
+    value: []
+  last_name:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: true
+    teams: []
+    value: []
+  locale:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: false
+    teams: []
+    value: []
+  name:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: true
+    teams: []
+    value: []
+  region_all:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: false
+    teams:
+    - AudreyGroup
+    - Cameos
+    - Freddy
+    value:
+    - us,ag,bb,dd

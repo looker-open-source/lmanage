@@ -1,0 +1,304 @@
+#########
+# MODEL_SET_ROLES #
+#########
+# MODEL_SET_ROLES
+permission_sets:
+  developer:
+    permissions:
+      - access_data
+      - can_see_system_activity
+      - clear_cache_refresh
+      - create_table_calculations
+      - deploy
+      - develop
+      - download_without_limit
+      - explore
+      - manage_spaces
+      - mobile_app_access
+      - save_content
+      - schedule_look_emails
+      - see_dashboards
+      - see_drill_overlay
+      - see_lookml
+      - see_sql
+      - see_user_dashboards
+      - send_to_integration
+      - use_sql_runner
+  nodeploy_developer:
+    permissions:
+      - access_data
+      - can_see_system_activity
+      - see_dashboards
+      - clear_cache_refresh
+      - create_table_calculations
+      - develop
+      - download_without_limit
+      - explore
+      - manage_spaces
+      - mobile_app_access
+      - save_content
+      - schedule_look_emails
+      - see_drill_overlay
+      - see_lookml
+      - see_sql
+      - see_user_dashboards
+      - send_to_integration
+      - use_sql_runner
+  user:
+    permissions:
+      - access_data
+      - clear_cache_refresh
+      - create_table_calculations
+      - download_without_limit
+      - explore
+      - manage_spaces
+      - mobile_app_access
+      - save_content
+      - schedule_look_emails
+      - see_drill_overlay
+      - see_lookml
+      - see_lookml_dashboards
+      - see_looks
+      - see_sql
+      - see_user_dashboards
+      - send_to_integration
+  Admin:
+    permissions:
+      - access_data
+      - see_lookml_dashboards
+      - see_looks
+      - see_user_dashboards
+      - explore
+      - create_table_calculations
+      - save_content
+      - create_public_looks
+      - download_with_limit
+      - download_without_limit
+      - schedule_look_emails
+      - schedule_external_look_emails
+      - create_alerts
+      - follow_alerts
+      - send_to_s3
+      - send_to_sftp
+      - send_outgoing_webhook
+      - send_to_integration
+      - see_sql
+      - see_lookml
+      - develop
+      - deploy
+      - support_access_toggle
+      - use_sql_runner
+      - clear_cache_refresh
+      - can_copy_print
+      - see_drill_overlay
+      - manage_spaces
+      - manage_homepage
+      - manage_models
+      - manage_stereo
+      - create_prefetches
+      - login_special_email
+      - embed_browse_spaces
+      - embed_save_shared_space
+      - see_alerts
+      - see_queries
+      - see_logs
+      - see_users
+      - sudo
+      - see_schedules
+      - see_pdts
+      - see_datagroups
+      - update_datagroups
+      - see_system_activity
+      - administer
+      - mobile_app_access
+model_sets:
+  lk1_test_set:
+    models:
+      - test
+      - test2
+  lk4_huggy:
+    models:
+      - test
+      - test1
+      - test2
+  All:
+    models:
+      - extension-api-explorer
+      - data-dictionary
+      - bq1
+roles:
+  BusinessOperations_Developer:
+    permission_set: developer
+    model_set: lk1_test_set
+    team:
+      - BusinessOperations_BO_Dev
+      - DrewEdit
+      - westlake
+  BusinessOperations_User:
+    permission_set: user
+    model_set: lk4_huggy
+    team:
+      - Freddy
+      - BusinessOperations
+  Operations_User:
+    permission_set: user
+    model_set: lk4_huggy
+    team:
+      - Freddy
+      - BusinessOperations
+      - HugoTesty
+#####################
+# FOLDER PERMISSONS #
+#####################
+folder_permissions:
+  business_operations_folder:
+    - name: 'Business Operations'
+      team_view:
+        - BusinessOperations
+        - Snaptest
+      subfolder:
+        - name: test_sub
+          team_edit:
+            - Freddy
+          team_view:
+            - hugo
+        - name: test_sub2
+          subfolder:
+            - name: test_sub_sub
+              team_edit:
+                - Famke
+              team_view:
+                - hugle
+            - name: subdiddy
+              subfolder:
+                - name: hugle_testy
+                  team_edit:
+                    - Freddy
+                  team_view:
+                    - hugle
+  sexy_time_folder:
+    - name: 'sexy time'
+      team_edit:
+        - sexy_group1
+      team_view:
+        - sexy_group2
+      subfolder:
+        - name: sexy_sub
+  suffering_succotash_folder:
+    - name: 'suffering succotash'
+      team_edit:
+        - sexy_group1
+      team_view:
+        - sexy_group2
+      subfolder:
+        - name: another_one
+          team_edit:
+            - HugoTesty
+            - new_group
+          team_view:
+            - newer_group
+          subfolder:
+            - name: sharkytesttest
+              team_edit:
+                - colin
+                - sharon
+              team_view:
+                - nick
+            - name: ps_allhands
+              team_view:
+                - ps_allhand1
+              team_edit:
+                - ps_allhand2
+# USER_ATTRIBUTES
+user_attributes:
+  region_all:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: false
+    value:
+      - us,ag,bb,dd
+    team:
+      - Cameos
+      - Freddy
+      - AudreyGroup
+    teams:
+      - AudreyGroup
+      - Cameos
+      - Freddy
+  can_see_sharky:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: false
+    value:
+      - Yes
+      - Sharky
+    team:
+      - HugoTesty
+      - CanSeeDAUGroup
+    teams:
+      - CanSeeDAUGroup
+      - HugoTesty
+  can_see_hugo:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: false
+    value:
+      - No
+    team:
+      - Cameos
+      - CanSeeDAUGroup
+    teams:
+      - CanSeeDAUGroup
+      - Cameos
+  email:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: false
+    teams: []
+    value: []
+  first_name:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: true
+    teams: []
+    value: []
+  id:
+    type: number
+    hidden_value: false
+    user_view: true
+    user_edit: false
+    teams: []
+    value: []
+  landing_page:
+    type: relative_url
+    hidden_value: false
+    user_view: true
+    user_edit: true
+    teams: []
+    value: []
+  last_name:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: true
+    teams: []
+    value: []
+  locale:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: false
+    teams: []
+    value: []
+  name:
+    type: string
+    hidden_value: false
+    user_view: true
+    user_edit: true
+    teams: []
+    value: []
