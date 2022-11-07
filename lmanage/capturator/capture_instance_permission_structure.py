@@ -6,6 +6,7 @@ import sys
 from user_group_capturation import role_config as rc
 from user_attribute_capturation import capture_ua_permissions as cup
 from folder_capturation import folder_config as fc
+from folder_capturation import capture_folder_permissions as cfp
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -30,7 +31,6 @@ def main(**kwargs):
 # Capture Folder Config #######################################
 ###############################################################
     folders = fc.CaptureFolderConfig(sdk=sdk).execute()
-    yaml.dump(folders, sys.stdout)
     print(folders)
 
     logger.info(div)

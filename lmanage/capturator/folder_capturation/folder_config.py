@@ -2,6 +2,8 @@ import logging
 from os import name
 from looker_sdk import models, error
 import coloredlogs
+from utils import looker_object_constructors as loc
+
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -13,40 +15,6 @@ class CaptureFolderConfig():
 
     def __init__(self, sdk):
         self.sdk = sdk
-
-    def unnest_folder_data(self):
-        response = []
-
-        for d in self.folder_metadata:
-            folder_dict = self.folder_metadata.get(d)[0]
-            metadata_list = []
-            metadata_list = self.walk_folder_structure(
-                dict_obj=folder_dict,
-                data_storage=metadata_list,
-                parent_id='1')
-
-            response.append(metadata_list)
-
-        logger.info('retrieved yaml folder files')
-        logger.debug('folder metadata = %s', response)
-
-        return response
-
-    def walk_folder_structure(self, dict_obj: dict, data_storage: list, parent_id: str):
-        temp = {}
-        temp['name'] = dict_obj.get('name')
-        temp['team_edit'] = dict_obj.get('team_edit')
-        temp['team_view'] = dict_obj.get('team_view')
-        temp['parent_id'] = parent_id
-        logger.debug('data_structure to be appended = %s', temp)
-        data_storage.append(temp)
-
-        if isinstance(dict_obj.get('subfolder'), list):
-            for subfolder in dict_obj.get('subfolder'):
-                self.walk_folder_structure(subfolder, data_storage,
-                                           parent_id=dict_obj.get('name'))
-
-        return data_storage
 
     def get_all_folders(self):
         instance_folders = self.sdk.all_folders()
@@ -72,28 +40,116 @@ class CaptureFolderConfig():
                 return_list.append(r[i])
         return return_list
 
+    def clean_folder_list(self, folder_list):
+        removal_folder_id = ['1', '2']
+        r = []
+        for elem in enumerate(folder_list):
+            check_value = list(elem[1].values())[0]
+            print(check_value)
+            if check_value in removal_folder_id or check_value is None:
+                print('nope')
+
+            else:
+                r.append(elem[1])
+        return r
+
     def create_folder_structure(self, folder_structure_dict):
         r = []
+        folder_structure_dict = self.clean_folder_list(
+            folder_list=folder_structure_dict)
         for struct in folder_structure_dict:
-            subfolders = []
             pid = list(struct.values())[0]
-            subfolders.append(list(struct.keys())[0])
+            folder = loc.LookerFolder(sdk=self.sdk, id=pid)
+            subfolderid = list(struct.keys())[0]
+            folder.add_child(sid=subfolderid)
+
             for altparents in folder_structure_dict:
                 alt_pid = list(altparents.values())[0]
                 if pid == alt_pid and struct != altparents:
-                    subfolders.append(list(altparents.keys())[0])
-            subfolders.sort()
-            level = {pid: subfolders}
-            if level not in r:
-                r.append(level)
-            else:
-                pass
+                    folder.add_child(sid=list(altparents.keys())[0])
+
+            r.append(folder)
 
         return r
 
-    def folder_yaml_output(self, folder_input):
-        parents = list(folder_input.keys()).sort()
-        for folder in folder_input:
+    def clean_fldlist(self, folder_list):
+        keys_index_dict = self.get_keys_index(folder_list=folder_list)
+
+        return keys_index_dict.get(None)
+
+    def sort_folder_list(self, folder_list):
+        test = self.get_keys_index(folder_list=folder_list)
+        return [i for i in sorted(test.keys(), reverse=True)]
+
+    def get_keys_index(self, folder_list):
+        return {folder.id: folder_list.index(folder) for folder in folder_list}
+
+    def get_keys(self, dict_obj):
+        return list(dict_obj.keys())[0]
+
+    def get_values(self, dict_obj):
+        return list(dict_obj.values())[0]
+
+    def iterate_over_subfolders(self, subfolder_list_obj, elem_key, elem_values):
+        output = []
+        for folder_id in subfolder_list_obj:
+            if folder_id == elem_key:
+                temp = {}
+                temp[folder_id] = elem_values
+                output.append(temp)
+            else:
+                output.append(folder_id)
+        return output
+
+    def iterate_over_folderlist(self, list_obj, element_key, element_value):
+        for d in list_obj:
+            c_key = self.get_keys(d)
+            subfolders = self.get_values(d)
+            new_values = self.iterate_over_subfolders(
+                subfolder_list_obj=subfolders, elem_key=element_key, elem_values=element_value)
+            d[c_key] = new_values
+
+        return list_obj
+
+    # def walk_folder_structure(self, list_obj, used_list):
+    #     ''' Get values of Last Element and add Element to used list '''
+    #     first_elem_key = self.get_keys(list_obj[0])
+    #     first_elem_values = self.get_values(list_obj[0])
+    #     used_list.append(first_elem_key)
+
+    #     ''' create system to be able to delete items from original list '''
+    #     keys_dict = self.get_keys_index(list_obj)
+    #     key_list = list(keys_dict.keys())
+
+    #     ''' check if key is in any of the subfolder values '''
+    #     self.iterate_over_folderlist(
+    #         list_obj=list_obj, element_key=first_elem_key, element_value=first_elem_values)
+    #     if first_elem_key in key_list:
+    #         list_obj.pop(keys_dict.get(first_elem_key))
+
+    #     if len(list_obj) == 1:
+    #         # if list(list_obj[0].keys())[0] == 1:
+    #         return list_obj
+    #     else:
+    #         self.walk_folder_structure(list_obj=list_obj, used_list=used_list)
+    def get_highest_folders(self, folder_list):
+        r = [folder for folder in folder_list if folder.parent_id == 1]
+        return r
+
+    def sort_folders_stuff(self, folder_list):
+        checklist = self.get_highest_folders(folder_list=folder_list)
+
+        for folder in enumerate(folder_list):
+            comparitor = folder[1].id
+
+            for comparison in folder_list:
+                if comparitor == comparison.parent_id:
+                    folder[1].add_child_folder(comparison)
+                    folder_list.remove(folder)
+                    if len(checklist) == len(folder_list):
+                        return folder_list
+                    else:
+                        self.sort_folders_stuff(folder_list=folder_list)
 
     def execute(self):
         folders = self.get_all_folders()
@@ -102,106 +158,8 @@ class CaptureFolderConfig():
         folder_structure = self.create_folder_structure(
             folder_structure_dict=folder_structure_dict)
 
+        sortedfolderlist = self.sort_folder_list(folder_list=folder_structure)
+        self.sort_folders_stuff(folder_list=folder_structure)
+        # self.walk_folder_structure(list_obj=attibuted_folder_structure, used_list=[])
+
         return folder_structure
-
-
-# class CreateInstanceFolders(FolderConfig):
-#     def __init__(self, folders, sdk):
-#         super().__init__(folders)
-#         self.sdk = sdk
-
-#     def get_all_folders(self):
-#         instance_folders = self.sdk.all_folders()
-#         response = {folder.name: folder.id for folder in instance_folders}
-#         return response
-
-#     def create_folder_if_not_exists(self,
-#                                     folder_name: str,
-#                                     parent_folder_name: str) -> dict:
-
-#         existing_instance_folders = self.get_all_folders()
-
-#         if folder_name in existing_instance_folders:
-#             logger.warning(
-#                 'folder %s already exists on current instance', folder_name)
-#             folder = self.sdk.search_folders(name=folder_name)[0]
-#             return folder
-#         else:
-#             if parent_folder_name == '1':
-#                 logger.warning(
-#                     f"Folder {folder_name} is a top level folder")
-#                 folder = self.sdk.create_folder(
-#                     body=models.CreateFolder(
-#                         name=folder_name,
-#                         parent_id=parent_folder_name
-#                     )
-#                 )
-#                 return folder
-
-#             else:
-#                 parent_id = self.sdk.search_folders(
-#                     name=parent_folder_name)[0].id
-
-#                 logger.info(f'Creating folder "{folder_name}"')
-#                 folder = self.sdk.create_folder(
-#                     body=models.CreateFolder(
-#                         name=folder_name,
-#                         parent_id=parent_id
-#                     )
-#                 )
-#                 return folder
-
-#     def create_looker_folder_metadata(self, unique_folder_list: list, data_storage: list) -> list:
-
-#         for folder in unique_folder_list:
-#             fname = folder.get('name')
-#             pid = folder.get('parent_id')
-#             fmetadata = self.create_folder_if_not_exists(
-#                 folder_name=fname, parent_folder_name=pid)
-#             temp = {}
-#             temp['folder_id'] = fmetadata.id
-#             temp['folder_name'] = fmetadata.name
-#             temp['content_metadata_id'] = fmetadata.content_metadata_id
-#             temp['team_edit'] = folder.get('team_edit')
-#             temp['team_view'] = folder.get('team_view')
-#             data_storage.append(temp)
-#         return data_storage
-
-#     def sync_folders(self, created_folder: list):
-#         all_folders = self.sdk.all_folders()
-#         folder_dict = {}
-
-#         folder_metadata_list = {
-#             folder.get('folder_name'): folder.get('folder_id') for folder in created_folder}
-
-#         for folder in all_folders:
-#             if folder.is_personal:
-#                 pass
-#             elif folder.parent_id is None:
-#                 pass
-#             else:
-#                 folder_dict[folder.name] = folder.id
-
-#         for folder_name in folder_dict.keys():
-#             if folder_name not in folder_metadata_list.keys():
-#                 try:
-#                     self.sdk.delete_folder(folder_id=folder_dict[folder_name])
-#                     logger.info(
-#                         'deleting folder %s to sync with yaml config', folder_name)
-
-#                 except error.SDKError as InheritanceError:
-#                     logger.info('root folder has been deleted so %s',
-#                                 InheritanceError.args[0])
-#         return 'your folders are in sync with your yaml file'
-
-#     def execute(self):
-#         all_folders = self.get_all_folders()
-#         return all_folders
-#         # unested_folder_data = self.unnest_folder_data()
-#         # folder_metadata_list = []
-#         # for folder_tree in unested_folder_data:
-#         #     self.create_looker_folder_metadata(
-#         #         folder_tree, folder_metadata_list)
-
-#         # self.sync_folders(folder_metadata_list)
-#         # return folder_metadata_list

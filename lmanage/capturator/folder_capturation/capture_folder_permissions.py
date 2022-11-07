@@ -2,61 +2,21 @@ import logging
 import time
 import coloredlogs
 from looker_sdk import models, error
-from lmanage.configurator.folder_configuration.folder_config import CreateInstanceFolders
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
 
 
-class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
+class CreateAndProvisionInstanceFolders():
     def __init__(self, folders, sdk):
-        super().__init__(folders, sdk)
-        self.instance_folder_metadata = super().execute()
+        self.sdk = sdk
+        self.instance_folder_metadata = folders
 
     def get_content_access_metadata(self) -> list:
         response = []
 
         for folder in self.instance_folder_metadata:
-            temp_dict = {}
-            temp_dict['name'] = folder.get('folder_name')
-            temp_dict['cmi'] = folder.get('content_metadata_id')
-            edit_group = folder.get('team_edit')
-            view_group = folder.get('team_view')
-
-            perms = []
-            if isinstance(edit_group, list):
-                for group in edit_group:
-                    group_dict = {}
-                    egmetadata = self.sdk.search_groups(name=group)
-                    group_dict['name'] = group
-                    group_dict['id'] = egmetadata[0].id
-                    group_dict['permission'] = 'edit'
-                    perms.append(group_dict)
-            else:
-                group_dict = {}
-                group_dict['name'] = 'no_name'
-                group_dict['id'] = 'no_id'
-                group_dict['permission'] = 'no_permission'
-                perms.append(group_dict)
-
-            if isinstance(view_group, list):
-                for group in view_group:
-                    group_dict = {}
-                    vgmetadata = self.sdk.search_groups(name=group)
-                    group_dict['name'] = group
-                    group_dict['id'] = vgmetadata[0].id
-                    group_dict['permission'] = 'view'
-                    perms.append(group_dict)
-            else:
-                group_dict = {}
-                group_dict['name'] = 'no_name'
-                group_dict['id'] = 'no_id'
-                group_dict['permission'] = 'no_permission'
-                perms.append(group_dict)
-
-            temp_dict['group_permissions'] = perms
-            response.append(temp_dict)
-        return response
+            print(folder)
 
     def create_content_metadata_access(
         self,
@@ -311,12 +271,14 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
                         content_metadata_access_id=cmaid)
 
     def execute(self):
+
         # CONFIGURE FOLDERS WITH EDIT AND VIEW ACCESS
         content_access_metadata = self.get_content_access_metadata()
+        print(content_access_metadata)
 
-        # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
-        self.provision_folders_with_group_access(
-            content_access_metadata_list=content_access_metadata)
+        # # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
+        # self.provision_folders_with_group_access(
+        #     content_access_metadata_list=content_access_metadata)
 
-        self.remove_all_user_group(
-            content_access_metadata_list=content_access_metadata)
+        # self.remove_all_user_group(
+        #     content_access_metadata_list=content_access_metadata)
