@@ -6,7 +6,8 @@ import sys
 from user_group_capturation import role_config as rc
 from user_attribute_capturation import capture_ua_permissions as cup
 from folder_capturation import folder_config as fc
-from folder_capturation import capture_folder_permissions as cfp
+from folder_capturation import create_folder_yaml_structure as cfp
+from utils import looker_object_constructors as loc
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -30,16 +31,19 @@ def main(**kwargs):
 ###############################################################
 # Capture Folder Config #######################################
 ###############################################################
-    folders = fc.CaptureFolderConfig(sdk=sdk).execute()
-    print(folders)
+    folder_structurelist = fc.CaptureFolderConfig(sdk=sdk).execute()
+    yaml.register_class(loc.LookerFolder)
+    with open('./instance_output_settings/folder.yaml', 'w') as file:
+        file.write('# FOLDER_PERMISSIONS\n')
+        yaml.dump(folder_structurelist, file)
+
+    yaml.dump(folder_structurelist, sys.stdout)
 
     logger.info(div)
 ###############################################################
 # Capture Roles ###############################################
 ###############################################################
-    role_metadata = rc.GetRoleBase(sdk=sdk).get_all_roles()
-
-    roles = rc.ExtractRoleInfo(sdk=sdk, role_base=role_metadata)
+    roles = rc.ExtractRoleInfo(sdk=sdk)
 
     pset_dict_yaml_format = roles.extract_permission_sets()
     mset_dict_yaml_format = roles.extract_model_sets()

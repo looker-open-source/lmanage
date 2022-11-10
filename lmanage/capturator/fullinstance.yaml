@@ -64,7 +64,7 @@ permission_sets:
       - see_user_dashboards
       - send_to_integration
 
-model_sets:
+oodel_sets:
   lk1_test_set:
     models:
       - test
