@@ -1,0 +1,963 @@
+# FOLDER_PERMISSIONS
+# Opening Session Welcome to the Capturator, this is the Folder place
+# -----------------------------------------------------
+
+- !LookerFolder
+  parent_id: '1'
+  id: '225'
+  name: debug_schedule
+  subfolder: []
+  content_metadata_id: 547
+  team_edit: []
+  team_view: []
+- !LookerFolder
+  parent_id: '1'
+  id: '157'
+  name: New folder
+  subfolder:
+  - !LookerFolder
+    parent_id: '157'
+    id: '204'
+    name: New folder
+    subfolder: []
+    content_metadata_id: 458
+    team_edit: []
+    team_view: []
+  content_metadata_id: 262
+  team_edit:
+  - All Users
+  - User
+  team_view: []
+- !LookerFolder
+  parent_id: '1'
+  id: '85'
+  name: SelectiveContent
+  subfolder: []
+  content_metadata_id: 112
+  team_edit: []
+  team_view: []
+- !LookerFolder
+  parent_id: '1'
+  id: '81'
+  name: Product_Overview
+  subfolder:
+  - !LookerFolder
+    parent_id: '81'
+    id: '84'
+    name: Product_B
+    subfolder: []
+    content_metadata_id: 110
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '81'
+    id: '82'
+    name: Product_A
+    subfolder:
+    - !LookerFolder
+      parent_id: '82'
+      id: '83'
+      name: Product_A_custom
+      subfolder: []
+      content_metadata_id: 108
+      team_edit: []
+      team_view: []
+    content_metadata_id: 106
+    team_edit: []
+    team_view: []
+  content_metadata_id: 104
+  team_edit: []
+  team_view: []
+# Looker Role
+# Opening Session Welcome to the Capturator, this is the Role place
+# -----------------------------------------------------
+
+
+
+# PERMISSION SETS
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - explore
+  - create_table_calculations
+  - create_custom_fields
+  - can_create_forecast
+  - save_content
+  - create_public_looks
+  - download_with_limit
+  - download_without_limit
+  - schedule_look_emails
+  - schedule_external_look_emails
+  - create_alerts
+  - follow_alerts
+  - send_to_s3
+  - send_to_sftp
+  - send_outgoing_webhook
+  - send_to_integration
+  - see_sql
+  - see_lookml
+  - develop
+  - deploy
+  - support_access_toggle
+  - use_sql_runner
+  - clear_cache_refresh
+  - can_copy_print
+  - see_drill_overlay
+  - manage_spaces
+  - manage_homepage
+  - manage_models
+  - manage_stereo
+  - create_prefetches
+  - login_special_email
+  - embed_browse_spaces
+  - embed_save_shared_space
+  - see_alerts
+  - see_queries
+  - see_logs
+  - see_users
+  - sudo
+  - see_schedules
+  - see_pdts
+  - see_datagroups
+  - update_datagroups
+  - see_system_activity
+  - administer
+  - mobile_app_access
+  name: Admin
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_with_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  name: User
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  - use_sql_runner
+  name: Developer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - mobile_app_access
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  name: Viewer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - use_sql_runner
+  name: Permission_set_517719
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - use_sql_runner
+  name: Permission_set_517719
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - embed_browse_spaces
+  - embed_save_shared_space
+  - explore
+  - see_looks
+  - see_user_dashboards
+  name: test embedddd
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - explore
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: testOops
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - embed_browse_spaces
+  - embed_save_shared_space
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - manage_stereo
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_alerts
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - sudo
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: Allan Test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - create_custom_fields
+  - create_table_calculations
+  - explore
+  - save_content
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: New LAHB
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_without_limit
+  - embed_browse_spaces
+  - embed_save_shared_space
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - manage_stereo
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_alerts
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - sudo
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: users
+
+
+# MODEL SETS
+- !LookerModelSet
+  models:
+  - haylen_pruebasmtr
+  - looker_ecommerce
+  - kavyakandukuri
+  - test
+  - 0_vysakh_thelook
+  - alexo_2218
+  - demo_123
+  - thelookbarney
+  - ecommerce_ivonne18
+  - thelook_srang
+  - jpr_cdmx
+  - ecommerce_solis2218_01
+  - ga4
+  - thelook_jluisg
+  - naga_project
+  - thesis_edher_18
+  - vutorthelook
+  - the_look_ken
+  - enarm
+  - cmu_thelook_bq
+  - extension-api-explorer
+  - jpr_city
+  - chris_the_look_bq
+  - incremental_pdt_bug
+  - jpr_mextoys
+  - snow_srang
+  - covid19_public_forecast_joespla_thesis
+  - souvik2218
+  - classicmodels
+  - rt2218
+  - mtrmisathelook
+  - combined_commits
+  - language_and_license
+  - looker_github_analysis
+  - remote_dependencies_test
+  - thelook_carlos
+  - ecommerce_myname
+  - vysakh_import
+  - vysakh_import_test
+  - ivanthesis
+  - yoshi-test-535996
+  - lookml-diagram
+  - NDT_dependency_issue
+  - clickhouse_fake
+  - outer_joins
+  - thelook_chris
+  - balcazartest2
+  - testdpr
+  - vsstdb
+  - cromero_training
+  - raj_look
+  name: All
+- !LookerModelSet
+  models:
+  - haylen_pruebasmtr
+  - looker_ecommerce
+  - kavyakandukuri
+  - test
+  - 0_vysakh_thelook
+  - alexo_2218
+  - demo_123
+  - thelookbarney
+  - ecommerce_ivonne18
+  - thelook_srang
+  - jpr_cdmx
+  - ecommerce_solis2218_01
+  - ga4
+  - thelook_jluisg
+  - naga_project
+  - thesis_edher_18
+  - vutorthelook
+  - the_look_ken
+  - enarm
+  - cmu_thelook_bq
+  - extension-api-explorer
+  - jpr_city
+  - chris_the_look_bq
+  - incremental_pdt_bug
+  - jpr_mextoys
+  - snow_srang
+  - covid19_public_forecast_joespla_thesis
+  - souvik2218
+  - classicmodels
+  - rt2218
+  - mtrmisathelook
+  - combined_commits
+  - language_and_license
+  - looker_github_analysis
+  - remote_dependencies_test
+  - thelook_carlos
+  - ecommerce_myname
+  - vysakh_import
+  - vysakh_import_test
+  - ivanthesis
+  - yoshi-test-535996
+  - lookml-diagram
+  - NDT_dependency_issue
+  - clickhouse_fake
+  - outer_joins
+  - thelook_chris
+  - balcazartest2
+  - testdpr
+  - vsstdb
+  - cromero_training
+  - raj_look
+  name: All
+- !LookerModelSet
+  models:
+  - 0_vysakh_thelook
+  - balcazartest
+  - chris_test_git
+  - classicmodels
+  - clickhouse_fake
+  - combined_commits
+  - cromero_training
+  - dany_test_snow
+  - ecommerce_ivonne18
+  - ecommerce_solis2218_01
+  - enarm
+  - extension-api-explorer
+  - ivanthesis
+  - jpr_city
+  - jpr_mextoys
+  - language_and_license
+  - looker_ecommerce
+  - looker_github_analysis
+  - lookml-diagram
+  - mtrmisasnowtest
+  - mtrmisathelook
+  - raj_look
+  - remote_dependencies_test
+  - rt2218
+  - second
+  - snow_srang
+  - snow_srangala
+  - souvik2218
+  - test_create_project
+  - testdpr
+  - thelook_carlos
+  - thelook_chris
+  - thelook_jluisg
+  - thelook_srang
+  - vutorthelook
+  - vysakh_import
+  - vysakh_import_test
+  name: Test_517719
+- !LookerModelSet
+  models:
+  - haylen_pruebasmtr
+  - looker_ecommerce
+  - kavyakandukuri
+  - test
+  - 0_vysakh_thelook
+  - alexo_2218
+  - demo_123
+  - thelookbarney
+  - ecommerce_ivonne18
+  - thelook_srang
+  - jpr_cdmx
+  - ecommerce_solis2218_01
+  - ga4
+  - thelook_jluisg
+  - naga_project
+  - thesis_edher_18
+  - vutorthelook
+  - the_look_ken
+  - enarm
+  - cmu_thelook_bq
+  - extension-api-explorer
+  - jpr_city
+  - chris_the_look_bq
+  - incremental_pdt_bug
+  - jpr_mextoys
+  - snow_srang
+  - covid19_public_forecast_joespla_thesis
+  - souvik2218
+  - classicmodels
+  - rt2218
+  - mtrmisathelook
+  - combined_commits
+  - language_and_license
+  - looker_github_analysis
+  - remote_dependencies_test
+  - thelook_carlos
+  - ecommerce_myname
+  - vysakh_import
+  - vysakh_import_test
+  - ivanthesis
+  - yoshi-test-535996
+  - lookml-diagram
+  - NDT_dependency_issue
+  - clickhouse_fake
+  - outer_joins
+  - thelook_chris
+  - balcazartest2
+  - testdpr
+  - vsstdb
+  - cromero_training
+  - raj_look
+  name: All
+- !LookerModelSet
+  models:
+  - 0_vysakh_thelook
+  - balcazartest
+  - chris_test_git
+  - classicmodels
+  - clickhouse_fake
+  - combined_commits
+  - cromero_training
+  - dany_test_snow
+  - ecommerce_ivonne18
+  - ecommerce_solis2218_01
+  - enarm
+  - extension-api-explorer
+  - ivanthesis
+  - jpr_city
+  - jpr_mextoys
+  - language_and_license
+  - looker_ecommerce
+  - looker_github_analysis
+  - lookml-diagram
+  - mtrmisasnowtest
+  - mtrmisathelook
+  - raj_look
+  - remote_dependencies_test
+  - rt2218
+  - second
+  - snow_srang
+  - snow_srangala
+  - souvik2218
+  - test_create_project
+  - testdpr
+  - thelook_carlos
+  - thelook_chris
+  - thelook_jluisg
+  - thelook_srang
+  - vutorthelook
+  - vysakh_import
+  - vysakh_import_test
+  name: Test_517719
+- !LookerModelSet
+  models:
+  - haylen_pruebasmtr
+  - looker_ecommerce
+  - kavyakandukuri
+  - test
+  - 0_vysakh_thelook
+  - alexo_2218
+  - demo_123
+  - thelookbarney
+  - ecommerce_ivonne18
+  - thelook_srang
+  - jpr_cdmx
+  - ecommerce_solis2218_01
+  - ga4
+  - thelook_jluisg
+  - naga_project
+  - thesis_edher_18
+  - vutorthelook
+  - the_look_ken
+  - enarm
+  - cmu_thelook_bq
+  - extension-api-explorer
+  - jpr_city
+  - chris_the_look_bq
+  - incremental_pdt_bug
+  - jpr_mextoys
+  - snow_srang
+  - covid19_public_forecast_joespla_thesis
+  - souvik2218
+  - classicmodels
+  - rt2218
+  - mtrmisathelook
+  - combined_commits
+  - language_and_license
+  - looker_github_analysis
+  - remote_dependencies_test
+  - thelook_carlos
+  - ecommerce_myname
+  - vysakh_import
+  - vysakh_import_test
+  - ivanthesis
+  - yoshi-test-535996
+  - lookml-diagram
+  - NDT_dependency_issue
+  - clickhouse_fake
+  - outer_joins
+  - thelook_chris
+  - balcazartest2
+  - testdpr
+  - vsstdb
+  - cromero_training
+  - raj_look
+  name: All
+- !LookerModelSet
+  models:
+  - extension-api-explorer
+  name: test_embeddd
+- !LookerModelSet
+  models:
+  - balcazartest
+  name: testroleOops
+- !LookerModelSet
+  models:
+  - AllanL
+  name: Allan L
+- !LookerModelSet
+  models:
+  - haylen_pruebasmtr
+  - looker_ecommerce
+  - kavyakandukuri
+  - test
+  - 0_vysakh_thelook
+  - alexo_2218
+  - demo_123
+  - thelookbarney
+  - ecommerce_ivonne18
+  - thelook_srang
+  - jpr_cdmx
+  - ecommerce_solis2218_01
+  - ga4
+  - thelook_jluisg
+  - naga_project
+  - thesis_edher_18
+  - vutorthelook
+  - the_look_ken
+  - enarm
+  - cmu_thelook_bq
+  - extension-api-explorer
+  - jpr_city
+  - chris_the_look_bq
+  - incremental_pdt_bug
+  - jpr_mextoys
+  - snow_srang
+  - covid19_public_forecast_joespla_thesis
+  - souvik2218
+  - classicmodels
+  - rt2218
+  - mtrmisathelook
+  - combined_commits
+  - language_and_license
+  - looker_github_analysis
+  - remote_dependencies_test
+  - thelook_carlos
+  - ecommerce_myname
+  - vysakh_import
+  - vysakh_import_test
+  - ivanthesis
+  - yoshi-test-535996
+  - lookml-diagram
+  - NDT_dependency_issue
+  - clickhouse_fake
+  - outer_joins
+  - thelook_chris
+  - balcazartest2
+  - testdpr
+  - vsstdb
+  - cromero_training
+  - raj_look
+  name: All
+- !LookerModelSet
+  models:
+  - haylen_pruebasmtr
+  - looker_ecommerce
+  - kavyakandukuri
+  - test
+  - 0_vysakh_thelook
+  - alexo_2218
+  - demo_123
+  - thelookbarney
+  - ecommerce_ivonne18
+  - thelook_srang
+  - jpr_cdmx
+  - ecommerce_solis2218_01
+  - ga4
+  - thelook_jluisg
+  - naga_project
+  - thesis_edher_18
+  - vutorthelook
+  - the_look_ken
+  - enarm
+  - cmu_thelook_bq
+  - extension-api-explorer
+  - jpr_city
+  - chris_the_look_bq
+  - incremental_pdt_bug
+  - jpr_mextoys
+  - snow_srang
+  - covid19_public_forecast_joespla_thesis
+  - souvik2218
+  - classicmodels
+  - rt2218
+  - mtrmisathelook
+  - combined_commits
+  - language_and_license
+  - looker_github_analysis
+  - remote_dependencies_test
+  - thelook_carlos
+  - ecommerce_myname
+  - vysakh_import
+  - vysakh_import_test
+  - ivanthesis
+  - yoshi-test-535996
+  - lookml-diagram
+  - NDT_dependency_issue
+  - clickhouse_fake
+  - outer_joins
+  - thelook_chris
+  - balcazartest2
+  - testdpr
+  - vsstdb
+  - cromero_training
+  - raj_look
+  name: All
+
+
+# LOOKER ROLES
+- !LookerRoles
+  permission_set: Admin
+  model_set: All
+  team: []
+  name: Admin
+- !LookerRoles
+  permission_set: User
+  model_set: All
+  team:
+  - User
+  name: User
+- !LookerRoles
+  permission_set: Developer
+  model_set: Test_517719
+  team:
+  - User
+  name: Developer
+- !LookerRoles
+  permission_set: Viewer
+  model_set: All
+  team:
+  - Demo
+  name: Viewer
+- !LookerRoles
+  permission_set: Permission_set_517719
+  model_set: Test_517719
+  team: []
+  name: User_test_ 517719
+- !LookerRoles
+  permission_set: Permission_set_517719
+  model_set: All
+  team: []
+  name: Role_All_Models_517719
+- !LookerRoles
+  permission_set: test embedddd
+  model_set: test_embeddd
+  team: []
+  name: test embedddd
+- !LookerRoles
+  permission_set: testOops
+  model_set: testroleOops
+  team:
+  - grouptestttt
+  name: testOopsRole
+- !LookerRoles
+  permission_set: Allan Test
+  model_set: Allan L
+  team: []
+  name: Allan new project
+- !LookerRoles
+  permission_set: New LAHB
+  model_set: All
+  team: []
+  name: Role LAHB
+- !LookerRoles
+  permission_set: users
+  model_set: All
+  team: []
+  name: users
+
+
+# USER_ATTRIBUTES
+- !LookerUserAttribute
+  name: access_filter_rmr
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: another_locale
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: array_test
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: boolean_attribute
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: env
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: google_user_id
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: landing_page
+  uatype: relative_url
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: locale
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: new_attribute
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: nikitha
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: number_format
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: rajkumar
+  uatype: number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value:
+  - '1'
+  teams:
+  - All Users
+- !LookerUserAttribute
+  name: test
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: tests
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: test_attri
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []

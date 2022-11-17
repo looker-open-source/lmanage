@@ -1,6 +1,7 @@
 import logging
+from time import sleep
 import coloredlogs
-from utils import looker_object_constructors as loc
+from lmanage.capturator.utils import looker_object_constructors as loc
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -15,14 +16,21 @@ class CaptureFolderConfig():
 
     def get_all_folders(self):
         '''retriving all Looker instance folders'''
-        instance_folders = self.sdk.all_folders()
-        response = [folder.id for folder in instance_folders]
+        instance_folders = None
+        while instance_folders is None:
+            try:
+                instance_folders = self.sdk.all_folders()
+            except:
+                sleep_no = 3
+                logger.info(f'looker is annoying sleeping for {sleep_no}')
+        response = [
+            folder.id for folder in instance_folders if folder.parent_id != "2" if folder.parent_id != "3"]
         return response
 
     @staticmethod
     def clean_folders(folder_list):
         '''removing standard system folders from folder list'''
-        removal_folder_id = ['1', '2', 'lookml', '5']
+        removal_folder_id = ['1', '2', '3', '4',  'lookml', '5']
         response = []
         for elem in enumerate(folder_list):
             check_value = elem[1]
@@ -36,29 +44,61 @@ class CaptureFolderConfig():
 
     def get_content_access_metadata(self, cmi):
         r = []
-        cmi_metadata = self.sdk.all_content_metadata_accesses(
-            content_metadata_id=cmi)
+        cmi_metadata = None
+        while cmi_metadata is None:
+            try:
+                cmi_metadata = self.sdk.all_content_metadata_accesses(
+                    content_metadata_id=cmi)
+            except:
+                sleep_no = 3
+                sleep(sleep_no)
+                logger.info(
+                    f'looker is frustrating so sleeping for {sleep_no}')
         for cmi in cmi_metadata:
             group_id = cmi.group_id
-            permission_type = cmi.permission_type.value
-            temp = {}
-            temp[permission_type] = loc.LookerGroup(
-                sdk=self.sdk, id=group_id).name
-            r.append(temp)
-
+            if group_id is not None:
+                permission_type = cmi.permission_type.value
+                temp = {}
+                group_meta = None
+                while group_meta is None:
+                    try:
+                        group_meta = self.sdk.group(group_id=group_id)
+                    except:
+                        sleep(3)
+                        logger.info('sleeping for 5')
+                temp[permission_type] = group_meta.get('name')
+                r.append(temp)
+            else:
+                logger.info(
+                    'no group permissions set on folder, ignoring individual permissions')
+                pass
         return r
 
     def create_folder_objects(self, folder_list):
         '''creating folder objects (class in utils folder)'''
-        response = []
+        response = {}
+        folder_list = sorted(folder_list, key=int, reverse=True)
         for folder in folder_list:
-            f_metadata = self.sdk.folder(folder_id=str(folder))
-            content_metadata_id = f_metadata.get('content_metadata_id')
-            a_list = self.get_content_access_metadata(cmi=content_metadata_id)
+            f_metadata = None
+            while f_metadata is None:
+                try:
+                    f_metadata = self.sdk.folder(folder_id=str(folder))
+                except:
+                    sleep(5)
+                    logger.info('sleeping for 5')
 
-            created_folder_object = loc.LookerFolder(
-                id=folder, folder_metadata=f_metadata, access_list=a_list)
-            response.append(created_folder_object)
+            if f_metadata.is_personal or f_metadata.is_personal_descendant or f_metadata.is_embed:
+                logger.info(
+                    f'folder {f_metadata.name} will be ignored as it\'s a personal folder or embed folder')
+            else:
+                content_metadata_id = f_metadata.get('content_metadata_id')
+                a_list = self.get_content_access_metadata(
+                    cmi=content_metadata_id)
+
+                created_folder_object = loc.LookerFolder(
+                    id=folder, folder_metadata=f_metadata, access_list=a_list)
+                logger.info(f'creating folder {folder}')
+                response[folder] = created_folder_object
         return response
 
     @ staticmethod
@@ -77,33 +117,21 @@ class CaptureFolderConfig():
                 response.append(folder)
         return response
 
-    @ staticmethod
-    def check_value_high(folder_list):
-        '''test'''
-        return [folder.id for folder in folder_list if folder.parent_id == '1']
-
     def create_nested_folder_objects(self, folder_list):
         '''create folder objects list with all children attached return
         full list of instance folder structure'''
-        check_value = self.check_value_high(folder_list)
-        iterator = 0
-        while len(folder_list) > len(check_value):
-            folder = folder_list[iterator]
-            if folder.parent_id == '1':
-                iterator += 1
-                pass
-            else:
-                subfolders = self.get_subfolders(
-                    folder_list=folder_list, parent_id=folder.parent_id)
-                f_parent_id = folder.parent_id
-                update_folder = [
-                    f for f in folder_list if f.id == f_parent_id][0]
+        for f in folder_list:
+            folder = folder_list.get(f)
+            f_parent_id = folder.parent_id
 
-                for f in subfolders:
-                    update_idx = folder_list.index(update_folder)
-                    folder_list[update_idx].add_child_folder(f)
-                    delete_idx = folder_list.index(f)
-                    folder_list.pop(delete_idx)
+            if f_parent_id in list(folder_list.keys()):
+                parent_folder = folder_list.get(f_parent_id)
+                parent_folder.add_child_folder(folder)
+            else:
+                pass
+
+        folder_list = [f for f in list(
+            folder_list.values()) if f.parent_id == '1']
 
         return folder_list
 
@@ -113,6 +141,6 @@ class CaptureFolderConfig():
         clean_folders = self.clean_folders(folder_list=folders)
         created_folder_list = self.create_folder_objects(
             folder_list=clean_folders)
-        self.create_nested_folder_objects(folder_list=created_folder_list)
-
-        return created_folder_list
+        final_folder_list = self.create_nested_folder_objects(
+            folder_list=created_folder_list)
+        return final_folder_list

@@ -1,37 +1,57 @@
 import logging
 import coloredlogs
-from looker_sdk import models, error
+from time import sleep
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
 
 
+class LookerUserAttribute():
+    def __init__(self, teams, name, uatype, hidden_value, user_view, user_edit, user_value) -> object:
+        self.name = name
+        self.uatype = uatype
+        self.hidden_value = hidden_value
+        self.user_view = str(user_view)
+        self.user_edit = str(user_edit)
+        self.value = user_value
+        self.teams = teams
+
+
 class ExtractUserAttributes():
     def __init__(self,  sdk):
         self.sdk = sdk
+        self.user_attribute_metadata = self.existing_user_attributes()
+        self.all_group_metadata = self.all_group_metadatas()
 
     def existing_user_attributes(self) -> dict:
-        all_instance_ua = self.sdk.all_user_attributes()
+        ex_ua = self.sdk.all_user_attributes()
+        for ua in enumerate(ex_ua):
+            if ua[1].get('is_system'):
+                ua_idx = ua[0]
+                ex_ua.pop(ua_idx)
+        return ex_ua
 
-        return all_instance_ua
+    def all_group_metadatas(self):
+        return self.sdk.all_groups()
 
-    def group_values_to_ua(self, user_attribute_metadata):
+    def create_user_attributes(self):
 
-        all_instance_groups = self.sdk.all_groups()
         group_metadata = {
-            group.id: group.name for group in all_instance_groups}
-        response = {}
-        for ua in user_attribute_metadata:
-            group_assign = self.sdk.all_user_attribute_group_values(
-                user_attribute_id=ua.id)
+            group.id: group.name for group in self.all_group_metadata}
+        response = []
+        for ua in self.user_attribute_metadata:
+            group_assign = None
+            while group_assign is None:
+                try:
+                    group_assign = self.sdk.all_user_attribute_group_values(
+                        user_attribute_id=ua.id)
+                    logger.info(f'creating group_assign {group_assign}')
+                except:
+                    sleep_no = 3
+                    sleep(sleep_no)
+                    logger.info(f'do the ting {sleep_no}')
             teams = []
             values = []
-            response[ua.name] = {}
-            response[ua.name]['type'] = ua.type
-            response[ua.name]['hidden_value'] = ua.value_is_hidden
-            response[ua.name]['user_view'] = ua.user_can_view
-            response[ua.name]['user_edit'] = ua.user_can_edit
-            # response[ua.name]['value'] = ua.values
 
             for group in group_assign:
                 group_name = group_metadata.get(group.group_id)
@@ -40,16 +60,15 @@ class ExtractUserAttributes():
                     values.append(group.value)
                 else:
                     pass
+            looker_ua = LookerUserAttribute(
+                name=ua.name,
+                uatype=ua.type,
+                hidden_value=ua.value_is_hidden,
+                user_view=ua.user_can_view,
+                user_edit=ua.user_can_edit,
+                user_value=values,
+                teams=teams
+            )
+            response.append(looker_ua)
 
-            response[ua.name]['teams'] = teams
-            response[ua.name]['value'] = values
-
-        return {'user_attributes': response}
-
-    def execute(self):
-        ua_metadata_ = self.existing_user_attributes()
-
-        something = self.group_values_to_ua(
-            user_attribute_metadata=ua_metadata_)
-
-        return something
+        return response

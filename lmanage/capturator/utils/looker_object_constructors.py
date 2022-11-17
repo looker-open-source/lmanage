@@ -35,20 +35,7 @@ class LookerFolder():
 
 
 class LookerGroup():
-    def __init__(self, sdk, id):
-        self.sdk = sdk
-        self.group_metadata = self.get_group_metadata(group_id=id)
-        self.name = self.group_metadata.name
+    def __init__(self, id, group_metadata):
+        self.name = group_metadata.name
         self.id = id
         self.children = []
-
-    def get_group_metadata(self, group_id):
-        g_metadata = self.sdk.group(group_id=group_id)
-        return g_metadata
-
-    def create_name(self, folder_id):
-        return self.sdk.folder(folder_id=str(folder_id)).name
-
-    def add_child(self, sid):
-        f_object = LookerFolder(sdk=self.sdk, id=sid)
-        self.children.append(f_object)

@@ -18,6 +18,7 @@ import logging
 import click
 from lmanage.mapview import mapview_execute
 from lmanage.configurator import provision_instance_permission_structure
+from lmanage.capturator import capture_instance_permission_structure
 
 logger = logging.getLogger(__name__)
 
@@ -76,19 +77,22 @@ def configurator(**kwargs):
     provision_instance_permission_structure.main(**kwargs)
 
 
-# @instance_config.command()
-# @click.option("-t", "--test")
-# .configurator.configura.configuratortor def update_configs(**kwargs):
-#     print(kwargs.items())
-
-
-# @instance_config.command()
-# @click.option("-t", "--test")
-# def user_permissions(**kwargs):
-#     print('users')
-
-
-# @instance_config.command()
-# @click.option("-t", "--test")
-# def full_instance_config(**kwargs):
-#     print('full')
+@lmanage.command()
+@ click.option("-i", "--ini-file",
+               help="**OPTIONAL ** Specify API Credentials in an ini file, if no path is given program will assume these values are set as environmental variables as denoted at https: // github.com/looker-open-source/sdk-codegen  # environment-variable-configuration")
+@ click.option("-yep", "--yaml-export-path",
+               help="Where to save the yaml file to use for instance configuration")
+@ click.option("-l", "--level",
+               default='INFO',
+               help="**OPTIONAL** Add the value 'DEBUG' to get a more verbose version of the returned stout text")
+def capturator(**kwargs):
+    level = kwargs.get('level', 'INFO')
+    coloredlogs.install(level=level, logger=logger)
+    for k, v in kwargs.items():
+        if {v} != None:
+            logger.info(
+                f'You have set {v} for your {k} variable')
+        else:
+            logger.debug(
+                f'There is no value set for {k} please use the `--help` flag to see input parameters')
+    capture_instance_permission_structure.main(**kwargs)
