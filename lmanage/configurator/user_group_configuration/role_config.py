@@ -16,26 +16,34 @@ class CreateRoleBase():
 
         final_response = []
         for permission in permission_set_dict:
-            permission_set_name = permission
-            permissions = permission_set_dict.get(permission)['permissions']
-            body = models.WritePermissionSet(
-                name=permission_set_name.lower(),
-                permissions=permissions
-            )
-            try:
-                perm = sdk.create_permission_set(
-                    body=body
+            permission_set_name = permission.get('name')
+            if permission_set_name == 'Admin':
+                pass
+            else:
+                permissions = permission.get('permissions')
+                body = models.WritePermissionSet(
+                    name=permission_set_name.lower(),
+                    permissions=permissions
                 )
-            except error.SDKError:
-                perm = sdk.search_permission_sets(name=permission_set_name)[0]
-                pid = perm.id
-                perm = sdk.update_permission_set(
-                    permission_set_id=pid, body=body)
+                try:
+                    perm = sdk.create_permission_set(
+                        body=body
+                    )
+                except error.SDKError as permerr:
+                    logger.debug(permerr.args[0])
+                    logger.info(
+                        f'permission set {permission_set_name} already exists on this instance')
 
-            temp = {}
-            temp['name'] = perm.name
-            temp['pid'] = perm.id
-            final_response.append(temp)
+                    perm = sdk.search_permission_sets(
+                        name=permission_set_name)[0]
+                    pid = perm.id
+                    perm = sdk.update_permission_set(
+                        permission_set_id=pid, body=body)
+
+                temp = {}
+                temp['name'] = perm.name
+                temp['pid'] = perm.id
+                final_response.append(temp)
 
         logger.debug(final_response)
         return final_response
@@ -44,7 +52,8 @@ class CreateRoleBase():
 
         permissions_dict = {p.name: p.id for p in all_perms}
         permissions_dict.pop('Admin')
-        yaml_permissions = [permission for permission in permission_set_dict]
+        yaml_permissions = [permission.get('name')
+                            for permission in permission_set_dict]
 
         for permission_set_name in permissions_dict.keys():
 
@@ -56,22 +65,28 @@ class CreateRoleBase():
     def create_model_set(self, sdk, model_set_dict: dict) -> list:
         final_response = []
         for model in model_set_dict:
-            model_set_name = model
-            attributed_models = model_set_dict.get(model)['models']
+            model_set_name = model.get('name')
+            attributed_models = model.get('models')
             body = models.WriteModelSet(
                 name=model_set_name.lower(), models=attributed_models)
             try:
                 model = sdk.create_model_set(body=body)
             except error.SDKError as modelerror:
-                logger.info(modelerror.args[0])
+                # logger.info(modelerror.args[0])
+                logger.info(
+                    f'The model set {model_set_name} exists already on this instance')
                 model = sdk.search_model_sets(name=model_set_name)[0]
                 model_set_id = model.id
-                model = sdk.update_model_set(
-                    model_set_id=model_set_id, body=body)
-                temp = {}
-                temp['model_set_name'] = model.name
-                temp['model_set_id'] = model.id
-                final_response.append(temp)
+                try:
+                    model = sdk.update_model_set(
+                        model_set_id=model_set_id, body=body)
+
+                    temp = {}
+                    temp['model_set_name'] = model.name
+                    temp['model_set_id'] = model.id
+                    final_response.append(temp)
+                except:
+                    pass
         logger.info(final_response)
         return final_response
 

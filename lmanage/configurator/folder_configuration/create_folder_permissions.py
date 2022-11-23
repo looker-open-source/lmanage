@@ -234,9 +234,9 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
                 self.sdk.delete_content_metadata_access(
                     content_metadata_access_id=delete_cmi)
             except error.SDKError as InheritanceError:
-                logger.info('''You have an inheritance error in your YAML file possibly 
+                logger.warn('''You have an inheritance error in your YAML file possibly 
                             around %s, skipping group_id %s''', delete_cmi, group_id)
-                logger.debug
+                logger.debug(InheritanceError.args[0])
 
     def sync_folder_permission(
         self,

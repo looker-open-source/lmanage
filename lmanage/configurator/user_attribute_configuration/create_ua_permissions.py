@@ -22,15 +22,15 @@ class CreateAndAssignUserAttributes():
         yaml_user_attributes = self.user_attribute_metadata
 
         for ua in yaml_user_attributes:
-            name = ua
-            if name in existing_ua:
-                logger.info(
+            name = ua.get('name')
+            if name in existing_ua.keys():
+                logger.warn(
                     f'user attribute {name} already exists on this instance')
             else:
-                datatype = yaml_user_attributes[ua]['type']
-                value_is_hidden = yaml_user_attributes[ua]['hidden_value']
-                user_view = yaml_user_attributes[ua]['user_view']
-                user_edit = yaml_user_attributes[ua]['user_edit']
+                datatype = ua.get('uatype')
+                value_is_hidden = ua.get('hidden_value')
+                user_view = ua.get('user_view')
+                user_edit = ua.get('user_edit')
 
                 ua_permissions = models.WriteUserAttribute(
                     name=name,
@@ -46,13 +46,14 @@ class CreateAndAssignUserAttributes():
 
     def sync_user_attributes(self):
         instance_ua = self.existing_user_attributes()
-        config_ua = [ua for ua in self.user_attribute_metadata]
+        config_ua = [ua.get('name') for ua in self.user_attribute_metadata]
         sys_default_ua = [
             'email',
             'first_name',
             'id',
             'landing_page',
             'last_name',
+            'number_format',
             'locale',
             'name'
         ]
@@ -61,7 +62,7 @@ class CreateAndAssignUserAttributes():
             if ua in instance_ua:
                 instance_ua.pop(ua, None)
 
-        for ua_name in instance_ua:
+        for ua_name in instance_ua.keys():
             if ua_name not in config_ua:
                 ua_id = instance_ua.get(ua_name)
                 self.sdk.delete_user_attribute(ua_id)
@@ -70,17 +71,16 @@ class CreateAndAssignUserAttributes():
                     it is not listed in the yaml config''')
 
     def add_group_values_to_ua(self):
-
         instance_ua = self.existing_user_attributes()
         all_instance_groups = self.sdk.all_groups()
         group_metadata = {
             group.name: group.id for group in all_instance_groups}
         yaml_user_attributes = self.user_attribute_metadata
         for ua in yaml_user_attributes:
-            meta_value = ','.join(yaml_user_attributes[ua].get('value'))
-            ua_id = instance_ua.get(ua)
+            meta_value = ','.join(ua.get('value'))
+            ua_id = instance_ua.get(ua.get('name'))
 
-            for group in yaml_user_attributes[ua].get('team'):
+            for group in ua.get('teams'):
                 group_id = group_metadata.get(group)
 
                 params_to_add = models.UserAttributeGroupValue(

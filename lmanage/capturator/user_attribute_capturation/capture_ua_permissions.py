@@ -1,6 +1,7 @@
 import logging
 import coloredlogs
 from time import sleep
+from lmanage.utils.errorhandling import return_error_message, return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -45,11 +46,10 @@ class ExtractUserAttributes():
                 try:
                     group_assign = self.sdk.all_user_attribute_group_values(
                         user_attribute_id=ua.id)
-                    logger.info(f'creating group_assign {group_assign}')
+                    logger.info(
+                        'capturing groups associated with user attribute %s', group_assign[0].get('user_attribute_id'))
                 except:
-                    sleep_no = 3
-                    sleep(sleep_no)
-                    logger.info(f'do the ting {sleep_no}')
+                    return_sleep_message()
             teams = []
             values = []
 

@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
-from looker_sdk import models
-import looker_sdk
+from looker_sdk import models, error
+from lmanage.utils.errorhandling import return_error_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -15,9 +15,9 @@ class CreateInstanceGroups():
         self.sdk = sdk
 
     def extract_teams(self, container, data_storage):
-        for k, v in container.items():
-            if 'team' in v.keys():
-                team_list = container[k]['team']
+        for team in container:
+            team_list = team.get('teams')
+            if len(team_list) > 0:
                 for team in team_list:
                     data_storage.append(team)
         return data_storage
@@ -54,8 +54,11 @@ class CreateInstanceGroups():
                 )
             )
             return group
-        except looker_sdk.error.SDKError as err:
-            logger.debug(err.args[0])
+        except error.SDKError as grouperr:
+            err_msg = return_error_message(grouperr)
+            logger.warn(
+                'You have hit a warning creating your group; warning = %s', err_msg)
+            logger.debug(grouperr.args[0])
             group = sdk.search_groups(name=group_name)
             return group[0]
 

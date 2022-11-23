@@ -7,7 +7,7 @@ from lmanage.configurator.folder_configuration import create_folder_permissions 
 from lmanage.configurator.user_group_configuration import role_config as rc
 from lmanage.configurator.user_group_configuration import group_config as gc
 from lmanage.configurator.user_group_configuration import user_permission as up
-from lmanage.configurator.utils import parse_yaml as py
+from lmanage.utils import parse_yaml as py
 
 
 logger = logging.getLogger(__name__)
@@ -80,9 +80,10 @@ def main(**kwargs):
 
 
 if __name__ == "__main__":
+    instance = 'clustered'
     YP = ('/usr/local/google/home/hugoselbie/code_sample/py/'
-          'lmanage/tests/example_yamls/fullinstance.yaml')
-    IP = ('/usr/local/google/home/hugoselbie/code_sample/py/ini/k8.ini')
+          'lmanage/tests/example_yamls/k8_output.yaml')
+    IP = ('/usr/local/google/home/hugoselbie/code_sample/py/ini/dev.ini')
 
     main(
         ini_file=IP,

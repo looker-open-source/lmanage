@@ -1,7 +1,7 @@
 import logging
-from time import sleep
 import coloredlogs
-from lmanage.capturator.utils import looker_object_constructors as loc
+from lmanage.utils import looker_object_constructors as loc
+from lmanage.utils.errorhandling import return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -21,8 +21,7 @@ class CaptureFolderConfig():
             try:
                 instance_folders = self.sdk.all_folders()
             except:
-                sleep_no = 3
-                logger.info(f'looker is annoying sleeping for {sleep_no}')
+                return_sleep_message()
         response = [
             folder.id for folder in instance_folders if folder.parent_id != "2" if folder.parent_id != "3"]
         return response
@@ -35,7 +34,8 @@ class CaptureFolderConfig():
         for elem in enumerate(folder_list):
             check_value = elem[1]
             if check_value in removal_folder_id or check_value is None:
-                logger.info('removing folder id %s', check_value)
+                logger.debug(
+                    'removing folder id %s from the capturation', check_value)
             else:
                 response.append(elem[1])
 
@@ -50,10 +50,7 @@ class CaptureFolderConfig():
                 cmi_metadata = self.sdk.all_content_metadata_accesses(
                     content_metadata_id=cmi)
             except:
-                sleep_no = 3
-                sleep(sleep_no)
-                logger.info(
-                    f'looker is frustrating so sleeping for {sleep_no}')
+                return_sleep_message()
         for cmi in cmi_metadata:
             group_id = cmi.group_id
             if group_id is not None:
@@ -64,8 +61,7 @@ class CaptureFolderConfig():
                     try:
                         group_meta = self.sdk.group(group_id=group_id)
                     except:
-                        sleep(3)
-                        logger.info('sleeping for 5')
+                        return_sleep_message()
                 temp[permission_type] = group_meta.get('name')
                 r.append(temp)
             else:
@@ -84,12 +80,11 @@ class CaptureFolderConfig():
                 try:
                     f_metadata = self.sdk.folder(folder_id=str(folder))
                 except:
-                    sleep(5)
-                    logger.info('sleeping for 5')
+                    return_sleep_message()
 
             if f_metadata.is_personal or f_metadata.is_personal_descendant or f_metadata.is_embed:
-                logger.info(
-                    f'folder {f_metadata.name} will be ignored as it\'s a personal folder or embed folder')
+                logger.warn(
+                    'folder %s  will be ignored as it\'s a personal folder or embed folder', f_metadata.name)
             else:
                 content_metadata_id = f_metadata.get('content_metadata_id')
                 a_list = self.get_content_access_metadata(
@@ -97,7 +92,7 @@ class CaptureFolderConfig():
 
                 created_folder_object = loc.LookerFolder(
                     id=folder, folder_metadata=f_metadata, access_list=a_list)
-                logger.info(f'creating folder {folder}')
+                logger.info('capturing folder %s', f_metadata.get('name'))
                 response[folder] = created_folder_object
         return response
 

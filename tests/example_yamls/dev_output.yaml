@@ -4,154 +4,154 @@
 
 - !LookerFolder
   parent_id: '1'
-  id: '182'
+  id: '16'
   name: frankie time
   subfolder:
   - !LookerFolder
-    parent_id: '182'
-    id: '183'
+    parent_id: '16'
+    id: '17'
     name: testing
     subfolder: []
-    content_metadata_id: 197
+    content_metadata_id: 18
     team_edit: []
     team_view: []
-  content_metadata_id: 196
+  content_metadata_id: 17
   team_edit: []
   team_view: []
 - !LookerFolder
   parent_id: '1'
-  id: '159'
+  id: '10'
   name: Business Operations
   subfolder:
   - !LookerFolder
-    parent_id: '159'
-    id: '161'
+    parent_id: '10'
+    id: '12'
     name: test_sub2
     subfolder:
     - !LookerFolder
-      parent_id: '161'
-      id: '163'
+      parent_id: '12'
+      id: '14'
       name: subdiddy
       subfolder:
       - !LookerFolder
-        parent_id: '163'
-        id: '164'
+        parent_id: '14'
+        id: '15'
         name: hugle_testy
         subfolder: []
-        content_metadata_id: 174
+        content_metadata_id: 16
         team_edit:
         - Freddy
         team_view:
         - hugle
-      content_metadata_id: 173
+      content_metadata_id: 15
       team_edit: []
       team_view:
-      - Freddy
       - BusinessOperations
-      - Famke
+      - hugo
+      - Freddy
       - hugle
       - Snaptest
-      - hugo
+      - Famke
     - !LookerFolder
-      parent_id: '161'
-      id: '162'
+      parent_id: '12'
+      id: '13'
       name: test_sub_sub
       subfolder: []
-      content_metadata_id: 172
+      content_metadata_id: 14
       team_edit:
       - Famke
       team_view:
       - hugle
-    content_metadata_id: 171
+    content_metadata_id: 13
     team_edit: []
     team_view:
-    - Freddy
     - BusinessOperations
-    - Famke
+    - hugo
+    - Freddy
     - hugle
     - Snaptest
-    - hugo
+    - Famke
   - !LookerFolder
-    parent_id: '159'
-    id: '160'
+    parent_id: '10'
+    id: '11'
     name: test_sub
     subfolder: []
-    content_metadata_id: 170
+    content_metadata_id: 12
     team_edit:
     - Freddy
     team_view:
     - hugo
-  content_metadata_id: 169
+  content_metadata_id: 11
   team_edit: []
   team_view:
-  - Freddy
   - BusinessOperations
-  - Famke
+  - hugo
+  - Freddy
   - hugle
   - Snaptest
-  - hugo
+  - Famke
 - !LookerFolder
   parent_id: '1'
-  id: '157'
+  id: '6'
   name: suffering succotash
   subfolder:
   - !LookerFolder
-    parent_id: '157'
-    id: '158'
+    parent_id: '6'
+    id: '7'
     name: another_one
     subfolder:
     - !LookerFolder
-      parent_id: '158'
-      id: '179'
+      parent_id: '7'
+      id: '9'
       name: ps_allhands
       subfolder: []
-      content_metadata_id: 193
+      content_metadata_id: 10
       team_edit:
+      - HugoTesty
       - sexy_group1
       - new_group
-      - HugoTesty
       - ps_allhand2
       team_view:
       - ps_allhand1
     - !LookerFolder
-      parent_id: '158'
-      id: '178'
+      parent_id: '7'
+      id: '8'
       name: sharkytesttest
       subfolder: []
-      content_metadata_id: 192
+      content_metadata_id: 9
       team_edit:
-      - sexy_group1
-      - new_group
       - HugoTesty
       - colin
+      - sexy_group1
+      - new_group
       - sharon
       team_view:
       - nick
-    content_metadata_id: 168
+    content_metadata_id: 8
     team_edit:
+    - HugoTesty
     - sexy_group1
     - new_group
-    - HugoTesty
     team_view:
-    - newer_group
     - colin
-    - sharon
     - nick
     - ps_allhand1
     - ps_allhand2
-  content_metadata_id: 167
+    - sharon
+    - newer_group
+  content_metadata_id: 7
   team_edit:
   - sexy_group1
   team_view:
-  - sexy_group2
-  - new_group
-  - newer_group
   - HugoTesty
+  - sexy_group2
   - colin
-  - sharon
+  - new_group
   - nick
   - ps_allhand1
   - ps_allhand2
+  - sharon
+  - newer_group
 # Looker Role
 # Opening Session Welcome to the Capturator, this is the Role place
 # -----------------------------------------------------
@@ -167,6 +167,8 @@
   - see_user_dashboards
   - explore
   - create_table_calculations
+  - create_custom_fields
+  - can_create_forecast
   - save_content
   - create_public_looks
   - download_with_limit
@@ -212,6 +214,12 @@
 - !LookerPermissionSet
   permissions:
   - access_data
+  - see_looks
+  - see_user_dashboards
+  name: test
+- !LookerPermissionSet
+  permissions:
+  - access_data
   - clear_cache_refresh
   - create_alerts
   - create_prefetches
@@ -254,35 +262,59 @@
 - !LookerPermissionSet
   permissions:
   - access_data
+  - clear_cache_refresh
+  - create_alerts
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - manage_stereo
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
   - see_looks
+  - see_sql
   - see_user_dashboards
-  name: test
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - support_access_toggle
+  - use_sql_runner
+  name: addfa
 
 
 # MODEL SETS
 - !LookerModelSet
   models:
   - extension-api-explorer
-  - data-dictionary
-  - bq1
   name: All
 - !LookerModelSet
   models:
   - extension-api-explorer
-  - data-dictionary
-  - bq1
   name: All
 - !LookerModelSet
   models:
   - extension-api-explorer
-  - data-dictionary
-  - bq1
   name: All
 - !LookerModelSet
   models:
   - extension-api-explorer
-  - data-dictionary
-  - bq1
+  name: All
+- !LookerModelSet
+  models:
+  - extension-api-explorer
   name: All
 
 
@@ -293,34 +325,24 @@
   teams: []
   name: Admin
 - !LookerRoles
-  permission_set: addfa
-  model_set: All
-  teams:
-  - BusinessOperations_BO_Dev
-  - DrewEdit
-  - westlake
-  name: BusinessOperations_Developer
-- !LookerRoles
-  permission_set: gghhhh
-  model_set: All
-  teams:
-  - Freddy
-  - BusinessOperations
-  name: BusinessOperations_User
-- !LookerRoles
   permission_set: test
   model_set: All
-  teams:
-  - Freddy
-  - BusinessOperations
-  - HugoTesty
+  teams: []
   name: Operations_User
 - !LookerRoles
   permission_set: addfa
   model_set: All
-  teams:
-  - BusinessOperations_BO_Dev
-  - DrewEdit
+  teams: []
+  name: BusinessOperations_Developer
+- !LookerRoles
+  permission_set: gghhhh
+  model_set: All
+  teams: []
+  name: BusinessOperations_User
+- !LookerRoles
+  permission_set: addfa
+  model_set: All
+  teams: []
   name: new_hugo_role
 
 
@@ -343,8 +365,7 @@
   user_view: 'True'
   user_edit: 'False'
   value:
-  - Yes
-  - Sharky
+  - Yes,Sharky
   teams:
   - CanSeeDAUGroup
   - HugoTesty
@@ -366,6 +387,14 @@
   teams: []
 - !LookerUserAttribute
   name: locale
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: number_format
   uatype: string
   hidden_value: false
   user_view: 'True'

@@ -2,12 +2,11 @@ import logging
 import coloredlogs
 import looker_sdk
 import ruamel.yaml
-import sys
 from lmanage.capturator.user_group_capturation import role_config as rc
 from lmanage.capturator.user_attribute_capturation import capture_ua_permissions as cup
 from lmanage.capturator.folder_capturation import folder_config as fc
 from lmanage.capturator.folder_capturation import create_folder_yaml_structure as cfp
-from lmanage.capturator.utils import looker_object_constructors as loc
+from lmanage.utils import looker_object_constructors as loc
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -76,11 +75,12 @@ def main(**kwargs):
         yaml.dump(looker_ua, file)
 
     # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
-    logger.info('Lmanage has finished configuring your Looker instance!')
+    logger.info('Lmanage has finished capturing your Looker instance!')
+    logger.info('please find the captured instance at %s', yaml_path)
 
 
 if __name__ == "__main__":
-    instance = 'demo'
+    instance = 'clustered'
     IP = (
         f'/usr/local/google/home/hugoselbie/code_sample/py/ini/{instance}.ini')
     YEP = f'/usr/local/google/home/hugoselbie/code_sample/py/lmanage/tests/example_yamls/{instance}_output.yaml'

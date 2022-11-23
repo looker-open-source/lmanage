@@ -18,7 +18,7 @@ class FolderConfig():
         response = []
 
         for d in self.folder_metadata:
-            folder_dict = self.folder_metadata.get(d)[0]
+            folder_dict = d
             metadata_list = []
             metadata_list = self.walk_folder_structure(
                 dict_obj=folder_dict,

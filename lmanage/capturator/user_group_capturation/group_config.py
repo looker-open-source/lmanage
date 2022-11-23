@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
-from looker_sdk import models
-import looker_sdk
+from looker_sdk import models, error
+from lmanage.utils.errorhandling import return_error_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -51,8 +51,10 @@ class GetInstanceGroups():
                 )
             )
             return group
-        except looker_sdk.error.SDKError as err:
-            logger.debug(err.args[0])
+        except error.SDKError as grouperr:
+            err_msg = return_error_message(grouperr)
+            logger.info('you have an error in your group; error = %s', err_msg)
+            logger.debug(grouperr.args[0])
             group = sdk.search_groups(name=group_name)
             return group[0]
 

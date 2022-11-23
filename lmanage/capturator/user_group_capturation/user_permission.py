@@ -2,7 +2,7 @@ import logging
 import coloredlogs
 import looker_sdk
 from looker_sdk import models
-from lmanage.configurator.user_group_configuration.role_config import CreateRoleBase
+from user_group_configuration.role_config import CreateRoleBase
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -90,6 +90,7 @@ class CreateInstanceRoles(CreateRoleBase):
         all_role_lookup = self.create_allrole_lookup()
         all_role_lookup.pop('Admin')
         yaml_role = [role for role in self.role_metadata]
+        logger.debug(all_role_lookup)
 
         for role_name in all_role_lookup.keys():
             if role_name not in yaml_role:
