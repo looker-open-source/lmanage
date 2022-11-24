@@ -162,137 +162,96 @@
 - !LookerPermissionSet
   permissions:
   - access_data
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  - explore
-  - create_table_calculations
-  - create_custom_fields
   - can_create_forecast
-  - save_content
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
   - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
   - download_with_limit
   - download_without_limit
-  - schedule_look_emails
-  - schedule_external_look_emails
-  - create_alerts
-  - follow_alerts
-  - send_to_s3
-  - send_to_sftp
-  - send_outgoing_webhook
-  - send_to_integration
-  - see_sql
-  - see_lookml
-  - develop
-  - deploy
-  - support_access_toggle
-  - use_sql_runner
-  - clear_cache_refresh
-  - can_copy_print
-  - see_drill_overlay
-  - manage_spaces
-  - manage_homepage
-  - manage_models
-  - manage_stereo
-  - create_prefetches
-  - login_special_email
   - embed_browse_spaces
-  - embed_save_shared_space
-  - see_alerts
-  - see_queries
-  - see_logs
-  - see_users
-  - sudo
-  - see_schedules
-  - see_pdts
-  - see_datagroups
-  - update_datagroups
-  - see_system_activity
-  - administer
+  - explore
+  - login_special_email
+  - manage_spaces
   - mobile_app_access
-  name: Admin
-- !LookerPermissionSet
-  permissions:
-  - access_data
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
   - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_system_activity
   - see_user_dashboards
-  name: test
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - sudo
+  - support_access_toggle
+  - use_sql_runner
+  name: developer
 - !LookerPermissionSet
   permissions:
   - access_data
+  - can_create_forecast
   - clear_cache_refresh
   - create_alerts
-  - create_prefetches
-  - create_public_looks
-  - create_table_calculations
-  - deploy
-  - develop
   - download_with_limit
   - download_without_limit
   - explore
   - follow_alerts
-  - manage_homepage
-  - manage_models
-  - manage_spaces
-  - manage_stereo
+  - mobile_app_access
   - save_content
-  - schedule_external_look_emails
   - schedule_look_emails
-  - see_drill_overlay
   - see_lookml
   - see_lookml_dashboards
   - see_looks
+  - see_schedules
   - see_sql
   - see_user_dashboards
   - send_outgoing_webhook
   - send_to_integration
   - send_to_s3
   - send_to_sftp
-  - support_access_toggle
   - use_sql_runner
-  name: addfa
+  name: explorer
 - !LookerPermissionSet
   permissions:
   - access_data
-  - download_with_limit
-  - explore
-  - schedule_look_emails
-  - see_looks
-  name: gghhhh
-- !LookerPermissionSet
-  permissions:
-  - access_data
+  - can_create_forecast
   - clear_cache_refresh
   - create_alerts
-  - create_prefetches
-  - create_public_looks
-  - create_table_calculations
-  - deploy
-  - develop
   - download_with_limit
   - download_without_limit
   - explore
   - follow_alerts
-  - manage_homepage
-  - manage_models
-  - manage_spaces
-  - manage_stereo
+  - mobile_app_access
   - save_content
-  - schedule_external_look_emails
   - schedule_look_emails
-  - see_drill_overlay
   - see_lookml
   - see_lookml_dashboards
   - see_looks
+  - see_schedules
   - see_sql
   - see_user_dashboards
   - send_outgoing_webhook
   - send_to_integration
   - send_to_s3
   - send_to_sftp
-  - support_access_toggle
   - use_sql_runner
-  name: addfa
+  name: explorer
 
 
 # MODEL SETS
@@ -303,113 +262,31 @@
 - !LookerModelSet
   models:
   - extension-api-explorer
-  name: All
+  name: lkjnlijilo
 - !LookerModelSet
   models:
   - extension-api-explorer
-  name: All
-- !LookerModelSet
-  models:
-  - extension-api-explorer
-  name: All
-- !LookerModelSet
-  models:
-  - extension-api-explorer
-  name: All
+  name: jkjlkjkljklj
 
 
 # LOOKER ROLES
 - !LookerRoles
-  permission_set: Admin
+  permission_set: developer
   model_set: All
   teams: []
-  name: Admin
+  name: Non-Admin
 - !LookerRoles
-  permission_set: test
+  permission_set: developer
   model_set: All
   teams: []
-  name: Operations_User
+  name: Developer
 - !LookerRoles
-  permission_set: addfa
-  model_set: All
+  permission_set: explorer
+  model_set: lkjnlijilo
   teams: []
-  name: BusinessOperations_Developer
+  name: frank
 - !LookerRoles
-  permission_set: gghhhh
-  model_set: All
+  permission_set: explorer
+  model_set: jkjlkjkljklj
   teams: []
-  name: BusinessOperations_User
-- !LookerRoles
-  permission_set: addfa
-  model_set: All
-  teams: []
-  name: new_hugo_role
-
-
-# USER_ATTRIBUTES
-- !LookerUserAttribute
-  name: can_see_hugo
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  value:
-  - No
-  teams:
-  - CanSeeDAUGroup
-  - Cameos
-- !LookerUserAttribute
-  name: can_see_sharky
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  value:
-  - Yes,Sharky
-  teams:
-  - CanSeeDAUGroup
-  - HugoTesty
-- !LookerUserAttribute
-  name: first_name
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'True'
-  value: []
-  teams: []
-- !LookerUserAttribute
-  name: landing_page
-  uatype: relative_url
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'True'
-  value: []
-  teams: []
-- !LookerUserAttribute
-  name: locale
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  value: []
-  teams: []
-- !LookerUserAttribute
-  name: number_format
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  value: []
-  teams: []
-- !LookerUserAttribute
-  name: region_all
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  value:
-  - us,ag,bb,dd
-  teams:
-  - AudreyGroup
-  - Cameos
-  - Freddy
+  name: sally

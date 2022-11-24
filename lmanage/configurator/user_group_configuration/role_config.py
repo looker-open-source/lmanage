@@ -1,6 +1,7 @@
 from looker_sdk import models, error
 import logging
 import coloredlogs
+from lmanage.utils import errorhandling as eh
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -30,9 +31,10 @@ class CreateRoleBase():
                         body=body
                     )
                 except error.SDKError as permerr:
+                    err_msg = eh.return_error_message(permerr)
                     logger.debug(permerr.args[0])
-                    logger.info(
-                        f'permission set {permission_set_name} already exists on this instance')
+                    logger.warn(
+                        'you have a warning permission set %s, warning = %s already exists on this instance', permission_set_name, err_msg)
 
                     perm = sdk.search_permission_sets(
                         name=permission_set_name)[0]
@@ -52,8 +54,10 @@ class CreateRoleBase():
 
         permissions_dict = {p.name: p.id for p in all_perms}
         permissions_dict.pop('Admin')
-        yaml_permissions = [permission.get('name')
+        yaml_permissions = [permission.get('name').lower()
                             for permission in permission_set_dict]
+        logger.debug('yaml permissions configured = %s', yaml_permissions)
+        logger.debug('existing permsissions = %s', permissions_dict.keys())
 
         for permission_set_name in permissions_dict.keys():
 
@@ -72,9 +76,10 @@ class CreateRoleBase():
             try:
                 model = sdk.create_model_set(body=body)
             except error.SDKError as modelerror:
-                # logger.info(modelerror.args[0])
-                logger.info(
-                    f'The model set {model_set_name} exists already on this instance')
+                err_msg = eh.return_error_message(modelerror)
+                logger.warn(
+                    'you have a warning in creating model set %s, warning = %s', model_set_name, err_msg)
+                logger.debug(modelerror.args[0])
                 model = sdk.search_model_sets(name=model_set_name)[0]
                 model_set_id = model.id
                 try:
@@ -87,7 +92,7 @@ class CreateRoleBase():
                     final_response.append(temp)
                 except:
                     pass
-        logger.info(final_response)
+        logger.debug(final_response)
         return final_response
 
     def sync_model_set(self, sdk, all_models, model_set_list: list):
@@ -123,3 +128,5 @@ class CreateRoleBase():
         # Syncing Permission and Model sets with Yaml file.
         self.sync_permission_set(
             sdk=self.sdk, all_perms=self.get_all_permission_sets(), permission_set_dict=self.permission_set_metadata)
+        self.sync_model_set(sdk=self.sdk, all_models=self.get_all_model_sets(
+        ), model_set_list=self.model_set_metadata)

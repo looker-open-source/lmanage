@@ -46,7 +46,7 @@ class CreateInstanceRoles(CreateRoleBase):
             role_name = r_metadata.get('name')
             model_set_id = model_lookup.get(r_metadata.get('model_set'))
             permission_set_id = permission_lookup.get(
-                r_metadata.get('permission_set'))
+                r_metadata.get('permission_set').lower())
             if role_name != 'Admin':
                 body = models.WriteRole(
                     name=role_name,
@@ -61,7 +61,7 @@ class CreateInstanceRoles(CreateRoleBase):
                 except error.SDKError as roleerror:
                     err_msg = return_error_message(roleerror)
                     logger.warn(
-                        'You have hit a warning creating your role; warning = %s', err_msg)
+                        'You have hit a warning creating your role %s; warning = %s', role_name, err_msg)
                     role_id = self.sdk.search_roles(name=role_name)[0].id
                     role = self.sdk.update_role(role_id=role_id, body=body)
                 temp = {}

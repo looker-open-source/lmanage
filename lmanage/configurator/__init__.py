@@ -1,5 +1,3 @@
-#!/usr/bin/python
-#
 # Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,19 +11,5 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import click
-import sys
-from .capturator import commands as cap_commands
-from .configurator import commands as config_commands
 
-
-@click.group()
-@click.version_option()
-def lmanage():
-    pass
-
-
-lmanage.add_command(cap_commands.capturator)
-lmanage.add_command(config_commands.configurator)
-if __name__ == '__main__':
-    lmanage()
+__version__ = '0.1.4'

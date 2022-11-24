@@ -1,5 +1,6 @@
 import logging
 import coloredlogs
+import itertools
 from time import sleep
 from lmanage.utils.errorhandling import return_sleep_message
 
@@ -35,24 +36,54 @@ class ExtractRoleInfo():
     def get_all_roles(self):
         sdk = self.sdk
         response = sdk.all_roles()
+        for role in enumerate(response):
+
+            if role[1].name == 'Admin':
+                response.pop(role[0])
+
         return response
+
+    def check_permission_set(self, role, r_list):
+        for r_list_val in r_list:
+            if role.permission_set.name == r_list_val.name:
+                if role.permission_set.permissions == r_list_val.permissions:
+                    return False
+            else:
+                return True
+        return True
 
     def extract_permission_sets(self):
         response = []
         for role in self.role_base:
             logger.debug(role)
-            perm_set = LookerPermissionSet(
-                permissions=role.permission_set.permissions,
-                name=role.permission_set.name)
-            response.append(perm_set)
+            if role.permission_set is None or role.model_set is None:
+                del_id = self.sdk.search_roles(name=role.name)[0].id
+                self.sdk.delete_role(role_id=str(del_id))
+            else:
+                if self.check_permission_set(role, response):
+                    perm_set = LookerPermissionSet(
+                        permissions=role.permission_set.permissions,
+                        name=role.permission_set.name)
+                    response.append(perm_set)
+
         return response
+
+    def check_model_set(self, role, r_list):
+        for r_list_val in r_list:
+            if role.model_set.name == r_list_val.name:
+                if role.model_set.models == r_list_val.models:
+                    return False
+            else:
+                return True
+        return True
 
     def extract_model_sets(self):
         response = []
         for role in self.role_base:
-            model_set = LookerModelSet(
-                models=role.model_set.models, name=role.model_set.name)
-            response.append(model_set)
+            if self.check_model_set(role=role, r_list=response):
+                model_set = LookerModelSet(
+                    models=role.model_set.models, name=role.model_set.name)
+                response.append(model_set)
         return response
 
     def extract_role_info(self):
