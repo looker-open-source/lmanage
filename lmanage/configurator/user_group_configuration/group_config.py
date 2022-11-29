@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
 from looker_sdk import models, error
-from lmanage.utils.errorhandling import return_error_message
+from utils.errorhandling import return_error_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -58,7 +58,7 @@ class CreateInstanceGroups():
             err_msg = return_error_message(grouperr)
             logger.warn(
                 'You have hit a warning creating your group; warning = %s', err_msg)
-            logger.debug(grouperr.args[0])
+            logger.debug(grouperr)
             group = sdk.search_groups(name=group_name)
             return group[0]
 

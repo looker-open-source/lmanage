@@ -2,8 +2,8 @@ import logging
 import json
 import coloredlogs
 from looker_sdk import models, error
-from lmanage.configurator.user_group_configuration.role_config import CreateRoleBase
-from lmanage.utils.errorhandling import return_error_message
+from configurator.user_group_configuration.role_config import CreateRoleBase
+from utils.errorhandling import return_error_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -44,7 +44,8 @@ class CreateInstanceRoles(CreateRoleBase):
 
         for r_metadata in self.role_metadata:
             role_name = r_metadata.get('name')
-            model_set_id = model_lookup.get(r_metadata.get('model_set'))
+            model_set_id = model_lookup.get(
+                r_metadata.get('model_set') if r_metadata.get('model_set') == 'All' else r_metadata.get('model_set').lower())
             permission_set_id = permission_lookup.get(
                 r_metadata.get('permission_set').lower())
             if role_name != 'Admin':
@@ -61,7 +62,7 @@ class CreateInstanceRoles(CreateRoleBase):
                 except error.SDKError as roleerror:
                     err_msg = return_error_message(roleerror)
                     logger.warn(
-                        'You have hit a warning creating your role %s; warning = %s', role_name, err_msg)
+                        'You have hit a warning creating your role \'%s\'; warning = %s', role_name, err_msg)
                     role_id = self.sdk.search_roles(name=role_name)[0].id
                     role = self.sdk.update_role(role_id=role_id, body=body)
                 temp = {}
@@ -81,7 +82,7 @@ class CreateInstanceRoles(CreateRoleBase):
             err_msg = return_error_message(role_err)
             logger.warn(
                 'You have hit a warning setting your role, warning = %s', err_msg)
-            logger.debug(role_err.args[0])
+            logger.debug(role_err)
 
     def attribute_instance_roles(self, created_role_metadata: list):
         role_lookup = self.create_allrole_lookup()

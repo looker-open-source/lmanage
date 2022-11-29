@@ -450,7 +450,6 @@
   - see_user_dashboards
   - send_outgoing_webhook
   - send_to_integration
-  - send_to_s3
   - send_to_sftp
   - use_sql_runner
   name: explorer
@@ -882,3 +881,924 @@
   model_set: socal4-demo-1
   teams: []
   name: socal4-developer-retail-only
+
+
+# USER_ATTRIBUTES
+- !LookerUserAttribute
+  name: access_granted_biointellisense
+  uatype: datetime
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: account_executive
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: account_name
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: allowed_brands
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: allowed_stations
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: assignee_email
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: bq_project_name
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: brand
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value:
+  - fsdlkfsldkjflsd
+  teams:
+  - Company A
+- !LookerUserAttribute
+  name: brand_demo
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: brand_dropdown
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: brand_name
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: brand_rls
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: bridgecorp_can_see_everything
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: bridgecorp_object_ids
+  uatype: advanced_filter_number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: bridgecorp_object_items_count
+  uatype: advanced_filter_number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: bruk_test
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: business_unit
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: campaign_name
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: can_see_details
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: can_see_email
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: can_see_pii
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: can_see_sales
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value:
+  - can_see_sales
+  teams:
+  - Marketing
+- !LookerUserAttribute
+  name: can_see_sensitive_data
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value:
+  - Yes
+  teams:
+  - All Users
+- !LookerUserAttribute
+  name: can_see_status
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: category
+  uatype: string
+  hidden_value: true
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: city
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value:
+  - London
+  - New York
+  teams:
+  - london team
+  - new york team
+- !LookerUserAttribute
+  name: citylist
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: city_v1
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: client
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: client_id
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: client_name
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: club
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: company
+  uatype: string
+  hidden_value: true
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: company_geet
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: company_id
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: connection_name
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: connection_string
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: country
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: country_currency
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: customer
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: customerid
+  uatype: number
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: customer_database
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: date
+  uatype: datetime
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: departamento
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: department
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: department_rls
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: discount
+  uatype: number
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: distro_center
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: download_limit
+  uatype: number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: favorite_color
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: finance_team
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: fournisseur
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: gcloud
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: git_user
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: goal
+  uatype: number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: historical_data
+  uatype: advanced_filter_datetime
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: historical_data_test
+  uatype: datetime
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: hotel_brand
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: hotel_chain
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: is_looker
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: landing_page
+  uatype: relative_url
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: legal_team
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: locale
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: logo
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: magasin
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: media_name
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: model_name
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: new_name
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: number_format
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: obfuscated
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: order_id
+  uatype: advanced_filter_number
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: organization
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: organization_aa
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value:
+  - Google
+  teams:
+  - Company A
+- !LookerUserAttribute
+  name: organization_name
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: org_id
+  uatype: advanced_filter_number
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: param_connect
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: park
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: partner_id
+  uatype: number
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: partner_id_demo
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: password
+  uatype: string
+  hidden_value: true
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: pii
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: platform
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: product_category
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: project
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: publisher_type
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: rate
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: referrer
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: salaire
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: salesforce_campaigns_action_domain
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: salesforce_user_id
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: sales_segment
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: samesystem_brand
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: security_key
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: site_id
+  uatype: string
+  hidden_value: true
+  user_view: 'False'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: snowflake_wh
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: sport_category
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: state
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value:
+  - New York
+  teams:
+  - All Users
+- !LookerUserAttribute
+  name: states_you_can_see
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: state_filter
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: status
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: status_check
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: store
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: subgroup_id
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: temp_country_access
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: test
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: timezone_a
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: time_horizon
+  uatype: advanced_filter_datetime
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: track_graph
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: type
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: username
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: user_id
+  uatype: advanced_filter_number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: user_id_events
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []
+- !LookerUserAttribute
+  name: user_schema
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  value: []
+  teams: []

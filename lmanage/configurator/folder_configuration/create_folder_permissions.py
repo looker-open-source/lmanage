@@ -2,23 +2,24 @@ import logging
 import time
 import coloredlogs
 from looker_sdk import models, error
-from lmanage.configurator.folder_configuration.folder_config import CreateInstanceFolders
+
+from utils import errorhandling
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
 
 
-class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
+class CreateAndProvisionInstanceFolders():
     def __init__(self, folders, sdk):
-        super().__init__(folders, sdk)
-        self.instance_folder_metadata = super().execute()
+        self.sdk = sdk
+        self.instance_folder_metadata = folders
 
     def get_content_access_metadata(self) -> list:
         response = []
 
         for folder in self.instance_folder_metadata:
             temp_dict = {}
-            temp_dict['name'] = folder.get('folder_name')
+            temp_dict['name'] = folder.get('name')
             temp_dict['cmi'] = folder.get('content_metadata_id')
             edit_group = folder.get('team_edit')
             view_group = folder.get('team_view')
@@ -148,10 +149,15 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
             inheritance: bool):
 
         # don't want to inherit access from parent folders
-        self.sdk.update_content_metadata(
-            content_metadata_id=cmaid,
-            body=models.WriteContentMeta(inherits=inheritance)
-        )
+        try:
+            self.sdk.update_content_metadata(
+                content_metadata_id=cmaid,
+                body=models.WriteContentMeta(inherits=inheritance)
+            )
+        except error.SDKError as content_metadata_error:
+            err_msg = errorhandling.return_error_message(
+                content_metadata_error)
+            logger.warn('there might be a warning %s', err_msg)
 
     def add_content_access(
         self,
@@ -170,8 +176,6 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
                 cmaid=cmaid,
                 inheritance=False
             )
-            folder_name = self.sdk.content_metadata(
-                content_metadata_id=cmaid).name
             group_name = self.sdk.search_groups(id=group_id)[0].name
 
             if group_id in cm_accesses.keys():
@@ -192,7 +196,7 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
                                 group_id=group_id
                             ))
                     except error.SDKError as foldererror:
-                        logger.debug(foldererror.args[0])
+                        logger.debug(foldererror)
                     folder_name = self.sdk.content_metadata(
                         content_metadata_id=cmaid).name
                     group_name = self.sdk.search_groups(id=group_id)[0].name
@@ -236,7 +240,7 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
             except error.SDKError as InheritanceError:
                 logger.warn('''You have an inheritance error in your YAML file possibly 
                             around %s, skipping group_id %s''', delete_cmi, group_id)
-                logger.debug(InheritanceError.args[0])
+                logger.debug(InheritanceError)
 
     def sync_folder_permission(
         self,
@@ -316,7 +320,4 @@ class CreateAndProvisionInstanceFolders(CreateInstanceFolders):
 
         # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
         self.provision_folders_with_group_access(
-            content_access_metadata_list=content_access_metadata)
-
-        self.remove_all_user_group(
             content_access_metadata_list=content_access_metadata)

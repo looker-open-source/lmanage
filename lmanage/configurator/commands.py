@@ -16,7 +16,7 @@
 import coloredlogs
 import logging
 import click
-import lmanage.provision_instance_permission_structure
+from lmanage import provision_instance_permission_structure
 
 logger = logging.getLogger(__name__)
 

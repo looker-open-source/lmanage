@@ -54,7 +54,7 @@ class GetInstanceGroups():
         except error.SDKError as grouperr:
             err_msg = return_error_message(grouperr)
             logger.info('you have an error in your group; error = %s', err_msg)
-            logger.debug(grouperr.args[0])
+            logger.debug(grouperr)
             group = sdk.search_groups(name=group_name)
             return group[0]
 

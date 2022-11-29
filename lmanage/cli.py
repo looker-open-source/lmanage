@@ -14,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import click
-import sys
 from .capturator import commands as cap_commands
 from .configurator import commands as config_commands
 

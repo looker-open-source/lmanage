@@ -1,13 +1,13 @@
 import logging
 import coloredlogs
 import looker_sdk
-from lmanage.configurator.user_attribute_configuration import create_ua_permissions as cuap
-from lmanage.configurator.folder_configuration import folder_config as fc
-from lmanage.configurator.folder_configuration import create_folder_permissions as cfp
-from lmanage.configurator.user_group_configuration import role_config as rc
-from lmanage.configurator.user_group_configuration import group_config as gc
-from lmanage.configurator.user_group_configuration import user_permission as up
-from lmanage.utils import parse_yaml as py
+from configurator.user_attribute_configuration import create_ua_permissions as cuap
+from configurator.folder_configuration import folder_config as fc
+from configurator.folder_configuration import create_folder_permissions as cfp
+from configurator.user_group_configuration import role_config as rc
+from configurator.user_group_configuration import group_config as gc
+from configurator.user_group_configuration import user_permission as up
+from utils import parse_yaml as py
 
 
 logger = logging.getLogger(__name__)
@@ -64,8 +64,9 @@ def main(**kwargs):
 # Folder Config ################################################
 ###############################################################
     # CREATE NEW FOLDERS
+    fc.CreateInstanceFolders.execute(folders=unnested_folder_metadata)
     cfp.CreateAndProvisionInstanceFolders(
-        folders=folder_metadata, sdk=sdk).execute()
+        folders=unnested_folder_metadata, sdk=sdk).execute()
 
     logger.info(div)
 

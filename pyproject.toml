@@ -32,6 +32,7 @@ sqlparse = "^0.4.2"
 XlsxWriter = "^3.0.3"
 "ruamel.yaml" = "^0.17.21"
 pandas = "^1.5.2"
+mypy = "^0.991"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
