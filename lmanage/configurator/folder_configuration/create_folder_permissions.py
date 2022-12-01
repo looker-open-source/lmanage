@@ -14,13 +14,16 @@ class CreateAndProvisionInstanceFolders():
         self.sdk = sdk
         self.instance_folder_metadata = folders
 
-    def get_content_access_metadata(self) -> list:
+    def get_content_access_metadata(self, folders: list) -> list:
         response = []
 
-        for folder in self.instance_folder_metadata:
+        for folder in folders:
+            folder_name = folder.get('name')
+            cmaid = self.sdk.search_folders(name=folder_name)[
+                0].content_metadata_id
             temp_dict = {}
-            temp_dict['name'] = folder.get('name')
-            temp_dict['cmi'] = folder.get('content_metadata_id')
+            temp_dict['name'] = folder_name
+            temp_dict['cmi'] = cmaid
             edit_group = folder.get('team_edit')
             view_group = folder.get('team_view')
 
@@ -217,16 +220,17 @@ class CreateAndProvisionInstanceFolders():
 
     def provision_folders_with_group_access(self, content_access_metadata_list: list):
 
-        for access_item in content_access_metadata_list:
-            content_metadata_id = access_item["cmi"]
+        for folder_tree in content_access_metadata_list:
+            for access_item in folder_tree:
+                content_metadata_id = access_item["cmi"]
 
-            self.update_folder_inheritance(
-                cmaid=content_metadata_id, inheritance=False)
+                self.update_folder_inheritance(
+                    cmaid=content_metadata_id, inheritance=False)
 
-            gp_permissions = access_item.get('group_permissions')
+                gp_permissions = access_item.get('group_permissions')
 
-            self.sync_folder_permission(cmaid=content_metadata_id,
-                                        gp_permissions=gp_permissions)
+                self.sync_folder_permission(cmaid=content_metadata_id,
+                                            gp_permissions=gp_permissions)
 
     def remove_content_access(self,
                               cm_accesses: dict):
@@ -316,7 +320,10 @@ class CreateAndProvisionInstanceFolders():
 
     def execute(self):
         # CONFIGURE FOLDERS WITH EDIT AND VIEW ACCESS
-        content_access_metadata = self.get_content_access_metadata()
+        content_access_metadata = []
+        for folder_tree in self.instance_folder_metadata:
+            r = self.get_content_access_metadata(folders=folder_tree)
+            content_access_metadata.append(r)
 
         # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
         self.provision_folders_with_group_access(

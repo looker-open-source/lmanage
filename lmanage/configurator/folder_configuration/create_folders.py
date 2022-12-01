@@ -1,5 +1,4 @@
 import logging
-from os import name
 from looker_sdk import models, error
 import coloredlogs
 
@@ -98,8 +97,8 @@ class CreateInstanceFolders():
         return 'your folders are in sync with your yaml file'
 
     def execute(self):
-        unested_folder_data = self.unnest_folder_data()
         folder_metadata_list = []
-        for folder_tree in unested_folder_data:
+        for folder_tree in self.folder_metadata:
             self.create_looker_folder_metadata(
                 folder_tree, folder_metadata_list)
+        self.sync_folders(created_folder=folder_metadata_list)

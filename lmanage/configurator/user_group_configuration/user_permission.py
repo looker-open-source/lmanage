@@ -110,3 +110,4 @@ class CreateInstanceRoles(CreateRoleBase):
 
     def execute(self):
         created_roles = self.create_instance_roles()
+        self.attribute_instance_roles(created_role_metadata=created_roles)

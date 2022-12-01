@@ -4,6 +4,7 @@ import looker_sdk
 from configurator.user_attribute_configuration import create_ua_permissions as cuap
 from configurator.folder_configuration import folder_config as fc
 from configurator.folder_configuration import create_folder_permissions as cfp
+from configurator.folder_configuration import create_folders as cf
 from configurator.user_group_configuration import role_config as rc
 from configurator.user_group_configuration import group_config as gc
 from configurator.user_group_configuration import user_permission as up
@@ -64,7 +65,8 @@ def main(**kwargs):
 # Folder Config ################################################
 ###############################################################
     # CREATE NEW FOLDERS
-    fc.CreateInstanceFolders.execute(folders=unnested_folder_metadata)
+    cf.CreateInstanceFolders(
+        folder_metadata=unnested_folder_metadata, sdk=sdk).execute()
     cfp.CreateAndProvisionInstanceFolders(
         folders=unnested_folder_metadata, sdk=sdk).execute()
 

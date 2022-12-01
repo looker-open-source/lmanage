@@ -83,6 +83,7 @@ if __name__ == "__main__":
     instance = 'demo'
     IP = (
         f'/usr/local/google/home/hugoselbie/code_sample/py/ini/{instance}.ini')
-    YP = ('/usr/local/google/home/hugoselbie/code_sample/py/lmanage/tests/example_yamls/%s_output.yaml', instance)
+    YP = (
+        f'/usr/local/google/home/hugoselbie/code_sample/py/lmanage/tests/example_yamls/{instance}_output.yaml')
 
     main(ini_file=IP, yaml_export_path=YP)

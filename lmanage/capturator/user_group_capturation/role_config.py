@@ -2,6 +2,7 @@ import logging
 import coloredlogs
 import itertools
 from time import sleep
+from utils import errorhandling
 from utils.errorhandling import return_sleep_message
 
 logger = logging.getLogger(__name__)
@@ -43,47 +44,45 @@ class ExtractRoleInfo():
 
         return response
 
-    def check_permission_set(self, role, r_list):
-        for r_list_val in r_list:
-            if role.permission_set.name == r_list_val.name:
-                if role.permission_set.permissions == r_list_val.permissions:
-                    return False
-            else:
-                return True
-        return True
+    def create_list_of_permission_sets(self):
+        response = []
+        for role in self.role_base:
+            temp = {}
+            temp['name'] = role.permission_set.name
+            temp['permissions'] = role.permission_set.permissions
+            response.append(temp)
+        return response
 
     def extract_permission_sets(self):
         response = []
-        for role in self.role_base:
+        p_list = errorhandling.dedup_list_of_dicts(
+            self.create_list_of_permission_sets())
+        for role in p_list:
             logger.debug(role)
-            if role.permission_set is None or role.model_set is None:
-                del_id = self.sdk.search_roles(name=role.name)[0].id
-                self.sdk.delete_role(role_id=str(del_id))
-            else:
-                if self.check_permission_set(role, response):
-                    perm_set = LookerPermissionSet(
-                        permissions=role.permission_set.permissions,
-                        name=role.permission_set.name)
-                    response.append(perm_set)
+            perm_set = LookerPermissionSet(
+                name=role.get('name'),
+                permissions=role.get('permissions'))
+            response.append(perm_set)
 
         return response
 
-    def check_model_set(self, role, r_list):
-        for r_list_val in r_list:
-            if role.model_set.name == r_list_val.name:
-                if role.model_set.models == r_list_val.models:
-                    return False
-            else:
-                return True
-        return True
+    def create_list_of_roles(self):
+        response = []
+        for role in self.role_base:
+            temp = {}
+            temp['name'] = role.model_set.name
+            temp['models'] = role.model_set.models
+            response.append(temp)
+        return response
 
     def extract_model_sets(self):
         response = []
-        for role in self.role_base:
-            if self.check_model_set(role=role, r_list=response):
-                model_set = LookerModelSet(
-                    models=role.model_set.models, name=role.model_set.name)
-                response.append(model_set)
+        role_list = errorhandling.dedup_list_of_dicts(
+            self.create_list_of_roles())
+        for role in role_list:
+            model_set = LookerModelSet(
+                models=role.get('models'), name=role.get('name'))
+            response.append(model_set)
         return response
 
     def extract_role_info(self):

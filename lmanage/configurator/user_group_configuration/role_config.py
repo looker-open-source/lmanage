@@ -78,8 +78,6 @@ class CreateRoleBase():
             try:
                 model = sdk.create_model_set(body=body)
                 temp = {}
-                temp['model_set_name'] = model.name
-                temp['model_set_id'] = model.id
                 final_response.append(temp)
             except error.SDKError as modelerror:
                 err_msg = eh.return_error_message(modelerror)
