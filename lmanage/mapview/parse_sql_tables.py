@@ -20,9 +20,9 @@ class ParseSqlTables():
 
         Iterates over a list of PyLookML files identifies view files aand returns a
         list of the sql_table_names if they exist in an object of type 'View'
-            qid: (int) query_id from a  Looker query
+            qid: (int) query_id from lmanage.a  Looker query
         Returns:
-            A list of all the tables that are found from a Looker generated
+            A list of all the tables that are found from lmanage.a Looker generated
             SQL query.
             For example:
             ['public.order_items','public.inventory_items','public.events']
@@ -43,14 +43,14 @@ class ParseSqlTables():
 
     def get_sql_from_elements(self):
         """Amends returned SDK System__Activity reponse with sql tables used
-        from the `parse_sql` function.
+        from lmanage.the `parse_sql` function.
 
-        Iterates over the response from get_dashboards and runs the parse_sql
+        Iterates over the response from lmanage.get_dashboards and runs the parse_sql
         function for each returned dashboard element, returns the list of tables
         and amends the dict response and returns it
         Args:
             sdk: Looker SDK object
-            content_results: (dict) response from get_dashboards function call
+            content_results: (dict) response from lmanage.get_dashboards function call
         Returns:
             An amended dict response with the sql columns used by each element
             extracted our of the Looker generated SQL for each dashboard object.

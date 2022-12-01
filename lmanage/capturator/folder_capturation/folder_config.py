@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
-from utils import looker_object_constructors as loc
-from utils.errorhandling import return_sleep_message
+from lmanage.utils import looker_object_constructors as loc
+from lmanage.utils.errorhandling import return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -28,14 +28,14 @@ class CaptureFolderConfig():
 
     @staticmethod
     def clean_folders(folder_list):
-        '''removing standard system folders from folder list'''
+        '''removing standard system folders from lmanage.folder list'''
         removal_folder_id = ['1', '2', '3', '4',  'lookml', '5']
         response = []
         for elem in enumerate(folder_list):
             check_value = elem[1]
             if check_value in removal_folder_id or check_value is None:
                 logger.debug(
-                    'removing folder id %s from the capturation', check_value)
+                    'removing folder id %s from lmanage.the capturation', check_value)
             else:
                 response.append(elem[1])
 

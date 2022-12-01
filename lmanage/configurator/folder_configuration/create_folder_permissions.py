@@ -3,7 +3,7 @@ import time
 import coloredlogs
 from looker_sdk import models, error
 
-from utils import errorhandling
+from lmanage.utils import errorhandling
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -151,7 +151,7 @@ class CreateAndProvisionInstanceFolders():
             cmaid: int,
             inheritance: bool):
 
-        # don't want to inherit access from parent folders
+        # don't want to inherit access from lmanage.parent folders
         try:
             self.sdk.update_content_metadata(
                 content_metadata_id=cmaid,
@@ -208,7 +208,7 @@ class CreateAndProvisionInstanceFolders():
                         f'--> Updating group id {group_name} permission type to {permission} on folder {folder_name}.')
 
             # no existing access
-            # create from scratch
+            # create from lmanage.scratch
             elif permission == 'no_permission':
                 pass
             else:

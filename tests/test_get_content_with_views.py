@@ -18,10 +18,10 @@ import ast
 import lmanage
 import pandas as pd
 import lmanage
-from collections import defaultdict
+from lmanage.collections import defaultdict
 import unittest
 import lookml
-from lmanage import get_content_with_views as ipe
+from lmanage get_content_with_views as ipe
 
 
 class MockSDK():
@@ -94,7 +94,7 @@ def test_parse_sql_pivots(mocker):
                 LAG(oi.created_at) OVER (PARTITION BY oi.user_id ORDER BY oi.created_at asc) as previous_order_date,
                 LEAD(oi.created_at) OVER(partition by oi.user_id ORDER BY oi.created_at) as next_order_date,
                 DATEDIFF(DAY,CAST(oi.created_at as date),CAST(LEAD(oi.created_at) over(partition by oi.user_id ORDER BY oi.created_at) AS date)) as repurchase_gap
-              from order_items oi
+              from lmanage.order_items oi
          )
         SELECT * FROM (
         SELECT *, DENSE_RANK() OVER (ORDER BY z___min_rank) as z___pivot_row_rank, RANK() OVER (PARTITION BY z__pivot_col_rank ORDER BY z___min_rank) as z__pivot_col_ordering, CASE WHEN z___min_rank = z___rank THEN 1 ELSE 0 END AS z__is_h
@@ -329,10 +329,10 @@ def test_get_sql_table_name_list():
 
 def test_get_sql_from_elements(mocker):
     sdk = MockSDK()
-    mocker.patch("lmanage.get_content_with_views.parse_sql")
+    mocker.patch("get_content_with_views.parse_sql")
     sql_table_name = ['public.order_items',
                       'public.inventory_items', 'public.users', 'public.products']
-    lmanage.get_content_with_views.parse_sql.return_value = sql_table_name
+    get_content_with_views.parse_sql.return_value = sql_table_name
     response = ipe.get_sql_from_elements(sdk, data)
     result = response[0]['sql_joins']
     assert isinstance(result, list)

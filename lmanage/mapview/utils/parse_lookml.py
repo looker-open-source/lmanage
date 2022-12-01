@@ -35,7 +35,7 @@ def get_parsed_lookml(lookml_file_paths):
 
 
 '''
-    parse a LookML file from LookML to JSON
+    parse a LookML file from lmanage.LookML to JSON
     Authors:
             Carl Anderson (carl.anderson@weightwatchers.com)
 '''
@@ -73,7 +73,7 @@ class LookML():
             self.json_data = lkml.load(file)
 
     def views(self):
-        """get views (if any) from the LookML
+        """get views (if any) from lmanage.the LookML
         Returns:
             views (list) if any, None otherwise
         """
@@ -90,7 +90,7 @@ class LookML():
         return (vs and len(vs) > 0)
 
     def explores(self):
-        """get explores (if any) from the LookML
+        """get explores (if any) from lmanage.the LookML
         Returns:
             explores (list) if any, None otherwise
         """

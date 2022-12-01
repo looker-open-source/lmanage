@@ -3,7 +3,7 @@ from looker_sdk import models
 import looker_sdk
 from lmanage.utils import group_config as gc
 import pytest
-from tests import fake_methods_data
+from lmanage.tests import fake_methods_data
 
 input_data = fake_methods_data.input_data
 
@@ -58,7 +58,7 @@ def test_get_group_metadata(mocker):
     gc_data = fake_methods_data.MockCreateGroup(id=4, name='karen')
     gc_data1 = fake_methods_data.MockCreateGroup(id=5, name='jimmy')
     mock_folder_list = ['frankiefish', 'tommy']
-    mocker.patch('lmanage.utils.group_config.create_group_if_not_exists',
+    mocker.patch('utils.group_config.create_group_if_not_exists',
                  side_effect=[gc_data, gc_data1])
 
     gc.create_group_if_not_exists.return_value = gc_data

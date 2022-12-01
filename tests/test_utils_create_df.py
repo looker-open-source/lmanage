@@ -15,7 +15,7 @@
 # limitations under the License.
 
 import pandas as pd
-import lmanage.utils.create_df as create_df
+import utils.create_df as create_df
 
 
 def test_create_df(mocker):

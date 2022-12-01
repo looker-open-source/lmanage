@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 import itertools
-from sqlparse import parse
-from sqlparse.sql import IdentifierList, Identifier
-from sqlparse.tokens import Keyword, DML
+from lmanage.sqlparse import parse
+from lmanage.sqlparse.sql import IdentifierList, Identifier
+from lmanage.sqlparse.tokens import Keyword, DML
 
 
 def is_subselect(parsed):

@@ -1,4 +1,4 @@
-from attr import field
+from lmanage.attr import field
 import lkml
 import glob
 import logging

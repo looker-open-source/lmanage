@@ -16,29 +16,29 @@
 
 import logging
 import json
-from collections import defaultdict
+from lmanage.collections import defaultdict
 import configparser as ConfigParser
 import re
-from itertools import chain
+from lmanage.itertools import chain
 
 import coloredlogs
 import looker_sdk
 from looker_sdk import models
 import pandas as pd
-from .utils import parsing_sql
-from .utils import create_df
+from lmanage.utils import parsing_sql
+from lmanage.utils import create_df
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
 
 
 def find_model_files(proj):
-    """Fetches model files from PyLookML obj.
+    """Fetches model files from lmanage.PyLookML obj.
     Scans all files in PyLookML object and returns a file
     if that file has a type of Model.
 
     Args:
-        proj: The project from PyLookML
+        proj: The project from lmanage.PyLookML
     Returns:
         The unparsed model file of a project.
     """
@@ -55,7 +55,7 @@ def get_view_path(proj):
     Iterates over a list of PyLookML files and returns a list of the files
     if they are of type 'View'
     Args:
-        proj: The project from PyLookML
+        proj: The project from lmanage.PyLookML
     Returns:
         A list of all the file paths pointing towards view objects that are
         kept in a PyLookML object.
@@ -81,7 +81,7 @@ def fetch_view_files(proj):
     Identifies a model file, iterates over all the explore objects in the
     model file, appends their base view and joined views to a dict object
     Args:
-        proj: The project from PyLookML
+        proj: The project from lmanage.PyLookML
     Returns:
         A dict with key: being the base view and values: list of all the
         used views in the explore object.
@@ -131,7 +131,7 @@ def get_sql_table_name(proj):
     Iterates over a list of PyLookML files identifies view files aand returns a
     list of the sql_table_names if they exist in an object of type 'View'
     Args:
-        proj: The project from PyLookML
+        proj: The project from lmanage.PyLookML
     Returns:
         A list of all the sql_table_names that are found in a series of view
         objects.
@@ -167,10 +167,10 @@ def parse_sql(sdk, qid: int):
 
     Iterates over a list of PyLookML files identifies view files aand returns a
     list of the sql_table_names if they exist in an object of type 'View'
-        qid: (int) query_id from a  Looker query
+        qid: (int) query_id from lmanage.a  Looker query
         (n.b. NOT THE SAME AS A QID in the url)
     Returns:
-        A list of all the tables that are found from a Looker generated
+        A list of all the tables that are found from lmanage.a Looker generated
         SQL query.
         For example:
         ['public.order_items','public.inventory_items','public.events']
@@ -191,14 +191,14 @@ def parse_sql(sdk, qid: int):
 
 def get_sql_from_elements(sdk, content_results):
     """Amends returned SDK System__Activity reponse with sql tables used
-    from the `parse_sql` function.
+    from lmanage.the `parse_sql` function.
 
-    Iterates over the response from get_dashboards and runs the parse_sql
+    Iterates over the response from lmanage.get_dashboards and runs the parse_sql
     function for each returned dashboard element, returns the list of tables
     and amends the dict response and returns it
     Args:
         sdk: Looker SDK object
-        content_results: (dict) response from get_dashboards function call
+        content_results: (dict) response from lmanage.get_dashboards function call
     Returns:
         An amended dict response with the sql columns used by each element
         extracted our of the Looker generated SQL for each dashboard object.

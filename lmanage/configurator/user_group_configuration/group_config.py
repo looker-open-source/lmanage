@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
 from looker_sdk import models, error
-from utils.errorhandling import return_error_message
+from lmanage.utils.errorhandling import return_error_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')

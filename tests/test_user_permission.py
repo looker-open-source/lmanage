@@ -1,7 +1,7 @@
 from looker_sdk import models, error
 import logging
 from lmanage.create_user_permissions import user_permission as up
-from tests import fake_methods_data
+from lmanage.tests import fake_methods_data
 
 input_data = fake_methods_data.input_data
 LOGGER = logging.getLogger(__name__)

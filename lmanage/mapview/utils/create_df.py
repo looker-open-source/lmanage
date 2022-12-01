@@ -15,7 +15,7 @@ limitations under the License.
 """
 import os
 import logging
-from pathlib import Path
+from lmanage.pathlib import Path
 import json
 import pandas as pd
 

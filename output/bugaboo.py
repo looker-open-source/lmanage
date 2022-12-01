@@ -16,7 +16,7 @@
 import coloredlogs
 import logging
 import click
-from mapview import mapview_execute
+from lmanage.mapview import mapview_execute
 import provision_instance_permission_structure
 import capture_instance_permission_structure
 
@@ -25,17 +25,17 @@ logger = logging.getLogger(__name__)
 
 @click.group()
 @click.version_option()
-def lmanage():
+def ):
     pass
 
 
-@lmanage.command()
+@command()
 @click.option("-op", "--output_path",
               help="input your file path to save a tabbed xls of results")
 @ click.option("-i", "--ini-file",
                help="Path to the ini file to use for sdk authentication")
 @ click.option("-lfp", "--lookml_file_path",
-               help="Path folder containing your lookml files, often taken using a git pull from your connected lookml project repository")
+               help="Path folder containing your lookml files, often taken using a git pull from lmanage.your connected lookml project repository")
 @ click.option("-t", "--table",
                help="**OPTIONAL** Add a view name to search for elements that rely on this view")
 @ click.option("-f", "--field",
@@ -56,7 +56,7 @@ def mapview(**kwargs):
     mapview_execute.main(**kwargs)
 
 
-@lmanage.command()
+@command()
 @ click.option("-i", "--ini-file",
                help="**OPTIONAL ** Specify API Credentials in an ini file, if no path is given program will assume these values are set as environmental variables as denoted at https: // github.com/looker-open-source/sdk-codegen  # environment-variable-configuration")
 @ click.option("-yp", "--yaml-config-path",
@@ -77,7 +77,7 @@ def configurator(**kwargs):
     provision_instance_permission_structure.main(**kwargs)
 
 
-@lmanage.command()
+@command()
 @ click.option("-i", "--ini-file",
                help="**OPTIONAL ** Specify API Credentials in an ini file, if no path is given program will assume these values are set as environmental variables as denoted at https: // github.com/looker-open-source/sdk-codegen  # environment-variable-configuration")
 @ click.option("-yep", "--yaml-export-path",
@@ -99,4 +99,4 @@ def capturator(**kwargs):
 
 
 if __name__ == '__main__':
-    lmanage()
+    )

@@ -14,8 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import click
-from .capturator import commands as cap_commands
-from .configurator import commands as config_commands
+from lmanage.capturator import commands as cap_commands
+from lmanage.configurator import commands as config_commands
 
 
 @click.group()

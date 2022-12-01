@@ -2,8 +2,8 @@ import looker_sdk
 import os
 import json
 from looker_sdk import error, models
-from datetime import datetime
-from typing import Callable, List
+from lmanage.datetime import datetime
+from lmanage.typing import Callable, List
 
 ini = '/usr/local/google/home/hugoselbie/code_sample/py/ini/k8.ini'
 # os.environ["LOOKERSDK_BASE_URL"] = "https://profservices.dev.looker.com:19999" #If your looker URL has .cloud in it (hosted on GCP), do not include :19999 (ie: https://your.cloud.looker.com).
@@ -11,7 +11,7 @@ ini = '/usr/local/google/home/hugoselbie/code_sample/py/ini/k8.ini'
 # os.environ["LOOKERSDK_VERIFY_SSL"] = "true" #Defaults to true if not set. SSL verification should generally be on unless you have a real good reason not to use it. Valid options: true, y, t, yes, 1.
 # os.environ["LOOKERSDK_TIMEOUT"] = "120" #Seconds till request timeout. Standard default is 120.
 
-# #Get the following values from your Users page in the Admin panel of your Looker instance > Users > Your user > Edit API keys. If you know your user id, you can visit https://your.looker.com/admin/users/<your_user_id>/edit.
+# #Get the following values from lmanage.your Users page in the Admin panel of your Looker instance > Users > Your user > Edit API keys. If you know your user id, you can visit https://your.looker.com/admin/users/<your_user_id>/edit.
 # os.environ["LOOKERSDK_CLIENT_ID"] =  "xxxxx" #No defaults.
 # os.environ["LOOKERSDK_CLIENT_SECRET"] = "xxxxx" #No defaults. This should be protected at all costs. Please do not leave it sitting here, even if you don't share this document.
 
@@ -112,5 +112,5 @@ if __name__ == "__main__":
     reassign_schedules = transfer_schedule(user_list)
     print(reassign_schedules)
 
-# from pprint import pprint
+# from lmanage.pprint import pprint
 # import snoop - then @snoop

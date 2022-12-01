@@ -1,14 +1,14 @@
 import logging
 import coloredlogs
 import looker_sdk
-from configurator.user_attribute_configuration import create_ua_permissions as cuap
-from configurator.folder_configuration import folder_config as fc
-from configurator.folder_configuration import create_folder_permissions as cfp
-from configurator.folder_configuration import create_folders as cf
-from configurator.user_group_configuration import role_config as rc
-from configurator.user_group_configuration import group_config as gc
-from configurator.user_group_configuration import user_permission as up
-from utils import parse_yaml as py
+from lmanage.configurator.user_attribute_configuration import create_ua_permissions as cuap
+from lmanage.configurator.folder_configuration import folder_config as fc
+from lmanage.configurator.folder_configuration import create_folder_permissions as cfp
+from lmanage.configurator.folder_configuration import create_folders as cf
+from lmanage.configurator.user_group_configuration import role_config as rc
+from lmanage.configurator.user_group_configuration import group_config as gc
+from lmanage.configurator.user_group_configuration import user_permission as up
+from lmanage.utils import parse_yaml as py
 
 
 logger = logging.getLogger(__name__)
@@ -85,7 +85,7 @@ def main(**kwargs):
 if __name__ == "__main__":
     instance = 'clustered'
     YP = ('/usr/local/google/home/hugoselbie/code_sample/py/'
-          'lmanage/tests/example_yamls/demo_output.yaml')
+          'tests/example_yamls/demo_output.yaml')
     IP = ('/usr/local/google/home/hugoselbie/code_sample/py/ini/dev.ini')
 
     main(

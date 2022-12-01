@@ -1,7 +1,7 @@
 import logging
 from looker_sdk import models, error
 from lmanage.utils import role_config as rc
-from tests import fake_methods_data
+from lmanage.tests import fake_methods_data
 
 input_data = fake_methods_data.input_data
 LOGGER = logging.getLogger(__name__)
@@ -81,7 +81,7 @@ def test_get_role_modelset_metadata():
 #          'parent_id': '1',
 #          'team_edit': ['test1'],
 #          'team_view': ['test2']}]]
-#     mocker.patch('lmanage.utils.folder_config.create_folder_if_not_exists')
+#     mocker.patch('utils.folder_config.create_folder_if_not_exists')
 #     data = fake_methods_data.MockCreateFolder(
 #         id=3,
 #         name='Frankie',

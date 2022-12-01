@@ -3,7 +3,6 @@ import logging
 import coloredlogs
 from time import sleep
 
-from humanfriendly.terminal import message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')

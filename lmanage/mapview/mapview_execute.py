@@ -1,10 +1,10 @@
 from looker_sdk import init31
 import logging
 import coloredlogs
-import lmanage.mapview.instancedata as idata
-import lmanage.mapview.parse_sql_tables as pst
-import lmanage.mapview.compare_content_to_lookml as me
-import lmanage.mapview.matched_field_analysis as mfa
+import mapview.instancedata as idata
+import mapview.parse_sql_tables as pst
+import mapview.compare_content_to_lookml as me
+import mapview.matched_field_analysis as mfa
 from lmanage.mapview.utils import parse_lookml as pl
 
 logger = logging.getLogger(__name__)
