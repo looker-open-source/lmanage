@@ -1,14 +1,26 @@
 #!/bin/bash
 # find_and_replace.sh
-set -x #echo on
+# set -x #echo on
+echo 'p for poetry run added in or np for vimspector'
+read INPUT
 
-echo "Find and replace in current directory!"
-echo "File pattern to look for? (eg '*.txt')"
-read filepattern
-echo "Existing string?"
-read existing
-echo "Replacement string?"
-read replacement
-echo "Replacing all occurences of $existing with $replacement in files matching $filepattern"
+echo "your input is $INPUT"
 
-find . -type f -name "$filepattern" -print0 | xargs -0 sed -i "s/$existing /$replacement/g"
+POETRY="p"
+NOTPOETRY="np"
+
+if [ "$POETRY" == "$INPUT" ]
+then
+   find . -type f -name "*.py" -print0 | xargs -0 sed -i -e 's/from configurator/from lmanage.configurator/g' -e 's/from utils/from lmanage.utils/g' -e 's/from capturator/from lmanage.capturator/g' 
+
+else
+   echo  'unpoetizing'
+fi 
+
+if [ $NOTPOETRY == $INPUT ]
+then
+   find . -type f -name "*.py" -print0 | xargs -0 sed -i -e 's/from lmanage.configurator/from configurator/g' -e 's/from lmanage.utils/from utils/g' -e 's/from lmanage.capturator/from capturator/g' 
+
+else
+   echo 'poetizing'
+fi

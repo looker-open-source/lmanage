@@ -17,8 +17,8 @@ import coloredlogs
 import logging
 import click
 from lmanage.mapview import mapview_execute
-from lmanage.configurator import provision_instance_permission_structure
-from lmanage.capturator import capture_instance_permission_structure
+from configurator import provision_instance_permission_structure
+from capturator import capture_instance_permission_structure
 
 logger = logging.getLogger(__name__)
 

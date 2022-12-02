@@ -2,7 +2,7 @@ import logging
 import coloredlogs
 import looker_sdk
 from looker_sdk import models
-from lmanage.user_group_configuration.role_config import CreateRoleBase
+from role_config import CreateRoleBase
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
