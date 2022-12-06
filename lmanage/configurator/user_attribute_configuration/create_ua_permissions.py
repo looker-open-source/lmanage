@@ -38,7 +38,8 @@ class CreateAndAssignUserAttributes():
                     type=datatype,
                     value_is_hidden=value_is_hidden,
                     user_can_view=user_view,
-                    user_can_edit=user_edit
+                    user_can_edit=user_edit,
+                    default_value=ua.get('default_value')
                 )
 
                 response = self.sdk.create_user_attribute(body=ua_permissions)
@@ -77,21 +78,22 @@ class CreateAndAssignUserAttributes():
             group.name: group.id for group in all_instance_groups}
         yaml_user_attributes = self.user_attribute_metadata
         for ua in yaml_user_attributes:
-            meta_value = ','.join(ua.get('value'))
-            ua_id = instance_ua.get(ua.get('name'))
+            if len(ua.get('teams')) > 0:
+                for team_val in ua.get('teams'):
+                    group_id = group_metadata.get(list(team_val.keys())[0])
 
-            for group in ua.get('teams'):
-                group_id = group_metadata.get(group)
+                    meta_value = list(team_val.values())[0]
+                    ua_id = instance_ua.get(ua.get('name'))
 
-                params_to_add = models.UserAttributeGroupValue(
-                    value=meta_value,
-                    value_is_hidden=False
-                )
+                    params_to_add = models.UserAttributeGroupValue(
+                        value=meta_value,
+                        value_is_hidden=False
+                    )
 
-                self.sdk.update_user_attribute_group_value(
-                    group_id=group_id,
-                    user_attribute_id=ua_id,
-                    body=params_to_add)
+                    self.sdk.update_user_attribute_group_value(
+                        group_id=group_id,
+                        user_attribute_id=ua_id,
+                        body=params_to_add)
 
     def execute(self):
         # CREATE NEW USER ATTRIBUTES

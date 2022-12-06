@@ -377,6 +377,57 @@
 # PERMISSION SETS
 - !LookerPermissionSet
   permissions:
+  - access_data
+  - clear_cache_refresh
+  - create_alerts
+  - follow_alerts
+  - login_special_email
+  - mobile_app_access
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: view only
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_public_looks
+  - create_table_calculations
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_schedules
+  - see_sql_runner_content
+  - see_user_dashboards
+  - see_users
+  name: access data only
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - download_with_limit
+  - follow_alerts
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: trafficguard_viewers
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  name: viewer+sql
+- !LookerPermissionSet
+  permissions:
   - login_special_email
   - mobile_app_access
   name: login_special_email
@@ -425,19 +476,15 @@
   name: devops
 - !LookerPermissionSet
   permissions:
-  - access_data
-  - clear_cache_refresh
-  - create_alerts
-  - follow_alerts
-  - login_special_email
+  - manage_models
   - mobile_app_access
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml_dashboards
+  name: manage models
+- !LookerPermissionSet
+  permissions:
+  - access_data
   - see_looks
   - see_user_dashboards
-  name: view only
+  name: minimum permisions
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -464,57 +511,6 @@
   - send_to_s3
   - send_to_sftp
   name: explore user
-- !LookerPermissionSet
-  permissions:
-  - manage_models
-  - mobile_app_access
-  name: manage models
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - explore
-  - save_content
-  - see_drill_overlay
-  - see_lookml
-  - see_lookml_dashboards
-  - see_looks
-  - see_sql
-  - see_user_dashboards
-  - use_sql_runner
-  name: explore but no download
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_custom_fields
-  - create_public_looks
-  - create_table_calculations
-  - explore
-  - mobile_app_access
-  - save_content
-  - see_schedules
-  - see_sql_runner_content
-  - see_user_dashboards
-  - see_users
-  name: access data only
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - mobile_app_access
-  - see_system_activity
-  name: system_activity_role_ah_test
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - clear_cache_refresh
-  - mobile_app_access
-  - save_content
-  - see_drill_overlay
-  - see_looks
-  - see_user_dashboards
-  name: viewer test
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -561,6 +557,30 @@
 - !LookerPermissionSet
   permissions:
   - access_data
+  - clear_cache_refresh
+  - mobile_app_access
+  - save_content
+  - see_drill_overlay
+  - see_looks
+  - see_user_dashboards
+  name: viewer test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - explore
+  - save_content
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - use_sql_runner
+  name: explore but no download
+- !LookerPermissionSet
+  permissions:
+  - access_data
   - can_create_forecast
   - clear_cache_refresh
   - deploy
@@ -580,19 +600,8 @@
   permissions:
   - access_data
   - mobile_app_access
-  name: view test
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - download_with_limit
-  - follow_alerts
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  name: trafficguard_viewers
+  - see_system_activity
+  name: system_activity_role_ah_test
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -621,43 +630,34 @@
 - !LookerPermissionSet
   permissions:
   - access_data
-  - see_looks
-  - see_user_dashboards
-  name: minimum permisions
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - see_lookml_dashboards
-  - see_looks
-  - see_sql
-  - see_user_dashboards
-  name: viewer+sql
+  - mobile_app_access
+  name: view test
 
 
 # MODEL SETS
 - !LookerModelSet
-  models: []
-  name: All
-- !LookerModelSet
-  models:
-  - snowflake
-  name: snorest
-- !LookerModelSet
   models:
   - retail_block_model
   name: socal4-demo-1
+- !LookerModelSet
+  models: []
+  name: All
 - !LookerModelSet
   models:
   - thelook
   name: thelook
 - !LookerModelSet
   models:
-  - thelook
-  name: kate_demo
+  - snowflake
+  name: snorest
 - !LookerModelSet
   models:
   - test_manage_models_b
   name: manage models
+- !LookerModelSet
+  models:
+  - thelook
+  name: kate_demo
 
 
 # LOOKER ROLES
@@ -805,7 +805,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: account_executive
@@ -813,7 +813,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: account_name
@@ -821,7 +821,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: allowed_brands
@@ -829,7 +829,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: allowed_stations
@@ -837,7 +837,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: assignee_email
@@ -845,7 +845,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: bq_project_name
@@ -853,7 +853,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: brand
@@ -861,17 +861,16 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value:
-  - fsdlkfsldkjflsd
+  default_value:
   teams:
-  - Company A
+  - Company A: fsdlkfsldkjflsd
 - !LookerUserAttribute
   name: brand_demo
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: brand_dropdown
@@ -879,7 +878,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: brand_name
@@ -887,7 +886,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: brand_rls
@@ -895,7 +894,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: bridgecorp_can_see_everything
@@ -903,7 +902,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: bridgecorp_object_ids
@@ -911,7 +910,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: bridgecorp_object_items_count
@@ -919,7 +918,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: bruk_test
@@ -927,7 +926,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: business_unit
@@ -935,7 +934,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: campaign_name
@@ -943,7 +942,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: can_see_details
@@ -951,7 +950,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: can_see_email
@@ -959,7 +958,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: can_see_pii
@@ -967,7 +966,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: can_see_sales
@@ -975,27 +974,25 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value:
-  - can_see_sales
+  default_value:
   teams:
-  - Marketing
+  - Marketing: can_see_sales
 - !LookerUserAttribute
   name: can_see_sensitive_data
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value:
-  - Yes
+  default_value:
   teams:
-  - All Users
+  - All Users: Yes
 - !LookerUserAttribute
   name: can_see_status
   uatype: advanced_filter_string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: category
@@ -1003,7 +1000,7 @@
   hidden_value: true
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: city
@@ -1011,18 +1008,17 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value:
-  - London,New York
+  default_value:
   teams:
-  - london team
-  - new york team
+  - london team: London,New York
+  - new york team: London,New York
 - !LookerUserAttribute
   name: citylist
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: city_v1
@@ -1030,7 +1026,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: client
@@ -1038,7 +1034,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: client_id
@@ -1046,7 +1042,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: client_name
@@ -1054,7 +1050,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: club
@@ -1062,7 +1058,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: company
@@ -1070,7 +1066,7 @@
   hidden_value: true
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: company_geet
@@ -1078,7 +1074,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: company_id
@@ -1086,7 +1082,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: connection_name
@@ -1094,7 +1090,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: connection_string
@@ -1102,7 +1098,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: country
@@ -1110,7 +1106,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: country_currency
@@ -1118,7 +1114,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: customer
@@ -1126,7 +1122,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: customerid
@@ -1134,7 +1130,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: customer_database
@@ -1142,7 +1138,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: date
@@ -1150,7 +1146,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: departamento
@@ -1158,7 +1154,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: department
@@ -1166,7 +1162,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: department_rls
@@ -1174,7 +1170,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: discount
@@ -1182,7 +1178,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: distro_center
@@ -1190,7 +1186,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: download_limit
@@ -1198,7 +1194,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: favorite_color
@@ -1206,7 +1202,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: finance_team
@@ -1214,7 +1210,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: fournisseur
@@ -1222,7 +1218,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: gcloud
@@ -1230,7 +1226,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: git_user
@@ -1238,7 +1234,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: goal
@@ -1246,7 +1242,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: historical_data
@@ -1254,7 +1250,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: historical_data_test
@@ -1262,7 +1258,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: hotel_brand
@@ -1270,7 +1266,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: hotel_chain
@@ -1278,7 +1274,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: is_looker
@@ -1286,7 +1282,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: landing_page
@@ -1294,7 +1290,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value: /browse
   teams: []
 - !LookerUserAttribute
   name: legal_team
@@ -1302,7 +1298,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: locale
@@ -1310,7 +1306,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value: en
   teams: []
 - !LookerUserAttribute
   name: logo
@@ -1318,7 +1314,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: magasin
@@ -1326,7 +1322,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: media_name
@@ -1334,7 +1330,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: model_name
@@ -1342,7 +1338,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: new_name
@@ -1350,7 +1346,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: number_format
@@ -1358,7 +1354,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value: 1,234.56
   teams: []
 - !LookerUserAttribute
   name: obfuscated
@@ -1366,7 +1362,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: order_id
@@ -1374,7 +1370,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: organization
@@ -1382,7 +1378,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: organization_aa
@@ -1390,17 +1386,16 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value:
-  - Google
+  default_value:
   teams:
-  - Company A
+  - Company A: Google
 - !LookerUserAttribute
   name: organization_name
   uatype: string
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: org_id
@@ -1408,7 +1403,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: param_connect
@@ -1416,7 +1411,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: park
@@ -1424,7 +1419,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: partner_id
@@ -1432,7 +1427,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: partner_id_demo
@@ -1440,7 +1435,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: password
@@ -1448,7 +1443,7 @@
   hidden_value: true
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: pii
@@ -1456,7 +1451,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: platform
@@ -1464,7 +1459,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: product_category
@@ -1472,7 +1467,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: project
@@ -1480,7 +1475,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: publisher_type
@@ -1488,7 +1483,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: rate
@@ -1496,7 +1491,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: referrer
@@ -1504,7 +1499,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: salaire
@@ -1512,7 +1507,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: salesforce_campaigns_action_domain
@@ -1520,7 +1515,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: salesforce_user_id
@@ -1528,7 +1523,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: sales_segment
@@ -1536,7 +1531,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: samesystem_brand
@@ -1544,7 +1539,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: security_key
@@ -1552,7 +1547,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: site_id
@@ -1560,7 +1555,7 @@
   hidden_value: true
   user_view: 'False'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: snowflake_wh
@@ -1568,7 +1563,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: sport_category
@@ -1576,7 +1571,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: state
@@ -1584,17 +1579,16 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value:
-  - New York
+  default_value:
   teams:
-  - All Users
+  - All Users: New York
 - !LookerUserAttribute
   name: states_you_can_see
   uatype: advanced_filter_string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: state_filter
@@ -1602,7 +1596,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: status
@@ -1610,7 +1604,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: status_check
@@ -1618,7 +1612,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: store
@@ -1626,7 +1620,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: subgroup_id
@@ -1634,7 +1628,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: temp_country_access
@@ -1642,7 +1636,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: test
@@ -1650,7 +1644,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: timezone_a
@@ -1658,7 +1652,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: time_horizon
@@ -1666,7 +1660,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: track_graph
@@ -1674,7 +1668,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: type
@@ -1682,7 +1676,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: username
@@ -1690,7 +1684,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: user_id
@@ -1698,7 +1692,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: user_id_events
@@ -1706,7 +1700,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []
 - !LookerUserAttribute
   name: user_schema
@@ -1714,5 +1708,5 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value: []
+  default_value:
   teams: []

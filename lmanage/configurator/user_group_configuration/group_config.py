@@ -14,12 +14,17 @@ class CreateInstanceGroups():
         self.role_metadata = roles
         self.sdk = sdk
 
-    def extract_teams(self, container, data_storage):
+    def extract_teams(self, container, data_storage, ua: bool):
         for team in container:
             team_list = team.get('teams')
             if len(team_list) > 0:
-                for team in team_list:
-                    data_storage.append(team)
+                if ua:
+                    for team_val in team_list:
+                        team_app = list(team_val.keys())[0]
+                        data_storage.append(team_app)
+                else:
+                    for team_val in team_list:
+                        data_storage.append(team_val)
         return data_storage
 
     def extract_folder_teams(self, container, data_storage):
@@ -97,10 +102,10 @@ class CreateInstanceGroups():
         team_list = []
         # extracting user attribute teams
         self.extract_teams(container=self.user_attribute_metadata,
-                           data_storage=team_list)
+                           data_storage=team_list, ua=True)
         # extracting role based teams
         self.extract_teams(
-            container=self.role_metadata, data_storage=team_list)
+            container=self.role_metadata, data_storage=team_list, ua=False)
         # extract nested folder access teams
         self.extract_folder_teams(
             container=self.folder_metadata, data_storage=team_list)

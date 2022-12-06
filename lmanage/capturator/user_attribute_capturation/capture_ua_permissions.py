@@ -8,14 +8,14 @@ coloredlogs.install(level='DEBUG')
 
 
 class LookerUserAttribute():
-    def __init__(self, teams, name, uatype, hidden_value, user_view, user_edit, user_value) -> object:
+    def __init__(self, teams_val: dict, name: str, uatype: bool, hidden_value: bool, user_view, user_edit, default_value) -> object:
         self.name = name
         self.uatype = uatype
         self.hidden_value = hidden_value
         self.user_view = str(user_view)
         self.user_edit = str(user_edit)
-        self.value = user_value
-        self.teams = teams
+        self.default_value = default_value
+        self.teams = teams_val
 
 
 class ExtractUserAttributes():
@@ -46,29 +46,25 @@ class ExtractUserAttributes():
                 try:
                     group_assign = self.sdk.all_user_attribute_group_values(
                         user_attribute_id=ua.id)
-                    logger.info(
-                        'capturing groups associated with user attribute %s', group_assign[0].get('user_attribute_id'))
+                    # logger.info(
+                    #     'capturing groups associated with user attribute %s', group_assign[0].get('user_attribute_id'))
                 except:
                     return_sleep_message()
-            teams = []
-            values = []
+            team_values = []
 
             for group in group_assign:
                 group_name = group_metadata.get(group.group_id)
-                teams.append(group_name)
-                if group.value not in values:
-                    values.append(group.value)
-                else:
-                    pass
+                teams = {}
+                teams[group_name] = group.value
+                team_values.append(teams)
             looker_ua = LookerUserAttribute(
                 name=ua.name,
                 uatype=ua.type,
                 hidden_value=ua.value_is_hidden,
                 user_view=ua.user_can_view,
                 user_edit=ua.user_can_edit,
-                user_value=values,
-                teams=teams
+                default_value=ua.default_value,
+                teams_val=team_values
             )
             response.append(looker_ua)
-
         return response

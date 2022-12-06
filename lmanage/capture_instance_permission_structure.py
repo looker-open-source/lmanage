@@ -80,7 +80,7 @@ def main(**kwargs):
 
 
 if __name__ == "__main__":
-    instance = 'dev'
+    instance = 'demo'
     IP = (
         f'/usr/local/google/home/hugoselbie/code_sample/py/ini/{instance}.ini')
     YP = (
