@@ -1,7 +1,7 @@
 from looker_sdk import models, error
 import logging
 import coloredlogs
-from utils import errorhandling as eh
+from lmanage.utils import errorhandling as eh
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -62,9 +62,8 @@ class CreateRoleBase():
 
         for permission_set_name in permissions_dict.keys():
 
-            if permission_set_name not in yaml_permissions:
-                permission_id = sdk.search_permission_sets(
-                    name=permission_set_name)[0].id
+            if permission_set_name.lower() not in yaml_permissions:
+                permission_id = permissions_dict.get(permission_set_name)
                 sdk.delete_permission_set(permission_set_id=permission_id)
 
     def create_model_set(self, sdk, model_set_dict: list) -> list:
@@ -109,13 +108,12 @@ class CreateRoleBase():
     def sync_model_set(self, sdk, all_models, model_set_list: list):
         model_sets_dict = {p.name: p.id for p in all_models}
         model_sets_dict.pop('All')
-        yaml_model = [model.get('name') for model in model_set_list]
+        yaml_model = [model.get('name').lower() for model in model_set_list]
 
         for model_set_name in model_sets_dict.keys():
 
-            if model_set_name not in yaml_model:
-                model_id = sdk.search_model_sets(
-                    name=model_set_name)[0].id
+            if model_set_name.lower() not in yaml_model:
+                model_id = model_sets_dict.get(model_set_name)
                 sdk.delete_model_set(model_set_id=model_id)
 
     def get_all_permission_sets(self):
@@ -139,3 +137,5 @@ class CreateRoleBase():
         # Syncing Permission and Model sets with Yaml file.
         self.sync_permission_set(
             sdk=self.sdk, all_perms=self.get_all_permission_sets(), permission_set_dict=self.permission_set_metadata)
+        self.sync_model_set(sdk=self.sdk, all_models=self.get_all_model_sets(
+        ), model_set_list=self.model_set_metadata)

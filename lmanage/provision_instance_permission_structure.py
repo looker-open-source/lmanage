@@ -1,14 +1,14 @@
 import logging
 import coloredlogs
 import looker_sdk
-from configurator.user_attribute_configuration import create_ua_permissions as cuap
-from configurator.folder_configuration import folder_config as fc
-from configurator.folder_configuration import create_folder_permissions as cfp
-from configurator.folder_configuration import create_folders as cf
-from configurator.user_group_configuration import role_config as rc
-from configurator.user_group_configuration import group_config as gc
-from configurator.user_group_configuration import user_permission as up
-from utils import parse_yaml as py
+from lmanage.configurator.user_attribute_configuration import create_ua_permissions as cuap
+from lmanage.configurator.folder_configuration import folder_config as fc
+from lmanage.configurator.folder_configuration import create_folder_permissions as cfp
+from lmanage.configurator.folder_configuration import create_folders as cf
+from lmanage.configurator.user_group_configuration import role_config as rc
+from lmanage.configurator.user_group_configuration import group_config as gc
+from lmanage.configurator.user_group_configuration import user_permission as up
+from lmanage.utils import parse_yaml as py
 
 
 logger = logging.getLogger(__name__)
@@ -26,9 +26,9 @@ def main(**kwargs):
     yaml = py.Yaml(yaml_path=yaml_path)
 
     if ini_file:
-        sdk = looker_sdk.init31(config_file=ini_file)
+        sdk = looker_sdk.init40(config_file=ini_file)
     else:
-        sdk = looker_sdk.init31()
+        sdk = looker_sdk.init40()
 
     folder_metadata = yaml.get_folder_metadata()
     unnested_folder_metadata = fc.FolderConfig(

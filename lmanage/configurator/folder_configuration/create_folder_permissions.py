@@ -3,7 +3,7 @@ import time
 import coloredlogs
 from looker_sdk import models, error
 
-from utils import errorhandling
+from lmanage.utils import errorhandling
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -282,12 +282,13 @@ class CreateAndProvisionInstanceFolders():
 
         # remove parent Shared group instance access
         try:
+            folder = '1'
             self.sdk.update_content_metadata_access(
-                content_metadata_access_id=1,
+                content_metadata_access_id=folder,
                 body=models.ContentMetaGroupUser(
                     permission_type='view',
-                    content_metadata_id=1,
-                    group_id=1
+                    content_metadata_id=folder,
+                    group_id=folder
                 )
             )
         except error.SDKError:
@@ -295,8 +296,8 @@ class CreateAndProvisionInstanceFolders():
         clean = list()
         for avt in content_access_metadata_list:
             temp = {}
-            temp['name'] = avt['name']
-            temp['cmi'] = avt['cmi']
+            temp['name'] = avt[0].get('name')
+            temp['cmi'] = avt[0].get('cmi')
             clean.append(temp)
         res_list = [i for n, i in enumerate(clean) if i not in clean[n + 1:]]
 
@@ -327,4 +328,6 @@ class CreateAndProvisionInstanceFolders():
 
         # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
         self.provision_folders_with_group_access(
+            content_access_metadata_list=content_access_metadata)
+        self.remove_all_user_group(
             content_access_metadata_list=content_access_metadata)

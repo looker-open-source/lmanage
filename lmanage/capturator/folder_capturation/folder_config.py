@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
-from utils import looker_object_constructors as loc
-from utils.errorhandling import return_sleep_message
+from lmanage.utils import looker_object_constructors as loc
+from lmanage.utils.errorhandling import return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -81,6 +81,11 @@ class CaptureFolderConfig():
                     f_metadata = self.sdk.folder(folder_id=str(folder))
                 except:
                     return_sleep_message()
+            if f_metadata.name in ['Shared', 'Users']:
+                folder_name = f_metadata.name
+                new_name = '%s_' % folder_name
+                f_metadata.name = '%s_' % folder_name
+                logger.debug(f_metadata)
 
             if f_metadata.is_personal or f_metadata.is_personal_descendant or f_metadata.is_embed:
                 logger.warn(

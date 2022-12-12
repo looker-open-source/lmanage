@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
 from time import sleep
-from utils.errorhandling import return_error_message, return_sleep_message
+from lmanage.utils.errorhandling import return_error_message, return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -25,7 +25,12 @@ class ExtractUserAttributes():
         self.all_group_metadata = self.all_group_metadatas()
 
     def existing_user_attributes(self) -> dict:
-        ex_ua = self.sdk.all_user_attributes()
+        ex_ua = None
+        while ex_ua is None:
+            try:
+                ex_ua = self.sdk.all_user_attributes()
+            except:
+                return_sleep_message()
         for ua in enumerate(ex_ua):
             if ua[1].get('is_system'):
                 ua_idx = ua[0]

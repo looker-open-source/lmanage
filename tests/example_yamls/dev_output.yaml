@@ -20,7 +20,10 @@
       content_metadata_id: 45
       team_edit:
       - All Users
-      team_view: []
+      team_view:
+      - Marketing
+      - Embed Users
+      - All Looker Users (Non-Admin)
     - !LookerFolder
       parent_id: '42'
       id: '43'
@@ -29,15 +32,24 @@
       content_metadata_id: 44
       team_edit:
       - All Users
-      team_view: []
+      team_view:
+      - Marketing
+      - Embed Users
+      - All Looker Users (Non-Admin)
     content_metadata_id: 43
     team_edit:
     - All Users
-    team_view: []
+    team_view:
+    - Marketing
+    - Embed Users
+    - All Looker Users (Non-Admin)
   content_metadata_id: 42
   team_edit:
   - All Users
-  team_view: []
+  team_view:
+  - Marketing
+  - Embed Users
+  - All Looker Users (Non-Admin)
 - !LookerFolder
   parent_id: '1'
   id: '40'
@@ -377,19 +389,9 @@
 # PERMISSION SETS
 - !LookerPermissionSet
   permissions:
-  - access_data
-  - clear_cache_refresh
-  - create_alerts
-  - follow_alerts
-  - login_special_email
+  - manage_models
   - mobile_app_access
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  name: view only
+  name: manage models
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -409,28 +411,74 @@
 - !LookerPermissionSet
   permissions:
   - access_data
-  - download_with_limit
-  - follow_alerts
-  - schedule_external_look_emails
-  - schedule_look_emails
+  - can_create_forecast
+  - explore
+  - save_content
   - see_drill_overlay
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  name: trafficguard_viewers
-- !LookerPermissionSet
-  permissions:
-  - access_data
+  - see_lookml
   - see_lookml_dashboards
   - see_looks
   - see_sql
   - see_user_dashboards
-  name: viewer+sql
+  - use_sql_runner
+  name: explore but no download
 - !LookerPermissionSet
   permissions:
-  - login_special_email
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_table_calculations
+  - develop
+  - download_without_limit
+  - explore
+  - follow_alerts
   - mobile_app_access
-  name: login_special_email
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_lookml
+  - see_looks
+  - see_schedules
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  name: explore user
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_looks
+  - see_user_dashboards
+  name: minimum permisions
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - download_with_limit
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_schedules
+  - see_sql
+  - see_user_dashboards
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - use_sql_runner
+  name: explorer
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -474,43 +522,6 @@
   - send_to_sftp
   - use_sql_runner
   name: devops
-- !LookerPermissionSet
-  permissions:
-  - manage_models
-  - mobile_app_access
-  name: manage models
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - see_looks
-  - see_user_dashboards
-  name: minimum permisions
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_alerts
-  - create_custom_fields
-  - create_table_calculations
-  - develop
-  - download_without_limit
-  - explore
-  - follow_alerts
-  - mobile_app_access
-  - save_content
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_lookml
-  - see_looks
-  - see_schedules
-  - see_user_dashboards
-  - see_users
-  - send_outgoing_webhook
-  - send_to_integration
-  - send_to_s3
-  - send_to_sftp
-  name: explore user
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -567,17 +578,54 @@
 - !LookerPermissionSet
   permissions:
   - access_data
-  - can_create_forecast
-  - explore
-  - save_content
+  - download_with_limit
+  - follow_alerts
+  - schedule_external_look_emails
+  - schedule_look_emails
   - see_drill_overlay
-  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: trafficguard_viewers
+- !LookerPermissionSet
+  permissions:
+  - access_data
   - see_lookml_dashboards
   - see_looks
   - see_sql
   - see_user_dashboards
-  - use_sql_runner
-  name: explore but no download
+  name: viewer+sql
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - create_alerts
+  - follow_alerts
+  - login_special_email
+  - mobile_app_access
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: view only
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - mobile_app_access
+  name: view test
+- !LookerPermissionSet
+  permissions:
+  - login_special_email
+  - mobile_app_access
+  name: login_special_email
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - mobile_app_access
+  - see_system_activity
+  name: system_activity_role_ah_test
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -596,60 +644,21 @@
   - see_user_dashboards
   - use_sql_runner
   name: nosharing
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - mobile_app_access
-  - see_system_activity
-  name: system_activity_role_ah_test
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_alerts
-  - download_with_limit
-  - download_without_limit
-  - explore
-  - follow_alerts
-  - mobile_app_access
-  - save_content
-  - schedule_look_emails
-  - see_lookml
-  - see_lookml_dashboards
-  - see_looks
-  - see_schedules
-  - see_sql
-  - see_user_dashboards
-  - send_outgoing_webhook
-  - send_to_integration
-  - send_to_s3
-  - send_to_sftp
-  - use_sql_runner
-  name: explorer
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - mobile_app_access
-  name: view test
 
 
 # MODEL SETS
 - !LookerModelSet
   models:
+  - snowflake
+  name: snorest
+- !LookerModelSet
+  models:
   - retail_block_model
   name: socal4-demo-1
-- !LookerModelSet
-  models: []
-  name: All
 - !LookerModelSet
   models:
   - thelook
   name: thelook
-- !LookerModelSet
-  models:
-  - snowflake
-  name: snorest
 - !LookerModelSet
   models:
   - test_manage_models_b
@@ -658,6 +667,9 @@
   models:
   - thelook
   name: kate_demo
+- !LookerModelSet
+  models: []
+  name: All
 
 
 # LOOKER ROLES
@@ -1010,8 +1022,8 @@
   user_edit: 'False'
   default_value:
   teams:
-  - london team: London,New York
-  - new york team: London,New York
+  - london team: London
+  - new york team: New York
 - !LookerUserAttribute
   name: citylist
   uatype: string
@@ -1149,6 +1161,14 @@
   default_value:
   teams: []
 - !LookerUserAttribute
+  name: datenull
+  uatype: advanced_filter_datetime
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: -NULL
+  teams: []
+- !LookerUserAttribute
   name: departamento
   uatype: string
   hidden_value: false
@@ -1275,6 +1295,14 @@
   user_view: 'True'
   user_edit: 'True'
   default_value:
+  teams: []
+- !LookerUserAttribute
+  name: hugothing
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: USA
   teams: []
 - !LookerUserAttribute
   name: is_looker
@@ -1625,14 +1653,6 @@
 - !LookerUserAttribute
   name: subgroup_id
   uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value:
-  teams: []
-- !LookerUserAttribute
-  name: temp_country_access
-  uatype: advanced_filter_string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'

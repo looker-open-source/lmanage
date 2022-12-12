@@ -2,8 +2,8 @@ import logging
 import json
 import coloredlogs
 from looker_sdk import models, error
-from configurator.user_group_configuration.role_config import CreateRoleBase
-from utils.errorhandling import return_error_message
+from lmanage.configurator.user_group_configuration.role_config import CreateRoleBase
+from lmanage.utils.errorhandling import return_error_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -51,8 +51,8 @@ class CreateInstanceRoles(CreateRoleBase):
             if role_name != 'Admin':
                 body = models.WriteRole(
                     name=role_name,
-                    permission_set_id=permission_set_id,
-                    model_set_id=model_set_id
+                    permission_set_id=str(permission_set_id),
+                    model_set_id=str(model_set_id)
                 )
                 try:
                     role = self.sdk.create_role(
@@ -64,7 +64,8 @@ class CreateInstanceRoles(CreateRoleBase):
                     logger.warn(
                         'You have hit a warning creating your role \'%s\'; warning = %s', role_name, err_msg)
                     role_id = self.sdk.search_roles(name=role_name)[0].id
-                    role = self.sdk.update_role(role_id=role_id, body=body)
+                    role = self.sdk.update_role(
+                        role_id=str(role_id), body=body)
                 temp = {}
                 temp['role_id'] = role.id
                 temp['role_name'] = role_name
@@ -101,13 +102,14 @@ class CreateInstanceRoles(CreateRoleBase):
     def sync_roles(self):
         all_role_lookup = self.create_allrole_lookup()
         all_role_lookup.pop('Admin')
-        yaml_role = [role.name for role in self.role_metadata]
+        yaml_role = [role.get('name') for role in self.role_metadata]
 
         for role_name in all_role_lookup.keys():
             if role_name not in yaml_role:
-                role_id = self.sdk.search_roles(name=role_name)[0].id
+                role_id = all_role_lookup.get(role_name)
                 self.sdk.delete_role(role_id=role_id)
 
     def execute(self):
         created_roles = self.create_instance_roles()
         self.attribute_instance_roles(created_role_metadata=created_roles)
+        self.sync_roles()
