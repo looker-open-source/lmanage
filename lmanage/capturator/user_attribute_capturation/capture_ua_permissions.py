@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
 from time import sleep
-from lmanage.utils.errorhandling import return_error_message, return_sleep_message
+from utils.errorhandling import return_error_message, return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')

@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
-from lmanage.utils import looker_object_constructors as loc
-from lmanage.utils.errorhandling import return_sleep_message
+from utils import looker_object_constructors as loc
+from utils.errorhandling import return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -42,13 +42,17 @@ class CaptureFolderConfig():
         response = sorted(response, reverse=True)
         return response
 
-    def get_content_access_metadata(self, cmi):
+    def get_content_access_metadata(self, cmi, root_folder: bool):
         r = []
         cmi_metadata = None
         while cmi_metadata is None:
             try:
-                cmi_metadata = self.sdk.all_content_metadata_accesses(
-                    content_metadata_id=cmi)
+                if root_folder:
+                    cmi_metadata = self.sdk.all_content_metadata_accesses(
+                        content_metadata_id=1)
+                else:
+                    cmi_metadata = self.sdk.all_content_metadata_accesses(
+                        content_metadata_id=cmi)
             except:
                 return_sleep_message()
         for cmi in cmi_metadata:
@@ -83,7 +87,6 @@ class CaptureFolderConfig():
                     return_sleep_message()
             if f_metadata.name in ['Shared', 'Users']:
                 folder_name = f_metadata.name
-                new_name = '%s_' % folder_name
                 f_metadata.name = '%s_' % folder_name
                 logger.debug(f_metadata)
 
@@ -93,12 +96,18 @@ class CaptureFolderConfig():
             else:
                 content_metadata_id = f_metadata.get('content_metadata_id')
                 a_list = self.get_content_access_metadata(
-                    cmi=content_metadata_id)
+                    cmi=content_metadata_id, root_folder=False)
 
                 created_folder_object = loc.LookerFolder(
                     id=folder, folder_metadata=f_metadata, access_list=a_list)
                 logger.info('capturing folder %s', f_metadata.get('name'))
                 response[folder] = created_folder_object
+        root_content_meta = self.get_content_access_metadata(
+            cmi=1, root_folder=True)
+        root_f_meta = self.sdk.folder(folder_id='1')
+        root_folder = loc.LookerFolder(
+            id='1', folder_metadata=root_f_meta, access_list=root_content_meta)
+        response['1'] = root_folder
         return response
 
     @ staticmethod
@@ -130,8 +139,9 @@ class CaptureFolderConfig():
             else:
                 pass
 
-        folder_list = [f for f in list(
-            folder_list.values()) if f.parent_id == '1']
+        # folder_list = [f for f in list(
+        #     folder_list.values()) if f.parent_id == '1']
+        folder_list = [f for f in list(folder_list.values()) if f.id == '1']
 
         return folder_list
 

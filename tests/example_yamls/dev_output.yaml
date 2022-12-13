@@ -3,383 +3,422 @@
 # -----------------------------------------------------
 
 - !LookerFolder
-  parent_id: '1'
-  id: '41'
-  name: E-Commerce
+  parent_id:
+  id: '1'
+  name: Shared
   subfolder:
   - !LookerFolder
-    parent_id: '41'
-    id: '42'
-    name: Sub Folder - Special
+    parent_id: '1'
+    id: '394'
+    name: E-Commerce
     subfolder:
     - !LookerFolder
-      parent_id: '42'
-      id: '44'
-      name: dev
-      subfolder: []
-      content_metadata_id: 45
+      parent_id: '394'
+      id: '395'
+      name: Sub Folder - Special
+      subfolder:
+      - !LookerFolder
+        parent_id: '395'
+        id: '396'
+        name: dev
+        subfolder: []
+        content_metadata_id: '397'
+        team_edit:
+        - chicago_district_test
+        team_view:
+        - Embed Users
+        - All Looker Users (Non-Admin)
+        - Marketing
+      content_metadata_id: '396'
       team_edit:
-      - All Users
+      - chicago_district_test
       team_view:
-      - Marketing
       - Embed Users
       - All Looker Users (Non-Admin)
-    - !LookerFolder
-      parent_id: '42'
-      id: '43'
-      name: Development
-      subfolder: []
-      content_metadata_id: 44
-      team_edit:
-      - All Users
-      team_view:
       - Marketing
-      - Embed Users
-      - All Looker Users (Non-Admin)
-    content_metadata_id: 43
+    content_metadata_id: '395'
     team_edit:
-    - All Users
+    - chicago_district_test
     team_view:
-    - Marketing
     - Embed Users
     - All Looker Users (Non-Admin)
-  content_metadata_id: 42
-  team_edit:
-  - All Users
-  team_view:
-  - Marketing
-  - Embed Users
-  - All Looker Users (Non-Admin)
-- !LookerFolder
-  parent_id: '1'
-  id: '40'
-  name: Data Tools
-  subfolder: []
-  content_metadata_id: 41
-  team_edit:
-  - All Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '38'
-  name: Marketing
-  subfolder:
+    - Marketing
   - !LookerFolder
-    parent_id: '38'
-    id: '39'
-    name: Marketing Look Selector
+    parent_id: '1'
+    id: '393'
+    name: Data Tools
     subfolder: []
-    content_metadata_id: 40
+    content_metadata_id: '394'
     team_edit:
+    - chicago_district_test
+    team_view:
     - All Users
-    team_view: []
-  content_metadata_id: 39
-  team_edit:
-  - All Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '37'
-  name: Admin
-  subfolder: []
-  content_metadata_id: 38
-  team_edit:
-  - All Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '33'
-  name: Looker Workflows
-  subfolder:
   - !LookerFolder
-    parent_id: '33'
-    id: '36'
-    name: Zapier - Webhooks Integration
+    parent_id: '1'
+    id: '391'
+    name: Admin
     subfolder: []
-    content_metadata_id: 37
+    content_metadata_id: '392'
     team_edit:
+    - chicago_district_test
+    team_view:
     - All Users
-    team_view: []
   - !LookerFolder
-    parent_id: '33'
-    id: '34'
-    name: Slackbot
+    parent_id: '1'
+    id: '387'
+    name: Looker Workflows
     subfolder:
     - !LookerFolder
-      parent_id: '34'
-      id: '35'
-      name: New Space
+      parent_id: '387'
+      id: '390'
+      name: Zapier - Webhooks Integration
       subfolder: []
-      content_metadata_id: 36
+      content_metadata_id: '391'
       team_edit:
+      - chicago_district_test
+      team_view:
       - All Users
-      team_view: []
-    content_metadata_id: 35
+    - !LookerFolder
+      parent_id: '387'
+      id: '388'
+      name: Slackbot
+      subfolder:
+      - !LookerFolder
+        parent_id: '388'
+        id: '389'
+        name: New Space
+        subfolder: []
+        content_metadata_id: '390'
+        team_edit:
+        - chicago_district_test
+        team_view:
+        - All Users
+      content_metadata_id: '389'
+      team_edit:
+      - chicago_district_test
+      team_view:
+      - All Users
+    content_metadata_id: '388'
     team_edit:
+    - chicago_district_test
+    team_view:
     - All Users
-    team_view: []
-  content_metadata_id: 34
-  team_edit:
-  - All Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '31'
-  name: Retail
-  subfolder:
   - !LookerFolder
-    parent_id: '31'
-    id: '32'
-    name: Deep-dive dashboards
-    subfolder: []
-    content_metadata_id: 33
-    team_edit:
-    - All Users
-    team_view: []
-  content_metadata_id: 32
-  team_edit:
-  - All Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '29'
-  name: SaaS Sales and Support
-  subfolder:
-  - !LookerFolder
-    parent_id: '29'
-    id: '30'
-    name: Looks for PPT
-    subfolder: []
-    content_metadata_id: 31
-    team_edit:
-    - All Users
-    team_view: []
-  content_metadata_id: 30
-  team_edit:
-  - All Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '28'
-  name: SDLC Demo
-  subfolder: []
-  content_metadata_id: 29
-  team_edit:
-  - All Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '22'
-  name: Marketplace Blocks
-  subfolder:
-  - !LookerFolder
-    parent_id: '22'
-    id: '27'
-    name: Database Blocks
-    subfolder: []
-    content_metadata_id: 28
-    team_edit:
-    - All Users
-    team_view: []
-  - !LookerFolder
-    parent_id: '22'
-    id: '26'
-    name: JIRA Block
-    subfolder: []
-    content_metadata_id: 27
-    team_edit:
-    - All Users
-    team_view: []
-  - !LookerFolder
-    parent_id: '22'
-    id: '23'
-    name: Not Everything Working
+    parent_id: '1'
+    id: '385'
+    name: Retail
     subfolder:
     - !LookerFolder
-      parent_id: '23'
-      id: '25'
-      name: Salesforce Block
+      parent_id: '385'
+      id: '386'
+      name: Deep-dive dashboards
       subfolder: []
-      content_metadata_id: 26
+      content_metadata_id: '387'
       team_edit:
+      - chicago_district_test
+      team_view:
       - All Users
-      team_view: []
-    - !LookerFolder
-      parent_id: '23'
-      id: '24'
-      name: Zendesk Block
-      subfolder: []
-      content_metadata_id: 25
-      team_edit:
-      - All Users
-      team_view: []
-    content_metadata_id: 24
+    content_metadata_id: '386'
     team_edit:
+    - chicago_district_test
+    team_view:
     - All Users
-    team_view: []
-  content_metadata_id: 23
-  team_edit:
-  - All Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '21'
-  name: BigQuery Project
-  subfolder: []
-  content_metadata_id: 22
-  team_edit:
-  - All Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '20'
-  name: to be hidden
-  subfolder: []
-  content_metadata_id: 21
-  team_edit:
-  - All Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '17'
-  name: Reports
-  subfolder:
   - !LookerFolder
-    parent_id: '17'
-    id: '18'
-    name: Client A
+    parent_id: '1'
+    id: '383'
+    name: SaaS Sales and Support
     subfolder:
     - !LookerFolder
-      parent_id: '18'
-      id: '19'
-      name: User 123
+      parent_id: '383'
+      id: '384'
+      name: Looks for PPT
       subfolder: []
-      content_metadata_id: 20
+      content_metadata_id: '385'
       team_edit:
+      - chicago_district_test
+      team_view:
       - All Users
-      - Embed Shared Group SSO User
+    content_metadata_id: '384'
+    team_edit:
+    - chicago_district_test
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '382'
+    name: SDLC Demo
+    subfolder: []
+    content_metadata_id: '383'
+    team_edit:
+    - chicago_district_test
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '376'
+    name: Marketplace Blocks
+    subfolder:
+    - !LookerFolder
+      parent_id: '376'
+      id: '381'
+      name: Database Blocks
+      subfolder: []
+      content_metadata_id: '382'
+      team_edit:
+      - chicago_district_test
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '376'
+      id: '380'
+      name: JIRA Block
+      subfolder: []
+      content_metadata_id: '381'
+      team_edit:
+      - chicago_district_test
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '376'
+      id: '377'
+      name: Not Everything Working
+      subfolder:
+      - !LookerFolder
+        parent_id: '377'
+        id: '379'
+        name: Salesforce Block
+        subfolder: []
+        content_metadata_id: '380'
+        team_edit:
+        - chicago_district_test
+        team_view:
+        - All Users
+      - !LookerFolder
+        parent_id: '377'
+        id: '378'
+        name: Zendesk Block
+        subfolder: []
+        content_metadata_id: '379'
+        team_edit:
+        - chicago_district_test
+        team_view:
+        - All Users
+      content_metadata_id: '378'
+      team_edit:
+      - chicago_district_test
+      team_view:
+      - All Users
+    content_metadata_id: '377'
+    team_edit:
+    - chicago_district_test
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '375'
+    name: BigQuery Project
+    subfolder: []
+    content_metadata_id: '376'
+    team_edit:
+    - chicago_district_test
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '374'
+    name: to be hidden
+    subfolder: []
+    content_metadata_id: '375'
+    team_edit:
+    - chicago_district_test
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '371'
+    name: Reports
+    subfolder:
+    - !LookerFolder
+      parent_id: '371'
+      id: '372'
+      name: Client A
+      subfolder:
+      - !LookerFolder
+        parent_id: '372'
+        id: '373'
+        name: User 123
+        subfolder: []
+        content_metadata_id: '374'
+        team_edit:
+        - Embed Users
+        - Embed Shared Group SSO User
+        - chicago_district_test
+        team_view: []
+      content_metadata_id: '373'
+      team_edit:
       - Embed Users
+      - Embed Shared Group SSO User
+      - chicago_district_test
       team_view: []
-    content_metadata_id: 19
+    content_metadata_id: '372'
     team_edit:
-    - All Users
-    - Embed Shared Group SSO User
     - Embed Users
+    - Embed Shared Group SSO User
+    - chicago_district_test
     team_view: []
-  content_metadata_id: 18
-  team_edit:
-  - All Users
-  - Embed Shared Group SSO User
-  - Embed Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '11'
-  name: Corporate
-  subfolder:
   - !LookerFolder
-    parent_id: '11'
-    id: '15'
-    name: Director Group
+    parent_id: '1'
+    id: '365'
+    name: Corporate
     subfolder:
     - !LookerFolder
-      parent_id: '15'
-      id: '16'
-      name: Custom Dashboards
-      subfolder: []
-      content_metadata_id: 17
+      parent_id: '365'
+      id: '369'
+      name: Director Group
+      subfolder:
+      - !LookerFolder
+        parent_id: '369'
+        id: '370'
+        name: Custom Dashboards
+        subfolder: []
+        content_metadata_id: '371'
+        team_edit:
+        - Company A
+        - chicago_district_test
+        team_view: []
+      content_metadata_id: '370'
       team_edit:
-      - All Users
       - Company A
+      - chicago_district_test
       team_view: []
-    content_metadata_id: 16
+    - !LookerFolder
+      parent_id: '365'
+      id: '368'
+      name: Exec Group
+      subfolder: []
+      content_metadata_id: '369'
+      team_edit:
+      - Company B
+      - chicago_district_test
+      team_view: []
+    - !LookerFolder
+      parent_id: '365'
+      id: '367'
+      name: Marketing Team
+      subfolder: []
+      content_metadata_id: '368'
+      team_edit:
+      - Marketing
+      - chicago_district_test
+      team_view: []
+    - !LookerFolder
+      parent_id: '365'
+      id: '366'
+      name: Sales Team
+      subfolder: []
+      content_metadata_id: '367'
+      team_edit:
+      - chicago_district_test
+      team_view:
+      - All Users
+    content_metadata_id: '366'
     team_edit:
-    - All Users
-    - Company A
-    team_view: []
-  - !LookerFolder
-    parent_id: '11'
-    id: '14'
-    name: Exec Group
-    subfolder: []
-    content_metadata_id: 15
-    team_edit:
+    - chicago_district_test
+    team_view:
     - All Users
     - Company B
-    team_view: []
-  - !LookerFolder
-    parent_id: '11'
-    id: '13'
-    name: Marketing Team
-    subfolder: []
-    content_metadata_id: 14
-    team_edit:
-    - All Users
     - Marketing
-    team_view: []
+    - Company A
   - !LookerFolder
-    parent_id: '11'
-    id: '12'
-    name: Sales Team
+    parent_id: '1'
+    id: '364'
+    name: Dev Dashboards
     subfolder: []
-    content_metadata_id: 13
+    content_metadata_id: '365'
     team_edit:
-    - All Users
-    team_view: []
-  content_metadata_id: 12
-  team_edit:
-  - All Users
-  team_view:
-  - Marketing
-  - Company A
-  - Company B
-- !LookerFolder
-  parent_id: '1'
-  id: '10'
-  name: Dev Dashboards
-  subfolder: []
-  content_metadata_id: 11
-  team_edit:
-  - All Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '9'
-  name: Looks - Pricing
-  subfolder: []
-  content_metadata_id: 10
-  team_edit:
-  - All Users
-  team_view: []
-- !LookerFolder
-  parent_id: '1'
-  id: '7'
-  name: Embedded Customers
-  subfolder:
-  - !LookerFolder
-    parent_id: '7'
-    id: '8'
-    name: Allegra K
-    subfolder: []
-    content_metadata_id: 9
-    team_edit:
-    - All Users
+    - chicago_district_test
     team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '363'
+    name: Looks - Pricing
+    subfolder: []
+    content_metadata_id: '364'
+    team_edit:
+    - chicago_district_test
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '361'
+    name: Embedded Customers
+    subfolder:
+    - !LookerFolder
+      parent_id: '361'
+      id: '362'
+      name: Allegra K
+      subfolder: []
+      content_metadata_id: '363'
+      team_edit:
+      - chicago_district_test
+      team_view:
+      - All Users
+      - Embed Shared Group customerABC
+    content_metadata_id: '362'
+    team_edit:
+    - chicago_district_test
+    team_view:
+    - All Users
     - Embed Shared Group customerABC
-  content_metadata_id: 8
+  - !LookerFolder
+    parent_id: '1'
+    id: '360'
+    name: Demo
+    subfolder: []
+    content_metadata_id: '361'
+    team_edit:
+    - chicago_district_test
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '181'
+    name: Development
+    subfolder: []
+    content_metadata_id: '182'
+    team_edit:
+    - chicago_district_test
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '38'
+    name: Marketing
+    subfolder:
+    - !LookerFolder
+      parent_id: '38'
+      id: '392'
+      name: Marketing Look Selector
+      subfolder: []
+      content_metadata_id: '393'
+      team_edit:
+      - chicago_district_test
+      team_view:
+      - All Users
+    content_metadata_id: '39'
+    team_edit:
+    - chicago_district_test
+    team_view:
+    - All Users
+  content_metadata_id: '1'
   team_edit:
-  - All Users
+  - chicago_district_test
   team_view:
-  - Embed Shared Group customerABC
-- !LookerFolder
-  parent_id: '1'
-  id: '6'
-  name: Demo
-  subfolder: []
-  content_metadata_id: 7
-  team_edit:
   - All Users
-  team_view: []
+  - Camera
+  - CameraPlatform
+  - amy_test
 # Looker Role
 # Opening Session Welcome to the Capturator, this is the Role place
 # -----------------------------------------------------
@@ -389,71 +428,9 @@
 # PERMISSION SETS
 - !LookerPermissionSet
   permissions:
-  - manage_models
+  - access_data
   - mobile_app_access
-  name: manage models
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_custom_fields
-  - create_public_looks
-  - create_table_calculations
-  - explore
-  - mobile_app_access
-  - save_content
-  - see_schedules
-  - see_sql_runner_content
-  - see_user_dashboards
-  - see_users
-  name: access data only
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - explore
-  - save_content
-  - see_drill_overlay
-  - see_lookml
-  - see_lookml_dashboards
-  - see_looks
-  - see_sql
-  - see_user_dashboards
-  - use_sql_runner
-  name: explore but no download
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_alerts
-  - create_custom_fields
-  - create_table_calculations
-  - develop
-  - download_without_limit
-  - explore
-  - follow_alerts
-  - mobile_app_access
-  - save_content
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_lookml
-  - see_looks
-  - see_schedules
-  - see_user_dashboards
-  - see_users
-  - send_outgoing_webhook
-  - send_to_integration
-  - send_to_s3
-  - send_to_sftp
-  name: explore user
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - see_looks
-  - see_user_dashboards
-  name: minimum permisions
+  name: view test
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -482,46 +459,14 @@
 - !LookerPermissionSet
   permissions:
   - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_alerts
-  - create_custom_fields
-  - create_prefetches
-  - create_public_looks
-  - create_table_calculations
-  - deploy
-  - develop
-  - download_with_limit
-  - embed_browse_spaces
-  - explore
-  - follow_alerts
-  - login_special_email
-  - manage_homepage
-  - manage_models
-  - manage_spaces
-  - mobile_app_access
-  - save_content
-  - save_sql_runner_content
-  - schedule_look_emails
-  - see_datagroups
-  - see_drill_overlay
-  - see_logs
-  - see_lookml
-  - see_lookml_dashboards
   - see_looks
-  - see_pdts
-  - see_queries
-  - see_schedules
-  - see_sql
-  - see_sql_runner_content
   - see_user_dashboards
-  - see_users
-  - send_outgoing_webhook
-  - send_to_integration
-  - send_to_s3
-  - send_to_sftp
-  - use_sql_runner
-  name: devops
+  name: minimum permisions
+- !LookerPermissionSet
+  permissions:
+  - manage_models
+  - mobile_app_access
+  name: manage models
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -568,6 +513,58 @@
 - !LookerPermissionSet
   permissions:
   - access_data
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  name: viewer+sql
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - deploy
+  - develop
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - use_sql_runner
+  name: nosharing
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_table_calculations
+  - develop
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_lookml
+  - see_looks
+  - see_schedules
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  name: explore user
+- !LookerPermissionSet
+  permissions:
+  - access_data
   - clear_cache_refresh
   - mobile_app_access
   - save_content
@@ -575,26 +572,6 @@
   - see_looks
   - see_user_dashboards
   name: viewer test
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - download_with_limit
-  - follow_alerts
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  name: trafficguard_viewers
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - see_lookml_dashboards
-  - see_looks
-  - see_sql
-  - see_user_dashboards
-  name: viewer+sql
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -614,7 +591,51 @@
   permissions:
   - access_data
   - mobile_app_access
-  name: view test
+  - see_system_activity
+  name: system_activity_role_ah_test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - embed_browse_spaces
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - save_sql_runner_content
+  - schedule_look_emails
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_sql_runner_content
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - use_sql_runner
+  name: devops
 - !LookerPermissionSet
   permissions:
   - login_special_email
@@ -623,18 +644,8 @@
 - !LookerPermissionSet
   permissions:
   - access_data
-  - mobile_app_access
-  - see_system_activity
-  name: system_activity_role_ah_test
-- !LookerPermissionSet
-  permissions:
-  - access_data
   - can_create_forecast
-  - clear_cache_refresh
-  - deploy
-  - develop
   - explore
-  - mobile_app_access
   - save_content
   - see_drill_overlay
   - see_lookml
@@ -643,33 +654,62 @@
   - see_sql
   - see_user_dashboards
   - use_sql_runner
-  name: nosharing
+  name: explore but no download
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_public_looks
+  - create_table_calculations
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_schedules
+  - see_sql_runner_content
+  - see_user_dashboards
+  - see_users
+  name: access data only
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - download_with_limit
+  - follow_alerts
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: trafficguard_viewers
 
 
 # MODEL SETS
-- !LookerModelSet
-  models:
-  - snowflake
-  name: snorest
 - !LookerModelSet
   models:
   - retail_block_model
   name: socal4-demo-1
 - !LookerModelSet
   models:
-  - thelook
-  name: thelook
-- !LookerModelSet
-  models:
   - test_manage_models_b
   name: manage models
 - !LookerModelSet
   models:
+  - extension-api-explorer
+  name: All
+- !LookerModelSet
+  models:
+  - thelook
+  name: thelook
+- !LookerModelSet
+  models:
+  - snowflake
+  name: snorest
+- !LookerModelSet
+  models:
   - thelook
   name: kate_demo
-- !LookerModelSet
-  models: []
-  name: All
 
 
 # LOOKER ROLES
@@ -723,8 +763,8 @@
   permission_set: explore user
   model_set: thelook
   teams:
-  - Marketing
   - All Looker Users (Non-Admin)
+  - Marketing
   name: Explore The Look
 - !LookerRoles
   permission_set: manage models
@@ -817,7 +857,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: account_executive
@@ -825,7 +865,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: Denny Grade
   teams: []
 - !LookerUserAttribute
   name: account_name
@@ -833,7 +873,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: New York Times
   teams: []
 - !LookerUserAttribute
   name: allowed_brands
@@ -841,7 +881,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: allowed_stations
@@ -849,7 +889,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: Westlake Ave & 6th Ave
   teams: []
 - !LookerUserAttribute
   name: assignee_email
@@ -857,7 +897,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: bq_project_name
@@ -865,7 +905,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: brand
@@ -873,16 +913,17 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams:
   - Company A: fsdlkfsldkjflsd
+  - All Users: dockers
 - !LookerUserAttribute
   name: brand_demo
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: brand_dropdown
@@ -890,7 +931,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: brand_name
@@ -898,7 +939,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: brand_rls
@@ -906,7 +947,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: bridgecorp_can_see_everything
@@ -914,7 +955,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: bridgecorp_object_ids
@@ -922,7 +963,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: bridgecorp_object_items_count
@@ -930,7 +971,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: bruk_test
@@ -938,7 +979,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: business_unit
@@ -946,7 +987,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: campaign_name
@@ -954,7 +995,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: can_see_details
@@ -962,7 +1003,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: Yes
   teams: []
 - !LookerUserAttribute
   name: can_see_email
@@ -970,7 +1011,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: no
   teams: []
 - !LookerUserAttribute
   name: can_see_pii
@@ -978,7 +1019,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: no
   teams: []
 - !LookerUserAttribute
   name: can_see_sales
@@ -986,7 +1027,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams:
   - Marketing: can_see_sales
 - !LookerUserAttribute
@@ -995,7 +1036,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: No
   teams:
   - All Users: Yes
 - !LookerUserAttribute
@@ -1004,7 +1045,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: yes
   teams: []
 - !LookerUserAttribute
   name: category
@@ -1012,7 +1053,7 @@
   hidden_value: true
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: city
@@ -1020,7 +1061,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%, NULL'
   teams:
   - london team: London
   - new york team: New York
@@ -1030,7 +1071,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ('Chicago', 'Houston', 'Los Angeles', 'Miami')
   teams: []
 - !LookerUserAttribute
   name: city_v1
@@ -1038,7 +1079,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: client
@@ -1046,7 +1087,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: client_id
@@ -1054,7 +1095,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: client_name
@@ -1062,7 +1103,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: club
@@ -1070,7 +1111,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: general
   teams: []
 - !LookerUserAttribute
   name: company
@@ -1078,7 +1119,7 @@
   hidden_value: true
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: DEFAULT_IS_SET
   teams: []
 - !LookerUserAttribute
   name: company_geet
@@ -1086,7 +1127,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: company_id
@@ -1094,7 +1135,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: connection_name
@@ -1102,7 +1143,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: connection_string
@@ -1110,7 +1151,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: country
@@ -1118,7 +1159,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: country_currency
@@ -1126,7 +1167,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: customer
@@ -1134,7 +1175,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: customerid
@@ -1142,7 +1183,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: '1234'
   teams: []
 - !LookerUserAttribute
   name: customer_database
@@ -1150,7 +1191,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: date
@@ -1158,7 +1199,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '2021-01-01'
   teams: []
 - !LookerUserAttribute
   name: datenull
@@ -1174,7 +1215,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: no_dept
   teams: []
 - !LookerUserAttribute
   name: department
@@ -1182,7 +1223,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: operations
   teams: []
 - !LookerUserAttribute
   name: department_rls
@@ -1190,7 +1231,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: discount
@@ -1198,7 +1239,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: distro_center
@@ -1206,7 +1247,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: download_limit
@@ -1214,7 +1255,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: '5000'
   teams: []
 - !LookerUserAttribute
   name: favorite_color
@@ -1222,7 +1263,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: finance_team
@@ -1230,7 +1271,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: fournisseur
@@ -1238,7 +1279,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: gcloud
@@ -1246,7 +1287,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: git_user
@@ -1254,7 +1295,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: default
   teams: []
 - !LookerUserAttribute
   name: goal
@@ -1262,7 +1303,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '100'
   teams: []
 - !LookerUserAttribute
   name: historical_data
@@ -1270,7 +1311,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: last 36 months
   teams: []
 - !LookerUserAttribute
   name: historical_data_test
@@ -1278,7 +1319,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: hotel_brand
@@ -1286,7 +1327,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: hotel_chain
@@ -1294,15 +1335,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
-  teams: []
-- !LookerUserAttribute
-  name: hugothing
-  uatype: advanced_filter_string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: USA
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: is_looker
@@ -1310,7 +1343,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: yes
   teams: []
 - !LookerUserAttribute
   name: landing_page
@@ -1319,14 +1352,15 @@
   user_view: 'True'
   user_edit: 'True'
   default_value: /browse
-  teams: []
+  teams:
+  - Eric's Homepage Group: /boards/18
 - !LookerUserAttribute
   name: legal_team
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: yes
   teams: []
 - !LookerUserAttribute
   name: locale
@@ -1342,7 +1376,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: magasin
@@ -1350,7 +1384,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: media_name
@@ -1358,7 +1392,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: model_name
@@ -1366,7 +1400,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: thelook
   teams: []
 - !LookerUserAttribute
   name: new_name
@@ -1374,7 +1408,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: '{{ _user_attributes [name] }}'
   teams: []
 - !LookerUserAttribute
   name: number_format
@@ -1390,7 +1424,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: order_id
@@ -1398,7 +1432,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: organization
@@ -1406,7 +1440,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: organization_aa
@@ -1414,7 +1448,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams:
   - Company A: Google
 - !LookerUserAttribute
@@ -1423,7 +1457,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: org_id
@@ -1431,7 +1465,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: NOT NULL
   teams: []
 - !LookerUserAttribute
   name: param_connect
@@ -1439,7 +1473,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: lookerdata
   teams: []
 - !LookerUserAttribute
   name: park
@@ -1447,7 +1481,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: partner_id
@@ -1455,7 +1489,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: partner_id_demo
@@ -1463,7 +1497,7 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: password
@@ -1471,7 +1505,7 @@
   hidden_value: true
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: DEFAULT_IS_SET
   teams: []
 - !LookerUserAttribute
   name: pii
@@ -1479,7 +1513,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: NO
   teams: []
 - !LookerUserAttribute
   name: platform
@@ -1487,7 +1521,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: product_category
@@ -1495,15 +1529,16 @@
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value:
-  teams: []
+  default_value: '%'
+  teams:
+  - amy_test: Active, Accessories
 - !LookerUserAttribute
   name: project
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: publisher_type
@@ -1511,7 +1546,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: rate
@@ -1519,7 +1554,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '0.5'
   teams: []
 - !LookerUserAttribute
   name: referrer
@@ -1527,7 +1562,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: /explore
   teams: []
 - !LookerUserAttribute
   name: salaire
@@ -1535,7 +1570,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: No
   teams: []
 - !LookerUserAttribute
   name: salesforce_campaigns_action_domain
@@ -1543,7 +1578,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: https://googlecom-3b0-dev-ed.lightning.force.com
   teams: []
 - !LookerUserAttribute
   name: salesforce_user_id
@@ -1551,7 +1586,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: sales_segment
@@ -1559,7 +1594,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: samesystem_brand
@@ -1567,7 +1602,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: Carhartt
   teams: []
 - !LookerUserAttribute
   name: security_key
@@ -1575,7 +1610,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: site_id
@@ -1583,7 +1618,7 @@
   hidden_value: true
   user_view: 'False'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: snowflake_wh
@@ -1591,7 +1626,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: sport_category
@@ -1599,7 +1634,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: state
@@ -1607,7 +1642,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: New York
   teams:
   - All Users: New York
 - !LookerUserAttribute
@@ -1616,7 +1651,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: Texas, Alabama
   teams: []
 - !LookerUserAttribute
   name: state_filter
@@ -1624,7 +1659,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%'
   teams: []
 - !LookerUserAttribute
   name: status
@@ -1632,7 +1667,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: status_check
@@ -1640,7 +1675,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: Complete
   teams: []
 - !LookerUserAttribute
   name: store
@@ -1648,7 +1683,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: '%,NULL'
   teams: []
 - !LookerUserAttribute
   name: subgroup_id
@@ -1656,7 +1691,15 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: temp_country_access
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: USA
   teams: []
 - !LookerUserAttribute
   name: test
@@ -1664,7 +1707,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: timezone_a
@@ -1672,7 +1715,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: hongkong.view
   teams: []
 - !LookerUserAttribute
   name: time_horizon
@@ -1680,7 +1723,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: last 12 months
   teams: []
 - !LookerUserAttribute
   name: track_graph
@@ -1688,7 +1731,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: 1,2,3,4
   teams: []
 - !LookerUserAttribute
   name: type
@@ -1696,7 +1739,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: username
@@ -1704,7 +1747,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: user_id
@@ -1712,7 +1755,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: 5010,1
   teams: []
 - !LookerUserAttribute
   name: user_id_events
@@ -1720,7 +1763,7 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: user_schema
@@ -1728,5 +1771,5 @@
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value:
+  default_value: ''
   teams: []

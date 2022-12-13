@@ -2,11 +2,11 @@ import logging
 import coloredlogs
 import looker_sdk
 import ruamel.yaml
-from lmanage.capturator.user_group_capturation import role_config as rc
-from lmanage.capturator.user_attribute_capturation import capture_ua_permissions as cup
-from lmanage.capturator.folder_capturation import folder_config as fc
-from lmanage.capturator.folder_capturation import create_folder_yaml_structure as cfp
-from lmanage.utils import looker_object_constructors as loc
+from capturator.user_group_capturation import role_config as rc
+from capturator.user_attribute_capturation import capture_ua_permissions as cup
+from capturator.folder_capturation import folder_config as fc
+from capturator.folder_capturation import create_folder_yaml_structure as cfp
+from utils import looker_object_constructors as loc
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -22,9 +22,9 @@ def main(**kwargs):
     logger.info('creating yaml configuration file')
 
     if ini_file:
-        sdk = looker_sdk.init31(config_file=ini_file)
+        sdk = looker_sdk.init40(config_file=ini_file)
     else:
-        sdk = looker_sdk.init31()
+        sdk = looker_sdk.init40()
 
     yaml = ruamel.yaml.YAML()
 
@@ -80,10 +80,10 @@ def main(**kwargs):
 
 
 if __name__ == "__main__":
-    instance = 'profserv'
+    instance = 'dev'
     IP = (
         f'/usr/local/google/home/hugoselbie/code_sample/py/ini/{instance}.ini')
     YP = (
         f'/usr/local/google/home/hugoselbie/code_sample/py/lmanage/tests/example_yamls/{instance}_output.yaml')
 
-    main(yaml_path=YP, ini_file=IP)
+    main(yaml_export_path=YP, ini_file=IP)

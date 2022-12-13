@@ -26,6 +26,7 @@
   content_metadata_id: 32601
   team_edit: []
   team_view:
+  - All Users
   - Embed Shared Group customerABC
 - !LookerFolder
   parent_id: '1'
