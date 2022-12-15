@@ -5,6 +5,7 @@ looker_backup_content/
 .venv/
 .vscode/
 folder_walk.sh
+None
 
 #Ignore test files
 test.py
