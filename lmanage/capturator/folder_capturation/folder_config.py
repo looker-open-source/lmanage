@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
-from utils import looker_object_constructors as loc
-from utils.errorhandling import return_sleep_message
+from lmanage.utils import looker_object_constructors as loc
+from lmanage.utils.errorhandling import return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -104,7 +104,13 @@ class CaptureFolderConfig():
                 response[folder] = created_folder_object
         root_content_meta = self.get_content_access_metadata(
             cmi=1, root_folder=True)
-        root_f_meta = self.sdk.folder(folder_id='1')
+        root_f_meta = None
+        while root_f_meta is None:
+            try:
+                root_f_meta = self.sdk.folder(folder_id=str(1))
+            except:
+                return_sleep_message()
+
         root_folder = loc.LookerFolder(
             id='1', folder_metadata=root_f_meta, access_list=root_content_meta)
         response['1'] = root_folder

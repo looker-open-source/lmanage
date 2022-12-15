@@ -41,8 +41,7 @@ class CreateInstanceFolders():
                 return folder
 
             else:
-                parent_id = self.sdk.search_folders(
-                    name=parent_folder_name)[0].id
+                parent_id = existing_instance_folders.get(parent_folder_name)
 
                 logger.info(f'Creating folder "{folder_name}"')
                 folder = self.sdk.create_folder(
@@ -58,15 +57,19 @@ class CreateInstanceFolders():
         for folder in unique_folder_list:
             fname = folder.get('name')
             pid = folder.get('parent_id')
-            fmetadata = self.create_folder_if_not_exists(
-                folder_name=fname, parent_folder_name=pid)
-            temp = {}
-            temp['folder_id'] = fmetadata.id
-            temp['folder_name'] = fmetadata.name
-            temp['content_metadata_id'] = fmetadata.content_metadata_id
-            temp['team_edit'] = folder.get('team_edit')
-            temp['team_view'] = folder.get('team_view')
-            data_storage.append(temp)
+            lid = folder.get('legacy_id')
+            if lid == '1':
+                logger.info('Default Shared folder will not be created')
+            else:
+                fmetadata = self.create_folder_if_not_exists(
+                    folder_name=fname, parent_folder_name=pid)
+                temp = {}
+                temp['folder_id'] = fmetadata.id
+                temp['folder_name'] = fmetadata.name
+                temp['content_metadata_id'] = fmetadata.content_metadata_id
+                temp['team_edit'] = folder.get('team_edit')
+                temp['team_view'] = folder.get('team_view')
+                data_storage.append(temp)
         return data_storage
 
     def sync_folders(self, created_folder: list):

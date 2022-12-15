@@ -3,7 +3,7 @@ import time
 import coloredlogs
 from looker_sdk import models, error
 
-from utils import errorhandling
+from lmanage.utils import errorhandling
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -17,10 +17,13 @@ class CreateAndProvisionInstanceFolders():
     def get_content_access_metadata(self, folders: list) -> list:
         response = []
 
+        folder_list = self.sdk.all_folders()
+        folder_cmaid_lookup = {
+            folder.name: folder.content_metadata_id for folder in folder_list}
+
         for folder in folders:
             folder_name = folder.get('name')
-            cmaid = self.sdk.search_folders(name=folder_name)[
-                0].content_metadata_id
+            cmaid = folder_cmaid_lookup.get(folder_name)
             temp_dict = {}
             temp_dict['name'] = folder_name
             temp_dict['cmi'] = cmaid

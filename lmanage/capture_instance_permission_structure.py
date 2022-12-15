@@ -2,11 +2,11 @@ import logging
 import coloredlogs
 import looker_sdk
 import ruamel.yaml
-from capturator.user_group_capturation import role_config as rc
-from capturator.user_attribute_capturation import capture_ua_permissions as cup
-from capturator.folder_capturation import folder_config as fc
-from capturator.folder_capturation import create_folder_yaml_structure as cfp
-from utils import looker_object_constructors as loc
+from lmanage.capturator.user_group_capturation import role_config as rc
+from lmanage.capturator.user_attribute_capturation import capture_ua_permissions as cup
+from lmanage.capturator.folder_capturation import folder_config as fc
+from lmanage.capturator.folder_capturation import create_folder_yaml_structure as cfp
+from lmanage.utils import looker_object_constructors as loc
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -80,7 +80,7 @@ def main(**kwargs):
 
 
 if __name__ == "__main__":
-    instance = 'dev'
+    instance = 'demo'
     IP = (
         f'/usr/local/google/home/hugoselbie/code_sample/py/ini/{instance}.ini')
     YP = (

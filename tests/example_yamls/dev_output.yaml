@@ -53,6 +53,9 @@
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '391'
@@ -63,6 +66,9 @@
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '387'
@@ -78,6 +84,9 @@
       - chicago_district_test
       team_view:
       - All Users
+      - Camera
+      - CameraPlatform
+      - amy_test
     - !LookerFolder
       parent_id: '387'
       id: '388'
@@ -93,16 +102,25 @@
         - chicago_district_test
         team_view:
         - All Users
+        - Camera
+        - CameraPlatform
+        - amy_test
       content_metadata_id: '389'
       team_edit:
       - chicago_district_test
       team_view:
       - All Users
+      - Camera
+      - CameraPlatform
+      - amy_test
     content_metadata_id: '388'
     team_edit:
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '385'
@@ -118,11 +136,17 @@
       - chicago_district_test
       team_view:
       - All Users
+      - Camera
+      - CameraPlatform
+      - amy_test
     content_metadata_id: '386'
     team_edit:
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '383'
@@ -138,11 +162,17 @@
       - chicago_district_test
       team_view:
       - All Users
+      - Camera
+      - CameraPlatform
+      - amy_test
     content_metadata_id: '384'
     team_edit:
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '382'
@@ -153,6 +183,9 @@
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '376'
@@ -168,6 +201,9 @@
       - chicago_district_test
       team_view:
       - All Users
+      - Camera
+      - CameraPlatform
+      - amy_test
     - !LookerFolder
       parent_id: '376'
       id: '380'
@@ -178,6 +214,9 @@
       - chicago_district_test
       team_view:
       - All Users
+      - Camera
+      - CameraPlatform
+      - amy_test
     - !LookerFolder
       parent_id: '376'
       id: '377'
@@ -193,6 +232,9 @@
         - chicago_district_test
         team_view:
         - All Users
+        - Camera
+        - CameraPlatform
+        - amy_test
       - !LookerFolder
         parent_id: '377'
         id: '378'
@@ -203,16 +245,25 @@
         - chicago_district_test
         team_view:
         - All Users
+        - Camera
+        - CameraPlatform
+        - amy_test
       content_metadata_id: '378'
       team_edit:
       - chicago_district_test
       team_view:
       - All Users
+      - Camera
+      - CameraPlatform
+      - amy_test
     content_metadata_id: '377'
     team_edit:
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '375'
@@ -223,6 +274,9 @@
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '374'
@@ -321,6 +375,9 @@
       - chicago_district_test
       team_view:
       - All Users
+      - Camera
+      - CameraPlatform
+      - amy_test
     content_metadata_id: '366'
     team_edit:
     - chicago_district_test
@@ -329,6 +386,9 @@
     - Company B
     - Marketing
     - Company A
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '364'
@@ -339,6 +399,9 @@
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '363'
@@ -349,6 +412,9 @@
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '361'
@@ -381,6 +447,9 @@
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '181'
@@ -391,6 +460,9 @@
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '38'
@@ -406,11 +478,17 @@
       - chicago_district_test
       team_view:
       - All Users
+      - Camera
+      - CameraPlatform
+      - amy_test
     content_metadata_id: '39'
     team_edit:
     - chicago_district_test
     team_view:
     - All Users
+    - Camera
+    - CameraPlatform
+    - amy_test
   content_metadata_id: '1'
   team_edit:
   - chicago_district_test
@@ -430,43 +508,55 @@
   permissions:
   - access_data
   - mobile_app_access
+  - see_system_activity
+  name: system_activity_role_ah_test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - download_with_limit
+  - follow_alerts
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: trafficguard_viewers
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - mobile_app_access
   name: view test
 - !LookerPermissionSet
   permissions:
   - access_data
   - can_create_forecast
-  - clear_cache_refresh
-  - create_alerts
-  - download_with_limit
-  - download_without_limit
   - explore
-  - follow_alerts
-  - mobile_app_access
   - save_content
-  - schedule_look_emails
+  - see_drill_overlay
   - see_lookml
   - see_lookml_dashboards
   - see_looks
-  - see_schedules
   - see_sql
   - see_user_dashboards
-  - send_outgoing_webhook
-  - send_to_integration
-  - send_to_s3
-  - send_to_sftp
   - use_sql_runner
-  name: explorer
+  name: explore but no download
 - !LookerPermissionSet
   permissions:
   - access_data
-  - see_looks
-  - see_user_dashboards
-  name: minimum permisions
-- !LookerPermissionSet
-  permissions:
-  - manage_models
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_public_looks
+  - create_table_calculations
+  - explore
   - mobile_app_access
-  name: manage models
+  - save_content
+  - see_schedules
+  - see_sql_runner_content
+  - see_user_dashboards
+  - see_users
+  name: access data only
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -512,30 +602,9 @@
   name: developer
 - !LookerPermissionSet
   permissions:
-  - access_data
-  - see_lookml_dashboards
-  - see_looks
-  - see_sql
-  - see_user_dashboards
-  name: viewer+sql
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - deploy
-  - develop
-  - explore
+  - manage_models
   - mobile_app_access
-  - save_content
-  - see_drill_overlay
-  - see_lookml
-  - see_lookml_dashboards
-  - see_looks
-  - see_sql
-  - see_user_dashboards
-  - use_sql_runner
-  name: nosharing
+  name: manage models
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -565,6 +634,24 @@
 - !LookerPermissionSet
   permissions:
   - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - deploy
+  - develop
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - use_sql_runner
+  name: nosharing
+- !LookerPermissionSet
+  permissions:
+  - access_data
   - clear_cache_refresh
   - mobile_app_access
   - save_content
@@ -572,6 +659,45 @@
   - see_looks
   - see_user_dashboards
   name: viewer test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_looks
+  - see_user_dashboards
+  name: minimum permisions
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - download_with_limit
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_schedules
+  - see_sql
+  - see_user_dashboards
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - use_sql_runner
+  name: explorer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  name: viewer+sql
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -589,10 +715,9 @@
   name: view only
 - !LookerPermissionSet
   permissions:
-  - access_data
+  - login_special_email
   - mobile_app_access
-  - see_system_activity
-  name: system_activity_role_ah_test
+  name: login_special_email
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -636,60 +761,13 @@
   - send_to_sftp
   - use_sql_runner
   name: devops
-- !LookerPermissionSet
-  permissions:
-  - login_special_email
-  - mobile_app_access
-  name: login_special_email
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - explore
-  - save_content
-  - see_drill_overlay
-  - see_lookml
-  - see_lookml_dashboards
-  - see_looks
-  - see_sql
-  - see_user_dashboards
-  - use_sql_runner
-  name: explore but no download
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_custom_fields
-  - create_public_looks
-  - create_table_calculations
-  - explore
-  - mobile_app_access
-  - save_content
-  - see_schedules
-  - see_sql_runner_content
-  - see_user_dashboards
-  - see_users
-  name: access data only
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - download_with_limit
-  - follow_alerts
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  name: trafficguard_viewers
 
 
 # MODEL SETS
 - !LookerModelSet
   models:
-  - retail_block_model
-  name: socal4-demo-1
+  - thelook
+  name: thelook
 - !LookerModelSet
   models:
   - test_manage_models_b
@@ -700,8 +778,8 @@
   name: All
 - !LookerModelSet
   models:
-  - thelook
-  name: thelook
+  - retail_block_model
+  name: socal4-demo-1
 - !LookerModelSet
   models:
   - snowflake

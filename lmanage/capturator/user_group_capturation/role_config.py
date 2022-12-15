@@ -2,8 +2,8 @@ import logging
 import coloredlogs
 import itertools
 from time import sleep
-from utils import errorhandling
-from utils.errorhandling import return_sleep_message
+from lmanage.utils import errorhandling
+from lmanage.utils.errorhandling import return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
