@@ -22,7 +22,6 @@
       - colin
       - HugoTesty
       - new_group
-      - sexy_group1
       - sharon
       team_view:
       - nick
@@ -33,17 +32,15 @@
       subfolder: []
       content_metadata_id: 20
       team_edit:
-      - HugoTesty
       - new_group
-      - sexy_group1
       - ps_allhand2
       team_view:
+      - HugoTesty
       - ps_allhand1
     content_metadata_id: 19
     team_edit:
     - HugoTesty
     - new_group
-    - sexy_group1
     team_view:
     - newer_group
     - colin
@@ -52,8 +49,7 @@
     - sharon
     - ps_allhand2
   content_metadata_id: 18
-  team_edit:
-  - sexy_group1
+  team_edit: []
   team_view:
   - newer_group
   - colin
@@ -61,7 +57,6 @@
   - nick
   - ps_allhand1
   - new_group
-  - sexy_group2
   - sharon
   - ps_allhand2
 - !LookerFolder
@@ -305,67 +300,19 @@
   permission_set: gghhhh
   model_set: All
   teams:
-  - Freddy
   - BusinessOperations
   name: BusinessOperations_User
 
 
 # USER_ATTRIBUTES
 - !LookerUserAttribute
-  name: can_see_hugo
+  name: city
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  value:
-  - No
+  default_value: '%, NULL'
   teams:
-  - CanSeeDAUGroup
-  - Cameos
-- !LookerUserAttribute
-  name: can_see_sharky
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  value:
-  - Yes,Sharky
-  teams:
-  - CanSeeDAUGroup
-  - HugoTesty
-- !LookerUserAttribute
-  name: first_name
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'True'
-  value: []
-  teams: []
-- !LookerUserAttribute
-  name: landing_page
-  uatype: relative_url
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'True'
-  value: []
-  teams: []
-- !LookerUserAttribute
-  name: locale
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  value: []
-  teams: []
-- !LookerUserAttribute
-  name: region_all
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  value:
-  - us,ag,bb,dd
-  teams:
-  - AudreyGroup
-  - Cameos
-  - Freddy
+  - london team: London
+  - new york team: New York
+  - safetyfirst: least_privilege

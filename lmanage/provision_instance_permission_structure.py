@@ -85,7 +85,7 @@ def main(**kwargs):
 if __name__ == "__main__":
     instance = 'clustered'
     YP = ('/usr/local/google/home/hugoselbie/code_sample/py/'
-          'lmanage/tests/example_yamls/profserv_output.yaml')
+          'lmanage/tests/example_yamls/clustered_output.yaml')
     IP = ('/usr/local/google/home/hugoselbie/code_sample/py/ini/dev.ini')
 
     main(

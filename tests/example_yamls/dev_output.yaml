@@ -9,494 +9,2240 @@
   subfolder:
   - !LookerFolder
     parent_id: '1'
-    id: '394'
-    name: E-Commerce
-    subfolder:
-    - !LookerFolder
-      parent_id: '394'
-      id: '395'
-      name: Sub Folder - Special
-      subfolder:
-      - !LookerFolder
-        parent_id: '395'
-        id: '396'
-        name: dev
-        subfolder: []
-        content_metadata_id: '397'
-        team_edit:
-        - chicago_district_test
-        team_view:
-        - Embed Users
-        - All Looker Users (Non-Admin)
-        - Marketing
-      content_metadata_id: '396'
-      team_edit:
-      - chicago_district_test
-      team_view:
-      - Embed Users
-      - All Looker Users (Non-Admin)
-      - Marketing
-    content_metadata_id: '395'
+    id: '712'
+    name: Liquid Patterns
+    subfolder: []
+    content_metadata_id: '713'
     team_edit:
-    - chicago_district_test
+    - All Users
     team_view:
-    - Embed Users
-    - All Looker Users (Non-Admin)
-    - Marketing
+    - Discover
   - !LookerFolder
     parent_id: '1'
-    id: '393'
-    name: Data Tools
+    id: '711'
+    name: Subtotals
     subfolder: []
-    content_metadata_id: '394'
-    team_edit:
-    - chicago_district_test
+    content_metadata_id: '712'
+    team_edit: []
     team_view:
     - All Users
-    - Camera
-    - CameraPlatform
-    - amy_test
   - !LookerFolder
     parent_id: '1'
-    id: '391'
-    name: Admin
-    subfolder: []
-    content_metadata_id: '392'
-    team_edit:
-    - chicago_district_test
-    team_view:
-    - All Users
-    - Camera
-    - CameraPlatform
-    - amy_test
-  - !LookerFolder
-    parent_id: '1'
-    id: '387'
-    name: Looker Workflows
+    id: '708'
+    name: test manage_spaces
     subfolder:
     - !LookerFolder
-      parent_id: '387'
-      id: '390'
-      name: Zapier - Webhooks Integration
-      subfolder: []
-      content_metadata_id: '391'
-      team_edit:
-      - chicago_district_test
-      team_view:
-      - All Users
-      - Camera
-      - CameraPlatform
-      - amy_test
-    - !LookerFolder
-      parent_id: '387'
-      id: '388'
-      name: Slackbot
+      parent_id: '708'
+      id: '709'
+      name: '&@LXosfpwttj_-=+]{'
       subfolder:
       - !LookerFolder
-        parent_id: '388'
-        id: '389'
-        name: New Space
+        parent_id: '709'
+        id: '710'
+        name: ;:'"/?.>,<_-)(*&^%$#@!~`
         subfolder: []
-        content_metadata_id: '390'
+        content_metadata_id: '711'
         team_edit:
-        - chicago_district_test
-        team_view:
         - All Users
-        - Camera
-        - CameraPlatform
-        - amy_test
-      content_metadata_id: '389'
-      team_edit:
-      - chicago_district_test
-      team_view:
-      - All Users
-      - Camera
-      - CameraPlatform
-      - amy_test
-    content_metadata_id: '388'
-    team_edit:
-    - chicago_district_test
-    team_view:
-    - All Users
-    - Camera
-    - CameraPlatform
-    - amy_test
-  - !LookerFolder
-    parent_id: '1'
-    id: '385'
-    name: Retail
-    subfolder:
-    - !LookerFolder
-      parent_id: '385'
-      id: '386'
-      name: Deep-dive dashboards
-      subfolder: []
-      content_metadata_id: '387'
-      team_edit:
-      - chicago_district_test
-      team_view:
-      - All Users
-      - Camera
-      - CameraPlatform
-      - amy_test
-    content_metadata_id: '386'
-    team_edit:
-    - chicago_district_test
-    team_view:
-    - All Users
-    - Camera
-    - CameraPlatform
-    - amy_test
-  - !LookerFolder
-    parent_id: '1'
-    id: '383'
-    name: SaaS Sales and Support
-    subfolder:
-    - !LookerFolder
-      parent_id: '383'
-      id: '384'
-      name: Looks for PPT
-      subfolder: []
-      content_metadata_id: '385'
-      team_edit:
-      - chicago_district_test
-      team_view:
-      - All Users
-      - Camera
-      - CameraPlatform
-      - amy_test
-    content_metadata_id: '384'
-    team_edit:
-    - chicago_district_test
-    team_view:
-    - All Users
-    - Camera
-    - CameraPlatform
-    - amy_test
-  - !LookerFolder
-    parent_id: '1'
-    id: '382'
-    name: SDLC Demo
-    subfolder: []
-    content_metadata_id: '383'
-    team_edit:
-    - chicago_district_test
-    team_view:
-    - All Users
-    - Camera
-    - CameraPlatform
-    - amy_test
-  - !LookerFolder
-    parent_id: '1'
-    id: '376'
-    name: Marketplace Blocks
-    subfolder:
-    - !LookerFolder
-      parent_id: '376'
-      id: '381'
-      name: Database Blocks
-      subfolder: []
-      content_metadata_id: '382'
-      team_edit:
-      - chicago_district_test
-      team_view:
-      - All Users
-      - Camera
-      - CameraPlatform
-      - amy_test
-    - !LookerFolder
-      parent_id: '376'
-      id: '380'
-      name: JIRA Block
-      subfolder: []
-      content_metadata_id: '381'
-      team_edit:
-      - chicago_district_test
-      team_view:
-      - All Users
-      - Camera
-      - CameraPlatform
-      - amy_test
-    - !LookerFolder
-      parent_id: '376'
-      id: '377'
-      name: Not Everything Working
-      subfolder:
-      - !LookerFolder
-        parent_id: '377'
-        id: '379'
-        name: Salesforce Block
-        subfolder: []
-        content_metadata_id: '380'
-        team_edit:
-        - chicago_district_test
-        team_view:
-        - All Users
-        - Camera
-        - CameraPlatform
-        - amy_test
-      - !LookerFolder
-        parent_id: '377'
-        id: '378'
-        name: Zendesk Block
-        subfolder: []
-        content_metadata_id: '379'
-        team_edit:
-        - chicago_district_test
-        team_view:
-        - All Users
-        - Camera
-        - CameraPlatform
-        - amy_test
-      content_metadata_id: '378'
-      team_edit:
-      - chicago_district_test
-      team_view:
-      - All Users
-      - Camera
-      - CameraPlatform
-      - amy_test
-    content_metadata_id: '377'
-    team_edit:
-    - chicago_district_test
-    team_view:
-    - All Users
-    - Camera
-    - CameraPlatform
-    - amy_test
-  - !LookerFolder
-    parent_id: '1'
-    id: '375'
-    name: BigQuery Project
-    subfolder: []
-    content_metadata_id: '376'
-    team_edit:
-    - chicago_district_test
-    team_view:
-    - All Users
-    - Camera
-    - CameraPlatform
-    - amy_test
-  - !LookerFolder
-    parent_id: '1'
-    id: '374'
-    name: to be hidden
-    subfolder: []
-    content_metadata_id: '375'
-    team_edit:
-    - chicago_district_test
-    team_view:
-    - All Users
-  - !LookerFolder
-    parent_id: '1'
-    id: '371'
-    name: Reports
-    subfolder:
-    - !LookerFolder
-      parent_id: '371'
-      id: '372'
-      name: Client A
-      subfolder:
-      - !LookerFolder
-        parent_id: '372'
-        id: '373'
-        name: User 123
-        subfolder: []
-        content_metadata_id: '374'
-        team_edit:
-        - Embed Users
-        - Embed Shared Group SSO User
-        - chicago_district_test
         team_view: []
-      content_metadata_id: '373'
+      content_metadata_id: '710'
       team_edit:
-      - Embed Users
-      - Embed Shared Group SSO User
-      - chicago_district_test
+      - All Users
       team_view: []
-    content_metadata_id: '372'
+    content_metadata_id: '709'
     team_edit:
-    - Embed Users
-    - Embed Shared Group SSO User
-    - chicago_district_test
+    - All Users
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '365'
-    name: Corporate
+    id: '707'
+    name: Development Space
+    subfolder: []
+    content_metadata_id: '708'
+    team_edit:
+    - All Users
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '705'
+    name: Looker Showcase
     subfolder:
     - !LookerFolder
-      parent_id: '365'
-      id: '369'
-      name: Director Group
+      parent_id: '705'
+      id: '706'
+      name: Ecommerce Content
+      subfolder: []
+      content_metadata_id: '707'
+      team_edit: []
+      team_view:
+      - All Users
+    content_metadata_id: '706'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '704'
+    name: cool
+    subfolder: []
+    content_metadata_id: '705'
+    team_edit:
+    - All Users
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '703'
+    name: Top Secret Dashboard
+    subfolder: []
+    content_metadata_id: '704'
+    team_edit:
+    - All Users
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '702'
+    name: Finance Department
+    subfolder: []
+    content_metadata_id: '703'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '701'
+    name: Production Embed dashboards
+    subfolder: []
+    content_metadata_id: '702'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '697'
+    name: Test_Space_Mgmt
+    subfolder:
+    - !LookerFolder
+      parent_id: '697'
+      id: '699'
+      name: Regional A
       subfolder:
       - !LookerFolder
-        parent_id: '369'
-        id: '370'
-        name: Custom Dashboards
+        parent_id: '699'
+        id: '700'
+        name: Department A
         subfolder: []
-        content_metadata_id: '371'
+        content_metadata_id: '701'
         team_edit:
-        - Company A
-        - chicago_district_test
+        - All Users
         team_view: []
-      content_metadata_id: '370'
+      content_metadata_id: '700'
       team_edit:
-      - Company A
-      - chicago_district_test
-      team_view: []
-    - !LookerFolder
-      parent_id: '365'
-      id: '368'
-      name: Exec Group
-      subfolder: []
-      content_metadata_id: '369'
-      team_edit:
-      - Company B
-      - chicago_district_test
-      team_view: []
-    - !LookerFolder
-      parent_id: '365'
-      id: '367'
-      name: Marketing Team
-      subfolder: []
-      content_metadata_id: '368'
-      team_edit:
-      - Marketing
-      - chicago_district_test
-      team_view: []
-    - !LookerFolder
-      parent_id: '365'
-      id: '366'
-      name: Sales Team
-      subfolder: []
-      content_metadata_id: '367'
-      team_edit:
-      - chicago_district_test
-      team_view:
       - All Users
-      - Camera
-      - CameraPlatform
-      - amy_test
-    content_metadata_id: '366'
+      team_view: []
+    - !LookerFolder
+      parent_id: '697'
+      id: '698'
+      name: Regional B
+      subfolder: []
+      content_metadata_id: '699'
+      team_edit:
+      - All Users
+      team_view: []
+    content_metadata_id: '698'
     team_edit:
-    - chicago_district_test
-    team_view:
     - All Users
-    - Company B
-    - Marketing
-    - Company A
-    - Camera
-    - CameraPlatform
-    - amy_test
+    team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '364'
-    name: Dev Dashboards
-    subfolder: []
-    content_metadata_id: '365'
-    team_edit:
-    - chicago_district_test
-    team_view:
-    - All Users
-    - Camera
-    - CameraPlatform
-    - amy_test
-  - !LookerFolder
-    parent_id: '1'
-    id: '363'
-    name: Looks - Pricing
-    subfolder: []
-    content_metadata_id: '364'
-    team_edit:
-    - chicago_district_test
-    team_view:
-    - All Users
-    - Camera
-    - CameraPlatform
-    - amy_test
-  - !LookerFolder
-    parent_id: '1'
-    id: '361'
-    name: Embedded Customers
+    id: '694'
+    name: Boards Content Access
     subfolder:
     - !LookerFolder
-      parent_id: '361'
-      id: '362'
-      name: Allegra K
+      parent_id: '694'
+      id: '696'
+      name: Shared Org
       subfolder: []
-      content_metadata_id: '363'
+      content_metadata_id: '697'
       team_edit:
-      - chicago_district_test
-      team_view:
       - All Users
-      - Embed Shared Group customerABC
-    content_metadata_id: '362'
-    team_edit:
-    - chicago_district_test
+      team_view: []
+    - !LookerFolder
+      parent_id: '694'
+      id: '695'
+      name: Finance Only
+      subfolder: []
+      content_metadata_id: '696'
+      team_edit:
+      - All Users
+      team_view: []
+    content_metadata_id: '695'
+    team_edit: []
     team_view:
     - All Users
-    - Embed Shared Group customerABC
   - !LookerFolder
     parent_id: '1'
-    id: '360'
-    name: Demo
+    id: '693'
+    name: Theme Testing
     subfolder: []
-    content_metadata_id: '361'
-    team_edit:
-    - chicago_district_test
+    content_metadata_id: '694'
+    team_edit: []
     team_view:
     - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '691'
+    name: AM Security Demo 2
+    subfolder:
+    - !LookerFolder
+      parent_id: '691'
+      id: '692'
+      name: Inventory
+      subfolder: []
+      content_metadata_id: '693'
+      team_edit:
+      - All Users
+      team_view: []
+    content_metadata_id: '692'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '690'
+    name: Finance
+    subfolder: []
+    content_metadata_id: '691'
+    team_edit:
+    - All Users
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '689'
+    name: Home Depot
+    subfolder: []
+    content_metadata_id: '690'
+    team_edit:
+    - All Users
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '688'
+    name: ttesting
+    subfolder: []
+    content_metadata_id: '689'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '686'
+    name: drake_testing
+    subfolder:
+    - !LookerFolder
+      parent_id: '686'
+      id: '687'
+      name: John DeMartino
+      subfolder: []
+      content_metadata_id: '688'
+      team_edit:
+      - All Users
+      team_view: []
+    content_metadata_id: '687'
+    team_edit:
+    - All Users
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '685'
+    name: rebecca test
+    subfolder: []
+    content_metadata_id: '686'
+    team_edit:
+    - All Users
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '684'
+    name: SingleProject2_
+    subfolder: []
+    content_metadata_id: '685'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '683'
+    name: SingleProject3_
+    subfolder: []
+    content_metadata_id: '684'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '682'
+    name: jenny_test
+    subfolder: []
+    content_metadata_id: '683'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '680'
+    name: fromdev
+    subfolder:
+    - !LookerFolder
+      parent_id: '680'
+      id: '681'
+      name: public
+      subfolder: []
+      content_metadata_id: '682'
+      team_edit: []
+      team_view:
+      - All Users
+    content_metadata_id: '681'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '679'
+    name: Partner Case Studies
+    subfolder: []
+    content_metadata_id: '680'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '675'
+    name: almprod
+    subfolder: []
+    content_metadata_id: '676'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '674'
+    name: TestImport
+    subfolder: []
+    content_metadata_id: '675'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '671'
+    name: Ed
+    subfolder:
+    - !LookerFolder
+      parent_id: '671'
+      id: '672'
+      name: test
+      subfolder:
+      - !LookerFolder
+        parent_id: '672'
+        id: '673'
+        name: Actual Content
+        subfolder: []
+        content_metadata_id: '674'
+        team_edit:
+        - All Users
+        team_view: []
+      content_metadata_id: '673'
+      team_edit:
+      - All Users
+      team_view: []
+    content_metadata_id: '672'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '670'
+    name: Windy Windows
+    subfolder: []
+    content_metadata_id: '671'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '669'
+    name: Lomax
+    subfolder: []
+    content_metadata_id: '670'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '668'
+    name: Jesse Carah
+    subfolder: []
+    content_metadata_id: '669'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '666'
+    name: Picklejuice Demo
+    subfolder:
+    - !LookerFolder
+      parent_id: '666'
+      id: '667'
+      name: Subfolder
+      subfolder: []
+      content_metadata_id: '668'
+      team_edit: []
+      team_view:
+      - All Users
+    content_metadata_id: '667'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '665'
+    name: hugo
+    subfolder: []
+    content_metadata_id: '666'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '664'
+    name: Demo Folder
+    subfolder: []
+    content_metadata_id: '665'
+    team_edit:
+    - All Users
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '663'
+    name: kevin_test_gzr_target
+    subfolder: []
+    content_metadata_id: '664'
+    team_edit:
+    - All Users
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '662'
+    name: kevin_test_gzr_target2
+    subfolder: []
+    content_metadata_id: '663'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '661'
+    name: jenny_dev
+    subfolder: []
+    content_metadata_id: '662'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '660'
+    name: jenny_qa
+    subfolder: []
+    content_metadata_id: '661'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '659'
+    name: Testing comments
+    subfolder: []
+    content_metadata_id: '660'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '655'
+    name: 1 Rich K Top Level
+    subfolder:
+    - !LookerFolder
+      parent_id: '655'
+      id: '656'
+      name: Rich K L1
+      subfolder: []
+      content_metadata_id: '657'
+      team_edit: []
+      team_view:
+      - Camera
+    team_edit: []
+    team_view:
     - Camera
+  - !LookerFolder
+    parent_id: '1'
+    id: '652'
+    name: Shared_
+    subfolder:
+    - !LookerFolder
+      parent_id: '652'
+      id: '678'
+      name: AM
+      subfolder: []
+      content_metadata_id: '679'
+      team_edit: []
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '652'
+      id: '677'
+      name: AM_Security_Demo_2
+      subfolder: []
+      content_metadata_id: '678'
+      team_edit: []
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '652'
+      id: '676'
+      name: TEST
+      subfolder: []
+      content_metadata_id: '677'
+      team_edit: []
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '652'
+      id: '654'
+      name: Content Partners Dashboards
+      subfolder: []
+      content_metadata_id: '655'
+      team_edit: []
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '652'
+      id: '653'
+      name: Partner Insights Development
+      subfolder: []
+      content_metadata_id: '654'
+      team_edit: []
+      team_view:
+      - All Users
+    content_metadata_id: '653'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '651'
+    name: Eric's Public Shared Folder
+    subfolder: []
+    content_metadata_id: '652'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '650'
+    name: test 5
+    subfolder: []
+    content_metadata_id: '651'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '649'
+    name: Junjappa
+    subfolder: []
+    content_metadata_id: '650'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '647'
+    name: Gordon - PS Shared
+    subfolder:
+    - !LookerFolder
+      parent_id: '647'
+      id: '648'
+      name: Gordon Joe Only
+      subfolder: []
+      content_metadata_id: '649'
+      team_edit: []
+      team_view:
+      - All Users
+    content_metadata_id: '648'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '642'
+    name: citi
+    subfolder:
+    - !LookerFolder
+      parent_id: '642'
+      id: '644'
+      name: citi_default_app1
+      subfolder:
+      - !LookerFolder
+        parent_id: '644'
+        id: '645'
+        name: Users_
+        subfolder:
+        - !LookerFolder
+          parent_id: '645'
+          id: '646'
+          name: Greg Li
+          subfolder: []
+          content_metadata_id: '647'
+          team_edit:
+          - All Users
+          team_view: []
+        content_metadata_id: '646'
+        team_edit:
+        - All Users
+        team_view: []
+      content_metadata_id: '645'
+      team_edit:
+      - All Users
+      team_view: []
+    - !LookerFolder
+      parent_id: '642'
+      id: '643'
+      name: greg test
+      subfolder: []
+      content_metadata_id: '644'
+      team_edit:
+      - All Users
+      team_view: []
+    content_metadata_id: '643'
+    team_edit:
+    - All Users
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '641'
+    name: Public
+    subfolder: []
+    content_metadata_id: '642'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '640'
+    name: km ford testing removing view at top level
+    subfolder: []
+    content_metadata_id: '641'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '639'
+    name: BusinessOperations
+    subfolder: []
+    content_metadata_id: '640'
+    team_edit: []
+    team_view:
+    - MediaDeliveryPlatform
+    - ClientPlatform_Frameworks
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - SnapLabSoftwareEngineering
+    - Metrics_Insights
+    - QualityAssuranceTools
+    - lk2bitmoji
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
     - CameraPlatform
-    - amy_test
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - PlatformIntegrityG_A
+    - QualityAssurance_Tools
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - Friends_Maps
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '638'
+    name: Cameos
+    subfolder: []
+    content_metadata_id: '639'
+    team_edit:
+    - Cameos
+    team_view:
+    - MediaDeliveryPlatform
+    - ClientPlatform_Frameworks
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - SnapLabSoftwareEngineering
+    - Metrics_Insights
+    - QualityAssuranceTools
+    - lk2bitmoji
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - PlatformIntegrityG_A
+    - QualityAssurance_Tools
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - Friends_Maps
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '637'
+    name: CameraPlatform
+    subfolder: []
+    content_metadata_id: '638'
+    team_edit:
+    - CameraPlatform
+    team_view:
+    - MediaDeliveryPlatform
+    - ClientPlatform_Frameworks
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - SnapLabSoftwareEngineering
+    - Metrics_Insights
+    - QualityAssuranceTools
+    - lk2bitmoji
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - PlatformIntegrityG_A
+    - QualityAssurance_Tools
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - Friends_Maps
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '636'
+    name: Camera
+    subfolder: []
+    content_metadata_id: '637'
+    team_edit:
+    - Camera
+    team_view:
+    - MediaDeliveryPlatform
+    - ClientPlatform_Frameworks
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - Metrics_Insights
+    - QualityAssuranceTools
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - PlatformIntegrityG_A
+    - QualityAssurance_Tools
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - Friends_Maps
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '635'
+    name: ClientPlatformFrameworks
+    subfolder: []
+    content_metadata_id: '636'
+    team_edit:
+    - ClientPlatformFrameworks
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '634'
+    name: CommunityOperations
+    subfolder: []
+    content_metadata_id: '635'
+    team_edit:
+    - CommunityOperations
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '633'
+    name: Content
+    subfolder: []
+    content_metadata_id: '634'
+    team_edit:
+    - Content
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '632'
+    name: CoreExperience
+    subfolder: []
+    content_metadata_id: '633'
+    team_edit:
+    - CoreExperience
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '631'
+    name: DataScience
+    subfolder: []
+    content_metadata_id: '632'
+    team_edit:
+    - DataScience
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '630'
+    name: Discover
+    subfolder: []
+    content_metadata_id: '631'
+    team_edit:
+    - Discover
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '629'
+    name: EngineeringSecurity
+    subfolder: []
+    content_metadata_id: '630'
+    team_edit:
+    - EngineeringSecurity
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '628'
+    name: EnterpriseServices
+    subfolder: []
+    content_metadata_id: '629'
+    team_edit:
+    - EnterpriseServices
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '627'
+    name: FriendsMaps
+    subfolder: []
+    content_metadata_id: '628'
+    team_edit:
+    - All Users
+    - FriendsMaps
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '626'
+    name: InformationTechnology
+    subfolder: []
+    content_metadata_id: '627'
+    team_edit:
+    - InformationTechnology
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '625'
+    name: Lenses
+    subfolder: []
+    content_metadata_id: '626'
+    team_edit:
+    - Lenses
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '624'
+    name: MediaDeliveryPlatform
+    subfolder: []
+    content_metadata_id: '625'
+    team_edit:
+    - MediaDeliveryPlatform
+    team_view:
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '623'
+    name: MetricsInsights
+    subfolder: []
+    content_metadata_id: '624'
+    team_edit:
+    - All Users
+    - MetricsInsights
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '622'
+    name: Monetization
+    subfolder: []
+    content_metadata_id: '623'
+    team_edit:
+    - Monetization
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '621'
+    name: Perception
+    subfolder: []
+    content_metadata_id: '622'
+    team_edit:
+    - Perception
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '620'
+    name: PlatformIntegrityGA
+    subfolder: []
+    content_metadata_id: '621'
+    team_edit:
+    - All Users
+    - PlatformIntegrityGA
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+  - !LookerFolder
+    parent_id: '1'
+    id: '619'
+    name: ProductManagement
+    subfolder: []
+    content_metadata_id: '620'
+    team_edit:
+    - ProductManagement
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '618'
+    name: Product
+    subfolder: []
+    content_metadata_id: '619'
+    team_edit:
+    - Product
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '617'
+    name: QualityAssuranceTools
+    subfolder: []
+    content_metadata_id: '618'
+    team_edit:
+    - All Users
+    - QualityAssuranceTools
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '616'
+    name: Research
+    subfolder: []
+    content_metadata_id: '617'
+    team_edit:
+    - Research
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '615'
+    name: RevenueStrategy
+    subfolder: []
+    content_metadata_id: '616'
+    team_edit:
+    - RevenueStrategy
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '614'
+    name: Revenue
+    subfolder: []
+    content_metadata_id: '615'
+    team_edit:
+    - Revenue
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '613'
+    name: SalesOperations
+    subfolder: []
+    content_metadata_id: '614'
+    team_edit:
+    - SalesOperations
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '612'
+    name: SnapLabProduct
+    subfolder: []
+    content_metadata_id: '613'
+    team_edit:
+    - SnapLabProduct
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '611'
+    name: SnapLabSoftware Engineering
+    subfolder: []
+    content_metadata_id: '612'
+    team_edit:
+    - All Users
+    - SnapLabSoftware Engineering
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '610'
+    name: CU
+    subfolder: []
+    content_metadata_id: '611'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '609'
+    name: Bitstrips
+    subfolder: []
+    content_metadata_id: '610'
+    team_edit:
+    - All Users
+    team_view:
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '608'
+    name: ClientPlatform_Frameworks
+    subfolder: []
+    content_metadata_id: '609'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '607'
+    name: Friends_Maps
+    subfolder: []
+    content_metadata_id: '608'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '606'
+    name: Metrics_Insights
+    subfolder: []
+    content_metadata_id: '607'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '605'
+    name: PlatformIntegrityG_A
+    subfolder: []
+    content_metadata_id: '606'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '604'
+    name: QualityAssurance_Tools
+    subfolder: []
+    content_metadata_id: '605'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '603'
+    name: SnapLabSoftwareEngineering
+    subfolder: []
+    content_metadata_id: '604'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '602'
+    name: lk2bitmoji
+    subfolder: []
+    content_metadata_id: '603'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '601'
+    name: Test Gzr Import
+    subfolder: []
+    content_metadata_id: '602'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '592'
+    name: Snap
+    subfolder:
+    - !LookerFolder
+      parent_id: '592'
+      id: '600'
+      name: Friends & Maps
+      subfolder: []
+      content_metadata_id: '601'
+      team_edit: []
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '592'
+      id: '599'
+      name: Data Science
+      subfolder: []
+      content_metadata_id: '600'
+      team_edit: []
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '592'
+      id: '598'
+      name: Metrics & Insights
+      subfolder: []
+      content_metadata_id: '599'
+      team_edit: []
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '592'
+      id: '597'
+      name: Growth
+      subfolder: []
+      content_metadata_id: '598'
+      team_edit:
+      - Growth
+      team_view:
+      - MediaDeliveryPlatform
+      - Cameos
+      - CoreExperience
+      - RevenueStrategy
+      - SnapLabSoftware Engineering
+      - QualityAssuranceTools
+      - Camera
+      - Monetization
+      - FriendsMaps
+      - Discover
+      - MetricsInsights
+      - EngineeringSecurity
+      - CameraPlatform
+      - Research
+      - Strategy
+      - Content
+      - Lenses
+      - SalesOperations
+      - ProductManagement
+      - EnterpriseServices
+      - DataScience
+      - InformationTechnology
+      - Perception
+      - Revenue
+      - Product
+      - SnapLabProduct
+      - CommunityOperations
+      - ClientPlatformFrameworks
+      - PlatformIntegrityGA
+    - !LookerFolder
+      parent_id: '592'
+      id: '596'
+      name: Strategy
+      subfolder: []
+      content_metadata_id: '597'
+      team_edit:
+      - Strategy
+      team_view:
+      - MediaDeliveryPlatform
+      - Cameos
+      - CoreExperience
+      - RevenueStrategy
+      - SnapLabSoftware Engineering
+      - QualityAssuranceTools
+      - Camera
+      - Monetization
+      - FriendsMaps
+      - Discover
+      - MetricsInsights
+      - EngineeringSecurity
+      - CameraPlatform
+      - Research
+      - Content
+      - Growth
+      - Lenses
+      - SalesOperations
+      - ProductManagement
+      - EnterpriseServices
+      - DataScience
+      - InformationTechnology
+      - Perception
+      - Revenue
+      - Product
+      - SnapLabProduct
+      - CommunityOperations
+      - ClientPlatformFrameworks
+      - PlatformIntegrityGA
+    - !LookerFolder
+      parent_id: '592'
+      id: '593'
+      name: Information Technology
+      subfolder:
+      - !LookerFolder
+        parent_id: '593'
+        id: '595'
+        name: look
+        subfolder: []
+        content_metadata_id: '596'
+        team_edit: []
+        team_view:
+        - All Users
+      - !LookerFolder
+        parent_id: '593'
+        id: '594'
+        name: dashboard
+        subfolder: []
+        content_metadata_id: '595'
+        team_edit: []
+        team_view:
+        - All Users
+      content_metadata_id: '594'
+      team_edit: []
+      team_view:
+      - All Users
+    content_metadata_id: '593'
+    team_edit: []
+    team_view:
+    - All Users
+    - MediaDeliveryPlatform
+    - Cameos
+    - CoreExperience
+    - RevenueStrategy
+    - SnapLabSoftware Engineering
+    - QualityAssuranceTools
+    - Camera
+    - Monetization
+    - FriendsMaps
+    - Discover
+    - MetricsInsights
+    - EngineeringSecurity
+    - CameraPlatform
+    - Research
+    - Strategy
+    - Content
+    - Growth
+    - Lenses
+    - SalesOperations
+    - ProductManagement
+    - EnterpriseServices
+    - DataScience
+    - InformationTechnology
+    - Perception
+    - Revenue
+    - Product
+    - SnapLabProduct
+    - CommunityOperations
+    - ClientPlatformFrameworks
+    - PlatformIntegrityGA
+  - !LookerFolder
+    parent_id: '1'
+    id: '591'
+    name: Demo CDK
+    subfolder: []
+    content_metadata_id: '592'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '588'
+    name: Steve and Rahul Test Shared
+    subfolder:
+    - !LookerFolder
+      parent_id: '588'
+      id: '590'
+      name: Steve private
+      subfolder: []
+      content_metadata_id: '591'
+      team_edit: []
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '588'
+      id: '589'
+      name: Company Wide
+      subfolder: []
+      content_metadata_id: '590'
+      team_edit: []
+      team_view:
+      - All Users
+    content_metadata_id: '589'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '587'
+    name: MB
+    subfolder: []
+    content_metadata_id: '588'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '586'
+    name: Sales
+    subfolder: []
+    content_metadata_id: '587'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '585'
+    name: ldeploy-demo
+    subfolder: []
+    content_metadata_id: '586'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '584'
+    name: James Brock
+    subfolder: []
+    content_metadata_id: '585'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '578'
+    name: 01 Amy Top Level
+    subfolder:
+    - !LookerFolder
+      parent_id: '578'
+      id: '583'
+      name: Radiologists
+      subfolder: []
+      content_metadata_id: '584'
+      team_edit: []
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '578'
+      id: '582'
+      name: Administrators
+      subfolder: []
+      content_metadata_id: '583'
+      team_edit: []
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '578'
+      id: '579'
+      name: Hospital Folders
+      subfolder:
+      - !LookerFolder
+        parent_id: '579'
+        id: '581'
+        name: Hospital 1
+        subfolder: []
+        content_metadata_id: '582'
+        team_edit: []
+        team_view:
+        - All Users
+      - !LookerFolder
+        parent_id: '579'
+        id: '580'
+        name: Hospital 2
+        subfolder: []
+        content_metadata_id: '581'
+        team_edit: []
+        team_view:
+        - All Users
+      content_metadata_id: '580'
+      team_edit: []
+      team_view:
+      - All Users
+    content_metadata_id: '579'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '577'
+    name: 1terat
+    subfolder: []
+    content_metadata_id: '578'
+    team_edit: []
+    team_view:
+    - All Users
   - !LookerFolder
     parent_id: '1'
     id: '181'
     name: Development
-    subfolder: []
+    subfolder:
+    - !LookerFolder
+      parent_id: '181'
+      id: '658'
+      name: Unused
+      subfolder: []
+      content_metadata_id: '659'
+      team_edit: []
+      team_view:
+      - All Users
+    - !LookerFolder
+      parent_id: '181'
+      id: '657'
+      name: Archive
+      subfolder: []
+      content_metadata_id: '658'
+      team_edit: []
+      team_view:
+      - All Users
     content_metadata_id: '182'
-    team_edit:
-    - chicago_district_test
+    team_edit: []
     team_view:
     - All Users
-    - Camera
-    - CameraPlatform
-    - amy_test
   - !LookerFolder
     parent_id: '1'
     id: '38'
     name: Marketing
-    subfolder:
-    - !LookerFolder
-      parent_id: '38'
-      id: '392'
-      name: Marketing Look Selector
-      subfolder: []
-      content_metadata_id: '393'
-      team_edit:
-      - chicago_district_test
-      team_view:
-      - All Users
-      - Camera
-      - CameraPlatform
-      - amy_test
+    subfolder: []
     content_metadata_id: '39'
     team_edit:
-    - chicago_district_test
-    team_view:
     - All Users
-    - Camera
-    - CameraPlatform
-    - amy_test
+    team_view: []
   content_metadata_id: '1'
-  team_edit:
-  - chicago_district_test
+  team_edit: []
   team_view:
   - All Users
-  - Camera
-  - CameraPlatform
-  - amy_test
 # Looker Role
 # Opening Session Welcome to the Capturator, this is the Role place
 # -----------------------------------------------------
@@ -507,56 +2253,460 @@
 - !LookerPermissionSet
   permissions:
   - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - embed_browse_spaces
+  - explore
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
   - mobile_app_access
-  - see_system_activity
-  name: system_activity_role_ah_test
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - sudo
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: everything_test
+- !LookerPermissionSet
+  permissions:
+  - mobile_app_access
+  name: blank
 - !LookerPermissionSet
   permissions:
   - access_data
-  - download_with_limit
-  - follow_alerts
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_drill_overlay
+  - clear_cache_refresh
+  - mobile_app_access
   - see_lookml_dashboards
   - see_looks
   - see_user_dashboards
-  name: trafficguard_viewers
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - mobile_app_access
-  name: view test
+  name: see looks and dashboards only
 - !LookerPermissionSet
   permissions:
   - access_data
   - can_create_forecast
+  - clear_cache_refresh
+  - download_with_limit
   - explore
+  - login_special_email
+  - mobile_app_access
   - save_content
+  - schedule_look_emails
   - see_drill_overlay
   - see_lookml
   - see_lookml_dashboards
   - see_looks
-  - see_sql
   - see_user_dashboards
+  - send_to_integration
+  - send_to_s3
   - use_sql_runner
-  name: explore but no download
+  name: spoke_dev_hub_readonly
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_public_looks
+  - create_table_calculations
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_s3
+  - use_sql_runner
+  name: developer - no deploy
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - embed_browse_spaces
+  - embed_save_shared_space
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: developer_yes_manage_models
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - develop
+  - download_with_limit
+  - explore
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_system_activity
+  - use_sql_runner
+  name: dev with sys activity access
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - create_table_calculations
+  - explore
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: '#eg_support_permissionset'
 - !LookerPermissionSet
   permissions:
   - access_data
   - can_create_forecast
   - clear_cache_refresh
   - create_custom_fields
-  - create_public_looks
   - create_table_calculations
+  - download_without_limit
+  - explore
+  - login_special_email
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_schedules
+  - see_sql
+  - see_user_dashboards
+  name: default user
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - explore
+  - mobile_app_access
+  - see_lookml
+  - see_looks
+  name: _sbarber_sbarber
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - create_custom_fields
+  - create_table_calculations
+  - explore
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: '#faire_support_permissionset'
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - login_special_email
+  - mobile_app_access
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: viewer (login special email)
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
   - explore
   - mobile_app_access
   - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  - send_to_s3
+  - use_sql_runner
+  name: hub_developer
+- !LookerPermissionSet
+  permissions:
+  - login_special_email
+  - mobile_app_access
+  name: login_speical_email_only
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_drill_overlay
+  - see_looks
+  name: test_without_manage_spaces
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - login_special_email
+  - save_content
+  - schedule_look_emails
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  name: developer - with no develop
+- !LookerPermissionSet
+  permissions:
+  - mobile_app_access
+  name: disabled_permission_set
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - explore
+  - schedule_look_emails
+  - see_looks
+  name: explore and schedule only
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - embed_browse_spaces
+  - explore
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
   - see_schedules
-  - see_sql_runner_content
+  - see_sql
+  - see_system_activity
   - see_user_dashboards
   - see_users
-  name: access data only
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - sudo
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: all but email
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  name: save_content_without_explore_gives_dashboard_filters_test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - deploy
+  - develop
+  - download_with_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  - use_sql_runner
+  name: spoke_developer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  name: see_sql_viewer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - create_custom_fields
+  - create_table_calculations
+  - explore
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: '#mp_sales_permissionset'
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - download_with_limit
+  - download_without_limit
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: explore_only
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - develop
+  - download_with_limit
+  - explore
+  - mobile_app_access
+  - save_content
+  - save_sql_runner_content
+  - see_lookml
+  - see_looks
+  - see_sql
+  - see_sql_runner_content
+  - see_user_dashboards
+  - use_sql_runner
+  name: jt_viewer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - download_with_limit
+  - explore
+  - follow_alerts
+  - mobile_app_access
+  - schedule_look_emails
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - use_sql_runner
+  name: test_no_email
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -573,7 +2723,203 @@
   - download_without_limit
   - embed_browse_spaces
   - explore
+  - follow_alerts
   - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - save_sql_runner_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_sql_runner_content
+  - see_system_activity
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - sudo
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: non_developer_admin
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_with_limit
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_lookml
+  - see_looks
+  - see_sql
+  name: eric_test_perm
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - mobile_app_access
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: see_data_only
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_public_looks
+  - create_table_calculations
+  - download_with_limit
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - use_sql_runner
+  name: sample_build
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - login_special_email
+  - mobile_app_access
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: default viewer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - send_to_integration
+  - use_sql_runner
+  name: developer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - login_special_email
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  - send_to_s3
+  name: user
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - create_alerts
+  - create_custom_fields
+  - create_public_looks
+  - create_table_calculations
+  - download_with_limit
+  - explore
+  - save_content
+  - schedule_look_emails
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: explore
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - login_special_email
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: viewer (login special email, save content)
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_with_limit
+  - download_without_limit
+  - mobile_app_access
+  - see_drill_overlay
+  - see_looks
+  - see_user_dashboards
+  name: embed_viewer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - embed_browse_spaces
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
   - manage_spaces
   - mobile_app_access
   - save_content
@@ -598,13 +2944,152 @@
   - send_to_sftp
   - sudo
   - support_access_toggle
+  - update_datagroups
   - use_sql_runner
-  name: developer
+  name: everything_but_deploy
 - !LookerPermissionSet
   permissions:
+  - access_data
+  - clear_cache_refresh
+  - create_alerts
+  - download_without_limit
+  - follow_alerts
+  - mobile_app_access
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_outgoing_webhook
+  - send_to_integration
+  name: browser-fastly
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - explore
+  - follow_alerts
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_datagroups
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  - update_datagroups
+  name: t1
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - download_without_limit
+  - explore
+  - mobile_app_access
+  - see_lookml_dashboards
+  - see_looks
+  name: download_without_limit
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - mobile_app_access
+  - see_lookml_dashboards
+  name: lookml dashboard user
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - explore
+  - login_special_email
+  - mobile_app_access
+  - save_content
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: hub_readonly
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - deploy
+  - develop
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: global permission set
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_looks
+  name: prasad_perm_test_see_looks
+- !LookerPermissionSet
+  permissions:
+  - access_data
   - manage_models
   - mobile_app_access
-  name: manage models
+  name: just_manage_model
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - download_with_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - see_users
+  - sudo
+  name: sudo_test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - create_custom_fields
+  - create_table_calculations
+  - explore
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: '#mp_support_permissionset'
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: view
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - mobile_app_access
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: '#faire_sales_permissionset'
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -613,64 +3098,6 @@
   - create_alerts
   - create_custom_fields
   - create_table_calculations
-  - develop
-  - download_without_limit
-  - explore
-  - follow_alerts
-  - mobile_app_access
-  - save_content
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_lookml
-  - see_looks
-  - see_schedules
-  - see_user_dashboards
-  - see_users
-  - send_outgoing_webhook
-  - send_to_integration
-  - send_to_s3
-  - send_to_sftp
-  name: explore user
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - deploy
-  - develop
-  - explore
-  - mobile_app_access
-  - save_content
-  - see_drill_overlay
-  - see_lookml
-  - see_lookml_dashboards
-  - see_looks
-  - see_sql
-  - see_user_dashboards
-  - use_sql_runner
-  name: nosharing
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - clear_cache_refresh
-  - mobile_app_access
-  - save_content
-  - see_drill_overlay
-  - see_looks
-  - see_user_dashboards
-  name: viewer test
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - see_looks
-  - see_user_dashboards
-  name: minimum permisions
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_alerts
   - download_with_limit
   - download_without_limit
   - explore
@@ -678,46 +3105,53 @@
   - mobile_app_access
   - save_content
   - schedule_look_emails
+  - see_drill_overlay
   - see_lookml
   - see_lookml_dashboards
   - see_looks
-  - see_schedules
   - see_sql
   - see_user_dashboards
-  - send_outgoing_webhook
   - send_to_integration
-  - send_to_s3
-  - send_to_sftp
-  - use_sql_runner
-  name: explorer
+  name: see_lookml_but_no_develop
 - !LookerPermissionSet
   permissions:
   - access_data
-  - see_lookml_dashboards
-  - see_looks
-  - see_sql
-  - see_user_dashboards
-  name: viewer+sql
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - clear_cache_refresh
-  - create_alerts
-  - follow_alerts
-  - login_special_email
   - mobile_app_access
-  - schedule_external_look_emails
-  - schedule_look_emails
   - see_drill_overlay
   - see_lookml_dashboards
   - see_looks
   - see_user_dashboards
-  name: view only
+  name: trimedx use dashboards limited permissions
 - !LookerPermissionSet
   permissions:
-  - login_special_email
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_public_looks
+  - create_table_calculations
+  - download_without_limit
+  - explore
   - mobile_app_access
-  name: login_special_email
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  name: am_security_demo
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - create_table_calculations
+  - explore
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: '#fai_support_permissionset'
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -726,21 +3160,20 @@
   - create_alerts
   - create_custom_fields
   - create_prefetches
-  - create_public_looks
   - create_table_calculations
   - deploy
   - develop
   - download_with_limit
+  - download_without_limit
   - embed_browse_spaces
+  - embed_save_shared_space
   - explore
   - follow_alerts
   - login_special_email
   - manage_homepage
-  - manage_models
   - manage_spaces
   - mobile_app_access
   - save_content
-  - save_sql_runner_content
   - schedule_look_emails
   - see_datagroups
   - see_drill_overlay
@@ -752,42 +3185,916 @@
   - see_queries
   - see_schedules
   - see_sql
-  - see_sql_runner_content
+  - see_system_activity
   - see_user_dashboards
   - see_users
   - send_outgoing_webhook
   - send_to_integration
   - send_to_s3
   - send_to_sftp
+  - support_access_toggle
+  - update_datagroups
   - use_sql_runner
-  name: devops
+  name: developer_no_manage_models
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_with_limit
+  - download_without_limit
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - sudo
+  name: user can sudo
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - embed_browse_spaces
+  - explore
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - sudo
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: admin_limited
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: look_ml_dash_limited
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - explore
+  - manage_homepage
+  - manage_spaces
+  - mobile_app_access
+  - schedule_look_emails
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - see_users
+  - sudo
+  - use_sql_runner
+  name: rebecca test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - use_sql_runner
+  name: prasad_perm_set
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - see_looks
+  - see_user_dashboards
+  name: prasad_perm_test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - mobile_app_access
+  - see_system_activity
+  name: singular_permission__see_system_activity
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - explore
+  - mobile_app_access
+  - see_looks
+  name: kool
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - see_looks
+  name: manage_spaces
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - save_sql_runner_content
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_queries
+  - see_sql
+  - see_sql_runner_content
+  - see_user_dashboards
+  - send_to_s3
+  - send_to_sftp
+  - support_access_toggle
+  - use_sql_runner
+  name: greg permission
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_with_limit
+  - mobile_app_access
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: view_only
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - download_with_limit
+  - mobile_app_access
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: trimedx use dashboards with download
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - create_custom_fields
+  - create_table_calculations
+  - download_with_limit
+  - explore
+  - login_special_email
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - use_sql_runner
+  name: chris_test
 
 
 # MODEL SETS
 - !LookerModelSet
   models:
-  - thelook
-  name: thelook
+  - friends_maps_legacy_sql
+  - friends_maps_std_sql
+  name: role_friends_maps_developer_model_set
 - !LookerModelSet
   models:
-  - test_manage_models_b
-  name: manage models
+  - engineeringsecurity_legacy_sql
+  - engineeringsecurity_std_sql
+  name: role_engineeringsecurity_explore_model_set
+- !LookerModelSet
+  models:
+  - snaplabsoftwareengineering_legacy_sql
+  - snaplabsoftwareengineering_std_sql
+  name: role_snaplabsoftwareengineering_explore_model_set
+- !LookerModelSet
+  models:
+  - discover_legacy_sql
+  - discover_std_sql
+  name: role_discover_developer_model_set
 - !LookerModelSet
   models:
   - extension-api-explorer
   name: All
 - !LookerModelSet
   models:
-  - retail_block_model
-  name: socal4-demo-1
+  - perception_legacy_sql
+  - perception_std_sql
+  name: role_perception_developer_model_set
 - !LookerModelSet
   models:
-  - snowflake
-  name: snorest
+  - content_legacy_sql
+  - content_std_sql
+  name: role_content_explore_model_set
 - !LookerModelSet
   models:
-  - thelook
-  name: kate_demo
+  - enterpriseservices_legacy_sql
+  - enterpriseservices_std_sql
+  name: role_enterpriseservices_explore_model_set
+- !LookerModelSet
+  models:
+  - camera_legacy_sql
+  - camera_std_sql
+  name: role_camera_developer_model_set
+- !LookerModelSet
+  models:
+  - platformintegrityg_a_legacy_sql
+  - platformintegrityg_a_std_sql
+  name: role_platformintegrityg_a_view_model_set
+- !LookerModelSet
+  models:
+  - research_legacy_sql
+  - research_std_sql
+  name: role_research_explore_model_set
+- !LookerModelSet
+  models:
+  - friends_maps_legacy_sql
+  - friends_maps_std_sql
+  name: role_friends_maps_view_model_set
+- !LookerModelSet
+  models:
+  - km_group_labels_logic_demo
+  name: km_group_labels_logic_demo_only
+- !LookerModelSet
+  models:
+  - monetization_legacy_sql
+  - monetization_std_sql
+  name: role_monetization_developer_model_set
+- !LookerModelSet
+  models:
+  - revenue_legacy_sql
+  - revenue_std_sql
+  name: role_revenue_developer_model_set
+- !LookerModelSet
+  models:
+  - productmanagement_legacy_sql
+  - productmanagement_std_sql
+  name: role_productmanagement_view_model_set
+- !LookerModelSet
+  models:
+  - datascience_legacy_sql
+  - datascience_std_sql
+  name: role_datascience_explore_model_set
+- !LookerModelSet
+  models:
+  - revenuestrategy_legacy_sql
+  - revenuestrategy_std_sql
+  name: role_revenuestrategy_developer_model_set
+- !LookerModelSet
+  models:
+  - cameos_legacy_sql
+  - cameos_std_sql
+  name: role_cameos_explore_model_set
+- !LookerModelSet
+  models:
+  - strategy_legacy_sql
+  - strategy_std_sql
+  name: role_strategy_view_model_set
+- !LookerModelSet
+  models:
+  - snaplabproduct_legacy_sql
+  - snaplabproduct_std_sql
+  name: role_snaplabproduct_developer_model_set
+- !LookerModelSet
+  models:
+  - content_legacy_sql
+  - content_std_sql
+  name: role_content_developer_model_set
+- !LookerModelSet
+  models:
+  - perception_legacy_sql
+  - perception_std_sql
+  name: role_perception_view_model_set
+- !LookerModelSet
+  models:
+  - nyc_citibike_steve
+  name: look_ml_dash_limited
+- !LookerModelSet
+  models:
+  - informationtechnology_legacy_sql
+  - informationtechnology_std_sql
+  name: role_informationtechnology_explore_model_set
+- !LookerModelSet
+  models:
+  - cameos_legacy_sql
+  - cameos_std_sql
+  name: role_cameos_view_model_set
+- !LookerModelSet
+  models:
+  - subtotal_testing
+  name: subtotal_testing_only
+- !LookerModelSet
+  models:
+  - overview_model
+  name: overview model set
+- !LookerModelSet
+  models:
+  - lk2bitmoji_legacy_sql
+  - lk2bitmoji_std_sql
+  name: role_lk2bitmoji_view_model_set
+- !LookerModelSet
+  models:
+  - support_order_items
+  name: '#mp_support_models'
+- !LookerModelSet
+  models:
+  - revenuestrategy_legacy_sql
+  - revenuestrategy_std_sql
+  name: role_revenuestrategy_view_model_set
+- !LookerModelSet
+  models:
+  - growth_legacy_sql
+  - growth_std_sql
+  name: role_growth_developer_model_set
+- !LookerModelSet
+  models:
+  - friends_maps_legacy_sql
+  - friends_maps_std_sql
+  name: role_friends_maps_explore_model_set
+- !LookerModelSet
+  models:
+  - discover_legacy_sql
+  - discover_std_sql
+  name: role_discover_explore_model_set
+- !LookerModelSet
+  models:
+  - qualityassurance_tools_legacy_sql
+  - qualityassurance_tools_std_sql
+  name: role_qualityassurance_tools_explore_model_set
+- !LookerModelSet
+  models:
+  - amy_s_bq_sandbox
+  - red_ecommerce
+  - user_group_b
+  name: amy_model
+- !LookerModelSet
+  models:
+  - mediadeliveryplatform_legacy_sql
+  - mediadeliveryplatform_std_sql
+  name: role_mediadeliveryplatform_view_model_set
+- !LookerModelSet
+  models:
+  - prasad_bq
+  - prasad_s_ecommerce
+  name: global model set
+- !LookerModelSet
+  models:
+  - coreexperience_legacy_sql
+  - coreexperience_std_sql
+  name: role_coreexperience_explore_model_set
+- !LookerModelSet
+  models:
+  - engineeringsecurity_legacy_sql
+  - engineeringsecurity_std_sql
+  name: role_engineeringsecurity_developer_model_set
+- !LookerModelSet
+  models:
+  - marketing
+  name: am_security_demo_marketing
+- !LookerModelSet
+  models:
+  - prasad_s_ecommerce
+  name: prasad_model_test
+- !LookerModelSet
+  models:
+  - metrics_insights_legacy_sql
+  - metrics_insights_std_sql
+  name: role_metrics_insights_view_model_set
+- !LookerModelSet
+  models:
+  - support_order_items
+  name: '#fai_support_modelset'
+- !LookerModelSet
+  models:
+  - mediadeliveryplatform_legacy_sql
+  - mediadeliveryplatform_std_sql
+  name: role_mediadeliveryplatform_developer_model_set
+- !LookerModelSet
+  models:
+  - cameos_legacy_sql
+  - cameos_std_sql
+  name: role_cameos_developer_model_set
+- !LookerModelSet
+  models:
+  - quota_monitoring
+  name: quota_monitoring
+- !LookerModelSet
+  models:
+  - productmanagement_legacy_sql
+  - productmanagement_std_sql
+  name: role_productmanagement_developer_model_set
+- !LookerModelSet
+  models:
+  - lenses_legacy_sql
+  - lenses_std_sql
+  name: role_lenses_explore_model_set
+- !LookerModelSet
+  models:
+  - chris_case_study
+  name: chris_case_study_1
+- !LookerModelSet
+  models:
+  - kool
+  name: kool
+- !LookerModelSet
+  models:
+  - research_legacy_sql
+  - research_std_sql
+  name: role_research_view_model_set
+- !LookerModelSet
+  models:
+  - clientplatform_frameworks_legacy_sql
+  - clientplatform_frameworks_std_sql
+  name: role_clientplatform_frameworks_view_model_set
+- !LookerModelSet
+  models:
+  - revenuestrategy_legacy_sql
+  - revenuestrategy_std_sql
+  name: role_revenuestrategy_explore_model_set
+- !LookerModelSet
+  models:
+  - sales_order_items
+  name: '#faire_sales_modelset'
+- !LookerModelSet
+  models:
+  - support_order_items
+  name: '#faire_support_modelset'
+- !LookerModelSet
+  models:
+  - camera_legacy_sql
+  - camera_std_sql
+  name: role_camera_view_model_set
+- !LookerModelSet
+  models:
+  - enterpriseservices_legacy_sql
+  - enterpriseservices_std_sql
+  name: role_enterpriseservices_view_model_set
+- !LookerModelSet
+  models:
+  - aaa_safe_basic_explores
+  name: aaa_safe_basic_explore_only
+- !LookerModelSet
+  models:
+  - discover_legacy_sql
+  - discover_std_sql
+  name: role_discover_view_model_set
+- !LookerModelSet
+  models:
+  - metrics_insights_legacy_sql
+  - metrics_insights_std_sql
+  name: role_metrics_insights_developer_model_set
+- !LookerModelSet
+  models:
+  - platformintegrityg_a_legacy_sql
+  - platformintegrityg_a_std_sql
+  name: role_platformintegrityg_a_developer_model_set
+- !LookerModelSet
+  models:
+  - snaplabsoftwareengineering_legacy_sql
+  - snaplabsoftwareengineering_std_sql
+  name: role_snaplabsoftwareengineering_view_model_set
+- !LookerModelSet
+  models:
+  - salesoperations_legacy_sql
+  - salesoperations_std_sql
+  name: role_salesoperations_developer_model_set
+- !LookerModelSet
+  models:
+  - ajc_sandbox
+  name: ajc_sandbox
+- !LookerModelSet
+  models:
+  - qualityassurance_tools_legacy_sql
+  - qualityassurance_tools_std_sql
+  name: role_qualityassurance_tools_developer_model_set
+- !LookerModelSet
+  models:
+  - cameraplatform_legacy_sql
+  - cameraplatform_std_sql
+  name: role_cameraplatform_developer_model_set
+- !LookerModelSet
+  models:
+  - lenses_legacy_sql
+  - lenses_std_sql
+  name: role_lenses_view_model_set
+- !LookerModelSet
+  models:
+  - revenue_legacy_sql
+  - revenue_std_sql
+  name: role_revenue_explore_model_set
+- !LookerModelSet
+  models:
+  - lenses_legacy_sql
+  - lenses_std_sql
+  name: role_lenses_developer_model_set
+- !LookerModelSet
+  models:
+  - pop
+  name: period over period
+- !LookerModelSet
+  models:
+  - rebecca_fashionly
+  name: rebecca test 2
+- !LookerModelSet
+  models:
+  - communityoperations_legacy_sql
+  - communityoperations_std_sql
+  name: role_communityoperations_view_model_set
+- !LookerModelSet
+  models:
+  - product_legacy_sql
+  - product_std_sql
+  name: role_product_explore_model_set
+- !LookerModelSet
+  models:
+  - datascience_legacy_sql
+  - datascience_std_sql
+  name: role_datascience_developer_model_set
+- !LookerModelSet
+  models:
+  - snaplabsoftwareengineering_legacy_sql
+  - snaplabsoftwareengineering_std_sql
+  name: role_snaplabsoftwareengineering_developer_model_set
+- !LookerModelSet
+  models:
+  - productmanagement_legacy_sql
+  - productmanagement_std_sql
+  name: role_productmanagement_explore_model_set
+- !LookerModelSet
+  models:
+  - adam_minton_case_study
+  name: adam_minton_case_study_only
+- !LookerModelSet
+  models:
+  - monetization_legacy_sql
+  - monetization_std_sql
+  name: role_monetization_view_model_set
+- !LookerModelSet
+  models:
+  - platformintegrityg_a_legacy_sql
+  - platformintegrityg_a_std_sql
+  name: role_platformintegrityg_a_explore_model_set
+- !LookerModelSet
+  models:
+  - cameraplatform_legacy_sql
+  - cameraplatform_std_sql
+  name: role_cameraplatform_view_model_set
+- !LookerModelSet
+  models:
+  - product_legacy_sql
+  - product_std_sql
+  name: role_product_view_model_set
+- !LookerModelSet
+  models:
+  - businessoperations_legacy_sql
+  - businessoperations_std_sql
+  name: role_businessoperations_explore_model_set
+- !LookerModelSet
+  models:
+  - jt_case_study
+  - jt_fashionly
+  - jt_fashionly_test
+  - jt_hub
+  - jt_hub_spoke
+  name: jt_models
+- !LookerModelSet
+  models:
+  - mb_test_spoke_proj
+  name: spoke_project_only
+- !LookerModelSet
+  models:
+  - clientplatform_frameworks_legacy_sql
+  - clientplatform_frameworks_std_sql
+  name: role_clientplatform_frameworks_developer_model_set
+- !LookerModelSet
+  models: []
+  name: disabled_model
+- !LookerModelSet
+  models:
+  - asset_catalog_do_not_touch
+  name: a1
+- !LookerModelSet
+  models:
+  - coreexperience_legacy_sql
+  - coreexperience_std_sql
+  name: role_coreexperience_developer_model_set
+- !LookerModelSet
+  models:
+  - second_connection
+  name: chris_case_study_2
+- !LookerModelSet
+  models:
+  - russ_sandbox
+  name: other
+- !LookerModelSet
+  models:
+  - growth_legacy_sql
+  - growth_std_sql
+  name: role_growth_view_model_set
+- !LookerModelSet
+  models:
+  - product_legacy_sql
+  - product_std_sql
+  name: role_product_developer_model_set
+- !LookerModelSet
+  models:
+  - revenue_legacy_sql
+  - revenue_std_sql
+  name: role_revenue_view_model_set
+- !LookerModelSet
+  models:
+  - snaplabproduct_legacy_sql
+  - snaplabproduct_std_sql
+  name: role_snaplabproduct_view_model_set
+- !LookerModelSet
+  models:
+  - cameraplatform_legacy_sql
+  - cameraplatform_std_sql
+  name: role_cameraplatform_explore_model_set
+- !LookerModelSet
+  models:
+  - perception_legacy_sql
+  - perception_std_sql
+  name: role_perception_explore_model_set
+- !LookerModelSet
+  models:
+  - monetization_legacy_sql
+  - monetization_std_sql
+  name: role_monetization_explore_model_set
+- !LookerModelSet
+  models:
+  - research_legacy_sql
+  - research_std_sql
+  name: role_research_developer_model_set
+- !LookerModelSet
+  models:
+  - hugo
+  name: hugo
+- !LookerModelSet
+  models:
+  - communityoperations_legacy_sql
+  - communityoperations_std_sql
+  name: role_communityoperations_explore_model_set
+- !LookerModelSet
+  models:
+  - russ_sandbox
+  name: russ_sandbox
+- !LookerModelSet
+  models:
+  - camera_legacy_sql
+  - camera_std_sql
+  name: role_camera_explore_model_set
+- !LookerModelSet
+  models: []
+  name: none
+- !LookerModelSet
+  models:
+  - events_model
+  name: events_model_only
+- !LookerModelSet
+  models:
+  - strategy_legacy_sql
+  - strategy_std_sql
+  name: role_strategy_developer_model_set
+- !LookerModelSet
+  models:
+  - strategy_legacy_sql
+  - strategy_std_sql
+  name: role_strategy_explore_model_set
+- !LookerModelSet
+  models:
+  - adam_minton_bq
+  name: adam_minton_bq_only
+- !LookerModelSet
+  models:
+  - content_legacy_sql
+  - content_std_sql
+  name: role_content_view_model_set
+- !LookerModelSet
+  models:
+  - engineeringsecurity_legacy_sql
+  - engineeringsecurity_std_sql
+  name: role_engineeringsecurity_view_model_set
+- !LookerModelSet
+  models:
+  - lk2bitmoji_legacy_sql
+  - lk2bitmoji_std_sql
+  name: role_lk2bitmoji_explore_model_set
+- !LookerModelSet
+  models:
+  - qualityassurance_tools_legacy_sql
+  - qualityassurance_tools_std_sql
+  name: role_qualityassurance_tools_view_model_set
+- !LookerModelSet
+  models:
+  - fashionly_mb
+  name: ltc_claims
+- !LookerModelSet
+  models:
+  - informationtechnology_legacy_sql
+  - informationtechnology_std_sql
+  name: role_informationtechnology_view_model_set
+- !LookerModelSet
+  models:
+  - adam_minton_case_study
+  name: am_security_demo
+- !LookerModelSet
+  models:
+  - data-dictionary
+  name: data dictionary
+- !LookerModelSet
+  models:
+  - coreexperience_legacy_sql
+  - coreexperience_std_sql
+  name: role_coreexperience_view_model_set
+- !LookerModelSet
+  models:
+  - km_trimedx_testing
+  name: km_trimedx_testing
+- !LookerModelSet
+  models:
+  - enterpriseservices_legacy_sql
+  - enterpriseservices_std_sql
+  name: role_enterpriseservices_developer_model_set
+- !LookerModelSet
+  models:
+  - metrics_insights_legacy_sql
+  - metrics_insights_std_sql
+  name: role_metrics_insights_explore_model_set
+- !LookerModelSet
+  models:
+  - mb_test_base_project
+  name: base_project
+- !LookerModelSet
+  models:
+  - businessoperations_legacy_sql
+  - businessoperations_std_sql
+  name: role_businessoperations_view_model_set
+- !LookerModelSet
+  models:
+  - growth_legacy_sql
+  - growth_std_sql
+  name: role_growth_explore_model_set
+- !LookerModelSet
+  models:
+  - prasad_s_ecommerce
+  name: prasad_test_prescribe_wellness_ms
+- !LookerModelSet
+  models:
+  - russ_sandbox
+  - russ_sandbox_adi
+  name: adi
+- !LookerModelSet
+  models:
+  - snaplabproduct_legacy_sql
+  - snaplabproduct_std_sql
+  name: role_snaplabproduct_explore_model_set
+- !LookerModelSet
+  models:
+  - businessoperations_legacy_sql
+  - businessoperations_std_sql
+  name: role_businessoperations_developer_model_set
+- !LookerModelSet
+  models:
+  - chris_case_study
+  - chris_the_look
+  name: chris's models
+- !LookerModelSet
+  models:
+  - salesoperations_legacy_sql
+  - salesoperations_std_sql
+  name: role_salesoperations_view_model_set
+- !LookerModelSet
+  models:
+  - greg_sandbox
+  - training_advanced
+  name: training_advanced
+- !LookerModelSet
+  models:
+  - lk2bitmoji_legacy_sql
+  - lk2bitmoji_std_sql
+  name: role_lk2bitmoji_developer_model_set
+- !LookerModelSet
+  models:
+  - support_order_items
+  name: '#eg_support_modelset'
+- !LookerModelSet
+  models:
+  - clientplatform_frameworks_legacy_sql
+  - clientplatform_frameworks_std_sql
+  name: role_clientplatform_frameworks_explore_model_set
+- !LookerModelSet
+  models:
+  - thelook_shiggins
+  name: shiggins_models
+- !LookerModelSet
+  models:
+  - datascience_legacy_sql
+  - datascience_std_sql
+  name: role_datascience_view_model_set
+- !LookerModelSet
+  models:
+  - communityoperations_legacy_sql
+  - communityoperations_std_sql
+  name: role_communityoperations_developer_model_set
+- !LookerModelSet
+  models:
+  - operational_metrics
+  name: eric_test_dev_same_project
+- !LookerModelSet
+  models:
+  - mediadeliveryplatform_legacy_sql
+  - mediadeliveryplatform_std_sql
+  name: role_mediadeliveryplatform_explore_model_set
+- !LookerModelSet
+  models:
+  - informationtechnology_legacy_sql
+  - informationtechnology_std_sql
+  name: role_informationtechnology_developer_model_set
+- !LookerModelSet
+  models:
+  - training_advanced
+  name: training advanced only
+- !LookerModelSet
+  models:
+  - salesoperations_legacy_sql
+  - salesoperations_std_sql
+  name: role_salesoperations_explore_model_set
 
 
 # LOOKER ROLES
@@ -797,191 +4104,1064 @@
   teams: []
   name: Developer
 - !LookerRoles
-  permission_set: developer
+  permission_set: user
   model_set: All
   teams:
-  - All Looker Users (Non-Admin)
-  name: Non-Admin
+  - Strategy
+  name: User
 - !LookerRoles
-  permission_set: view only
-  model_set: thelook
-  teams: []
-  name: View Only
-- !LookerRoles
-  permission_set: developer
-  model_set: thelook
-  teams: []
-  name: testrole
-- !LookerRoles
-  permission_set: devops
-  model_set: All
-  teams: []
-  name: MyNewRole
-- !LookerRoles
-  permission_set: explorer
-  model_set: All
-  teams: []
-  name: explorer
-- !LookerRoles
-  permission_set: view only
-  model_set: All
-  teams: []
-  name: View_Only_All_Models
-- !LookerRoles
-  permission_set: access data only
-  model_set: All
-  teams: []
-  name: Example Access Data
-- !LookerRoles
-  permission_set: view test
-  model_set: All
-  teams: []
-  name: CH Test
-- !LookerRoles
-  permission_set: explore user
-  model_set: thelook
-  teams:
-  - All Looker Users (Non-Admin)
-  - Marketing
-  name: Explore The Look
-- !LookerRoles
-  permission_set: manage models
-  model_set: manage models
-  teams: []
-  name: Manage Models Test
-- !LookerRoles
-  permission_set: developer
-  model_set: manage models
-  teams: []
-  name: Manage Models Dev
-- !LookerRoles
-  permission_set: explore user
+  permission_set: see looks and dashboards only
   model_set: All
   teams:
-  - Embed Shared Group SSO User
-  name: Embed Power User
+  - Strategy
+  name: see looks and dashboards only
 - !LookerRoles
-  permission_set: nosharing
-  model_set: thelook
-  teams: []
-  name: NoShae_TheLook
-- !LookerRoles
-  permission_set: viewer test
-  model_set: thelook
+  permission_set: view_only
+  model_set: training_advanced
   teams:
-  - All Looker Users (Non-Admin)
-  name: Viewer Test
+  - Strategy
+  name: view_only
 - !LookerRoles
-  permission_set: system_activity_role_ah_test
+  permission_set: view_only
   model_set: All
-  teams: []
-  name: ah_sysactivity_test_role
+  teams:
+  - Strategy
+  name: i_am_viewer
 - !LookerRoles
-  permission_set: login_special_email
-  model_set: All
+  permission_set: user
+  model_set: adi
   teams: []
-  name: login_special_email
-- !LookerRoles
-  permission_set: nosharing
-  model_set: thelook
-  teams: []
-  name: No Sharing
-- !LookerRoles
-  permission_set: trafficguard_viewers
-  model_set: All
-  teams: []
-  name: trafficguard_viewers
-- !LookerRoles
-  permission_set: minimum permisions
-  model_set: All
-  teams: []
-  name: No Permissions
+  name: ADI
 - !LookerRoles
   permission_set: developer
-  model_set: kate_demo
+  model_set: other
   teams: []
-  name: kate demo
+  name: other
 - !LookerRoles
-  permission_set: explore but no download
-  model_set: thelook
-  teams: []
-  name: Explore But No Download
-- !LookerRoles
-  permission_set: viewer+sql
+  permission_set: everything_test
   model_set: All
   teams: []
-  name: viewer_sql
+  name: everything_test
+- !LookerRoles
+  permission_set: user can sudo
+  model_set: All
+  teams: []
+  name: Sudo User Test
+- !LookerRoles
+  permission_set: kool
+  model_set: kool
+  teams: []
+  name: kool
+- !LookerRoles
+  permission_set: manage_spaces
+  model_set: All
+  teams: []
+  name: manage_spaces
+- !LookerRoles
+  permission_set: hub_developer
+  model_set: base_project
+  teams: []
+  name: hub_developer_role
+- !LookerRoles
+  permission_set: spoke_dev_hub_readonly
+  model_set: base_project
+  teams: []
+  name: spoke_user_hub_read_only_role
+- !LookerRoles
+  permission_set: spoke_developer
+  model_set: spoke_project_only
+  teams: []
+  name: spoke_developer_role
+- !LookerRoles
+  permission_set: sample_build
+  model_set: All
+  teams: []
+  name: sample_build_role
+- !LookerRoles
+  permission_set: view_only
+  model_set: All
+  teams: []
+  name: hugo_testperms
+- !LookerRoles
+  permission_set: prasad_perm_test
+  model_set: prasad_test_prescribe_wellness_ms
+  teams: []
+  name: prasad_pres_role_test_no_looks
+- !LookerRoles
+  permission_set: prasad_perm_test_see_looks
+  model_set: prasad_test_prescribe_wellness_ms
+  teams: []
+  name: prasad_perm_test_see_looks_role
+- !LookerRoles
+  permission_set: test_without_manage_spaces
+  model_set: kool
+  teams: []
+  name: test_without_manage_spaces
+- !LookerRoles
+  permission_set: hub_readonly
+  model_set: ajc_sandbox
+  teams: []
+  name: ajc_sandbox_read_lookml
+- !LookerRoles
+  permission_set: t1
+  model_set: All
+  teams: []
+  name: T1
+- !LookerRoles
+  permission_set: view_only
+  model_set: All
+  teams: []
+  name: drake_testing
+- !LookerRoles
+  permission_set: all but email
+  model_set: All
+  teams: []
+  name: all but email
+- !LookerRoles
+  permission_set: admin_limited
+  model_set: All
+  teams: []
+  name: Admin Limited
+- !LookerRoles
+  permission_set: prasad_perm_set
+  model_set: prasad_model_test
+  teams: []
+  name: prasad_role
+- !LookerRoles
+  permission_set: lookml dashboard user
+  model_set: overview model set
+  teams: []
+  name: Overview
+- !LookerRoles
+  permission_set: prasad_perm_set
+  model_set: prasad_model_test
+  teams: []
+  name: dev_auth_role
+- !LookerRoles
+  permission_set: global permission set
+  model_set: global model set
+  teams: []
+  name: Global Role
+- !LookerRoles
+  permission_set: lookml dashboard user
+  model_set: training advanced only
+  teams: []
+  name: test_if_lookml_dash_visibility_depends_on_model_access
+- !LookerRoles
+  permission_set: t1
+  model_set: aaa_safe_basic_explore_only
+  teams: []
+  name: safe_basic_explore_only_viewer
+- !LookerRoles
+  permission_set: everything_but_deploy
+  model_set: All
+  teams: []
+  name: everything_but_deploy_role
+- !LookerRoles
+  permission_set: save_content_without_explore_gives_dashboard_filters_test
+  model_set: All
+  teams: []
+  name: save_content_without_explore_gives_dashboard_filters_test
+- !LookerRoles
+  permission_set: am_security_demo
+  model_set: am_security_demo
+  teams: []
+  name: am_security_demo
 - !LookerRoles
   permission_set: developer
-  model_set: kate_demo
+  model_set: km_group_labels_logic_demo_only
   teams: []
-  name: ah_dev
+  name: km_group_labels_logic_demo_developer
 - !LookerRoles
-  permission_set: view only
-  model_set: snorest
+  permission_set: see_lookml_but_no_develop
+  model_set: events_model_only
   teams: []
-  name: ah_user
+  name: see_lookml_only_in_events_model
+- !LookerRoles
+  permission_set: _sbarber_sbarber
+  model_set: All
+  teams: []
+  name: _sbarber_sbarber_with_sbarber
+- !LookerRoles
+  permission_set: test_no_email
+  model_set: All
+  teams: []
+  name: test_no_email
+- !LookerRoles
+  permission_set: viewer (login special email)
+  model_set: All
+  teams: []
+  name: Real Viewer
+- !LookerRoles
+  permission_set: default user
+  model_set: amy_model
+  teams: []
+  name: amy_test
+- !LookerRoles
+  permission_set: dev with sys activity access
+  model_set: shiggins_models
+  teams: []
+  name: shiggins_developer_role
+- !LookerRoles
+  permission_set: singular_permission__see_system_activity
+  model_set: aaa_safe_basic_explore_only
+  teams: []
+  name: singular_permission__see_system_activity
+- !LookerRoles
+  permission_set: non_developer_admin
+  model_set: All
+  teams: []
+  name: non_developer_admin
+- !LookerRoles
+  permission_set: login_speical_email_only
+  model_set: none
+  teams: []
+  name: login_speical_email_only
 - !LookerRoles
   permission_set: developer
-  model_set: socal4-demo-1
+  model_set: aaa_safe_basic_explore_only
   teams: []
-  name: socal4-developer-retail-only
+  name: aaa_safe_basic_explores
+- !LookerRoles
+  permission_set: am_security_demo
+  model_set: am_security_demo_marketing
+  teams: []
+  name: am_security_demo_marketing
+- !LookerRoles
+  permission_set: greg permission
+  model_set: All
+  teams: []
+  name: greg role
+- !LookerRoles
+  permission_set: developer
+  model_set: ltc_claims
+  teams: []
+  name: ltc_claims_developer
+- !LookerRoles
+  permission_set: user
+  model_set: period over period
+  teams: []
+  name: Customer POP Access
+- !LookerRoles
+  permission_set: user
+  model_set: period over period
+  teams: []
+  name: fake_role_for_log_search
+- !LookerRoles
+  permission_set: view_only
+  model_set: chris_case_study_1
+  teams: []
+  name: chris_case_study_1
+- !LookerRoles
+  permission_set: view_only
+  model_set: chris_case_study_2
+  teams: []
+  name: chris_case_study_2
+- !LookerRoles
+  permission_set: eric_test_perm
+  model_set: All
+  teams: []
+  name: eric_test_perm
+- !LookerRoles
+  permission_set: rebecca test
+  model_set: All
+  teams: []
+  name: rebecca's role
+- !LookerRoles
+  permission_set: blank
+  model_set: russ_sandbox
+  teams: []
+  name: Test_jc
+- !LookerRoles
+  permission_set: user
+  model_set: russ_sandbox
+  teams: []
+  name: test_jc2
+- !LookerRoles
+  permission_set: chris_test
+  model_set: All
+  teams: []
+  name: chris_test
+- !LookerRoles
+  permission_set: see_lookml_but_no_develop
+  model_set: rebecca test 2
+  teams: []
+  name: Only Do Something Specific
+- !LookerRoles
+  permission_set: developer
+  model_set: data dictionary
+  teams: []
+  name: data dictionary
+- !LookerRoles
+  permission_set: just_manage_model
+  model_set: adi
+  teams: []
+  name: test_role_alm
+- !LookerRoles
+  permission_set: sudo_test
+  model_set: All
+  teams: []
+  name: sudo_test
+- !LookerRoles
+  permission_set: developer
+  model_set: eric_test_dev_same_project
+  teams: []
+  name: Developer - Operational Metrics
+- !LookerRoles
+  permission_set: jt_viewer
+  model_set: jt_models
+  teams: []
+  name: jt_viewer
+- !LookerRoles
+  permission_set: disabled_permission_set
+  model_set: disabled_model
+  teams: []
+  name: disabled_role
+- !LookerRoles
+  permission_set: embed_viewer
+  model_set: All
+  teams: []
+  name: embed_viewer
+- !LookerRoles
+  permission_set: developer
+  model_set: chris's models
+  teams: []
+  name: Chris's Models Developer
+- !LookerRoles
+  permission_set: download_without_limit
+  model_set: All
+  teams: []
+  name: download_without_limit
+- !LookerRoles
+  permission_set: developer_no_manage_models
+  model_set: All
+  teams: []
+  name: developer_no_manage_models
+- !LookerRoles
+  permission_set: developer_yes_manage_models
+  model_set: All
+  teams: []
+  name: developer_yes_manage_models
+- !LookerRoles
+  permission_set: browser-fastly
+  model_set: am_security_demo
+  teams: []
+  name: browser-fastly
+- !LookerRoles
+  permission_set: developer - no deploy
+  model_set: All
+  teams: []
+  name: Developer - No Deploy
+- !LookerRoles
+  permission_set: dev with sys activity access
+  model_set: All
+  teams: []
+  name: gregsgreatrole
+- !LookerRoles
+  permission_set: see_data_only
+  model_set: adam_minton_case_study_only
+  teams: []
+  name: adam_minton_case_study_see_data_only
+- !LookerRoles
+  permission_set: explore_only
+  model_set: adam_minton_bq_only
+  teams: []
+  name: adam_minton_bq_explore_only
+- !LookerRoles
+  permission_set: default user
+  model_set: All
+  teams: []
+  name: Default User
+- !LookerRoles
+  permission_set: default viewer
+  model_set: All
+  teams: []
+  name: Default Viewer
+- !LookerRoles
+  permission_set: chris_test
+  model_set: All
+  teams: []
+  name: hugo
+- !LookerRoles
+  permission_set: viewer (login special email)
+  model_set: All
+  teams: []
+  name: Viewer (login special email)
+- !LookerRoles
+  permission_set: viewer (login special email, save content)
+  model_set: All
+  teams: []
+  name: Viewer (login special email, save content)
+- !LookerRoles
+  permission_set: trimedx use dashboards limited permissions
+  model_set: km_trimedx_testing
+  teams: []
+  name: trimedx use dashboards limited permissions
+- !LookerRoles
+  permission_set: trimedx use dashboards with download
+  model_set: aaa_safe_basic_explore_only
+  teams: []
+  name: trimedx use dashboards with download on different model
+- !LookerRoles
+  permission_set: explore_only
+  model_set: a1
+  teams: []
+  name: asset_catalog_role
+- !LookerRoles
+  permission_set: user
+  model_set: hugo
+  teams: []
+  name: hugo_api_role
+- !LookerRoles
+  permission_set: developer
+  model_set: quota_monitoring
+  teams: []
+  name: quota_monitoring
+- !LookerRoles
+  permission_set: explore_only
+  model_set: adam_minton_bq_only
+  teams: []
+  name: testy
+- !LookerRoles
+  permission_set: developer
+  model_set: role_businessoperations_developer_model_set
+  teams:
+  - role_BusinessOperations_developer
+  name: role_businessoperations_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_businessoperations_explore_model_set
+  teams: []
+  name: role_businessoperations_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_businessoperations_view_model_set
+  teams: []
+  name: role_businessoperations_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_cameos_developer_model_set
+  teams:
+  - role_Cameos_developer
+  name: role_cameos_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_cameos_explore_model_set
+  teams: []
+  name: role_cameos_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_cameos_view_model_set
+  teams: []
+  name: role_cameos_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_cameraplatform_developer_model_set
+  teams:
+  - role_CameraPlatform_developer
+  name: role_cameraplatform_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_cameraplatform_explore_model_set
+  teams: []
+  name: role_cameraplatform_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_cameraplatform_view_model_set
+  teams: []
+  name: role_cameraplatform_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_camera_developer_model_set
+  teams:
+  - role_Camera_developer
+  name: role_camera_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_camera_explore_model_set
+  teams: []
+  name: role_camera_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_camera_view_model_set
+  teams: []
+  name: role_camera_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_clientplatform_frameworks_developer_model_set
+  teams:
+  - role_ClientPlatform_Frameworks_developer
+  name: role_clientplatform_frameworks_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_clientplatform_frameworks_explore_model_set
+  teams: []
+  name: role_clientplatform_frameworks_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_clientplatform_frameworks_view_model_set
+  teams: []
+  name: role_clientplatform_frameworks_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_communityoperations_developer_model_set
+  teams:
+  - role_CommunityOperations_developer
+  name: role_communityoperations_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_communityoperations_explore_model_set
+  teams: []
+  name: role_communityoperations_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_communityoperations_view_model_set
+  teams: []
+  name: role_communityoperations_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_content_developer_model_set
+  teams:
+  - role_Content_developer
+  name: role_content_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_content_explore_model_set
+  teams: []
+  name: role_content_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_content_view_model_set
+  teams: []
+  name: role_content_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_coreexperience_developer_model_set
+  teams:
+  - role_CoreExperience_developer
+  name: role_coreexperience_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_coreexperience_explore_model_set
+  teams: []
+  name: role_coreexperience_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_coreexperience_view_model_set
+  teams: []
+  name: role_coreexperience_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_datascience_developer_model_set
+  teams:
+  - role_DataScience_developer
+  name: role_datascience_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_datascience_explore_model_set
+  teams: []
+  name: role_datascience_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_datascience_view_model_set
+  teams: []
+  name: role_datascience_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_discover_developer_model_set
+  teams:
+  - role_Discover_developer
+  name: role_discover_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_discover_explore_model_set
+  teams: []
+  name: role_discover_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_discover_view_model_set
+  teams: []
+  name: role_discover_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_engineeringsecurity_developer_model_set
+  teams:
+  - role_EngineeringSecurity_developer
+  name: role_engineeringsecurity_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_engineeringsecurity_explore_model_set
+  teams: []
+  name: role_engineeringsecurity_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_engineeringsecurity_view_model_set
+  teams: []
+  name: role_engineeringsecurity_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_enterpriseservices_developer_model_set
+  teams:
+  - role_EnterpriseServices_developer
+  name: role_enterpriseservices_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_enterpriseservices_explore_model_set
+  teams: []
+  name: role_enterpriseservices_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_enterpriseservices_view_model_set
+  teams: []
+  name: role_enterpriseservices_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_friends_maps_developer_model_set
+  teams:
+  - role_Friends_Maps_developer
+  name: role_friends_maps_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_friends_maps_explore_model_set
+  teams: []
+  name: role_friends_maps_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_friends_maps_view_model_set
+  teams: []
+  name: role_friends_maps_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_growth_developer_model_set
+  teams:
+  - role_Growth_developer
+  name: role_growth_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_growth_explore_model_set
+  teams: []
+  name: role_growth_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_growth_view_model_set
+  teams: []
+  name: role_growth_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_informationtechnology_developer_model_set
+  teams:
+  - role_InformationTechnology_developer
+  name: role_informationtechnology_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_informationtechnology_explore_model_set
+  teams: []
+  name: role_informationtechnology_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_informationtechnology_view_model_set
+  teams: []
+  name: role_informationtechnology_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_lenses_developer_model_set
+  teams:
+  - role_Lenses_developer
+  name: role_lenses_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_lenses_explore_model_set
+  teams: []
+  name: role_lenses_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_lenses_view_model_set
+  teams: []
+  name: role_lenses_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_mediadeliveryplatform_developer_model_set
+  teams:
+  - role_MediaDeliveryPlatform_developer
+  name: role_mediadeliveryplatform_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_mediadeliveryplatform_explore_model_set
+  teams: []
+  name: role_mediadeliveryplatform_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_mediadeliveryplatform_view_model_set
+  teams: []
+  name: role_mediadeliveryplatform_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_metrics_insights_developer_model_set
+  teams:
+  - role_Metrics_Insights_developer
+  name: role_metrics_insights_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_metrics_insights_explore_model_set
+  teams: []
+  name: role_metrics_insights_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_metrics_insights_view_model_set
+  teams: []
+  name: role_metrics_insights_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_monetization_developer_model_set
+  teams:
+  - role_Monetization_developer
+  name: role_monetization_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_monetization_explore_model_set
+  teams: []
+  name: role_monetization_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_monetization_view_model_set
+  teams: []
+  name: role_monetization_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_perception_developer_model_set
+  teams:
+  - role_Perception_developer
+  name: role_perception_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_perception_explore_model_set
+  teams: []
+  name: role_perception_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_perception_view_model_set
+  teams: []
+  name: role_perception_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_platformintegrityg_a_developer_model_set
+  teams:
+  - role_PlatformIntegrityG_A_developer
+  name: role_platformintegrityg_a_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_platformintegrityg_a_explore_model_set
+  teams: []
+  name: role_platformintegrityg_a_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_platformintegrityg_a_view_model_set
+  teams: []
+  name: role_platformintegrityg_a_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_productmanagement_developer_model_set
+  teams:
+  - role_ProductManagement_developer
+  name: role_productmanagement_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_productmanagement_explore_model_set
+  teams: []
+  name: role_productmanagement_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_productmanagement_view_model_set
+  teams: []
+  name: role_productmanagement_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_product_developer_model_set
+  teams:
+  - role_Product_developer
+  name: role_product_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_product_explore_model_set
+  teams: []
+  name: role_product_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_product_view_model_set
+  teams: []
+  name: role_product_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_qualityassurance_tools_developer_model_set
+  teams:
+  - role_QualityAssurance_Tools_developer
+  name: role_qualityassurance_tools_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_qualityassurance_tools_explore_model_set
+  teams: []
+  name: role_qualityassurance_tools_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_qualityassurance_tools_view_model_set
+  teams: []
+  name: role_qualityassurance_tools_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_research_developer_model_set
+  teams:
+  - role_Research_developer
+  name: role_research_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_research_explore_model_set
+  teams: []
+  name: role_research_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_research_view_model_set
+  teams: []
+  name: role_research_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_revenuestrategy_developer_model_set
+  teams:
+  - role_RevenueStrategy_developer
+  name: role_revenuestrategy_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_revenuestrategy_explore_model_set
+  teams: []
+  name: role_revenuestrategy_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_revenuestrategy_view_model_set
+  teams: []
+  name: role_revenuestrategy_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_revenue_developer_model_set
+  teams:
+  - role_Revenue_developer
+  name: role_revenue_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_revenue_explore_model_set
+  teams: []
+  name: role_revenue_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_revenue_view_model_set
+  teams: []
+  name: role_revenue_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_salesoperations_developer_model_set
+  teams:
+  - role_SalesOperations_developer
+  name: role_salesoperations_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_salesoperations_explore_model_set
+  teams: []
+  name: role_salesoperations_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_salesoperations_view_model_set
+  teams: []
+  name: role_salesoperations_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_snaplabproduct_developer_model_set
+  teams:
+  - role_SnapLabProduct_developer
+  name: role_snaplabproduct_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_snaplabproduct_explore_model_set
+  teams: []
+  name: role_snaplabproduct_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_snaplabproduct_view_model_set
+  teams: []
+  name: role_snaplabproduct_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_snaplabsoftwareengineering_developer_model_set
+  teams:
+  - role_SnapLabSoftwareEngineering_developer
+  name: role_snaplabsoftwareengineering_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_snaplabsoftwareengineering_explore_model_set
+  teams: []
+  name: role_snaplabsoftwareengineering_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_snaplabsoftwareengineering_view_model_set
+  teams: []
+  name: role_snaplabsoftwareengineering_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_strategy_developer_model_set
+  teams:
+  - role_Strategy_developer
+  name: role_strategy_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_strategy_explore_model_set
+  teams: []
+  name: role_strategy_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_strategy_view_model_set
+  teams: []
+  name: role_strategy_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_lk2bitmoji_developer_model_set
+  teams:
+  - role_lk2bitmoji_developer
+  name: role_lk2bitmoji_developer
+- !LookerRoles
+  permission_set: explore
+  model_set: role_lk2bitmoji_explore_model_set
+  teams: []
+  name: role_lk2bitmoji_explore
+- !LookerRoles
+  permission_set: view
+  model_set: role_lk2bitmoji_view_model_set
+  teams: []
+  name: role_lk2bitmoji_view
+- !LookerRoles
+  permission_set: developer
+  model_set: role_businessoperations_developer_model_set
+  teams: []
+  name: hugo_api_roler
+- !LookerRoles
+  permission_set: developer - with no develop
+  model_set: All
+  teams: []
+  name: Developer - With No Develop
+- !LookerRoles
+  permission_set: look_ml_dash_limited
+  model_set: look_ml_dash_limited
+  teams: []
+  name: look_ml_dash_limited
+- !LookerRoles
+  permission_set: '#mp_sales_permissionset'
+  model_set: All
+  teams:
+  - '#sales_group'
+  name: '#mp_sales_explorer'
+- !LookerRoles
+  permission_set: '#mp_support_permissionset'
+  model_set: '#mp_support_models'
+  teams:
+  - '#support_group'
+  name: '#mp_support_explorer'
+- !LookerRoles
+  permission_set: explore and schedule only
+  model_set: subtotal_testing_only
+  teams: []
+  name: subtotals_testing_only
+- !LookerRoles
+  permission_set: see_sql_viewer
+  model_set: All
+  teams: []
+  name: see_sql_viewer
+- !LookerRoles
+  permission_set: '#faire_sales_permissionset'
+  model_set: '#faire_sales_modelset'
+  teams: []
+  name: '#faire_sales_role'
+- !LookerRoles
+  permission_set: '#faire_support_permissionset'
+  model_set: '#faire_support_modelset'
+  teams: []
+  name: '#faire_support_role'
+- !LookerRoles
+  permission_set: '#fai_support_permissionset'
+  model_set: '#fai_support_modelset'
+  teams: []
+  name: '#fai_support_role'
+- !LookerRoles
+  permission_set: '#eg_support_permissionset'
+  model_set: '#eg_support_modelset'
+  teams: []
+  name: '#eg_support_role'
+- !LookerRoles
+  permission_set: '#faire_sales_permissionset'
+  model_set: All
+  teams: []
+  name: andy_test
 
 
 # USER_ATTRIBUTES
 - !LookerUserAttribute
-  name: access_granted_biointellisense
-  uatype: datetime
+  name: accessible_departments
+  uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: account_executive
+  name: access_no
   uatype: string
   hidden_value: false
-  user_view: 'True'
-  user_edit: 'True'
-  default_value: Denny Grade
-  teams: []
-- !LookerUserAttribute
-  name: account_name
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
+  user_view: 'False'
   user_edit: 'False'
-  default_value: New York Times
+  default_value: no
+  teams:
+  - Camera: yes
+- !LookerUserAttribute
+  name: access_yes
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: allowed_brands
-  uatype: string
+  name: age
+  uatype: number
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: allowed_stations
+  name: alm_testing
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: am_security_demo_department
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: Westlake Ave & 6th Ave
-  teams: []
+  default_value: ''
+  teams:
+  - All Users: admin
 - !LookerUserAttribute
-  name: assignee_email
-  uatype: advanced_filter_string
+  name: available_fields
+  uatype: advanced_filter_number
   hidden_value: false
-  user_view: 'False'
+  user_view: 'True'
   user_edit: 'False'
-  default_value: '%'
+  default_value: 1, 3
   teams: []
 - !LookerUserAttribute
-  name: bq_project_name
-  uatype: advanced_filter_string
+  name: bernard
+  uatype: string
   hidden_value: false
-  user_view: 'False'
+  user_view: 'True'
   user_edit: 'False'
   default_value: ''
   teams: []
@@ -996,100 +5176,76 @@
   - Company A: fsdlkfsldkjflsd
   - All Users: dockers
 - !LookerUserAttribute
-  name: brand_demo
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: '%'
-  teams: []
-- !LookerUserAttribute
-  name: brand_dropdown
-  uatype: string
-  hidden_value: false
-  user_view: 'False'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: brand_name
-  uatype: advanced_filter_string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: brand_rls
-  uatype: string
-  hidden_value: false
-  user_view: 'False'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: bridgecorp_can_see_everything
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: bridgecorp_object_ids
+  name: campaign_id
   uatype: advanced_filter_number
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: ''
+  default_value: '>0'
   teams: []
 - !LookerUserAttribute
-  name: bridgecorp_object_items_count
-  uatype: advanced_filter_number
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: bruk_test
-  uatype: advanced_filter_string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: business_unit
-  uatype: advanced_filter_string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: campaign_name
-  uatype: advanced_filter_string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: '%'
-  teams: []
-- !LookerUserAttribute
-  name: can_see_details
+  name: can_access_financial
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: Yes
+  default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: can_see_email
+  name: can_access_pii
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: can_access_sensitive_data
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: No
+  teams: []
+- !LookerUserAttribute
+  name: can_see_dei
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: No
+  teams: []
+- !LookerUserAttribute
+  name: can_see_field1_number
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: no
+  teams: []
+- !LookerUserAttribute
+  name: can_see_field1_string
   uatype: advanced_filter_string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
   default_value: no
+  teams: []
+- !LookerUserAttribute
+  name: can_see_granular_data
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: no
+  teams: []
+- !LookerUserAttribute
+  name: can_see_order_items
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: can_see_pii
@@ -1100,15 +5256,6 @@
   default_value: no
   teams: []
 - !LookerUserAttribute
-  name: can_see_sales
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'True'
-  default_value: ''
-  teams:
-  - Marketing: can_see_sales
-- !LookerUserAttribute
   name: can_see_sensitive_data
   uatype: string
   hidden_value: false
@@ -1118,21 +5265,22 @@
   teams:
   - All Users: Yes
 - !LookerUserAttribute
-  name: can_see_status
-  uatype: advanced_filter_string
+  name: chicago_crime_district
+  uatype: advanced_filter_number
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: yes
+  default_value: '3'
   teams: []
 - !LookerUserAttribute
-  name: category
-  uatype: string
-  hidden_value: true
-  user_view: 'False'
+  name: chicago_district
+  uatype: advanced_filter_number
+  hidden_value: false
+  user_view: 'True'
   user_edit: 'False'
   default_value: ''
-  teams: []
+  teams:
+  - chicago_district_test: '7'
 - !LookerUserAttribute
   name: city
   uatype: string
@@ -1143,30 +5291,7 @@
   teams:
   - london team: London
   - new york team: New York
-- !LookerUserAttribute
-  name: citylist
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: ('Chicago', 'Houston', 'Los Angeles', 'Miami')
-  teams: []
-- !LookerUserAttribute
-  name: city_v1
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: client
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'True'
-  default_value: ''
-  teams: []
+  - CameraPlatform: hugoselbie
 - !LookerUserAttribute
   name: client_id
   uatype: string
@@ -1176,21 +5301,14 @@
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: client_name
-  uatype: advanced_filter_string
+  name: cna_job_level
+  uatype: advanced_filter_number
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: '%'
-  teams: []
-- !LookerUserAttribute
-  name: club
-  uatype: string
-  hidden_value: false
-  user_view: 'False'
-  user_edit: 'False'
-  default_value: general
-  teams: []
+  default_value: ''
+  teams:
+  - cna_job_level_6: '6'
 - !LookerUserAttribute
   name: company
   uatype: string
@@ -1200,23 +5318,7 @@
   default_value: DEFAULT_IS_SET
   teams: []
 - !LookerUserAttribute
-  name: company_geet
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: company_id
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'True'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: connection_name
+  name: content_id_demo
   uatype: advanced_filter_string
   hidden_value: false
   user_view: 'True'
@@ -1224,12 +5326,12 @@
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: connection_string
+  name: countries_accessible
   uatype: string
   hidden_value: false
   user_view: 'True'
-  user_edit: 'True'
-  default_value: ''
+  user_edit: 'False'
+  default_value: USA
   teams: []
 - !LookerUserAttribute
   name: country
@@ -1240,12 +5342,20 @@
   default_value: '%'
   teams: []
 - !LookerUserAttribute
-  name: country_currency
-  uatype: advanced_filter_string
+  name: country_uk
+  uatype: string
   hidden_value: false
   user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: country_usa
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
   user_edit: 'False'
-  default_value: '%'
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: customer
@@ -1256,44 +5366,45 @@
   default_value: '%'
   teams: []
 - !LookerUserAttribute
-  name: customerid
-  uatype: number
-  hidden_value: false
-  user_view: 'False'
-  user_edit: 'False'
-  default_value: '1234'
-  teams: []
-- !LookerUserAttribute
-  name: customer_database
-  uatype: advanced_filter_string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'True'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: date
-  uatype: datetime
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: '2021-01-01'
-  teams: []
-- !LookerUserAttribute
-  name: datenull
-  uatype: advanced_filter_datetime
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: -NULL
-  teams: []
-- !LookerUserAttribute
-  name: departamento
+  name: custom_schema
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: no_dept
+  default_value: main_schema
+  teams: []
+- !LookerUserAttribute
+  name: data_available
+  uatype: advanced_filter_datetime
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: last 6 months
+  teams:
+  - All Users: Last 6 Years
+- !LookerUserAttribute
+  name: db_connection
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: https://www.google.com:443
+  teams: []
+- !LookerUserAttribute
+  name: default_environment
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: DEV
+  teams: []
+- !LookerUserAttribute
+  name: default_field
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: department
@@ -1304,63 +5415,63 @@
   default_value: operations
   teams: []
 - !LookerUserAttribute
-  name: department_rls
+  name: entity_id
   uatype: string
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value: ''
+  default_value: eid_7
   teams: []
 - !LookerUserAttribute
-  name: discount
-  uatype: number
-  hidden_value: false
-  user_view: 'False'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: distro_center
-  uatype: string
-  hidden_value: false
-  user_view: 'False'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: download_limit
-  uatype: number
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'True'
-  default_value: '5000'
-  teams: []
-- !LookerUserAttribute
-  name: favorite_color
+  name: env_ref
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value: ''
+  default_value: dev
   teams: []
 - !LookerUserAttribute
-  name: finance_team
+  name: event_access
   uatype: string
   hidden_value: false
-  user_view: 'False'
+  user_view: 'True'
   user_edit: 'False'
-  default_value: ''
+  default_value: no
   teams: []
 - !LookerUserAttribute
-  name: fournisseur
+  name: field1_label
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: Gender
+  teams: []
+- !LookerUserAttribute
+  name: field_label_and_access_grant
   uatype: advanced_filter_string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: '%'
+  default_value: Field Label from User Attribute
   teams: []
 - !LookerUserAttribute
-  name: gcloud
+  name: gcp_project
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: aminton-sandbox-ps
+  teams: []
+- !LookerUserAttribute
+  name: git_password
+  uatype: string
+  hidden_value: true
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: git_username
   uatype: string
   hidden_value: false
   user_view: 'True'
@@ -1368,39 +5479,87 @@
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: git_user
+  name: has_advanced_for_trimedx_test
   uatype: string
   hidden_value: false
   user_view: 'True'
-  user_edit: 'True'
-  default_value: default
+  user_edit: 'False'
+  default_value: No
   teams: []
 - !LookerUserAttribute
-  name: goal
-  uatype: number
+  name: homepage
+  uatype: relative_url
   hidden_value: false
   user_view: 'True'
-  user_edit: 'False'
-  default_value: '100'
+  user_edit: 'True'
+  default_value: /boards/17
   teams: []
 - !LookerUserAttribute
-  name: historical_data
-  uatype: advanced_filter_datetime
+  name: instance
+  uatype: string
   hidden_value: false
   user_view: 'False'
   user_edit: 'False'
-  default_value: last 36 months
+  default_value: dev
   teams: []
 - !LookerUserAttribute
-  name: historical_data_test
-  uatype: datetime
+  name: instance_relevant_schema
+  uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
+  default_value: thelook
+  teams: []
+- !LookerUserAttribute
+  name: in_finance_group
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: No
+  teams: []
+- !LookerUserAttribute
+  name: is_admin
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: No
+  teams: []
+- !LookerUserAttribute
+  name: is_internal
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: '0'
+  teams: []
+- !LookerUserAttribute
+  name: is_manager
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: no
+  teams: []
+- !LookerUserAttribute
+  name: jt_can_see_pii
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: no
+  teams: []
+- !LookerUserAttribute
+  name: jt_test
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: hotel_brand
+  name: jt_test_country
   uatype: advanced_filter_string
   hidden_value: false
   user_view: 'True'
@@ -1408,20 +5567,20 @@
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: hotel_chain
+  name: jt_test_department
   uatype: string
   hidden_value: false
   user_view: 'True'
-  user_edit: 'True'
-  default_value: ''
+  user_edit: 'False'
+  default_value: none
   teams: []
 - !LookerUserAttribute
-  name: is_looker
-  uatype: string
+  name: jt_test_state
+  uatype: advanced_filter_string
   hidden_value: false
-  user_view: 'False'
+  user_view: 'True'
   user_edit: 'False'
-  default_value: yes
+  default_value: California
   teams: []
 - !LookerUserAttribute
   name: landing_page
@@ -1433,12 +5592,12 @@
   teams:
   - Eric's Homepage Group: /boards/18
 - !LookerUserAttribute
-  name: legal_team
-  uatype: string
+  name: last_name_test
+  uatype: advanced_filter_string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: yes
+  default_value: test
   teams: []
 - !LookerUserAttribute
   name: locale
@@ -1449,44 +5608,77 @@
   default_value: en
   teams: []
 - !LookerUserAttribute
-  name: logo
+  name: locale_mirror
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: looker_home_page_permissions
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams:
+  - All Users: ed_test_general_user
+- !LookerUserAttribute
+  name: marketplace_looker_qa_looker_qa_last_selected_topic
   uatype: string
   hidden_value: false
-  user_view: 'True'
+  user_view: 'False'
   user_edit: 'False'
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: magasin
-  uatype: advanced_filter_string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: '%'
-  teams: []
-- !LookerUserAttribute
-  name: media_name
-  uatype: advanced_filter_string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: model_name
+  name: my_favorite_dashboard_id
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value: thelook
+  default_value: Pur2Qlf9hlFwnH6Es9F4pu
   teams: []
 - !LookerUserAttribute
-  name: new_name
+  name: my_tables
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: my_view
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: my_view_override
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: new_york
   uatype: advanced_filter_string
   hidden_value: false
-  user_view: 'False'
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: new_york
+  teams: []
+- !LookerUserAttribute
+  name: number_filter_advanced_test
+  uatype: advanced_filter_number
+  hidden_value: false
+  user_view: 'True'
   user_edit: 'False'
-  default_value: '{{ _user_attributes [name] }}'
+  default_value: '>0'
   teams: []
 - !LookerUserAttribute
   name: number_format
@@ -1497,43 +5689,18 @@
   default_value: 1,234.56
   teams: []
 - !LookerUserAttribute
-  name: obfuscated
-  uatype: string
-  hidden_value: false
-  user_view: 'False'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: order_id
-  uatype: advanced_filter_number
-  hidden_value: false
-  user_view: 'False'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: organization
+  name: order_access
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: ''
+  default_value: no
   teams: []
 - !LookerUserAttribute
-  name: organization_aa
+  name: organisation
   uatype: advanced_filter_string
   hidden_value: false
-  user_view: 'False'
-  user_edit: 'False'
-  default_value: ''
-  teams:
-  - Company A: Google
-- !LookerUserAttribute
-  name: organization_name
-  uatype: string
-  hidden_value: false
-  user_view: 'False'
+  user_view: 'True'
   user_edit: 'False'
   default_value: ''
   teams: []
@@ -1546,60 +5713,12 @@
   default_value: NOT NULL
   teams: []
 - !LookerUserAttribute
-  name: param_connect
+  name: portal_boards
   uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: lookerdata
-  teams: []
-- !LookerUserAttribute
-  name: park
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: partner_id
-  uatype: number
-  hidden_value: false
-  user_view: 'False'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: partner_id_demo
-  uatype: string
-  hidden_value: false
-  user_view: 'False'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: password
-  uatype: string
-  hidden_value: true
-  user_view: 'False'
-  user_edit: 'False'
-  default_value: DEFAULT_IS_SET
-  teams: []
-- !LookerUserAttribute
-  name: pii
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: NO
-  teams: []
-- !LookerUserAttribute
-  name: platform
-  uatype: advanced_filter_string
   hidden_value: false
   user_view: 'True'
   user_edit: 'True'
-  default_value: '%'
+  default_value: '2'
   teams: []
 - !LookerUserAttribute
   name: product_category
@@ -1611,95 +5730,87 @@
   teams:
   - amy_test: Active, Accessories
 - !LookerUserAttribute
-  name: project
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: publisher_type
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'True'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: rate
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: '0.5'
-  teams: []
-- !LookerUserAttribute
-  name: referrer
+  name: protocol_number
   uatype: advanced_filter_string
   hidden_value: false
   user_view: 'True'
-  user_edit: 'False'
-  default_value: /explore
-  teams: []
-- !LookerUserAttribute
-  name: salaire
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: No
-  teams: []
-- !LookerUserAttribute
-  name: salesforce_campaigns_action_domain
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
   user_edit: 'True'
-  default_value: https://googlecom-3b0-dev-ed.lightning.force.com
-  teams: []
-- !LookerUserAttribute
-  name: salesforce_user_id
-  uatype: advanced_filter_string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
   default_value: '%'
   teams: []
 - !LookerUserAttribute
-  name: sales_segment
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'True'
-  default_value: ''
-  teams: []
-- !LookerUserAttribute
-  name: samesystem_brand
+  name: rhw_test_1
   uatype: advanced_filter_string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: Carhartt
+  default_value: '%, NULL'
   teams: []
 - !LookerUserAttribute
-  name: security_key
+  name: santa_cruz
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: Santa Cruz
+  teams: []
+- !LookerUserAttribute
+  name: sbarber_test
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: foo
+  teams: []
+- !LookerUserAttribute
+  name: sbarber_test_attribute
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: ''
+  default_value: foo1
   teams: []
 - !LookerUserAttribute
-  name: site_id
+  name: secure_email
   uatype: string
-  hidden_value: true
+  hidden_value: false
   user_view: 'False'
   user_edit: 'False'
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: snowflake_wh
+  name: see_hidden_fields
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: no
+  teams: []
+- !LookerUserAttribute
+  name: see_mail
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: yes
+  teams: []
+- !LookerUserAttribute
+  name: service_unit_name
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: sf_wh
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: DEMO_WH
+  teams: []
+- !LookerUserAttribute
+  name: snowflake_db
   uatype: string
   hidden_value: false
   user_view: 'True'
@@ -1707,12 +5818,12 @@
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: sport_category
-  uatype: advanced_filter_string
+  name: snowflake_db_test
+  uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: '%'
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: state
@@ -1724,60 +5835,28 @@
   teams:
   - All Users: New York
 - !LookerUserAttribute
-  name: states_you_can_see
+  name: state1
   uatype: advanced_filter_string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: Texas, Alabama
-  teams: []
-- !LookerUserAttribute
-  name: state_filter
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: '%'
-  teams: []
-- !LookerUserAttribute
-  name: status
-  uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: status_check
+  name: store_name_test
   uatype: string
   hidden_value: false
   user_view: 'True'
-  user_edit: 'False'
-  default_value: Complete
-  teams: []
-- !LookerUserAttribute
-  name: store
-  uatype: advanced_filter_string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: '%,NULL'
-  teams: []
-- !LookerUserAttribute
-  name: subgroup_id
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
+  user_edit: 'True'
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: temp_country_access
-  uatype: advanced_filter_string
+  name: tenant
+  uatype: string
   hidden_value: false
   user_view: 'True'
-  user_edit: 'False'
-  default_value: USA
+  user_edit: 'True'
+  default_value: ''
   teams: []
 - !LookerUserAttribute
   name: test
@@ -1788,31 +5867,7 @@
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: timezone_a
-  uatype: string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: hongkong.view
-  teams: []
-- !LookerUserAttribute
-  name: time_horizon
-  uatype: advanced_filter_datetime
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: last 12 months
-  teams: []
-- !LookerUserAttribute
-  name: track_graph
-  uatype: advanced_filter_string
-  hidden_value: false
-  user_view: 'True'
-  user_edit: 'False'
-  default_value: 1,2,3,4
-  teams: []
-- !LookerUserAttribute
-  name: type
+  name: testsql
   uatype: string
   hidden_value: false
   user_view: 'True'
@@ -1820,12 +5875,116 @@
   default_value: ''
   teams: []
 - !LookerUserAttribute
-  name: username
+  name: test_db_password
+  uatype: string
+  hidden_value: true
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: DEFAULT_IS_SET
+  teams: []
+- !LookerUserAttribute
+  name: test_multiple_values
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ('1')
+  teams: []
+- !LookerUserAttribute
+  name: test_no_filter
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: '%'
+  teams: []
+- !LookerUserAttribute
+  name: test_project_id
   uatype: string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
   default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: test_string
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: thelook_events_pwd
+  uatype: string
+  hidden_value: true
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: thelook_events_username
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: users_anonymized_info_access_grant
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: Yes
+  teams: []
+- !LookerUserAttribute
+  name: users_table
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: extended
+  teams: []
+- !LookerUserAttribute
+  name: user_access
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: no
+  teams: []
+- !LookerUserAttribute
+  name: user_country
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: USA
+  teams: []
+- !LookerUserAttribute
+  name: user_country2
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: USA
+  teams: []
+- !LookerUserAttribute
+  name: user_country_3
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: USA
+  teams: []
+- !LookerUserAttribute
+  name: user_goal
+  uatype: number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: '5'
   teams: []
 - !LookerUserAttribute
   name: user_id
@@ -1836,18 +5995,34 @@
   default_value: 5010,1
   teams: []
 - !LookerUserAttribute
-  name: user_id_events
+  name: user_level
   uatype: string
   hidden_value: false
   user_view: 'True'
-  user_edit: 'False'
-  default_value: ''
+  user_edit: 'True'
+  default_value: contributor
   teams: []
 - !LookerUserAttribute
-  name: user_schema
+  name: user_type
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: advanced
+  teams: []
+- !LookerUserAttribute
+  name: week_name
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: 2018 - Wk 34
+  teams: []
+- !LookerUserAttribute
+  name: _moumi_distributioncentername
   uatype: advanced_filter_string
   hidden_value: false
   user_view: 'True'
   user_edit: 'False'
-  default_value: ''
+  default_value: '%, NULL'
   teams: []

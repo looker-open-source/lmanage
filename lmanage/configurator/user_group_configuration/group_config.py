@@ -82,17 +82,16 @@ class CreateInstanceGroups():
         return group_metadata
 
     def sync_groups(self,
-                    sdk,
                     group_name_list: list) -> str:
 
-        all_groups = sdk.all_groups()
+        all_groups = self.sdk.all_groups()
         group_dict = {group.name: group.id for group in all_groups}
         # Deleting Standard Groups
         del group_dict['All Users']
 
         for group_name in group_dict.keys():
             if group_name not in group_name_list:
-                sdk.delete_group(group_id=group_dict[group_name])
+                self.sdk.delete_group(group_id=group_dict[group_name])
                 logger.info(
                     f'deleting group {group_name} to sync with yaml config')
 
@@ -115,3 +114,4 @@ class CreateInstanceGroups():
         # create all the groups
         self.get_instance_group_metadata(
             sdk=self.sdk, unique_group_list=team_list)
+        self.sync_groups(group_name_list=team_list)
