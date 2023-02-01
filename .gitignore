@@ -1,6 +1,8 @@
 look_backup/
 looker_backup_content/
 
+dist/
+tests/example_yamls/
 #Ignore all setup files
 .venv/
 .vscode/
