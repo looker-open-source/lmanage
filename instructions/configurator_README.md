@@ -1,11 +1,5 @@
 # configurator
-The configurator command aims to streamline your security access settings in Looker. Using it you can easily set up a full security model that is controlled from a simple declarative yaml file, regardless of instance drift, each time the configurator is run it will reset a Looker instance back to the values defined in your descriptive yaml file. 
-
-The advantages of having your security permissioning set out in a text file are numerous, for example: 
-- version controlling your security updates (or even setting up automated processes such as gitops)
-- massively reducing number of clicks required to set up an instance from scratch, or revert an instance back to desired state
-- mirroring permissions across multiple looker instances
-- having a clearly defined security permission doc that can interact with other services such as SAML.
+The configurator command configures your looker instance settings. Using it you can easily set up a security model that is controlled from a simple declarative yaml file, regardless of instance drift, each time the configurator is run it will reset a Looker instance back to the values defined in your descriptive Yaml file. To generate the Yaml file it is possible to do so manually but much better to generate this programmatically using the [Capturator command](https://github.com/looker-open-source/lmanage/tree/main/instructions/capturator_README.md) 
 
 ##### Example usage
 `lmanage configurator --yaml-config-path ./config/my_full_instance_config.yaml --ini-file ~/my_permissions/looker.ini`
@@ -29,108 +23,134 @@ Yaml configurations are set in 3 stages, Roles (which creates model sets and per
 There is no need to specfically create groups, Lmanage will scan for all instances of the team values in the following parameters and create the necessary group names. These groups will be attributed with the parameters that you specify in your yaml file.
 
 ###### Roles
-###### Example Usage
+###### Example Output
 ```
-role_BusinessOperations_Develope:
-  role: BODevelopers
+# PERMISSION SETS
+- !LookerPermissionSet
   permissions:
-    - access_data
-    - can_see_system_activity
-    - see_dashboards
-    - clear_cache_refresh
-    - create_table_calculations
-    - deploy
-    - develop
-    - download_without_limit
-    - explore
-    - manage_spaces
-    - mobile_app_access
-    - save_content
-    - schedule_look_emails
-    - see_drill_overlay
-    - see_lookml
-    - see_sql
-    - see_user_dashboards
-    - send_to_integration 
-    - use_sql_runner
-  model_set:
-    - name: model_set_1
-      models:
-        - model_1 
-        - model_2
-  team:
-    - BusinessOperations_BO_Dev
-    - SpecialTeam
+  - access_data
+  - download_with_limit
+  - explore
+  - schedule_look_emails
+  - see_looks
+  name: test_permission_set
+
+# MODEL SETS
+- !LookerModelSet
+  models: []
+  name: All
+
+# LOOKER ROLES
+- !LookerRoles
+  permission_set: test
+  model_set: All
+  teams:
+  - BusinessOperations
+  - Freddy
+  - HugoTesty
+  name: test_role
 ```
-The looker `role` title should be prefaced by `role_` as lmanage uses this key to identify that this is a role, the role name can be whatever you want. Looker permissions are intricate and relate to what actions you are able to do on a Looker Instance, please review these links before constructing your [role](https://docs.looker.com/admin-options/settings/roles)
+In this context, the `name` parameter is analagous to the name of the Looker object, and the `teams` parameter is analagous to a Looker User Group. Please review these links before constructing your [role](https://docs.looker.com/admin-options/settings/roles)
 
 ###### Folders
-###### Example Usage
+###### Example Output
 ```
-#####################
-# FOLDER PERMISSONS #
-#####################
-folder_permissions:
-  business_operations_folder: 
-  - name: 'Business Operations' 
-    team_view:
-      - BusinessOperations
-      - Marketing
+# FOLDER PERMISSONS 
+- !LookerFolder
+  parent_id:
+  id: '1'
+  name: Shared
+  subfolder:
+  - !LookerFolder
+    parent_id: '1'
+    id: '147'
+    name: suffering succotash
     subfolder:
-      - name: APAC 
+    - !LookerFolder
+      parent_id: '147'
+      id: '148'
+      name: another_one
+      subfolder:
+      - !LookerFolder
+        parent_id: '148'
+        id: '150'
+        name: ps_allhands
+        subfolder: []
+        content_metadata_id: '151'
         team_edit:
-          - APAC_group
+        - ps_allhand2
+        - HugoTesty
         team_view:
-          - RestOfWorld_group 
-      - name: 'Rest of World'
-        subfolder:
-          - name: EMEA
-            team_edit:
-              - EMEA_group
-            team_view:
-              - RestOfWorld_group
-          - name: USA
-            subfolder:
-              - name: 'West Region'
-                team_edit:
-                  - WestRegion_group 
-                team_view:
-                  - RestOfWorld_group
- 
+        - ps_allhand1
+      - !LookerFolder
+        parent_id: '148'
+        id: '149'
+        name: sharkytesttest
+        subfolder: []
+        content_metadata_id: '150'
+        team_edit:
+        - new_group
+        - HugoTesty
+        team_view:
+        - nick
+      content_metadata_id: '149'
+      team_edit:
+      - new_group
+      - HugoTesty
+      team_view:
+      - ps_allhand2
+      - ps_allhand1
+      - newer_group
+    content_metadata_id: '148'
+    team_edit: []
+    team_view:
+    - new_group
+    - ps_allhand2
+    - ps_allhand1
+    - newer_group
+  content_metadata_id: '1'
+  team_edit: []
+  team_view:
+  - All Users
 ```
-Similarly to `role` LManage uses a specific keyphrase `folder_permissions`, to denote an entry with folder permissions. Each folder at the highest level will be nested beneath the `/Shared` folder on Looker. To create a nested folder structure, use the keyword `subfolder`. LManage will then recurse through this nested structure to create each folder and assign appropriate permissions. Folder permissions are attributed using the keywords `team_edit` and `team_view`. If no values are presented then LManage will assume inheritance of the permission of it's parent folder.
+Each folder at the highest level will be nested beneath the `/Shared` folder on Looker. To see where a nested folder structure exists, the keyword `subfolder` is used. Folder permissions are attributed using the keywords `team_edit` and `team_view`. If no values are presented then LManage Capturator will assume inheritance of the permission of it's parent folder. The above folder structure can be represented as:
+.
+└── Shared Folder/
+    └── suffering_succotash Folder/
+        └── another_one Folder/
+            ├── sharkytesttest Folder!
+            └── another_one
 
 ###### Important
 
 Please try to understand how folder permissions are inherited in Looker, familiarize yourself with these useful docs. 
-- [Looker Docs](https://docs.looker.com/sharing-and-publishing/organizing-spaces)
+- [Looker Docs](https://cloud.google.com/looker/docs/organizing-spaces)
 - [Designing and configuring a system of access levels](https://docs.looker.com/admin-options/tutorials/access-controls)
 - [Best Practice, Secure your Folders](https://help.looker.com/hc/en-us/articles/360001897687-Best-Practice-Secure-Your-Spaces-A-Content-Access-Walk-through)
 
 ###### User Attributes
-###### Example Usage
+###### Example output
 
 ```
-###################
-# User Attributes #
-###################
-# attr_region:
-ua_region_all:
-  name: region_all
-  type: string
-  hidden_value: false 
-  user_view: true
-  user_edit: false
-  value:
-    - us
-    - ag
-    - bb
-    - dd
-  team:
-    - Cameos
-    - Freddy
-    - AudreyGroup
+# USER_ATTRIBUTES
+- !LookerUserAttribute
+  name: city
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: '%'
+  teams:
+  - london team: ericlyons
+  - new york team: New York
+  - safetyfirst: least_privilege
 ```
-User attributes will be created based on their appropriate values you input and assigned to the groups that are present in the team parameter.
+The user attribure parameters are synonomous with the existing Looker UI controls with the exception that `teams` represent user groups and are represented as a key/value pair.  
+
+###### Important
+
+Please try to understand how USER_ATTRIBUTES are utilized and referenced in Looker and they are super powerful and dangerous, familiarize yourself with these useful docs. 
+- [User Attribute Looker Docs](https://cloud.google.com/looker/docs/admin-panel-users-user-attributes#:~:text=Looker%20automatically%20includes%20some%20user,but%20should%20not%20be%20deleted.)
+
 
 **This is not an officially supported Google Product.**

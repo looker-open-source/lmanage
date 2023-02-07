@@ -16,12 +16,7 @@ verify_ssl=True
 ```
 - **level** (`--level`, `-l`) **Optional** Set this flag to DEBUG to receive expanded results in stdout for debugging  
 
-##### Yaml configurations
-Yaml configurations are set in 3 stages, Roles (which creates model sets and permission sets), Folders (where you can manage view and edit access), and User Attributes (where you can add or remove user attribute and associated values in your)
-
-###### Group Creation
-There is no need to specfically create groups, Lmanage will scan for all instances of the team values in the following parameters and create the necessary group names. These groups will be attributed with the parameters that you specify in your yaml file.
-
+##### Anatomy of your Yaml File
 ###### Roles
 ###### Example Output
 ```
