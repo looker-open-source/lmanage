@@ -109,13 +109,14 @@ In this context, the `name` parameter is analagous to the name of the Looker obj
   - All Users
 ```
 Each folder at the highest level will be nested beneath the `/Shared` folder on Looker. To see where a nested folder structure exists, the keyword `subfolder` is used. Folder permissions are attributed using the keywords `team_edit` and `team_view`. If no values are presented then LManage Capturator will assume inheritance of the permission of it's parent folder. The above folder structure can be represented as:
-.
-└── Shared Folder/
-    └── suffering_succotash Folder/
-        └── another_one Folder/
-            ├── sharkytesttest Folder!
-            └── another_one
+```
+Shared Folder
+├── suffering_succotash Folder
+│   ├── another_one Folder
+│   │   ├── sharkytesttest Folder
+│   │   ├── another_one
 
+```
 ###### Important
 
 Please try to understand how folder permissions are inherited in Looker, familiarize yourself with these useful docs. 
