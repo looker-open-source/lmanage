@@ -258,6 +258,7 @@
   - london team: London
   - new york team: New York
   - safetyfirst: least_privilege
+  - emea_cosmo: emea
 - !LookerUserAttribute
   name: first_name
   uatype: string
