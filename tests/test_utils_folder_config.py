@@ -3,7 +3,7 @@ from os import name
 from looker_sdk import models
 import looker_sdk
 from looker_sdk import error
-from lmanage.utils import folder_config as fc
+from utils import folder_config as fc
 import pytest
 from lmanage.tests import fake_methods_data
 

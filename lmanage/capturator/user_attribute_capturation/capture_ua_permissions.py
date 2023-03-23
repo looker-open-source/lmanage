@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
 from time import sleep
-from lmanage.utils.errorhandling import return_error_message, return_sleep_message
+from utils.errorhandling import return_error_message, return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -26,11 +26,13 @@ class ExtractUserAttributes():
 
     def existing_user_attributes(self) -> dict:
         ex_ua = None
+        trys = 0
         while ex_ua is None:
+            trys += 1
             try:
                 ex_ua = self.sdk.all_user_attributes()
             except:
-                return_sleep_message()
+                return_sleep_message(call_number=trys)
         for ua in enumerate(ex_ua):
             if ua[1].get('is_system'):
                 ua_idx = ua[0]
@@ -47,14 +49,16 @@ class ExtractUserAttributes():
         response = []
         for ua in self.user_attribute_metadata:
             group_assign = None
+            trys = 0
             while group_assign is None:
+                trys += 1
                 try:
                     group_assign = self.sdk.all_user_attribute_group_values(
                         user_attribute_id=ua.id)
                     # logger.info(
                     #     'capturing groups associated with user attribute %s', group_assign[0].get('user_attribute_id'))
                 except:
-                    return_sleep_message()
+                    return_sleep_message(call_number=trys)
             team_values = []
 
             for group in group_assign:

@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
-from lmanage.utils import looker_object_constructors as loc
-from lmanage.utils.errorhandling import return_sleep_message
+from utils import looker_object_constructors as loc
+from utils.errorhandling import return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -17,11 +17,13 @@ class CaptureFolderConfig():
     def get_all_folders(self):
         '''retriving all Looker instance folders'''
         instance_folders = None
+        trys = 0
         while instance_folders is None:
+            trys += 1
             try:
                 instance_folders = self.sdk.all_folders()
             except:
-                return_sleep_message()
+                return_sleep_message(call_number=trys)
         response = [
             folder.id for folder in instance_folders if folder.parent_id != "2" if folder.parent_id != "3"]
         return response
@@ -45,7 +47,9 @@ class CaptureFolderConfig():
     def get_content_access_metadata(self, cmi, root_folder: bool):
         r = []
         cmi_metadata = None
+        trys = 0
         while cmi_metadata is None:
+            trys += 1
             try:
                 if root_folder:
                     cmi_metadata = self.sdk.all_content_metadata_accesses(
@@ -54,18 +58,21 @@ class CaptureFolderConfig():
                     cmi_metadata = self.sdk.all_content_metadata_accesses(
                         content_metadata_id=cmi)
             except:
-                return_sleep_message()
+                return_sleep_message(call_number=trys)
         for cmi in cmi_metadata:
             group_id = cmi.group_id
             if group_id is not None:
                 permission_type = cmi.permission_type.value
                 temp = {}
                 group_meta = None
+                trys = 0
+
                 while group_meta is None:
+                    trys += 1
                     try:
                         group_meta = self.sdk.group(group_id=group_id)
                     except:
-                        return_sleep_message()
+                        return_sleep_message(call_number=trys)
                 temp[permission_type] = group_meta.get('name')
                 r.append(temp)
             else:
@@ -80,11 +87,13 @@ class CaptureFolderConfig():
         folder_list = sorted(folder_list, key=int, reverse=True)
         for folder in folder_list:
             f_metadata = None
+            trys = 0
             while f_metadata is None:
+                trys = trys+1
                 try:
                     f_metadata = self.sdk.folder(folder_id=str(folder))
                 except:
-                    return_sleep_message()
+                    return_sleep_message(call_number=trys)
             if f_metadata.name in ['Shared', 'Users']:
                 folder_name = f_metadata.name
                 f_metadata.name = '%s_' % folder_name
@@ -105,11 +114,13 @@ class CaptureFolderConfig():
         root_content_meta = self.get_content_access_metadata(
             cmi=1, root_folder=True)
         root_f_meta = None
+        trys = 0
         while root_f_meta is None:
+            trys += 1
             try:
                 root_f_meta = self.sdk.folder(folder_id=str(1))
             except:
-                return_sleep_message()
+                return_sleep_message(call_number=trys)
 
         root_folder = loc.LookerFolder(
             id='1', folder_metadata=root_f_meta, access_list=root_content_meta)

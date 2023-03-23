@@ -25,9 +25,6 @@ logger = logging.getLogger(__name__)
 
 @click.group()
 @click.version_option()
-def ):
-    pass
-
 
 @command()
 @click.option("-op", "--output_path",

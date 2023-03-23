@@ -2,8 +2,8 @@ import logging
 import coloredlogs
 import itertools
 from time import sleep
-from lmanage.utils import errorhandling
-from lmanage.utils.errorhandling import return_sleep_message
+from utils import errorhandling
+from utils.errorhandling import return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -89,11 +89,13 @@ class ExtractRoleInfo():
         response = []
         for role in self.role_base:
             groups = None
+            trys = 0
             while groups is None:
+                trys += 1
                 try:
                     groups = self.sdk.role_groups(role_id=role.id)
                 except:
-                    return_sleep_message()
+                    return_sleep_message(call_number=trys)
             role_groups = [group.name for group in groups]
 
             lookerrole = LookerRoles(permission_set=role.permission_set.name,

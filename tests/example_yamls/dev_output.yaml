@@ -9,151 +9,33 @@
   subfolder:
   - !LookerFolder
     parent_id: '1'
-    id: '157'
-    name: frankie time
+    id: '202'
+    name: test
     subfolder:
     - !LookerFolder
-      parent_id: '157'
-      id: '158'
-      name: testing
+      parent_id: '202'
+      id: '203'
+      name: emea_cosmo
       subfolder: []
-      content_metadata_id: '159'
+      content_metadata_id: '205'
       team_edit: []
       team_view:
-      - All Users
-    content_metadata_id: '158'
+      - new york team
+      - Freddy
+      - HugoTesty
+    content_metadata_id: '204'
     team_edit: []
-    team_view:
-    - All Users
+    team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '151'
-    name: Business Operations
-    subfolder:
-    - !LookerFolder
-      parent_id: '151'
-      id: '153'
-      name: test_sub2
-      subfolder:
-      - !LookerFolder
-        parent_id: '153'
-        id: '155'
-        name: subdiddy
-        subfolder:
-        - !LookerFolder
-          parent_id: '155'
-          id: '156'
-          name: hugle_testy
-          subfolder: []
-          content_metadata_id: '157'
-          team_edit:
-          - Freddy
-          team_view:
-          - hugle
-        content_metadata_id: '156'
-        team_edit: []
-        team_view:
-        - BusinessOperations
-        - hugle
-        - hugo
-        - Snaptest
-        - Freddy
-        - Famke
-      - !LookerFolder
-        parent_id: '153'
-        id: '154'
-        name: test_sub_sub
-        subfolder: []
-        content_metadata_id: '155'
-        team_edit:
-        - Famke
-        team_view:
-        - hugle
-      content_metadata_id: '154'
-      team_edit: []
-      team_view:
-      - BusinessOperations
-      - hugle
-      - hugo
-      - Snaptest
-      - Freddy
-      - Famke
-    - !LookerFolder
-      parent_id: '151'
-      id: '152'
-      name: test_sub
-      subfolder: []
-      content_metadata_id: '153'
-      team_edit:
-      - Freddy
-      team_view:
-      - hugo
-    content_metadata_id: '152'
+    id: '201'
+    name: emea_cosmo
+    subfolder: []
+    content_metadata_id: '203'
     team_edit: []
     team_view:
     - BusinessOperations
-    - hugle
-    - hugo
-    - Snaptest
-    - Freddy
-    - Famke
-  - !LookerFolder
-    parent_id: '1'
-    id: '147'
-    name: suffering succotash
-    subfolder:
-    - !LookerFolder
-      parent_id: '147'
-      id: '148'
-      name: another_one
-      subfolder:
-      - !LookerFolder
-        parent_id: '148'
-        id: '150'
-        name: ps_allhands
-        subfolder: []
-        content_metadata_id: '151'
-        team_edit:
-        - new_group
-        - ps_allhand2
-        - HugoTesty
-        team_view:
-        - ps_allhand1
-      - !LookerFolder
-        parent_id: '148'
-        id: '149'
-        name: sharkytesttest
-        subfolder: []
-        content_metadata_id: '150'
-        team_edit:
-        - new_group
-        - colin
-        - sharon
-        - HugoTesty
-        team_view:
-        - nick
-      content_metadata_id: '149'
-      team_edit:
-      - new_group
-      - HugoTesty
-      team_view:
-      - colin
-      - ps_allhand2
-      - ps_allhand1
-      - newer_group
-      - nick
-      - sharon
-    content_metadata_id: '148'
-    team_edit: []
-    team_view:
-    - new_group
-    - colin
-    - ps_allhand2
-    - ps_allhand1
-    - newer_group
-    - nick
-    - sharon
-    - HugoTesty
+    - emea
   content_metadata_id: '1'
   team_edit: []
   team_view:
@@ -165,6 +47,14 @@
 
 
 # PERMISSION SETS
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - download_with_limit
+  - explore
+  - schedule_look_emails
+  - see_looks
+  name: gghhhh
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -205,19 +95,12 @@
   - support_access_toggle
   - use_sql_runner
   name: addfa
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - download_with_limit
-  - explore
-  - schedule_look_emails
-  - see_looks
-  name: gghhhh
 
 
 # MODEL SETS
 - !LookerModelSet
-  models: []
+  models:
+  - extension-api-explorer
   name: All
 
 
@@ -258,7 +141,6 @@
   - london team: London
   - new york team: New York
   - safetyfirst: least_privilege
-  - emea_cosmo: emea
 - !LookerUserAttribute
   name: first_name
   uatype: string
