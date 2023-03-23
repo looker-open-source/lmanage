@@ -1,6 +1,6 @@
 import logging
 from looker_sdk import models, error
-from utils import role_config as rc
+from lmanage.utils import role_config as rc
 from lmanage.tests import fake_methods_data
 
 input_data = fake_methods_data.input_data

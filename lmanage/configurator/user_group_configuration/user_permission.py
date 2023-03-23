@@ -2,8 +2,8 @@ import logging
 import json
 import coloredlogs
 from looker_sdk import models, error
-from configurator.user_group_configuration.role_config import CreateRoleBase
-from utils.errorhandling import return_error_message
+from lmanage.configurator.user_group_configuration.role_config import CreateRoleBase
+from lmanage.utils.errorhandling import return_error_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')

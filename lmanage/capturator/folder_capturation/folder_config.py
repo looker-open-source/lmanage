@@ -1,7 +1,7 @@
 import logging
 import coloredlogs
-from utils import looker_object_constructors as loc
-from utils.errorhandling import return_sleep_message
+from lmanage.utils import looker_object_constructors as loc
+from lmanage.utils.errorhandling import return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')

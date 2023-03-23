@@ -3,7 +3,7 @@ import time
 import coloredlogs
 from looker_sdk import models, error
 
-from utils import errorhandling
+from lmanage.utils import errorhandling
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')

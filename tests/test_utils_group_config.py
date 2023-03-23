@@ -1,7 +1,7 @@
 from os import name, walk
 from looker_sdk import models
 import looker_sdk
-from utils import group_config as gc
+from lmanage.utils import group_config as gc
 import pytest
 from lmanage.tests import fake_methods_data
 
