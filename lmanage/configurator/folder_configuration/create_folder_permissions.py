@@ -224,6 +224,7 @@ class CreateAndProvisionInstanceFolders():
     def provision_folders_with_group_access(self, content_access_metadata_list: list):
 
         for folder_tree in content_access_metadata_list:
+            
             for access_item in folder_tree:
                 content_metadata_id = access_item["cmi"]
 
@@ -261,8 +262,10 @@ class CreateAndProvisionInstanceFolders():
         # check group permissions and add back 1 by 1
         gp_permissions = [
             perms for perms in gp_permissions if perms.get('id') != 'no_id']
+        
+        logger.info('syncing folder permissions for content metadata id %s', cmaid)
 
-        if len(gp_permissions) == 0:
+        if gp_permissions:
             self.update_folder_inheritance(
                 cmaid=cmaid, inheritance=True)
             self.update_folder_inheritance(cmaid=cmaid, inheritance=False)

@@ -26,12 +26,22 @@ class CreateInstanceFolders():
         if exists return False else return true
         '''
         if folder_name in existing_instance_folders.keys():
-            search_folder_response = self.sdk.search_folders(name=folder_name)
-            parent_names = [self.sdk.folder(folder_id=fmeta.parent_id).name for fmeta in search_folder_response]
-            if parent_folder_name in parent_names:
-                return True
+            if parent_folder_name == 'Shared':
+                parent_ids = ['1']
             else:
-                return False
+                search_folder_response = self.sdk.search_folders(name=parent_folder_name)
+                parent_ids = [fmeta.id for fmeta in search_folder_response]
+
+            for pid in parent_ids:
+                test = self.sdk.folder_children_search(
+                    folder_id=pid,
+                    name=folder_name) 
+                if test: 
+                    resp = {}
+                    resp['parent_id']=pid
+                    resp['folder_name'] = folder_name
+                    return resp
+            return False
              
         
     def create_folder(self,
@@ -39,15 +49,22 @@ class CreateInstanceFolders():
                       parent_folder_name: str, 
                       existing_instance_folders: dict) -> dict:
     
-        if self.check_folder(folder_name, parent_folder_name, existing_instance_folders):
-            logger.warn('Not creating folder %s, with parent %s as it exists already', folder_name, parent_folder_name)
+        chk_parent = self.check_folder(
+            folder_name, 
+            parent_folder_name, 
+            existing_instance_folders)
+        if bool(chk_parent):
             if parent_folder_name == 'Shared':
                 folder = self.sdk.search_folders(name = folder_name, parent_id='1')
                 return folder
             else:
-                pid = self.sdk.search_folders(name=parent_folder_name)[0].id
-                folder = self.sdk.search_folders(name = folder_name, parent_id=pid)             
-                return folder
+                '''if parents are many, how do i know what parent is correct'''
+                folder = self.sdk.search_folders(
+                    name = folder_name, 
+                    parent_id=chk_parent.get('parent_id'))             
+                logger.warn('Not creating folder %s, with parent %s as it exists already', folder_name, parent_folder_name)
+            
+            return folder
         else:
             parent_id = existing_instance_folders.get(parent_folder_name)
             logger.info(f'Creating folder "{folder_name}"')

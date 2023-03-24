@@ -9,49 +9,39 @@
   subfolder:
   - !LookerFolder
     parent_id: '1'
-    id: '202'
-    name: test
+    id: '2041'
+    name: emea_cosmo
     subfolder:
     - !LookerFolder
-      parent_id: '202'
-      id: '203'
-      name: emea_cosmo
+      parent_id: '2041'
+      id: '2042'
+      name: hugo_test
       subfolder: []
-      content_metadata_id: '205'
+      content_metadata_id: '2044'
       team_edit: []
-      team_view:
-      - new york team
-      - Freddy
-      - HugoTesty
-    content_metadata_id: '204'
+      team_view: []
+    content_metadata_id: '2043'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '201'
-    name: emea_cosmo
-    subfolder: 
+    id: '2039'
+    name: test
+    subfolder:
     - !LookerFolder
-      name: hugo_test 
+      parent_id: '2039'
+      id: '2040'
+      name: emea_cosmo
       subfolder: []
-      content_metadata_id: '205'
+      content_metadata_id: '2042'
       team_edit: []
-      team_view:
-      - new york team
-      - Freddy
-      - HugoTesty
-    content_metadata_id: '204'
+      team_view: []
+    content_metadata_id: '2041'
     team_edit: []
     team_view: []
-    content_metadata_id: '203'
-    team_edit: []
-    team_view:
-    - BusinessOperations
-    - emea
   content_metadata_id: '1'
   team_edit: []
-  team_view:
-  - All Users
+  team_view: []
 # Looker Role
 # Opening Session Welcome to the Capturator, this is the Role place
 # -----------------------------------------------------
@@ -62,17 +52,17 @@
 - !LookerPermissionSet
   permissions:
   - access_data
+  - see_looks
+  - see_user_dashboards
+  name: test
+- !LookerPermissionSet
+  permissions:
+  - access_data
   - download_with_limit
   - explore
   - schedule_look_emails
   - see_looks
   name: gghhhh
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - see_looks
-  - see_user_dashboards
-  name: test
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -112,6 +102,7 @@
 # MODEL SETS
 - !LookerModelSet
   models:
+  - bq1
   - extension-api-explorer
   name: All
 
@@ -121,17 +112,17 @@
   permission_set: test
   model_set: All
   teams:
-  - BusinessOperations
   - Freddy
   - HugoTesty
+  - BusinessOperations
   name: Operations_User
 - !LookerRoles
   permission_set: addfa
   model_set: All
   teams:
+  - BusinessOperations_BO_Dev
   - westlake
   - DrewEdit
-  - BusinessOperations_BO_Dev
   name: BusinessOperations_Developer
 - !LookerRoles
   permission_set: gghhhh
@@ -149,10 +140,7 @@
   user_view: 'True'
   user_edit: 'False'
   default_value: '%, NULL'
-  teams:
-  - london team: London
-  - new york team: New York
-  - safetyfirst: least_privilege
+  teams: []
 - !LookerUserAttribute
   name: first_name
   uatype: string
