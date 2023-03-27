@@ -96,29 +96,42 @@ class CreateAndProvisionInstanceFolders():
     def check_folder_ancestors(self,
                                group_id: int,
                                cmaid: int):
+        '''
+        This method
+        '''
 
+        # getting folder id from content metadata number
         folder_id = self.sdk.content_metadata(
             content_metadata_id=cmaid).folder_id
+        # returning the folder ancestors of the folder (i.e. all folders preceding)
         ancestors_list = self.sdk.folder_ancestors(folder_id=folder_id)
+        # refining list to eliminate the Shared folder
         ancestors_list = [
             folder for folder in ancestors_list if folder.id != '1']
 
+        # looping through folder ancestors checking their access corresponds with yaml access, if not update
         for ancestor in ancestors_list:
             ancestor_cmaid = ancestor.content_metadata_id
             folder_access = self.check_existing_access(
                 content_metadata_id=ancestor_cmaid)
+            # if this condition is met then do nothing
             if group_id not in folder_access:
                 if self.check_folder_inheritance(
                         content_metadata_id=ancestor_cmaid):
+                    # N.B. when you update folder inheritance you will create a content metadata access
+                    # so recheck value to prevent trying to set an already set value
                     self.update_folder_inheritance(
                         cmaid=ancestor_cmaid, inheritance=False)
-
-                    self.create_content_metadata_access(
-                        group_id=group_id,
-                        permission_input='view',
-                        content_metadata_id=ancestor_cmaid)
-                    self.update_folder_inheritance(
-                        cmaid=ancestor_cmaid, inheritance=True)
+                    folder_access = self.check_existing_access(content_metadata_id=ancestor_cmaid)
+                    if folder_access:
+                        pass
+                    else:
+                        self.create_content_metadata_access(
+                            group_id=group_id,
+                            permission_input='view',
+                            content_metadata_id=ancestor_cmaid)
+                        self.update_folder_inheritance(
+                            cmaid=ancestor_cmaid, inheritance=True)
                 else:
                     self.create_content_metadata_access(
                         group_id=group_id,
@@ -151,19 +164,17 @@ class CreateAndProvisionInstanceFolders():
 
     def update_folder_inheritance(
         self,
-            cmaid: int,
-            inheritance: bool):
-
+        cmaid: int,
+        inheritance: bool):
         # don't want to inherit access from lmanage.parent folders
-        try:
-            self.sdk.update_content_metadata(
-                content_metadata_id=cmaid,
-                body=models.WriteContentMeta(inherits=inheritance)
-            )
-        except error.SDKError as content_metadata_error:
-            err_msg = errorhandling.return_error_message(
-                content_metadata_error)
-            logger.warn('there might be a warning %s', err_msg)
+        self.sdk.update_content_metadata(
+            content_metadata_id=cmaid,
+            body=models.WriteContentMeta(inherits=inheritance)
+        )
+    # except error.SDKError as content_metadata_error:
+        #     err_msg = errorhandling.return_error_message(
+        #         content_metadata_error)
+        #     logger.warn('there might be a warning %s', err_msg)
 
     def add_content_access(
         self,
@@ -265,7 +276,7 @@ class CreateAndProvisionInstanceFolders():
         
         logger.info('syncing folder permissions for content metadata id %s', cmaid)
 
-        if gp_permissions:
+        if not gp_permissions:
             self.update_folder_inheritance(
                 cmaid=cmaid, inheritance=True)
             self.update_folder_inheritance(cmaid=cmaid, inheritance=False)
