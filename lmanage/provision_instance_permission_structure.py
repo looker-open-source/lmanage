@@ -31,8 +31,6 @@ def main(**kwargs):
         sdk = looker_sdk.init40()
 
     folder_metadata = yaml.get_folder_metadata()
-    unnested_folder_metadata = fc.FolderConfig(
-        folders=folder_metadata).unnest_folder_data()
     permission_set_metadata = yaml.get_permission_metadata()
     model_set_metadata = yaml.get_model_set_metadata()
     role_metadata = yaml.get_role_metadata()
@@ -44,31 +42,38 @@ def main(**kwargs):
     # Create Permission and Model Sets
     rc.CreateRoleBase(permissions=permission_set_metadata,
                       model_sets=model_set_metadata, sdk=sdk). execute()
-
+###############################################################
+# Folder Config ################################################
+###############################################################
+    # CREATE NEW FOLDERS
+    created_folder_metadata = cf.CreateInstanceFolders(
+        folder_metadata=folder_metadata, sdk=sdk).execute()
+    
 ################################################################
 # Group Config ################################################
 ################################################################
     # CREATE NEW GROUPS FROM YAML FILE TEAM VALUES
     gc.CreateInstanceGroups(
-        folders=unnested_folder_metadata, user_attributes=user_attribute_metadata, roles=role_metadata, sdk=sdk).execute()
+        folders=created_folder_metadata, user_attributes=user_attribute_metadata, roles=role_metadata, sdk=sdk).execute()
 
     logger.info(div)
+
+################################################################
+# Folder Provision Config ################################################
+################################################################
+    # CREATE NEW GROUPS FROM YAML FILE TEAM VALUES
+
+    cfp.CreateAndProvisionInstanceFolders(
+        folders=created_folder_metadata, sdk=sdk).execute()
+
+    logger.info(div)
+
+
 
 ################################################################
 # Role Config ################################################
 ################################################################
     up.CreateInstanceRoles(roles=role_metadata, sdk=sdk).execute()
-
-    logger.info(div)
-
-###############################################################
-# Folder Config ################################################
-###############################################################
-    # CREATE NEW FOLDERS
-    cf.CreateInstanceFolders(
-        folder_metadata=unnested_folder_metadata, sdk=sdk).execute()
-    cfp.CreateAndProvisionInstanceFolders(
-        folders=unnested_folder_metadata, sdk=sdk).execute()
 
     logger.info(div)
 
