@@ -14,98 +14,103 @@ class CreateInstanceFolders():
 
     def get_all_folders(self):
         instance_folders = self.sdk.all_folders()
-        response = {folder.name: folder.id for folder in instance_folders}
+        response = {folder.id: folder.name for folder in instance_folders}
         return response
 
+    def scour_folder(self):
+        exempt_folders = ['1', '2', '3', '4', 'lookml']
+        folders = self.get_all_folders()
+        error_count = 0
+        while error_count < 1:
+            folders = self.get_all_folders()
+            x = [folder_obj for folder_obj in folders.keys(
+            ) if folder_obj not in exempt_folders]
+            try:
+                self.sdk.delete_folder(folder_id=x[0])
+                logger.info('deleting folder %s to start afresh',
+                            folders.get(x[0]))
+            except error.SDKError as e:
+                logger.error(e)
+                error_count = 1
 
-    def check_folder(self, folder_name: str, parent_folder_name: str, existing_instance_folders: dict) -> bool:
-        '''
-        take the existing folder name
-        check it against the existing folders created and
-        check it against the parent id name
-        if exists return False else return true
-        '''
-        if folder_name in existing_instance_folders.keys():
-            if parent_folder_name == 'Shared':
-                parent_ids = ['1']
-            else:
-                search_folder_response = self.sdk.search_folders(name=parent_folder_name)
-                parent_ids = [fmeta.id for fmeta in search_folder_response]
+    def unnest_folder_data(self, folder_data):
+        response = []
 
-            for pid in parent_ids:
-                test = self.sdk.folder_children_search(
-                    folder_id=pid,
-                    name=folder_name) 
-                if test: 
-                    resp = {}
-                    resp['parent_id']=pid
-                    resp['folder_name'] = folder_name
-                    return resp
-            return False
-             
+        for d in folder_data:
+            folder_dict = d
+            metadata_list = []
+            metadata_list = self.walk_folder_structure(
+                dict_obj=folder_dict,
+                data_storage=metadata_list,
+                parent_name='1')
+
+            response.append(metadata_list)
+
+        logger.info('retrieved yaml folder files')
+        logger.debug('folder metadata = %s', response)
+
+        return response
+
+    def walk_folder_structure(self,
+                              dict_obj: dict,
+                              data_storage: list,
+                              parent_name: str):
+        folder_name = dict_obj.get('name')
+
         
+        try:
+            if parent_name == 'Shared':
+                logger.info(f'Creating folder Shared Child Folder "{folder_name}"')
+                folder = self.create_folder(folder_name=folder_name, parent_id='1')    
+                new_folder_id = folder.get('id')
+            elif parent_name == '1':
+                folder = self.sdk.folder(folder_id='1')
+                new_folder_id = 'Shared'
+            else:
+                folder = self.create_folder(folder_name=folder_name,
+                                        parent_id=parent_name)
+                new_folder_id = folder.get('id')
+
+            temp = {}
+            temp['name'] = folder_name
+            temp['old_folder_id'] = dict_obj.get('id')
+            temp['new_folder_id'] = new_folder_id
+            temp['content_metadata_id'] = folder.get('content_metadata_id')
+            temp['team_edit'] = dict_obj.get('team_edit')
+            temp['team_view'] = dict_obj.get('team_view')
+            logger.debug('data_structure to be appended = %s', temp)
+            data_storage.append(temp)            
+        except error.SDKError as e:
+            logger.warn('error %s', e)
+            logger.warn(
+                'you have a duplicate folder called %s with the same parent, this is against best practice and LManage is ignoring it', folder_name)
+
+
+        if isinstance(dict_obj.get('subfolder'), list):
+            for subfolder in dict_obj.get('subfolder'):
+                self.walk_folder_structure(subfolder, data_storage,
+                                           parent_name=new_folder_id)
+
+        return data_storage
+
     def create_folder(self,
                       folder_name: str,
-                      parent_folder_name: str, 
-                      existing_instance_folders: dict) -> dict:
-    
-        chk_parent = self.check_folder(
-            folder_name, 
-            parent_folder_name, 
-            existing_instance_folders)
-        if bool(chk_parent):
-            if parent_folder_name == 'Shared':
-                folder = self.sdk.search_folders(name = folder_name, parent_id='1')
-                return folder
-            else:
-                '''if parents are many, how do i know what parent is correct'''
-                folder = self.sdk.search_folders(
-                    name = folder_name, 
-                    parent_id=chk_parent.get('parent_id'))             
-                logger.warn('Not creating folder %s, with parent %s as it exists already', folder_name, parent_folder_name)
-            
-            return folder
-        else:
-            parent_id = existing_instance_folders.get(parent_folder_name)
-            logger.info(f'Creating folder "{folder_name}"')
-            folder = self.sdk.create_folder(
-                body=models.CreateFolder(
-                    name=folder_name,
-                    parent_id=parent_id
-                )
+                      parent_id: str,
+                      ):
+        logger.info(f'Creating folder "{folder_name}"')
+        folder = self.sdk.create_folder(
+            body=models.CreateFolder(
+                name=folder_name,
+                parent_id=parent_id
             )
-            return folder
+        )
+        return folder
 
-    def create_looker_folder_metadata(self, unique_folder_list: list, 
-                                      data_storage: list,
-                                      existing_instance_folders:dict) -> list:
-
-        all_folders = self.get_all_folders()
-        for folder in unique_folder_list:
-            fname = folder.get('name')
-            pid = folder.get('parent_id')
-            lid = folder.get('legacy_id')
-            if lid == '1':
-                logger.info('Default Shared folder will not be created')
-            else:
-                fmetadata = self.create_folder(
-                    folder_name=fname, parent_folder_name=pid, existing_instance_folders=all_folders)
-                fmetadata = fmetadata[0] if isinstance(fmetadata, list) else fmetadata
-                all_folders[fname] = fmetadata.id
-                temp = {}
-                temp['folder_id'] = fmetadata.id
-                temp['folder_name'] = fmetadata.name
-                temp['content_metadata_id'] = fmetadata.content_metadata_id
-                temp['team_edit'] = folder.get('team_edit')
-                temp['team_view'] = folder.get('team_view')
-                data_storage.append(temp)
-        return data_storage
 
     def sync_folders(self, created_folder: list):
         all_folders = self.sdk.all_folders()
         created_folder_ids = [fobj.get('folder_id') for fobj in created_folder]
         all_folder_ids = []
-
 
         for folder in all_folders:
             if folder.is_personal:
@@ -114,9 +119,9 @@ class CreateInstanceFolders():
                 pass
             else:
                 all_folder_ids.append(folder.id)
-                
+
         for fids in all_folder_ids:
-            if fids not in created_folder_ids: 
+            if fids not in created_folder_ids:
                 try:
                     self.sdk.delete_folder(folder_id=fids)
                     logger.info(
@@ -130,7 +135,7 @@ class CreateInstanceFolders():
     def execute(self):
         folder_metadata_list = []
         all_folders = self.get_all_folders()
-        for folder_tree in self.folder_metadata:
-            self.create_looker_folder_metadata(
-                folder_tree, folder_metadata_list, existing_instance_folders=all_folders)
-        self.sync_folders(created_folder=folder_metadata_list)
+        self.scour_folder()
+        created_folder_metadata = self.unnest_folder_data(folder_data=self.folder_metadata)
+        return created_folder_metadata
+        # self.sync_folders(created_folder=folder_metadata_list)
