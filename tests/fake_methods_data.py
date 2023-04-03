@@ -1,3 +1,6 @@
+import enum
+from enum import Enum
+
 input_data = {
     'permission_sets': {
         'developer': {
@@ -109,6 +112,12 @@ class MockSDK():
     def all_folders(self):
         pass
 
+    def all_content_metadata_accesses(self):
+        pass
+
+    def group(self):
+        pass
+
 
 class MockSearchGroup():
     def __init__(self, group_name):
@@ -136,3 +145,23 @@ class MockAllFolder():
     def __init__(self, id, parent_id):
         self.id = id
         self.parent_id = parent_id
+
+class Mock_get_content_access_metadata():
+    def __init__(self,permission_type, group_id):
+        self.group_id = group_id
+
+        if permission_type == 'edit':
+            self.permission_type = PermissionType.edit
+        elif permission_type == 'view':
+            self.permission_type = PermissionType.view
+
+class PermissionType(Enum):
+    view = 'view'
+    edit = 'edit'
+
+class MockObj():
+    def __init__(self):
+        pass
+
+    def obj_return(name):
+        return {'name': name}

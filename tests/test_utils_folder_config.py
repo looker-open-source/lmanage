@@ -44,8 +44,32 @@ def test_clean_folders():
 def test_get_content_access_metadata(mocker):
     #test root folder first
     sdk = fake_methods_data.MockSDK()
-    #sdk.get_content_access_metadata.return_value =
+
+    mocker.patch.object(sdk,'all_content_metadata_accesses')
+    sdk.all_content_metadata_accesses.return_value = [
+        fake_methods_data.Mock_get_content_access_metadata('view', None),
+        fake_methods_data.Mock_get_content_access_metadata('edit', None),
+        fake_methods_data.Mock_get_content_access_metadata('edit', 1),
+        fake_methods_data.Mock_get_content_access_metadata('view', 1)
+    ]
+
+    mocker.patch.object(sdk,'group')
+    sdk.group.return_value = fake_methods_data.MockObj.obj_return("All Folders")
     cmi = '1'
     result = CaptureFolderConfig(sdk=sdk).get_content_access_metadata(cmi, True)
-    print(result)
-    pass
+    assert result == [{'edit': 'All Folders'}, {'view': 'All Folders'}]
+
+    #test other folder
+    mocker.patch.object(sdk,'all_content_metadata_accesses')
+    sdk.all_content_metadata_accesses.return_value = [
+        fake_methods_data.Mock_get_content_access_metadata('view', None),
+        fake_methods_data.Mock_get_content_access_metadata('edit', None),
+        fake_methods_data.Mock_get_content_access_metadata('edit', 1),
+        fake_methods_data.Mock_get_content_access_metadata('view', 1)
+    ]
+
+    mocker.patch.object(sdk,'group')
+    sdk.group.return_value = fake_methods_data.MockObj.obj_return("Joe Test Folder")
+    cmi = '6'
+    result = CaptureFolderConfig(sdk=sdk).get_content_access_metadata(cmi, False)
+    assert result == [{'edit': 'Joe Test Folder'}, {'view': 'Joe Test Folder'}]
