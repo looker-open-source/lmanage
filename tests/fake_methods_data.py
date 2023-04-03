@@ -106,6 +106,9 @@ class MockSDK():
     def update_permission_set(self):
         pass
 
+    def all_folders(self):
+        pass
+
 
 class MockSearchGroup():
     def __init__(self, group_name):
@@ -128,3 +131,8 @@ class MockSearchFolder():
 class MockCreateFolder():
     def __init__(self, id, name, content_metadata_id):
         self.id = id
+
+class MockAllFolder():
+    def __init__(self, id, parent_id):
+        self.id = id
+        self.parent_id = parent_id
