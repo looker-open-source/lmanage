@@ -73,3 +73,6 @@ def test_get_content_access_metadata(mocker):
     cmi = '6'
     result = CaptureFolderConfig(sdk=sdk).get_content_access_metadata(cmi, False)
     assert result == [{'edit': 'Joe Test Folder'}, {'view': 'Joe Test Folder'}]
+
+def test_create_folder_objects(mocker):
+    pass
