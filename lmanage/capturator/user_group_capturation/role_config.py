@@ -1,32 +1,13 @@
 import logging
 import coloredlogs
 import itertools
-from time import sleep
+from lmanage.utils.looker_object_constructors import LookerPermissionSet, LookerModelSet, LookerRoles
 from lmanage.utils import errorhandling
-from lmanage.utils.errorhandling import return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
 
 
-class LookerPermissionSet():
-    def __init__(self, permissions, name):
-        self.permissions = permissions
-        self.name = name
-
-
-class LookerModelSet():
-    def __init__(self, models, name):
-        self.models = models
-        self.name = name
-
-
-class LookerRoles():
-    def __init__(self, permission_set, model_set, teams, name):
-        self.permission_set = permission_set
-        self.model_set = model_set
-        self.teams = teams
-        self.name = name
 
 
 class ExtractRoleInfo():
@@ -95,7 +76,7 @@ class ExtractRoleInfo():
                 try:
                     groups = self.sdk.role_groups(role_id=role.id)
                 except:
-                    return_sleep_message(call_number=trys)
+                    errorhandling.return_sleep_message(call_number=trys)
             role_groups = [group.name for group in groups]
 
             lookerrole = LookerRoles(permission_set=role.permission_set.name,

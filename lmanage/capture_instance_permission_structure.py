@@ -6,6 +6,7 @@ from lmanage.capturator.user_group_capturation import role_config as rc
 from lmanage.capturator.user_attribute_capturation import capture_ua_permissions as cup
 from lmanage.capturator.folder_capturation import folder_config as fc
 from lmanage.capturator.folder_capturation import create_folder_yaml_structure as cfp
+from lmanage.capturator.content_capturation import look_capture as lc
 from lmanage.utils import looker_object_constructors as loc
 
 logger = logging.getLogger(__name__)
@@ -18,6 +19,8 @@ def main(**kwargs):
 
     ini_file = kwargs.get("ini_file")
     yaml_path = kwargs.get("yaml_export_path")
+    yaml_path = yaml_path.split('.')[0]
+    
     logger.info(div)
     logger.info('creating yaml configuration file')
 
@@ -27,14 +30,19 @@ def main(**kwargs):
         sdk = looker_sdk.init40()
 
     yaml = ruamel.yaml.YAML()
+    yaml.register_class(loc.LookerFolder)
+    yaml.register_class(loc.LookerModelSet)
+    yaml.register_class(loc.LookerPermissionSet)
+    yaml.register_class(loc.LookerRoles)
+    yaml.register_class(loc.LookerUserAttribute)
+    yaml.register_class(loc.LookObject)
 
 ###############################################################
 # Capture Folder Config #######################################
 ###############################################################
     folder_structurelist = fc.CaptureFolderConfig(sdk=sdk).execute()
-    yaml.register_class(loc.LookerFolder)
     print(f'{yaml_path}')
-    with open(f'{yaml_path}', 'w') as file:
+    with open(f'{yaml_path}.yaml', 'w') as file:
         fd_yml_txt = '''# FOLDER_PERMISSIONS\n# Opening Session Welcome to the Capturator, this is the Folder place\n# -----------------------------------------------------\n\n'''
         file.write(fd_yml_txt)
         # file.write('# FOLDER_PERMISSIONS\n')
@@ -52,10 +60,7 @@ def main(**kwargs):
     looker_model_sets = roles.extract_model_sets()
 
     looker_roles = roles.extract_role_info()
-    yaml.register_class(rc.LookerModelSet)
-    yaml.register_class(rc.LookerPermissionSet)
-    yaml.register_class(rc.LookerRoles)
-    with open(f'{yaml_path}', 'a') as file:
+    with open(f'{yaml_path}.yaml', 'a') as file:
         r_yml_txt = '''# Looker Role\n# Opening Session Welcome to the Capturator, this is the Role place\n# -----------------------------------------------------\n\n'''
         file.write(r_yml_txt)
 
@@ -70,9 +75,18 @@ def main(**kwargs):
 ###############################################################
     looker_ua = cup.ExtractUserAttributes(sdk=sdk).create_user_attributes()
     yaml.register_class(cup.LookerUserAttribute)
-    with open(f'{yaml_path}', 'a') as file:
+    with open(f'{yaml_path}.yaml', 'a') as file:
         file.write('\n\n# USER_ATTRIBUTES\n')
         yaml.dump(looker_ua, file)
+
+###############################################################
+# Capture Users Content #######################################
+###############################################################
+    looks = lc.CaptureLookObject(sdk=sdk).execute()
+    with open(f'{yaml_path}_content.yaml', 'a') as file:
+        file.write('\n\n# LookData\n')
+        yaml.dump(looks, file)
+
 
     # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
     logger.info('Lmanage has finished capturing your Looker instance!')

@@ -1,21 +1,11 @@
 import logging
 import coloredlogs
 from time import sleep
+from lmanage.utils.looker_object_constructors import LookerUserAttribute 
 from lmanage.utils.errorhandling import return_error_message, return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
-
-
-class LookerUserAttribute():
-    def __init__(self, teams_val: dict, name: str, uatype: bool, hidden_value: bool, user_view, user_edit, default_value) -> object:
-        self.name = name
-        self.uatype = uatype
-        self.hidden_value = hidden_value
-        self.user_view = str(user_view)
-        self.user_edit = str(user_edit)
-        self.default_value = default_value
-        self.teams = teams_val
 
 
 class ExtractUserAttributes():

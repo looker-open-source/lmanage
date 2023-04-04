@@ -34,8 +34,64 @@ class LookerFolder():
         return response
 
 
+class LookerPermissionSet():
+    def __init__(self, permissions, name):
+        self.permissions = permissions
+        self.name = name
+
+
+class LookerUserAttribute():
+    def __init__(self, teams_val: dict, name: str, uatype: bool, hidden_value: bool, user_view, user_edit, default_value) -> object:
+        self.name = name
+        self.uatype = uatype
+        self.hidden_value = hidden_value
+        self.user_view = str(user_view)
+        self.user_edit = str(user_edit)
+        self.default_value = default_value
+        self.teams = teams_val
+
+
+class LookerModelSet():
+    def __init__(self, models, name):
+        self.models = models
+        self.name = name
+
+
+class LookerRoles():
+    def __init__(self, permission_set, model_set, teams, name):
+        self.permission_set = permission_set
+        self.model_set = model_set
+        self.teams = teams
+        self.name = name
+
+
 class LookerGroup():
     def __init__(self, id, group_metadata):
         self.name = group_metadata.name
         self.id = id
         self.children = []
+
+
+class LookObject():
+    def __init__(self, query_obj, title,legacy_folder_id, look_id):
+        self.legacy_folder_id = legacy_folder_id
+        self.look_id = look_id
+        self.title = title
+        self.query_obj = query_obj
+
+
+
+class DashboardObject():
+    def __init__(self, legacy_folder_id, dashboard_metadata) -> None:
+        self.legacy_folder_id = legacy_folder_id
+        self.dashboard_metadata = dashboard_metadata
+        self.lookml = self.extract_dashboard_lookml
+        self.dashboard_id = self.extract_dashboard_id()
+
+    def extract_dashboard_lookml(self):
+        lookml = self.dashboard_metadata.lookml
+        return lookml
+
+    def extract_dashboard_id(self):
+        dashboard_id = self.dashboard_metadata.dashboard_id
+        return dashboard_id

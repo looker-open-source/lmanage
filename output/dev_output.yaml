@@ -9,39 +9,49 @@
   subfolder:
   - !LookerFolder
     parent_id: '1'
-    id: '2041'
+    id: '9046'
     name: emea_cosmo
     subfolder:
     - !LookerFolder
-      parent_id: '2041'
-      id: '2042'
+      parent_id: '9046'
+      id: '9047'
       name: hugo_test
       subfolder: []
-      content_metadata_id: '2044'
+      content_metadata_id: '9052'
       team_edit: []
-      team_view: []
-    content_metadata_id: '2043'
+      team_view:
+      - HugoTesty
+      - new york team
+      - Freddy
+    content_metadata_id: '9051'
     team_edit: []
-    team_view: []
+    team_view:
+    - HugoTesty
+    - new york team
+    - emea
+    - BusinessOperations
+    - Freddy
   - !LookerFolder
     parent_id: '1'
-    id: '2039'
+    id: '9044'
     name: test
     subfolder:
     - !LookerFolder
-      parent_id: '2039'
-      id: '2040'
+      parent_id: '9044'
+      id: '9045'
       name: emea_cosmo
       subfolder: []
-      content_metadata_id: '2042'
+      content_metadata_id: '9050'
       team_edit: []
       team_view: []
-    content_metadata_id: '2041'
+    content_metadata_id: '9049'
     team_edit: []
-    team_view: []
+    team_view:
+    - All Users
   content_metadata_id: '1'
   team_edit: []
-  team_view: []
+  team_view:
+  - All Users
 # Looker Role
 # Opening Session Welcome to the Capturator, this is the Role place
 # -----------------------------------------------------
@@ -112,17 +122,17 @@
   permission_set: test
   model_set: All
   teams:
-  - Freddy
   - HugoTesty
   - BusinessOperations
+  - Freddy
   name: Operations_User
 - !LookerRoles
   permission_set: addfa
   model_set: All
   teams:
   - BusinessOperations_BO_Dev
-  - westlake
   - DrewEdit
+  - westlake
   name: BusinessOperations_Developer
 - !LookerRoles
   permission_set: gghhhh
@@ -140,7 +150,10 @@
   user_view: 'True'
   user_edit: 'False'
   default_value: '%, NULL'
-  teams: []
+  teams:
+  - london team: London
+  - new york team: New York
+  - safetyfirst: least_privilege
 - !LookerUserAttribute
   name: first_name
   uatype: string
