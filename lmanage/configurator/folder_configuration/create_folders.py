@@ -34,8 +34,6 @@ class CreateInstanceFolders():
                 error_count = 1
 
     def unnest_folder_data(self, folder_data):
-        response = []
-
         for d in folder_data:
             folder_dict = d
             metadata_list = []
@@ -44,12 +42,11 @@ class CreateInstanceFolders():
                 data_storage=metadata_list,
                 parent_name='1')
 
-            response.append(metadata_list)
 
         logger.info('retrieved yaml folder files')
-        logger.debug('folder metadata = %s', response)
+        logger.debug('folder metadata = %s', metadata_list)
 
-        return response
+        return metadata_list
 
     def walk_folder_structure(self,
                               dict_obj: dict,
@@ -132,10 +129,22 @@ class CreateInstanceFolders():
                                 InheritanceError)
         return 'your folders are in sync with your yaml file'
 
-    def execute(self):
+    def create_folders(self):
         folder_metadata_list = []
         all_folders = self.get_all_folders()
         self.scour_folder()
         created_folder_metadata = self.unnest_folder_data(folder_data=self.folder_metadata)
         return created_folder_metadata
-        # self.sync_folders(created_folder=folder_metadata_list)
+
+    def create_folder_mapping_dict(self, folder_metadata: list) -> dict:
+        '''
+        create a folder mapping dict with legacy folder id as it's key and new folder id as the value for use in content migration
+        '''
+        response = {}
+        for folder_obj in folder_metadata:
+            lid = folder_obj.get('old_folder_id')
+            fid = folder_obj.get('new_folder_id')
+            response[lid] = fid
+
+        return response
+             

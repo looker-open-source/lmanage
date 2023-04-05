@@ -29,17 +29,16 @@ class CreateInstanceGroups():
 
     def extract_folder_teams(self, container, data_storage):
         for folder_element in container:
-            for folder in folder_element:
-                if isinstance(folder.get('team_edit'), list):
-                    edit_group = folder.get('team_edit')
+            if isinstance(folder_element.get('team_edit'), list):
+                    edit_group = folder_element.get('team_edit')
                     for group in edit_group:
                         data_storage.append(group)
-                if isinstance(folder.get('team_view'), list):
-                    view_group = folder.get('team_view')
+            if isinstance(folder_element.get('team_view'), list):
+                    view_group = folder_element.get('team_view')
                     for group in view_group:
                         data_storage.append(group)
-                else:
-                    pass
+            else:
+                pass
 
     def create_group_if_not_exists(self,
                                    sdk,

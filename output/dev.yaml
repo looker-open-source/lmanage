@@ -1,0 +1,137 @@
+# FOLDER_PERMISSIONS
+# Opening Session Welcome to the Capturator, this is the Folder place
+# -----------------------------------------------------
+
+- !LookerFolder
+  parent_id:
+  id: '1'
+  name: Shared
+  subfolder:
+  - !LookerFolder
+    parent_id: '1'
+    id: '9695'
+    name: emea_cosmo
+    subfolder:
+    - !LookerFolder
+      parent_id: '9695'
+      id: '9696'
+      name: hugo_test
+      subfolder: []
+      content_metadata_id: '9701'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '9700'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '9693'
+    name: test
+    subfolder:
+    - !LookerFolder
+      parent_id: '9693'
+      id: '9694'
+      name: emea_cosmo
+      subfolder: []
+      content_metadata_id: '9699'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '9698'
+    team_edit: []
+    team_view: []
+  content_metadata_id: '1'
+  team_edit: []
+  team_view:
+  - All Users
+# Looker Role
+# Opening Session Welcome to the Capturator, this is the Role place
+# -----------------------------------------------------
+
+
+
+# PERMISSION SETS
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - download_with_limit
+  - explore
+  - schedule_look_emails
+  - see_looks
+  name: gghhhh
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_looks
+  - see_user_dashboards
+  name: test
+
+
+# MODEL SETS
+- !LookerModelSet
+  models:
+  - bq1
+  - extension-api-explorer
+  name: All
+
+
+# LOOKER ROLES
+- !LookerRoles
+  permission_set: gghhhh
+  model_set: All
+  teams:
+  - BusinessOperations_BO_Dev
+  - DrewEdit
+  - westlake
+  name: BusinessOperations_Developer
+- !LookerRoles
+  permission_set: test
+  model_set: All
+  teams:
+  - BusinessOperations
+  name: BusinessOperations_User
+
+
+# USER_ATTRIBUTES
+- !LookerUserAttribute
+  name: city
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: '%, NULL'
+  teams:
+  - london team: London
+  - new york team: New York
+  - safetyfirst: least_privilege
+- !LookerUserAttribute
+  name: first_name
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: landing_page
+  uatype: relative_url
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: /browse
+  teams: []
+- !LookerUserAttribute
+  name: locale
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: en
+  teams: []
+- !LookerUserAttribute
+  name: number_format
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: 1,234.56
+  teams: []

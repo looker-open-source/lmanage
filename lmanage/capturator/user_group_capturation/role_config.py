@@ -28,6 +28,8 @@ class ExtractRoleInfo():
     def create_list_of_permission_sets(self):
         response = []
         for role in self.role_base:
+            if role.permission_set is None:
+                raise Exception(f'role name {role.name} has no permission_set, please add one to be captured or delete the role')
             temp = {}
             temp['name'] = role.permission_set.name
             temp['permissions'] = role.permission_set.permissions

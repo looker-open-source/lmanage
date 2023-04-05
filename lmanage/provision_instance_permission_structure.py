@@ -46,8 +46,12 @@ def main(**kwargs):
 # Folder Config ################################################
 ###############################################################
     # CREATE NEW FOLDERS
-    created_folder_metadata = cf.CreateInstanceFolders(
-        folder_metadata=folder_metadata, sdk=sdk).execute()
+    folder_objects = cf.CreateInstanceFolders(folder_metadata=folder_metadata, sdk=sdk)
+    created_folder_metadata = folder_objects.create_folders()
+
+    # CREATE FOLDER TO FOLDER Dict
+    folder_mapping = folder_objects.create_folder_mapping_dict(folder_metadata=created_folder_metadata)
+    
     
 ################################################################
 # Group Config ################################################

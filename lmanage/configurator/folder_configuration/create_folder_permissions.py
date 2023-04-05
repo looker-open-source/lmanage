@@ -2,7 +2,6 @@ import logging
 import time
 import coloredlogs
 from looker_sdk import models, error
-
 from lmanage.utils import errorhandling
 
 logger = logging.getLogger(__name__)
@@ -14,55 +13,54 @@ class CreateAndProvisionInstanceFolders():
         self.sdk = sdk
         self.instance_folder_metadata = folders
 
-    def get_content_access_metadata(self, folders: list) -> list:
+    def get_content_access_metadata(self, folder: dict) -> list:
         response = []
 
         folder_list = self.sdk.all_folders()
         folder_cmaid_lookup = {
             folder.name: folder.content_metadata_id for folder in folder_list}
 
-        for folder in folders:
-            folder_name = folder.get('name')
-            cmaid = folder_cmaid_lookup.get(folder_name)
-            temp_dict = {}
-            temp_dict['name'] = folder_name
-            temp_dict['cmi'] = cmaid
-            edit_group = folder.get('team_edit')
-            view_group = folder.get('team_view')
+        folder_name = folder.get('name')
+        cmaid = folder_cmaid_lookup.get(folder_name)
+        temp_dict = {}
+        temp_dict['name'] = folder_name
+        temp_dict['cmi'] = cmaid
+        edit_group = folder.get('team_edit')
+        view_group = folder.get('team_view')
 
-            perms = []
-            if isinstance(edit_group, list):
-                for group in edit_group:
-                    group_dict = {}
-                    egmetadata = self.sdk.search_groups(name=group)
-                    group_dict['name'] = group
-                    group_dict['id'] = egmetadata[0].id
-                    group_dict['permission'] = 'edit'
-                    perms.append(group_dict)
-            else:
+        perms = []
+        if isinstance(edit_group, list):
+            for group in edit_group:
                 group_dict = {}
-                group_dict['name'] = 'no_name'
-                group_dict['id'] = 'no_id'
-                group_dict['permission'] = 'no_permission'
+                egmetadata = self.sdk.search_groups(name=group)
+                group_dict['name'] = group
+                group_dict['id'] = egmetadata[0].id
+                group_dict['permission'] = 'edit'
                 perms.append(group_dict)
+        else:
+            group_dict = {}
+            group_dict['name'] = 'no_name'
+            group_dict['id'] = 'no_id'
+            group_dict['permission'] = 'no_permission'
+            perms.append(group_dict)
 
-            if isinstance(view_group, list):
-                for group in view_group:
-                    group_dict = {}
-                    vgmetadata = self.sdk.search_groups(name=group)
-                    group_dict['name'] = group
-                    group_dict['id'] = vgmetadata[0].id
-                    group_dict['permission'] = 'view'
-                    perms.append(group_dict)
-            else:
+        if isinstance(view_group, list):
+            for group in view_group:
                 group_dict = {}
-                group_dict['name'] = 'no_name'
-                group_dict['id'] = 'no_id'
-                group_dict['permission'] = 'no_permission'
+                vgmetadata = self.sdk.search_groups(name=group)
+                group_dict['name'] = group
+                group_dict['id'] = vgmetadata[0].id
+                group_dict['permission'] = 'view'
                 perms.append(group_dict)
+        else:
+            group_dict = {}
+            group_dict['name'] = 'no_name'
+            group_dict['id'] = 'no_id'
+            group_dict['permission'] = 'no_permission'
+            perms.append(group_dict)
 
-            temp_dict['group_permissions'] = perms
-            response.append(temp_dict)
+        temp_dict['group_permissions'] = perms
+        response.append(temp_dict)
         return response
 
     def create_content_metadata_access(
@@ -339,8 +337,8 @@ class CreateAndProvisionInstanceFolders():
     def execute(self):
         # CONFIGURE FOLDERS WITH EDIT AND VIEW ACCESS
         content_access_metadata = []
-        for folder_tree in self.instance_folder_metadata:
-            r = self.get_content_access_metadata(folders=folder_tree)
+        for folder_obj in self.instance_folder_metadata:
+            r = self.get_content_access_metadata(folder=folder_obj)
             content_access_metadata.append(r)
 
         # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
