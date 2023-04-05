@@ -9,40 +9,39 @@
   subfolder:
   - !LookerFolder
     parent_id: '1'
-    id: '9695'
-    name: emea_cosmo
+    id: '9743'
+    name: test
     subfolder:
     - !LookerFolder
-      parent_id: '9695'
-      id: '9696'
-      name: hugo_test
+      parent_id: '9743'
+      id: '9744'
+      name: emea_cosmo
       subfolder: []
-      content_metadata_id: '9701'
+      content_metadata_id: '9749'
       team_edit: []
       team_view: []
-    content_metadata_id: '9700'
+    content_metadata_id: '9748'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '9693'
-    name: test
+    id: '9741'
+    name: emea_cosmo
     subfolder:
     - !LookerFolder
-      parent_id: '9693'
-      id: '9694'
-      name: emea_cosmo
+      parent_id: '9741'
+      id: '9742'
+      name: hugo_test
       subfolder: []
-      content_metadata_id: '9699'
+      content_metadata_id: '9747'
       team_edit: []
       team_view: []
-    content_metadata_id: '9698'
+    content_metadata_id: '9746'
     team_edit: []
     team_view: []
   content_metadata_id: '1'
   team_edit: []
-  team_view:
-  - All Users
+  team_view: []
 # Looker Role
 # Opening Session Welcome to the Capturator, this is the Role place
 # -----------------------------------------------------

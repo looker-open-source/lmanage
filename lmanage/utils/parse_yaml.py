@@ -49,3 +49,10 @@ class Yaml:
             if 'hidden_value' in list(objects.keys()):
                 response.append(objects)
         return response
+
+    def get_look_metadata(self):
+        response = []
+        for objects in self.parsed_yaml:
+            if 'query_obj' in list(objects.keys()):
+                response.append(objects)
+        return response

@@ -73,12 +73,12 @@ class LookerGroup():
 
 
 class LookObject():
-    def __init__(self, query_obj, title,legacy_folder_id, look_id):
+    def __init__(self, description, query_obj, title, legacy_folder_id, look_id):
         self.legacy_folder_id = legacy_folder_id
         self.look_id = look_id
         self.title = title
         self.query_obj = query_obj
-
+        self.description = description
 
 
 class DashboardObject():

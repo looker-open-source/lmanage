@@ -9,49 +9,39 @@
   subfolder:
   - !LookerFolder
     parent_id: '1'
-    id: '9046'
+    id: '9787'
     name: emea_cosmo
     subfolder:
     - !LookerFolder
-      parent_id: '9046'
-      id: '9047'
+      parent_id: '9787'
+      id: '9788'
       name: hugo_test
       subfolder: []
-      content_metadata_id: '9052'
+      content_metadata_id: '9793'
       team_edit: []
-      team_view:
-      - HugoTesty
-      - new york team
-      - Freddy
-    content_metadata_id: '9051'
+      team_view: []
+    content_metadata_id: '9792'
     team_edit: []
-    team_view:
-    - HugoTesty
-    - new york team
-    - emea
-    - BusinessOperations
-    - Freddy
+    team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '9044'
+    id: '9785'
     name: test
     subfolder:
     - !LookerFolder
-      parent_id: '9044'
-      id: '9045'
+      parent_id: '9785'
+      id: '9786'
       name: emea_cosmo
       subfolder: []
-      content_metadata_id: '9050'
+      content_metadata_id: '9791'
       team_edit: []
       team_view: []
-    content_metadata_id: '9049'
+    content_metadata_id: '9790'
     team_edit: []
-    team_view:
-    - All Users
+    team_view: []
   content_metadata_id: '1'
   team_edit: []
-  team_view:
-  - All Users
+  team_view: []
 # Looker Role
 # Opening Session Welcome to the Capturator, this is the Role place
 # -----------------------------------------------------
@@ -59,12 +49,6 @@
 
 
 # PERMISSION SETS
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - see_looks
-  - see_user_dashboards
-  name: test
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -76,37 +60,9 @@
 - !LookerPermissionSet
   permissions:
   - access_data
-  - clear_cache_refresh
-  - create_alerts
-  - create_prefetches
-  - create_public_looks
-  - create_table_calculations
-  - deploy
-  - develop
-  - download_with_limit
-  - download_without_limit
-  - explore
-  - follow_alerts
-  - manage_homepage
-  - manage_models
-  - manage_spaces
-  - manage_stereo
-  - save_content
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml
-  - see_lookml_dashboards
   - see_looks
-  - see_sql
   - see_user_dashboards
-  - send_outgoing_webhook
-  - send_to_integration
-  - send_to_s3
-  - send_to_sftp
-  - support_access_toggle
-  - use_sql_runner
-  name: addfa
+  name: test
 
 
 # MODEL SETS
@@ -119,15 +75,7 @@
 
 # LOOKER ROLES
 - !LookerRoles
-  permission_set: test
-  model_set: All
-  teams:
-  - HugoTesty
-  - BusinessOperations
-  - Freddy
-  name: Operations_User
-- !LookerRoles
-  permission_set: addfa
+  permission_set: gghhhh
   model_set: All
   teams:
   - BusinessOperations_BO_Dev
@@ -135,7 +83,7 @@
   - westlake
   name: BusinessOperations_Developer
 - !LookerRoles
-  permission_set: gghhhh
+  permission_set: test
   model_set: All
   teams:
   - BusinessOperations

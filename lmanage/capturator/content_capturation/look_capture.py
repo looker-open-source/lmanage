@@ -61,16 +61,20 @@ class CaptureLookObject():
         looks = []
         for look in all_look_data:
             lmetadata = self.get_look_metadata(look_id=look)
-            query_object = lmetadata.query.__dict__
-            nq_obj = self.clean_query_obj(query_metadata=query_object)
+            if lmetadata.folder.is_personal:
+                pass
+            else:
+                query_object = lmetadata.query.__dict__
+                nq_obj = self.clean_query_obj(query_metadata=query_object)
 
-            legacy_folder = lmetadata.folder_id
-            look_id = lmetadata.id
-            title = lmetadata.title
-            look_obj = loc.LookObject(
-                query_obj=nq_obj,
-                legacy_folder_id=legacy_folder,
-                look_id=look_id,
-                title=title)
-            looks.append(look_obj)
+                legacy_folder = lmetadata.folder_id
+                look_id = lmetadata.id
+                title = lmetadata.title
+                look_obj = loc.LookObject(
+                    query_obj=nq_obj,
+                    description=lmetadata.description,
+                    legacy_folder_id=legacy_folder,
+                    look_id=look_id,
+                    title=title)
+                looks.append(look_obj)
         return looks

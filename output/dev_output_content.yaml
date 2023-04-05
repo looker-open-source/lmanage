@@ -1,8 +1,7 @@
 
-
 # LookData
 - !LookObject
-  legacy_folder_id: '5'
+  legacy_folder_id: '9787'
   look_id: '1'
   title: test
   query_obj:
@@ -43,3 +42,4 @@
     visible_ui_sections:
     dynamic_fields:
     query_timezone:
+  description: ''
