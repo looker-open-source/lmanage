@@ -1,11 +1,12 @@
 import logging
 import coloredlogs
 import looker_sdk
-import ruamel 
+import ruamel.yaml
 from lmanage.capturator.user_group_capturation import role_config as rc
 from lmanage.capturator.user_attribute_capturation import capture_ua_permissions as cup
 from lmanage.capturator.folder_capturation import folder_config as fc
 from lmanage.capturator.folder_capturation import create_folder_yaml_structure as cfp
+from lmanage.capturator.content_capturation import dashboard_capture as dc
 from lmanage.capturator.content_capturation import look_capture as lc
 from lmanage.utils import looker_object_constructors as loc
 
@@ -36,6 +37,19 @@ def main(**kwargs):
     yaml.register_class(loc.LookerRoles)
     yaml.register_class(loc.LookerUserAttribute)
     yaml.register_class(loc.LookObject)
+    yaml.register_class(loc.DashboardObject)
+
+###############################################################
+# Capture Dashboard Content #######################################
+###############################################################
+    dash_content = dc.CaptureDashboards(sdk=sdk).execute()
+    print(f'{yaml_path}')
+    with open(f'{yaml_path}.yaml', 'w') as file:
+        fd_yml_txt = '''# Dashboard Content\n# Opening Session Welcome to the Capturator, this is the Dashboard Content place\n# -----------------------------------------------------\n\n'''
+        file.write(fd_yml_txt)
+        yaml.dump(dash_content, file)
+
+    logger.info(div)
 
 ###############################################################
 # Capture Folder Config #######################################

@@ -1,0 +1,1320 @@
+- can:
+    copy: true
+    create: true
+    destroy: true
+    download: true
+    index: true
+    move: true
+    recover: true
+    render: true
+    run: true
+    schedule: true
+    see_aggregate_table_lookml: true
+    see_lookml: true
+    show: true
+    update: true
+  content_favorite_id: null
+  content_metadata_id: '33'
+  description: ''
+  folder:
+    can:
+      create: true
+      destroy: false
+      edit_content: true
+      index: true
+      move_content: true
+      save_shared_space_as_embed_user: true
+      see_admin_spaces: true
+      show: true
+      update: false
+    child_count: 0
+    content_metadata_id: '24'
+    created_at: '2022-10-13 06:39:20+00:00'
+    creator_id: '15'
+    external_id: ''
+    id: '19'
+    is_embed: false
+    is_embed_shared_root: false
+    is_embed_users_root: false
+    is_personal: true
+    is_personal_descendant: false
+    is_shared_root: false
+    is_users_root: false
+    name: Sakshi Bhasin
+    parent_id: '2'
+  hidden: false
+  id: '1'
+  lookml:
+  - dashboard: my_dash
+    description: ''
+    elements:
+    - col: 0
+      conditional_formatting_include_nulls: false
+      conditional_formatting_include_totals: false
+      defaults_version: 1
+      enable_conditional_formatting: false
+      explore: inventory
+      fields:
+      - inventory.product_id
+      - inventory.count
+      - inventory.store_id
+      filters:
+        inventory.store_id: ''
+        products_.product_category: ''
+      header_font_size: 12
+      header_text_alignment: left
+      height: 8
+      hidden_fields: []
+      hide_row_totals: false
+      hide_totals: false
+      limit: 500
+      limit_displayed_rows: false
+      listen: {}
+      model: jpr_mextoys
+      name: look
+      row: 0
+      rows_font_size: 12
+      show_row_numbers: true
+      show_view_names: false
+      size_to_fit: true
+      sorts:
+      - inventory.count desc 0
+      table_theme: white
+      title: look
+      transpose: false
+      truncate_text: true
+      type: looker_grid
+      width: 10
+      y_axes: []
+    layout: newspaper
+    preferred_slug: bBFJupeKVUZZBYBYSkFnUY
+    preferred_viewer: dashboards-next
+    title: my dash
+  model: null
+  preferred_viewer: dashboards-next
+  query_timezone: null
+  readonly: false
+  refresh_interval: null
+  refresh_interval_to_i: null
+  slug: bBFJupeKVUZZBYBYSkFnUY
+  title: my dash
+  user_id: '15'
+- can:
+    copy: true
+    create: true
+    destroy: true
+    download: true
+    index: true
+    move: true
+    recover: true
+    render: true
+    run: true
+    schedule: true
+    see_aggregate_table_lookml: true
+    see_lookml: true
+    show: true
+    update: true
+  content_favorite_id: null
+  content_metadata_id: '65'
+  description: ''
+  folder:
+    can:
+      create: true
+      destroy: false
+      edit_content: true
+      index: true
+      move_content: true
+      save_shared_space_as_embed_user: true
+      see_admin_spaces: true
+      show: true
+      update: false
+    child_count: 0
+    content_metadata_id: '27'
+    created_at: '2022-10-13 15:33:35+00:00'
+    creator_id: '17'
+    external_id: ''
+    id: '21'
+    is_embed: false
+    is_embed_shared_root: false
+    is_embed_users_root: false
+    is_personal: true
+    is_personal_descendant: false
+    is_shared_root: false
+    is_users_root: false
+    name: Christopher Seymour
+    parent_id: '2'
+  hidden: false
+  id: '2'
+  lookml:
+  - dashboard: test_csv_zip
+    elements:
+    - col: null
+      explore: orders
+      fields:
+      - orders.count
+      filters: {}
+      height: null
+      hidden_fields: []
+      limit: 500
+      listen:
+        Count: orders.count
+      model: thelook_chris
+      name: Test CSV Zip
+      row: null
+      title: Test CSV Zip
+      type: table
+      width: null
+      y_axes: []
+    - col: null
+      column_limit: 50
+      comparison_reverse_colors: false
+      comparison_type: value
+      conditional_formatting_include_nulls: false
+      conditional_formatting_include_totals: false
+      custom_color_enabled: true
+      defaults_version: 1
+      enable_conditional_formatting: false
+      explore: orders
+      fields:
+      - orders.id
+      height: null
+      hidden_fields: []
+      hide_row_totals: false
+      hide_totals: false
+      limit: 1
+      limit_displayed_rows: false
+      listen:
+        Count: orders.count
+      model: thelook_chris
+      name: ME
+      row: null
+      series_types: {}
+      show_comparison: false
+      show_comparison_label: true
+      show_row_numbers: true
+      show_single_value_title: true
+      show_view_names: false
+      table_theme: editable
+      title: ME
+      truncate_column_names: false
+      type: single_value
+      width: null
+      y_axes: []
+    - col: null
+      column_limit: 50
+      comparison_reverse_colors: false
+      comparison_type: value
+      conditional_formatting_include_nulls: false
+      conditional_formatting_include_totals: false
+      custom_color_enabled: true
+      defaults_version: 1
+      enable_conditional_formatting: false
+      explore: orders
+      fields:
+      - orders.id
+      - orders.count
+      filters: {}
+      height: null
+      hidden_fields: []
+      hide_row_totals: false
+      hide_totals: false
+      limit: 1
+      limit_displayed_rows: false
+      listen:
+        Count: orders.count
+      model: thelook_chris
+      name: New Tile
+      row: null
+      series_types: {}
+      show_comparison: false
+      show_comparison_label: true
+      show_row_numbers: true
+      show_single_value_title: true
+      show_view_names: false
+      sorts:
+      - orders.id
+      table_theme: editable
+      title: New Tile
+      truncate_column_names: false
+      type: single_value
+      width: null
+      y_axes: []
+    filters:
+    - allow_multiple_values: true
+      default_value: <0
+      explore: orders
+      field: orders.count
+      listens_to_filters: []
+      model: thelook_chris
+      name: Count
+      required: false
+      title: Count
+      type: field_filter
+      ui_config:
+        display: inline
+        type: range_slider
+    layout: newspaper
+    preferred_slug: Ztu2yZ8bjpPD9lfqeS0JeT
+    preferred_viewer: dashboards-next
+    title: Test CSV Zip
+  model: null
+  preferred_viewer: dashboards-next
+  query_timezone: null
+  readonly: false
+  refresh_interval: null
+  refresh_interval_to_i: null
+  slug: Ztu2yZ8bjpPD9lfqeS0JeT
+  title: Test CSV Zip
+  user_id: '17'
+- can:
+    copy: true
+    create: true
+    destroy: true
+    download: true
+    index: true
+    move: true
+    recover: true
+    render: true
+    run: true
+    schedule: true
+    see_aggregate_table_lookml: true
+    see_lookml: true
+    show: true
+    update: true
+  content_favorite_id: null
+  content_metadata_id: '78'
+  description: ''
+  folder:
+    can:
+      create: true
+      destroy: false
+      edit_content: true
+      index: true
+      move_content: true
+      save_shared_space_as_embed_user: true
+      see_admin_spaces: true
+      show: true
+      update: false
+    child_count: 0
+    content_metadata_id: '75'
+    created_at: '2022-10-24 15:05:11+00:00'
+    creator_id: '61'
+    external_id: ''
+    id: '65'
+    is_embed: false
+    is_embed_shared_root: false
+    is_embed_users_root: false
+    is_personal: true
+    is_personal_descendant: false
+    is_shared_root: false
+    is_users_root: false
+    name: Angel Misael Reyes Gutierrez
+    parent_id: '2'
+  hidden: false
+  id: '3'
+  lookml:
+  - dashboard: thesis_dashboard
+    description: ''
+    elements:
+    - col: 16
+      defaults_version: 0
+      explore: order_items
+      fields:
+      - users.city
+      - orders.count
+      height: 6
+      hidden_fields: []
+      hidden_points_if_no: []
+      limit: 500
+      listen:
+        Created Year: orders.created_year
+        State: users.city
+      model: mtrmisathelook
+      name: Total Orders by State
+      row: 6
+      series_labels: {}
+      show_view_names: true
+      sorts:
+      - orders.count desc 0
+      title: Total Orders by State
+      type: looker_google_map
+      width: 8
+      y_axes: []
+    - col: 0
+      conditional_formatting_include_nulls: false
+      conditional_formatting_include_totals: false
+      defaults_version: 1
+      dynamic_fields:
+      - _kind_hint: dimension
+        _type_hint: string
+        category: table_calculation
+        expression: if(${users.city}="Texas" OR ${users.city}="Arizona" OR ${users.city}="New
+          Mexico" OR ${users.city}="Oklahoma","South West",if(${users.city}="California"
+          OR ${users.city}="Nevada" OR ${users.city}="Utah" OR ${users.city}="Colorado"
+          OR ${users.city}="Idaho" OR ${users.city}="Wyoming" OR ${users.city}="Oregon"
+          OR ${users.city}="Washington" OR ${users.city}="Montana","West",if(${users.city}="North
+          Dakota" OR ${users.city}="South Dakota" OR ${users.city}="Nebraska" OR ${users.city}="Kansas"
+          OR ${users.city}="Minnesota" OR ${users.city}="Missouri" OR ${users.city}="Iowa"
+          OR ${users.city}="Wisconsin" OR ${users.city}="Illinois" OR ${users.city}="Indiana"
+          OR ${users.city}="Ohio" OR ${users.city}="Michigan","Mid West",if(${users.city}="New
+          York" OR ${users.city}="Pennsylvania" OR ${users.city}="Maine" OR ${users.city}="New
+          Jersey" OR ${users.city}="Delaware" OR ${users.city}="Vermont" OR ${users.city}="New
+          Hampshire" OR ${users.city}="Massachussets" OR ${users.city}="Rhode Island"
+          OR ${users.city}="Connecticut","North East","South East"))))
+        label: US Regions
+        table_calculation: us_regions
+        value_format: null
+        value_format_name: null
+      enable_conditional_formatting: false
+      explore: order_items
+      fields:
+      - users.city
+      - users.count
+      - users.gen
+      filters:
+        users.gen: -NULL
+      header_font_size: '12'
+      header_text_alignment: left
+      height: 6
+      hidden_fields: []
+      hide_row_totals: false
+      hide_totals: false
+      interpolation: linear
+      label_density: 25
+      legend_position: center
+      limit: 500
+      limit_displayed_rows: false
+      listen:
+        Created Year: orders.created_year
+        State: users.city
+      model: mtrmisathelook
+      name: Users' count by Gender and State
+      ordering: none
+      pivots:
+      - users.gen
+      plot_size_by_field: false
+      point_style: none
+      row: 12
+      rows_font_size: '12'
+      series_cell_visualizations:
+        users.count:
+          is_active: true
+          palette:
+            collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+            palette_id: b8e44ce6-d0e6-4bd4-b72c-ab0f595726a6
+      series_types: {}
+      show_null_labels: false
+      show_null_points: true
+      show_row_numbers: false
+      show_row_totals: true
+      show_silhouette: false
+      show_sql_query_menu_options: false
+      show_totals: true
+      show_totals_labels: false
+      show_value_labels: false
+      show_view_names: false
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      size_to_fit: true
+      sorts:
+      - users.gen
+      - users.count desc 1
+      stacking: ''
+      table_theme: white
+      title: Users' count by Gender and State
+      totals_color: '#808080'
+      transpose: false
+      trellis: ''
+      truncate_header: false
+      truncate_text: true
+      type: looker_grid
+      width: 8
+      x_axis_gridlines: false
+      x_axis_reversed: false
+      x_axis_scale: auto
+      y_axes: []
+      y_axis_combined: true
+      y_axis_gridlines: true
+      y_axis_reversed: false
+      y_axis_scale_mode: linear
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+    - col: 8
+      comparison_reverse_colors: false
+      comparison_type: value
+      conditional_formatting:
+      - background_color: '#1A73E8'
+        bold: false
+        color_application:
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab
+        fields: null
+        font_color: null
+        italic: false
+        strikethrough: false
+        type: equal to
+        value: null
+      - background_color: '#1A73E8'
+        bold: false
+        color_application:
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab
+        fields: null
+        font_color: null
+        italic: false
+        strikethrough: false
+        type: equal to
+        value: null
+      conditional_formatting_include_nulls: false
+      conditional_formatting_include_totals: false
+      custom_color: '#079c98'
+      custom_color_enabled: true
+      defaults_version: 1
+      down_color: false
+      dynamic_fields:
+      - _kind_hint: measure
+        _type_hint: number
+        based_on: order_items.sale_price
+        category: measure
+        expression: null
+        label: Revenue -Custom Measure
+        measure: revenue_custom_measure
+        type: sum
+        value_format: null
+        value_format_name: usd_0
+      - _kind_hint: dimension
+        _type_hint: string
+        category: dimension
+        dimension: state_custom_dimension
+        expression: concat("State of ",${users.city})
+        label: State -Custom Dimension
+        value_format: null
+        value_format_name: null
+      enable_conditional_formatting: true
+      explore: order_items
+      fields:
+      - revenue_custom_measure
+      - state_custom_dimension
+      filters: {}
+      header_font_size: 12
+      header_text_alignment: left
+      height: 6
+      hidden_fields: []
+      hide_legend: false
+      hide_row_totals: false
+      hide_totals: false
+      interpolation: linear
+      label_density: 25
+      label_type: labPer
+      legend_position: center
+      limit: 500
+      limit_displayed_rows: false
+      listen:
+        Created Year: orders.created_year
+        State: users.city
+      model: mtrmisathelook
+      name: Total Revenue by State
+      ordering: none
+      plot_size_by_field: false
+      point_style: none
+      row: 6
+      rows_font_size: 12
+      series_types: {}
+      show_comparison: true
+      show_comparison_label: true
+      show_null_labels: false
+      show_null_points: true
+      show_row_numbers: true
+      show_silhouette: false
+      show_single_value_title: false
+      show_totals_labels: false
+      show_value_labels: true
+      show_view_names: false
+      show_x_axis_label: true
+      show_x_axis_ticks: false
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      single_value_title: ''
+      size_to_fit: true
+      sorts:
+      - revenue_custom_measure desc 0
+      - state_custom_dimension desc
+      stacking: ''
+      table_theme: white
+      title: Total Revenue by State
+      total_color: false
+      totals_color: '#808080'
+      transpose: false
+      trellis: ''
+      truncate_text: true
+      type: looker_grid
+      up_color: false
+      value_format: ''
+      value_labels: legend
+      width: 8
+      x_axis_gridlines: false
+      x_axis_reversed: false
+      x_axis_scale: auto
+      y_axes:
+      - label: ''
+        orientation: right
+        series:
+        - axisId: products.item_name
+          id: products.item_name
+          name: Item Name
+        showLabels: true
+        showValues: true
+        tickDensity: default
+        tickDensityCustom: 5
+        type: linear
+        unpinAxis: false
+      y_axis_combined: true
+      y_axis_gridlines: true
+      y_axis_reversed: false
+      y_axis_scale_mode: linear
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+    - col: 16
+      conditional_formatting_include_nulls: false
+      conditional_formatting_include_totals: false
+      defaults_version: 1
+      dynamic_fields:
+      - _kind_hint: measure
+        _type_hint: number
+        args:
+        - inventory_items.count
+        based_on: inventory_items.count
+        calculation_type: percent_difference_from_previous
+        category: table_calculation
+        label: Percent change from previous - Inventory Items Count
+        source_field: inventory_items.count
+        table_calculation: percent_change_from_previous_inventory_items_count
+        value_format: null
+        value_format_name: percent_0
+      - _kind_hint: measure
+        _type_hint: string
+        category: table_calculation
+        expression: "concat(if((${percent_change_from_previous_inventory_items_count}*100)\
+          \ < 0, \"\U0001F534\", \"\"), \" \",round(${percent_change_from_previous_inventory_items_count}*100,1),if(is_null(${percent_change_from_previous_inventory_items_count}),\
+          \ \"\", \"%\"))"
+        label: Percent Change
+        table_calculation: percent_change
+        value_format: null
+        value_format_name: null
+      enable_conditional_formatting: false
+      explore: order_items
+      fields:
+      - inventory_items.created_week
+      - inventory_items.count
+      fill_fields:
+      - inventory_items.created_week
+      header_font_size: '12'
+      header_text_alignment: left
+      height: 6
+      hidden_fields:
+      - percent_change_from_previous_inventory_items_count
+      hide_row_totals: false
+      hide_totals: false
+      interpolation: linear
+      label_density: 25
+      legend_position: center
+      limit: 500
+      limit_displayed_rows: false
+      listen:
+        Created Year: orders.created_year
+        State: users.city
+      model: mtrmisathelook
+      name: Percent Change
+      plot_size_by_field: false
+      point_style: none
+      row: 12
+      rows_font_size: '12'
+      series_cell_visualizations:
+        inventory_items.count:
+          is_active: false
+      series_types: {}
+      show_null_points: true
+      show_row_numbers: true
+      show_row_totals: true
+      show_sql_query_menu_options: false
+      show_totals: true
+      show_value_labels: false
+      show_view_names: false
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      size_to_fit: true
+      sorts:
+      - inventory_items.created_week desc
+      stacking: ''
+      table_theme: white
+      title: Percent Change
+      transpose: false
+      trellis: ''
+      truncate_header: false
+      truncate_text: true
+      type: looker_grid
+      width: 8
+      x_axis_gridlines: false
+      x_axis_reversed: false
+      x_axis_scale: auto
+      y_axes: []
+      y_axis_combined: true
+      y_axis_gridlines: true
+      y_axis_reversed: false
+      y_axis_scale_mode: linear
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+    - col: 0
+      conditional_formatting_include_nulls: false
+      conditional_formatting_include_totals: false
+      defaults_version: 1
+      enable_conditional_formatting: false
+      explore: order_items
+      fields:
+      - orders.created_date
+      - order_items.total_sale_price
+      filter_expression: extract_days(add_days(1,${orders.created_date}))=1
+      header_font_size: 12
+      header_text_alignment: left
+      height: 6
+      hidden_fields: []
+      hide_row_totals: false
+      hide_totals: false
+      interpolation: linear
+      label_density: 25
+      legend_position: center
+      limit: 500
+      limit_displayed_rows: false
+      listen:
+        Created Year: orders.created_year
+        State: users.city
+      model: mtrmisathelook
+      name: Total Sales at the end of each month -Custom Filter
+      plot_size_by_field: false
+      point_style: none
+      row: 18
+      rows_font_size: 12
+      series_types: {}
+      show_null_points: true
+      show_row_numbers: true
+      show_value_labels: false
+      show_view_names: false
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      size_to_fit: true
+      sorts:
+      - orders.created_date desc
+      stacking: ''
+      table_theme: white
+      title: Total Sales at the end of each month -Custom Filter
+      transpose: false
+      trellis: ''
+      truncate_text: true
+      type: looker_grid
+      width: 8
+      x_axis_gridlines: false
+      x_axis_reversed: false
+      x_axis_scale: auto
+      y_axes: []
+      y_axis_combined: true
+      y_axis_gridlines: true
+      y_axis_reversed: false
+      y_axis_scale_mode: linear
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+    - col: 0
+      conditional_formatting_include_nulls: false
+      conditional_formatting_include_totals: false
+      defaults_version: 1
+      enable_conditional_formatting: false
+      explore: order_items
+      fields:
+      - orders.created_year
+      - orders.count
+      fill_fields:
+      - orders.created_year
+      filters: {}
+      header_font_size: '12'
+      header_text_alignment: left
+      height: 6
+      hidden_fields: []
+      hide_row_totals: false
+      hide_totals: false
+      label_type: labPer
+      limit: 500
+      limit_displayed_rows: false
+      listen:
+        Created Year: orders.created_year
+        State: users.city
+      model: mtrmisathelook
+      name: Total Orders by Year
+      row: 6
+      rows_font_size: '12'
+      series_cell_visualizations:
+        orders.count:
+          is_active: true
+      series_text_format:
+        orders.count:
+          bg_color: '#d8dede'
+      series_types: {}
+      show_row_numbers: true
+      show_row_totals: true
+      show_sql_query_menu_options: false
+      show_totals: true
+      show_view_names: false
+      size_to_fit: true
+      sorts:
+      - orders.created_year desc
+      table_theme: white
+      title: Total Orders by Year
+      transpose: false
+      truncate_header: false
+      truncate_text: true
+      type: looker_pie
+      value_labels: legend
+      width: 8
+      y_axes: []
+    - col: 8
+      height: 6
+      hidden_fields: []
+      listen:
+      - Created Year: orders.created_year
+        State: users.city
+      - Created Year: orders.created_year
+        State: users.city
+      merged_queries:
+      - explore: order_items
+        fields:
+        - users.created_date
+        - users.email
+        - users.city
+        hidden_fields: []
+        limit: 500
+        model: mtrmisathelook
+        sorts:
+        - users.created_date desc
+        type: table
+        y_axes: []
+      - explore: order_items
+        fields:
+        - orders.created_date
+        - orders.count
+        fill_fields:
+        - orders.created_date
+        hidden_fields: []
+        join_fields:
+        - field_name: orders.created_date
+          source_field_name: users.created_date
+        limit: 500
+        model: mtrmisathelook
+        sorts:
+        - orders.created_date desc
+        type: table
+        y_axes: []
+      name: Users and Orders created by Date -Merged query
+      row: 18
+      series_types: {}
+      title: Users and Orders created by Date -Merged query
+      type: looker_grid
+      width: 8
+      y_axes: []
+    - col: 16
+      conditional_formatting_include_nulls: false
+      conditional_formatting_include_totals: false
+      defaults_version: 1
+      enable_conditional_formatting: false
+      explore: test_derived_table
+      fields:
+      - test_derived_table.user_id
+      - test_derived_table.user_state
+      filters:
+        test_derived_table.like_param: ask
+      header_font_size: 12
+      header_text_alignment: left
+      height: 6
+      hidden_fields: []
+      hide_row_totals: false
+      hide_totals: false
+      limit: 500
+      limit_displayed_rows: false
+      listen: {}
+      model: mtrmisathelook
+      name: Derived Table Parameter to Filter On LIKE Clause
+      query_timezone: America/Los_Angeles
+      row: 18
+      rows_font_size: 12
+      show_row_numbers: true
+      show_view_names: false
+      size_to_fit: true
+      table_theme: white
+      title: Derived Table Parameter to Filter On LIKE Clause
+      transpose: false
+      truncate_text: true
+      type: looker_grid
+      width: 8
+      y_axes: []
+    - body_text: '<center><h1 style="color:darkgreen;">Dasboard Information</h1>
+
+        <p style="color:tomato;">This Dashboard is meant to answer my thesis'' questions.</p>
+
+        <p style="color:tomato;">You will find some information related to products,
+        sales, users and orders here.</p></center>'
+      col: 0
+      height: 6
+      name: Text Tile
+      row: 0
+      subtitle_text: ''
+      title_text: Text Tile
+      type: text
+      width: 24
+    - col: 8
+      column_limit: 50
+      defaults_version: 1
+      explore: orders
+      fields:
+      - orders.date_in_period_date
+      - orders.count_X_2
+      - orders.period
+      fill_fields:
+      - orders.date_in_period_date
+      filters:
+        orders.compare_to: Period
+        orders.current_date_range: '2018'
+        users.city: ''
+      height: 6
+      hidden_fields: []
+      interpolation: linear
+      label_density: 25
+      legend_position: center
+      limit: 500
+      limit_displayed_rows: false
+      listen:
+        Created Year: orders.created_year
+      model: mtrmisathelook
+      name: Period Over Period Analisys
+      pivots:
+      - orders.period
+      plot_size_by_field: false
+      point_style: none
+      row: 12
+      show_null_points: true
+      show_value_labels: false
+      show_view_names: false
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      sorts:
+      - orders.date_in_period_date desc
+      - orders.period
+      stacking: ''
+      title: Period Over Period Analisys
+      trellis: ''
+      type: looker_line
+      width: 8
+      x_axis_gridlines: false
+      x_axis_reversed: false
+      x_axis_scale: auto
+      y_axes: []
+      y_axis_combined: true
+      y_axis_gridlines: true
+      y_axis_reversed: false
+      y_axis_scale_mode: linear
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+    - col: 0
+      conditional_formatting_include_nulls: false
+      conditional_formatting_include_totals: false
+      defaults_version: 1
+      enable_conditional_formatting: false
+      explore: order_items
+      fields:
+      - orders.created_date
+      - orders.status
+      header_font_size: 12
+      header_text_alignment: left
+      height: 6
+      hidden_fields: []
+      hide_row_totals: false
+      hide_totals: false
+      limit: 500
+      limit_displayed_rows: false
+      listen: {}
+      model: mtrmisathelook
+      name: Embed Test
+      query_timezone: Asia/Kolkata
+      row: 24
+      rows_font_size: 12
+      show_row_numbers: true
+      show_view_names: false
+      size_to_fit: true
+      sorts:
+      - orders.created_date desc
+      table_theme: white
+      title: Embed Test
+      transpose: false
+      truncate_text: true
+      type: looker_grid
+      width: 8
+      y_axes: []
+    - col: 8
+      conditional_formatting_include_nulls: false
+      conditional_formatting_include_totals: false
+      defaults_version: 1
+      enable_conditional_formatting: false
+      explore: order_items
+      fields:
+      - order_items.id
+      - order_items.sale_price
+      header_font_size: 12
+      header_text_alignment: left
+      height: 6
+      hidden_fields: []
+      hide_row_totals: false
+      hide_totals: false
+      limit: 500
+      limit_displayed_rows: false
+      listen: {}
+      model: mtrmisathelook
+      name: Test2 Embed
+      note_display: above
+      note_state: collapsed
+      note_text: State Filter Only for this Tili
+      query_timezone: America/Chicago
+      row: 24
+      rows_font_size: 12
+      show_row_numbers: true
+      show_view_names: false
+      size_to_fit: true
+      table_theme: white
+      title: Test2 Embed
+      transpose: false
+      truncate_text: true
+      type: looker_grid
+      width: 8
+      y_axes: []
+    - col: 16
+      defaults_version: 0
+      draw_map_labels_above_data: true
+      explore: order_items
+      fields:
+      - order_items.count
+      - users.zip
+      filters:
+        order_items.count: '>20'
+      heatmap_gridlines: true
+      heatmap_gridlines_empty: false
+      heatmap_opacity: 0.5
+      height: 6
+      hidden_fields: []
+      hidden_points_if_no: []
+      limit: 500
+      listen: {}
+      map_marker_color_mode: fixed
+      map_marker_icon_name: default
+      map_marker_proportional_scale_type: linear
+      map_marker_radius_mode: proportional_value
+      map_marker_type: circle
+      map_marker_units: meters
+      map_pannable: true
+      map_plot_mode: points
+      map_position: fit_data
+      map_tile_provider: light
+      map_zoomable: true
+      model: mtrmisathelook
+      name: Heat Map
+      quantize_map_value_colors: false
+      query_timezone: America/Los_Angeles
+      reverse_map_value_colors: false
+      row: 24
+      series_labels: {}
+      show_legend: true
+      show_region_field: true
+      show_view_names: true
+      sorts:
+      - order_items.count desc 0
+      title: Heat Map
+      type: looker_google_map
+      width: 8
+      y_axes: []
+    filters:
+    - allow_multiple_values: true
+      default_value: ''
+      explore: order_items
+      field: users.city
+      listens_to_filters: []
+      model: mtrmisathelook
+      name: State
+      required: false
+      title: State
+      type: field_filter
+      ui_config:
+        display: popover
+        type: tag_list
+    - allow_multiple_values: true
+      default_value: ''
+      explore: order_items
+      field: orders.created_year
+      listens_to_filters: []
+      model: mtrmisathelook
+      name: Created Year
+      required: false
+      title: Created Year
+      type: field_filter
+      ui_config:
+        display: popover
+        options: []
+        type: advanced
+    layout: newspaper
+    preferred_slug: IMz1EVPMT82mlgMB9NSnyr
+    preferred_viewer: dashboards-next
+    title: Thesis Dashboard
+  model: null
+  preferred_viewer: dashboards-next
+  query_timezone: null
+  readonly: false
+  refresh_interval: null
+  refresh_interval_to_i: null
+  slug: IMz1EVPMT82mlgMB9NSnyr
+  title: Thesis Dashboard
+  user_id: '61'
+- can:
+    copy: true
+    create: true
+    destroy: true
+    download: true
+    index: true
+    move: true
+    recover: true
+    render: true
+    run: true
+    schedule: true
+    see_aggregate_table_lookml: true
+    see_lookml: true
+    show: true
+    update: true
+  content_favorite_id: null
+  content_metadata_id: '81'
+  description: ''
+  folder:
+    can:
+      create: true
+      destroy: true
+      edit_content: true
+      index: true
+      move_content: true
+      save_shared_space_as_embed_user: true
+      see_admin_spaces: true
+      show: true
+      update: true
+    child_count: 0
+    content_metadata_id: '588'
+    created_at: '2022-11-17 07:34:27+00:00'
+    creator_id: '114'
+    external_id: ''
+    id: '235'
+    is_embed: false
+    is_embed_shared_root: false
+    is_embed_users_root: false
+    is_personal: false
+    is_personal_descendant: false
+    is_shared_root: false
+    is_users_root: false
+    name: sub folder
+    parent_id: '1'
+  hidden: false
+  id: '4'
+  lookml:
+  - dashboard: product_metrics
+    elements:
+    - col: 0
+      defaults_version: 1
+      explore: order_items
+      fields:
+      - order_items.count
+      - orders.count
+      - products.count
+      - users.count
+      - orders.created_month
+      fill_fields:
+      - orders.created_month
+      height: 12
+      interpolation: linear
+      label_density: 25
+      legend_position: center
+      limit: 500
+      limit_displayed_rows: false
+      listen: {}
+      model: balcazartest
+      name: Product Metrics
+      ordering: none
+      plot_size_by_field: false
+      point_style: none
+      row: 0
+      series_labels: {}
+      series_types: {}
+      show_null_labels: false
+      show_null_points: true
+      show_silhouette: false
+      show_totals_labels: false
+      show_value_labels: false
+      show_view_names: false
+      show_x_axis_label: false
+      show_x_axis_ticks: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      sorts:
+      - orders.created_month desc
+      stacking: ''
+      title: Product Metrics
+      totals_color: '#808080'
+      trellis: ''
+      type: looker_line
+      width: 24
+      x_axis_gridlines: false
+      x_axis_label: Month
+      x_axis_reversed: false
+      x_axis_scale: auto
+      y_axis_combined: true
+      y_axis_gridlines: true
+      y_axis_reversed: false
+      y_axis_scale_mode: linear
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+    layout: newspaper
+    preferred_slug: bElyD7HktdUqf7dMMcWasA
+    preferred_viewer: dashboards-next
+    title: Product Metrics
+  model: null
+  preferred_viewer: dashboards-next
+  query_timezone: null
+  readonly: false
+  refresh_interval: null
+  refresh_interval_to_i: null
+  slug: bElyD7HktdUqf7dMMcWasA
+  title: Product Metrics
+  user_id: '24'
+- can:
+    copy: true
+    create: true
+    destroy: true
+    download: true
+    index: true
+    move: true
+    recover: true
+    render: true
+    run: true
+    schedule: true
+    see_aggregate_table_lookml: true
+    see_lookml: true
+    show: true
+    update: true
+  content_favorite_id: null
+  content_metadata_id: '105'
+  description: ''
+  folder:
+    can:
+      create: true
+      destroy: true
+      edit_content: true
+      index: true
+      move_content: true
+      save_shared_space_as_embed_user: true
+      see_admin_spaces: true
+      show: true
+      update: true
+    child_count: 3
+    content_metadata_id: '104'
+    created_at: '2022-10-25 16:14:16+00:00'
+    creator_id: '24'
+    external_id: ''
+    id: '81'
+    is_embed: false
+    is_embed_shared_root: false
+    is_embed_users_root: false
+    is_personal: false
+    is_personal_descendant: false
+    is_shared_root: false
+    is_users_root: false
+    name: Product_Overview
+    parent_id: '1'
+  hidden: false
+  id: '13'
+  lookml:
+  - dashboard: product_metrics
+    elements:
+    - col: 0
+      defaults_version: 1
+      explore: order_items
+      fields:
+      - order_items.count
+      - orders.count
+      - products_.count
+      - users.count
+      - orders.created_month
+      fill_fields:
+      - orders.created_month
+      height: 12
+      hidden_fields: []
+      interpolation: linear
+      label_density: 25
+      legend_position: center
+      limit: 500
+      limit_displayed_rows: false
+      listen: {}
+      model: balcazartest
+      name: Product Metrics
+      ordering: none
+      plot_size_by_field: false
+      point_style: none
+      row: 0
+      series_labels: {}
+      series_types: {}
+      show_null_labels: false
+      show_null_points: true
+      show_silhouette: false
+      show_totals_labels: false
+      show_value_labels: false
+      show_view_names: false
+      show_x_axis_label: false
+      show_x_axis_ticks: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      sorts:
+      - orders.created_month desc
+      stacking: ''
+      title: Product Metrics
+      totals_color: '#808080'
+      trellis: ''
+      type: looker_line
+      width: 24
+      x_axis_gridlines: false
+      x_axis_label: Month
+      x_axis_reversed: false
+      x_axis_scale: auto
+      y_axes: []
+      y_axis_combined: true
+      y_axis_gridlines: true
+      y_axis_reversed: false
+      y_axis_scale_mode: linear
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+    layout: newspaper
+    preferred_slug: isgWSswf61aOFSbomOZqzA
+    preferred_viewer: dashboards-next
+    title: Product Metrics
+  model: null
+  preferred_viewer: dashboards-next
+  query_timezone: null
+  readonly: false
+  refresh_interval: null
+  refresh_interval_to_i: null
+  slug: isgWSswf61aOFSbomOZqzA
+  title: Product Metrics
+  user_id: '24'
