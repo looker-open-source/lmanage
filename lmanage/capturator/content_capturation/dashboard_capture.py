@@ -36,7 +36,7 @@ class CaptureDashboards():
                 except: 
                     return_sleep_message(call_number=trys)
             
-            dash.lookml = yaml.safe_load(lookml.lookml)
+            dash.lookml = lookml.lookml
         
         return all_dashboards
     
