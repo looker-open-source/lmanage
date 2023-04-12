@@ -94,8 +94,8 @@ def main(**kwargs):
     # Capture Dashboard Content 
     dash_content = dc.CaptureDashboards(sdk=sdk).execute()
     print(f'{yaml_path}')
-    with open(f'{yaml_path}.yaml', 'w') as file:
-        fd_yml_txt = '''# Dashboard Content\n# Opening Session Welcome to the Capturator, this is the Dashboard Content place\n# -----------------------------------------------------\n\n'''
+    with open(f'{yaml_path}_content.yaml', 'a') as file:
+        fd_yml_txt = '\n\n# Dashboard Content\n'
         file.write(fd_yml_txt)
         yaml.dump(dash_content, file)
 

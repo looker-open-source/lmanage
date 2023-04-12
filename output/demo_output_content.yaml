@@ -1,198 +1,1362 @@
-# Dashboard Content
-# Opening Session Welcome to the Capturator, this is the Dashboard Content place
+# FOLDER_PERMISSIONS
+# Opening Session Welcome to the Capturator, this is the Folder place
 # -----------------------------------------------------
 
-- !DashboardObject
-  legacy_folder_id: '2567'
-  lookml: "- dashboard: test_dashboard\n  title: Test Dashboard\n  layout: newspaper\n\
-    \  preferred_viewer: dashboards-next\n  preferred_slug: LGHnhEDcZgD93em6sKuLxc\n\
-    \  elements:\n  - title: Test Dashboard\n    name: Test Dashboard\n    model:\
-    \ looker_ecommerce\n    explore: order_items\n    type: looker_grid\n    fields:\
-    \ [order_items.count]\n    limit: 500\n    show_view_names: false\n    show_row_numbers:\
-    \ true\n    transpose: false\n    truncate_text: true\n    hide_totals: false\n\
-    \    hide_row_totals: false\n    size_to_fit: true\n    table_theme: white\n \
-    \   limit_displayed_rows: false\n    enable_conditional_formatting: false\n  \
-    \  header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:\
-    \ 12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
-    \ false\n    defaults_version: 1\n    hidden_fields: []\n    y_axes: []\n    listen:\
-    \ {}\n    row: 0\n    col: 0\n    width: 24\n    height: 12\n"
-  dashboard_id: '18'
-- !DashboardObject
-  legacy_folder_id: '2280'
-  lookml: "- dashboard: saving_dashboard\n  title: saving_dashboard\n  layout: newspaper\n\
-    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: PpHXKLRHyFJe1lv9nAXcZX\n\
-    \  elements:\n  - title: saving_dashboard\n    name: saving_dashboard\n    model:\
-    \ mtrmisathelook\n    explore: order_items\n    type: looker_grid\n    fields:\
-    \ [revenue, users.city]\n    sorts: [revenue desc 0]\n    limit: 500\n    dynamic_fields:\
-    \ [{category: measure, expression: !!null '', label: Revenue, value_format: !!null\
-    \ '',\n        value_format_name: usd_0, based_on: order_items.sale_price, _kind_hint:\
-    \ measure,\n        measure: revenue, type: sum, _type_hint: number}]\n    show_view_names:\
-    \ false\n    show_row_numbers: true\n    transpose: false\n    truncate_text:\
-    \ true\n    hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n\
-    \    table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:\
-    \ true\n    header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:\
-    \ 12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
-    \ false\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    y_axes:\
-    \ [{label: '', orientation: right, series: [{axisId: products.item_name,\n   \
-    \         id: products.item_name, name: Item Name}], showLabels: true, showValues:\
-    \ true,\n        unpinAxis: false, tickDensity: default, tickDensityCustom: 5,\
-    \ type: linear}]\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n\
-    \    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label:\
-    \ true\n    show_x_axis_ticks: false\n    y_axis_scale_mode: linear\n    x_axis_reversed:\
-    \ false\n    y_axis_reversed: false\n    plot_size_by_field: false\n    trellis:\
-    \ ''\n    stacking: ''\n    hide_legend: false\n    legend_position: center\n\
-    \    series_types: {}\n    point_style: none\n    show_value_labels: true\n  \
-    \  label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n    ordering:\
-    \ none\n    show_null_labels: false\n    show_totals_labels: false\n    show_silhouette:\
-    \ false\n    totals_color: \"#808080\"\n    custom_color_enabled: true\n    custom_color:\
-    \ \"#079c98\"\n    show_single_value_title: false\n    single_value_title: ''\n\
-    \    value_format: ''\n    show_comparison: true\n    comparison_type: value\n\
-    \    comparison_reverse_colors: false\n    show_comparison_label: true\n    conditional_formatting:\
-    \ [{type: equal to, value: !!null '', background_color: \"#1A73E8\",\n       \
-    \ font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,\n\
-    \          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic:\
-    \ false,\n        strikethrough: false, fields: !!null ''}, {type: equal to, value:\
-    \ !!null '',\n        background_color: \"#1A73E8\", font_color: !!null '', color_application:\
-    \ {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,\n          palette_id:\
-    \ 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,\n       \
-    \ strikethrough: false, fields: !!null ''}]\n    show_null_points: true\n    interpolation:\
-    \ linear\n    defaults_version: 1\n    hidden_fields: []\n    value_labels: legend\n\
-    \    label_type: labPer\n    up_color: false\n    down_color: false\n    total_color:\
-    \ false\n    listen:\n      Email: users.email\n      Last Name: users.last_name\n\
-    \    row: 0\n    col: 0\n    width: 24\n    height: 12\n  filters:\n  - name:\
-    \ Email\n    title: Email\n    type: field_filter\n    default_value: ''\n   \
-    \ allow_multiple_values: true\n    required: false\n    ui_config:\n      type:\
-    \ tag_list\n      display: popover\n    model: mtrmisathelook\n    explore: order_items\n\
-    \    listens_to_filters: [Last Name]\n    field: users.email\n  - name: Last Name\n\
-    \    title: Last Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:\
-    \ true\n    required: false\n    ui_config:\n      type: tag_list\n      display:\
-    \ popover\n    model: mtrmisathelook\n    explore: order_items\n    listens_to_filters:\
-    \ []\n    field: users.last_name\n"
-  dashboard_id: '19'
-- !DashboardObject
-  legacy_folder_id: '2300'
-  lookml: "- dashboard: test_ticket_537845\n  title: Test Ticket 537845\n  layout:\
-    \ newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug:\
-    \ 9r6KclVyj1i1lZ0g71Gol3\n  elements:\n  - title: Google Maps\n    name: Google\
-    \ Maps\n    model: jpr_city\n    explore: lat_long\n    type: looker_google_map\n\
-    \    fields: [lat_long.location, lat_long.total_latitude]\n    sorts: [lat_long.location]\n\
-    \    limit: 500\n    hidden_fields: []\n    hidden_points_if_no: []\n    series_labels:\
-    \ {}\n    show_view_names: false\n    map_plot_mode: automagic_heatmap\n    heatmap_gridlines:\
-    \ true\n    heatmap_gridlines_empty: false\n    heatmap_opacity: 0.5\n    show_region_field:\
-    \ true\n    draw_map_labels_above_data: true\n    map_tile_provider: traffic_day\n\
-    \    map_position: custom\n    map_latitude: 20.59\n    map_longitude: 78.96\n\
-    \    map_zoom: 4\n    map_pannable: true\n    map_zoomable: true\n    map_marker_type:\
-    \ circle\n    map_marker_icon_name: default\n    map_marker_radius_mode: proportional_value\n\
-    \    map_marker_units: meters\n    map_marker_proportional_scale_type: linear\n\
-    \    map_marker_color_mode: fixed\n    show_legend: true\n    quantize_map_value_colors:\
-    \ false\n    reverse_map_value_colors: false\n    defaults_version: 0\n    series_types:\
-    \ {}\n    y_axes: []\n    listen: {}\n    row: 0\n    col: 0\n    width: 8\n \
-    \   height: 6\n  - title: Legacy\n    name: Legacy\n    model: jpr_city\n    explore:\
-    \ lat_long\n    type: looker_map\n    fields: [lat_long.location, lat_long.total_latitude]\n\
-    \    sorts: [lat_long.location]\n    limit: 500\n    map_plot_mode: points\n \
-    \   heatmap_gridlines: false\n    heatmap_gridlines_empty: false\n    heatmap_opacity:\
-    \ 0.5\n    show_region_field: true\n    draw_map_labels_above_data: true\n   \
-    \ map_tile_provider: light\n    map_position: fit_data\n    map_scale_indicator:\
-    \ 'off'\n    map_pannable: true\n    map_zoomable: true\n    map_marker_type:\
-    \ circle\n    map_marker_icon_name: default\n    map_marker_radius_mode: proportional_value\n\
-    \    map_marker_units: meters\n    map_marker_proportional_scale_type: linear\n\
-    \    map_marker_color_mode: fixed\n    show_view_names: true\n    show_legend:\
-    \ true\n    quantize_map_value_colors: false\n    reverse_map_value_colors: false\n\
-    \    hidden_fields: []\n    hidden_points_if_no: []\n    series_labels: {}\n \
-    \   defaults_version: 1\n    series_types: {}\n    y_axes: []\n    listen: {}\n\
-    \    row: 0\n    col: 8\n    width: 8\n    height: 6\n"
-  dashboard_id: '20'
-- !DashboardObject
-  legacy_folder_id: '2216'
-  lookml: "- dashboard: test_ticket_537845_scenario_b\n  title: Test Ticket 537845\
-    \ Scenario B\n  layout: newspaper\n  preferred_viewer: dashboards-next\n  description:\
-    \ ''\n  preferred_slug: RUUmqDeSYt4P8WCftDYxpH\n  elements:\n  - title: Google\
-    \ Maps\n    name: Google Maps\n    model: jpr_city\n    explore: lat_long\n  \
-    \  type: looker_google_map\n    fields: [lat_long.location, lat_long.total_latitude]\n\
-    \    sorts: [lat_long.location]\n    limit: 500\n    hidden_fields: []\n    hidden_points_if_no:\
-    \ []\n    series_labels: {}\n    show_view_names: false\n    map_plot_mode: automagic_heatmap\n\
-    \    heatmap_gridlines: true\n    heatmap_gridlines_empty: false\n    heatmap_opacity:\
-    \ 0.5\n    show_region_field: true\n    draw_map_labels_above_data: true\n   \
-    \ map_tile_provider: traffic_day\n    map_position: custom\n    map_latitude:\
-    \ 20.59\n    map_longitude: 78.96\n    map_zoom: 4\n    map_pannable: true\n \
-    \   map_zoomable: true\n    map_marker_type: circle\n    map_marker_icon_name:\
-    \ default\n    map_marker_radius_mode: proportional_value\n    map_marker_units:\
-    \ meters\n    map_marker_proportional_scale_type: linear\n    map_marker_color_mode:\
-    \ fixed\n    show_legend: true\n    quantize_map_value_colors: false\n    reverse_map_value_colors:\
-    \ false\n    defaults_version: 0\n    series_types: {}\n    y_axes: []\n    listen:\
-    \ {}\n    row: 0\n    col: 0\n    width: 8\n    height: 6\n  - title: Legacy\n\
-    \    name: Legacy\n    model: jpr_city\n    explore: lat_long\n    type: looker_map\n\
-    \    fields: [lat_long.location, lat_long.total_latitude]\n    sorts: [lat_long.location]\n\
-    \    limit: 500\n    map_plot_mode: points\n    heatmap_gridlines: false\n   \
-    \ heatmap_gridlines_empty: false\n    heatmap_opacity: 0.5\n    show_region_field:\
-    \ true\n    draw_map_labels_above_data: true\n    map_tile_provider: light\n \
-    \   map_position: fit_data\n    map_scale_indicator: 'off'\n    map_pannable:\
-    \ true\n    map_zoomable: true\n    map_marker_type: circle\n    map_marker_icon_name:\
-    \ default\n    map_marker_radius_mode: proportional_value\n    map_marker_units:\
-    \ meters\n    map_marker_proportional_scale_type: linear\n    map_marker_color_mode:\
-    \ fixed\n    show_view_names: true\n    show_legend: true\n    quantize_map_value_colors:\
-    \ false\n    reverse_map_value_colors: false\n    hidden_fields: []\n    hidden_points_if_no:\
-    \ []\n    series_labels: {}\n    defaults_version: 1\n    series_types: {}\n \
-    \   y_axes: []\n    listen: {}\n    row: 0\n    col: 8\n    width: 8\n    height:\
-    \ 6\n  - title: Heatmap Gridlines\n    name: Heatmap Gridlines\n    model: jpr_city\n\
-    \    explore: lat_long\n    type: looker_google_map\n    fields: [lat_long.location,\
-    \ lat_long.total_latitude]\n    sorts: [lat_long.location]\n    limit: 500\n \
-    \   hidden_fields: []\n    hidden_points_if_no: []\n    series_labels: {}\n  \
-    \  show_view_names: true\n    map_plot_mode: automagic_heatmap\n    heatmap_gridlines:\
-    \ true\n    heatmap_gridlines_empty: false\n    heatmap_opacity: 0.5\n    show_region_field:\
-    \ true\n    draw_map_labels_above_data: true\n    map_tile_provider: light\n \
-    \   map_position: fit_data\n    map_pannable: true\n    map_zoomable: true\n \
-    \   map_marker_type: circle\n    map_marker_icon_name: default\n    map_marker_radius_mode:\
-    \ proportional_value\n    map_marker_units: meters\n    map_marker_proportional_scale_type:\
-    \ linear\n    map_marker_color_mode: fixed\n    show_legend: true\n    quantize_map_value_colors:\
-    \ false\n    reverse_map_value_colors: false\n    defaults_version: 0\n    series_types:\
-    \ {}\n    map_scale_indicator: 'off'\n    y_axes: []\n    listen: {}\n    row:\
-    \ 0\n    col: 16\n    width: 8\n    height: 6\n"
-  dashboard_id: '22'
-- !DashboardObject
-  legacy_folder_id: '2194'
-  lookml: "- dashboard: test_ticket_537845_scenario_c\n  title: Test Ticket 537845\
-    \ Scenario C\n  layout: newspaper\n  preferred_viewer: dashboards-next\n  description:\
-    \ ''\n  preferred_slug: F3AaNcZMlgGellY2Fzo2Ql\n  elements:\n  - title: Google\
-    \ Maps\n    name: Google Maps\n    model: jpr_city\n    explore: lat_long\n  \
-    \  type: looker_google_map\n    fields: [lat_long.location, lat_long.total_latitude]\n\
-    \    sorts: [lat_long.location]\n    limit: 500\n    hidden_fields: []\n    hidden_points_if_no:\
-    \ []\n    series_labels: {}\n    show_view_names: false\n    map_plot_mode: automagic_heatmap\n\
-    \    heatmap_gridlines: true\n    heatmap_gridlines_empty: false\n    heatmap_opacity:\
-    \ 0.5\n    show_region_field: true\n    draw_map_labels_above_data: true\n   \
-    \ map_tile_provider: traffic_day\n    map_position: custom\n    map_latitude:\
-    \ 20.59\n    map_longitude: 78.96\n    map_zoom: 4\n    map_pannable: true\n \
-    \   map_zoomable: true\n    map_marker_type: circle\n    map_marker_icon_name:\
-    \ default\n    map_marker_radius_mode: proportional_value\n    map_marker_units:\
-    \ meters\n    map_marker_proportional_scale_type: linear\n    map_marker_color_mode:\
-    \ fixed\n    show_legend: true\n    quantize_map_value_colors: false\n    reverse_map_value_colors:\
-    \ false\n    defaults_version: 0\n    series_types: {}\n    y_axes: []\n    listen:\
-    \ {}\n    row: 0\n    col: 0\n    width: 8\n    height: 6\n  - title: Legacy\n\
-    \    name: Legacy\n    model: jpr_city\n    explore: lat_long\n    type: looker_map\n\
-    \    fields: [lat_long.location, lat_long.total_latitude]\n    sorts: [lat_long.location]\n\
-    \    limit: 500\n    map_plot_mode: points\n    heatmap_gridlines: false\n   \
-    \ heatmap_gridlines_empty: false\n    heatmap_opacity: 0.5\n    show_region_field:\
-    \ true\n    draw_map_labels_above_data: true\n    map_tile_provider: light\n \
-    \   map_position: fit_data\n    map_scale_indicator: 'off'\n    map_pannable:\
-    \ true\n    map_zoomable: true\n    map_marker_type: circle\n    map_marker_icon_name:\
-    \ default\n    map_marker_radius_mode: proportional_value\n    map_marker_units:\
-    \ meters\n    map_marker_proportional_scale_type: linear\n    map_marker_color_mode:\
-    \ fixed\n    show_view_names: true\n    show_legend: true\n    quantize_map_value_colors:\
-    \ false\n    reverse_map_value_colors: false\n    hidden_fields: []\n    hidden_points_if_no:\
-    \ []\n    series_labels: {}\n    defaults_version: 1\n    series_types: {}\n \
-    \   y_axes: []\n    listen: {}\n    row: 0\n    col: 8\n    width: 8\n    height:\
-    \ 6\n  - title: Traffic Day\n    name: Traffic Day\n    model: jpr_city\n    explore:\
-    \ lat_long\n    type: looker_google_map\n    fields: [lat_long.location, lat_long.total_latitude]\n\
-    \    sorts: [lat_long.location]\n    limit: 500\n    hidden_fields: []\n    hidden_points_if_no:\
-    \ []\n    series_labels: {}\n    show_view_names: true\n    map_plot_mode: automagic_heatmap\n\
-    \    heatmap_gridlines: true\n    heatmap_gridlines_empty: false\n    heatmap_opacity:\
-    \ 0.5\n    show_region_field: true\n    draw_map_labels_above_data: true\n   \
-    \ map_tile_provider: traffic_day\n    map_position: fit_data\n    map_pannable:\
-    \ true\n    map_zoomable: true\n    map_marker_type: circle\n    map_marker_icon_name:\
-    \ default\n    map_marker_radius_mode: proportional_value\n    map_marker_units:\
-    \ meters\n    map_marker_proportional_scale_type: linear\n    map_marker_color_mode:\
-    \ fixed\n    show_legend: true\n    quantize_map_value_colors: false\n    reverse_map_value_colors:\
-    \ false\n    defaults_version: 0\n    series_types: {}\n    map_scale_indicator:\
-    \ 'off'\n    y_axes: []\n    listen: {}\n    row: 0\n    col: 16\n    width: 8\n\
-    \    height: 6\n"
-  dashboard_id: '23'
+- !LookerFolder
+  parent_id:
+  id: '1'
+  name: Shared
+  subfolder:
+  - !LookerFolder
+    parent_id: '1'
+    id: '913'
+    name: E-Commerce
+    subfolder:
+    - !LookerFolder
+      parent_id: '913'
+      id: '914'
+      name: Sub Folder - Special
+      subfolder:
+      - !LookerFolder
+        parent_id: '914'
+        id: '916'
+        name: dev
+        subfolder: []
+        content_metadata_id: '1707'
+        team_edit: []
+        team_view: []
+      - !LookerFolder
+        parent_id: '914'
+        id: '915'
+        name: Development
+        subfolder: []
+        content_metadata_id: '1706'
+        team_edit: []
+        team_view: []
+      content_metadata_id: '1705'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '1704'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '910'
+    name: Data Tools
+    subfolder:
+    - !LookerFolder
+      parent_id: '910'
+      id: '912'
+      name: Sample folder
+      subfolder: []
+      content_metadata_id: '1703'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '910'
+      id: '911'
+      name: Models XYZ
+      subfolder: []
+      content_metadata_id: '1702'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '1701'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '908'
+    name: Marketing
+    subfolder:
+    - !LookerFolder
+      parent_id: '908'
+      id: '909'
+      name: Marketing Look Selector
+      subfolder: []
+      content_metadata_id: '1700'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '1699'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '907'
+    name: Admin
+    subfolder: []
+    content_metadata_id: '1698'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '903'
+    name: Looker Workflows
+    subfolder:
+    - !LookerFolder
+      parent_id: '903'
+      id: '906'
+      name: Zapier - Webhooks Integration
+      subfolder: []
+      content_metadata_id: '1697'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '903'
+      id: '904'
+      name: Slackbot
+      subfolder:
+      - !LookerFolder
+        parent_id: '904'
+        id: '905'
+        name: New Space
+        subfolder: []
+        content_metadata_id: '1696'
+        team_edit: []
+        team_view: []
+      content_metadata_id: '1695'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '1694'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '901'
+    name: Retail
+    subfolder:
+    - !LookerFolder
+      parent_id: '901'
+      id: '902'
+      name: Deep-dive dashboards
+      subfolder: []
+      content_metadata_id: '1693'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '1692'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '899'
+    name: SaaS Sales and Support
+    subfolder:
+    - !LookerFolder
+      parent_id: '899'
+      id: '900'
+      name: Looks for PPT
+      subfolder: []
+      content_metadata_id: '1691'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '1690'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '898'
+    name: SDLC Demo
+    subfolder: []
+    content_metadata_id: '1689'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '892'
+    name: Marketplace Blocks
+    subfolder:
+    - !LookerFolder
+      parent_id: '892'
+      id: '897'
+      name: Database Blocks
+      subfolder: []
+      content_metadata_id: '1688'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '892'
+      id: '896'
+      name: JIRA Block
+      subfolder: []
+      content_metadata_id: '1687'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '892'
+      id: '893'
+      name: Not Everything Working
+      subfolder:
+      - !LookerFolder
+        parent_id: '893'
+        id: '895'
+        name: Salesforce Block
+        subfolder: []
+        content_metadata_id: '1686'
+        team_edit: []
+        team_view: []
+      - !LookerFolder
+        parent_id: '893'
+        id: '894'
+        name: Zendesk Block
+        subfolder: []
+        content_metadata_id: '1685'
+        team_edit: []
+        team_view: []
+      content_metadata_id: '1684'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '1683'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '891'
+    name: BigQuery Project
+    subfolder: []
+    content_metadata_id: '1682'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '890'
+    name: to be hidden
+    subfolder: []
+    content_metadata_id: '1681'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '887'
+    name: Reports
+    subfolder:
+    - !LookerFolder
+      parent_id: '887'
+      id: '888'
+      name: Client A
+      subfolder:
+      - !LookerFolder
+        parent_id: '888'
+        id: '889'
+        name: User 123
+        subfolder: []
+        content_metadata_id: '1680'
+        team_edit: []
+        team_view: []
+      content_metadata_id: '1679'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '1678'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '881'
+    name: Corporate
+    subfolder:
+    - !LookerFolder
+      parent_id: '881'
+      id: '885'
+      name: Director Group
+      subfolder:
+      - !LookerFolder
+        parent_id: '885'
+        id: '886'
+        name: Custom Dashboards
+        subfolder: []
+        content_metadata_id: '1677'
+        team_edit: []
+        team_view: []
+      content_metadata_id: '1676'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '881'
+      id: '884'
+      name: Exec Group
+      subfolder: []
+      content_metadata_id: '1675'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '881'
+      id: '883'
+      name: Marketing Team
+      subfolder: []
+      content_metadata_id: '1674'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '881'
+      id: '882'
+      name: Sales Team
+      subfolder: []
+      content_metadata_id: '1673'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '1672'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '880'
+    name: Dev Dashboards
+    subfolder: []
+    content_metadata_id: '1671'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '879'
+    name: Looks - Pricing
+    subfolder: []
+    content_metadata_id: '1670'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '877'
+    name: Embedded Customers
+    subfolder:
+    - !LookerFolder
+      parent_id: '877'
+      id: '878'
+      name: Allegra K
+      subfolder: []
+      content_metadata_id: '1669'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '1668'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '876'
+    name: Demo
+    subfolder: []
+    content_metadata_id: '1667'
+    team_edit: []
+    team_view: []
+  content_metadata_id: '1'
+  team_edit:
+  - All Users
+  team_view: []
+# Looker Role
+# Opening Session Welcome to the Capturator, this is the Role place
+# -----------------------------------------------------
+
+
+
+# PERMISSION SETS
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - embed_browse_spaces
+  - embed_save_shared_space
+  - explore
+  - see_looks
+  - see_user_dashboards
+  name: test embedddd
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_table_calculations
+  - download_with_limit
+  - explore
+  - follow_alerts
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  name: User
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - download_with_limit
+  - download_without_limit
+  - explore
+  - schedule_look_emails
+  - see_looks
+  - see_user_dashboards
+  name: Testing_Cacao_ps
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - embed_browse_spaces
+  - embed_save_shared_space
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - manage_stereo
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_alerts
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - sudo
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: clear
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - explore
+  - mobile_app_access
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  name: test-permset-aj
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - explore
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: testOops
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - manage_spaces
+  - save_content
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: try
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - create_custom_fields
+  - create_table_calculations
+  - explore
+  - save_content
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: New LAHB
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_without_limit
+  - embed_browse_spaces
+  - embed_save_shared_space
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - manage_stereo
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_alerts
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - sudo
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: users
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  - use_sql_runner
+  name: Developer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - embed_browse_spaces
+  - embed_save_shared_space
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - manage_stereo
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_alerts
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - sudo
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: sudo_test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - create_alerts
+  - download_without_limit
+  - follow_alerts
+  - save_content
+  - see_looks
+  name: testparameshpermission
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - mobile_app_access
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  name: Viewer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - explore
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - support_access_toggle
+  - use_sql_runner
+  name: Dev_nonadmin
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - use_sql_runner
+  name: Permission_set_517719
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - embed_browse_spaces
+  - embed_save_shared_space
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - manage_stereo
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_alerts
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - sudo
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: Allan Test
+- !LookerPermissionSet
+  permissions:
+  - see_system_activity
+  name: SystemActivity
+
+
+# MODEL SETS
+- !LookerModelSet
+  models:
+  - 0_vysakh_thelook
+  - balcazartest
+  - chris_test_git
+  - classicmodels
+  - clickhouse_fake
+  - combined_commits
+  - cromero_training
+  - dany_test_snow
+  - ecommerce_ivonne18
+  - ecommerce_solis2218_01
+  - enarm
+  - extension-api-explorer
+  - ivanthesis
+  - jpr_city
+  - jpr_mextoys
+  - language_and_license
+  - looker_ecommerce
+  - looker_github_analysis
+  - lookml-diagram
+  - mtrmisasnowtest
+  - mtrmisathelook
+  - raj_look
+  - remote_dependencies_test
+  - rt2218
+  - second
+  - snow_srang
+  - snow_srangala
+  - souvik2218
+  - test_create_project
+  - testdpr
+  - thelook_carlos
+  - thelook_chris
+  - thelook_jluisg
+  - thelook_srang
+  - vutorthelook
+  - vysakh_import
+  - vysakh_import_test
+  name: Test_517719
+- !LookerModelSet
+  models:
+  - extension-api-explorer
+  name: test_embeddd
+- !LookerModelSet
+  models:
+  - balcazartest
+  name: testroleOops
+- !LookerModelSet
+  models:
+  - AllanL
+  name: Allan L
+- !LookerModelSet
+  models:
+  - ecommerce_paramesh
+  name: testparameshmodel
+- !LookerModelSet
+  models:
+  - Lookml_dashboard_test
+  - ecommerce_prabhu2218
+  - haylen_pruebasmtr
+  - snow_test_srangala
+  - test1
+  - looker_ecommerce
+  - timezone_format_snowflake_test
+  - kavyakandukuri
+  - test
+  - 0_vysakh_thelook
+  - cache_test
+  - i_test
+  - customer_share
+  - new_runtime_validation
+  - alexo_2218
+  - mtr_angelduc_thelook
+  - ismail_look
+  - bq_orders
+  - '397303'
+  - orders_bug
+  - テスト
+  - aggregate_awareness
+  - calendar
+  - cohort
+  - derived_table
+  - dynamic_join
+  - japanese_character
+  - LookMLDashboard
+  - orders
+  - parameter
+  - Table_Calc
+  - action
+  - dynamic_view_name
+  - single_date_filter
+  - test_404953
+  - test_434492
+  - '533417'
+  - sae_SME
+  - emoji
+  - emoji_lookmldashboard
+  - japanmap
+  - tokyomap
+  - thelookbarney
+  - thelook_yash_jha
+  - ecommerce_ivonne18
+  - trucks
+  - thelook_srang
+  - ecommerce_khushbu
+  - jpr_cdmx
+  - ecommerce_solis2218_01
+  - ga4
+  - thelook_jluisg
+  - advanced_deploy
+  - model
+  - thelook_vitor
+  - naga_project
+  - thesis_edher_18
+  - tsr_juan_luis_af
+  - vutorthelook
+  - ecommerce_myname_par
+  - prod_proj_project_import
+  - the_look_ken
+  - block_snowflake_usage_v2
+  - ecommarce_madhu-sudhan
+  - enarm
+  - cmu_thelook_bq
+  - prod_single_instance_migration
+  - testing_bertin
+  - extension-api-explorer
+  - bq_incremental
+  - jpr_city
+  - chris_the_look_bq
+  - incremental_pdt_bug
+  - jpr_mextoys
+  - agustin_thelook
+  - yoshi-test
+  - snow_srang
+  - covid19_public_forecast_joespla_thesis
+  - souvik2218
+  - classicmodels
+  - rt2218
+  - mtrmisathelook
+  - testmisa
+  - ecommerce_sk
+  - Testmodel
+  - thesis_edher
+  - combined_commits
+  - language_and_license
+  - looker_github_analysis
+  - remote_dependencies_test
+  - thelook_carlos
+  - ecommerce_myname
+  - vysakh_import
+  - vysakh_import_test
+  - supplier_mapping
+  - supplier_risk_db
+  - 1_vinay_project
+  - ivanthesis
+  - helloworld
+  - vijaya_project
+  - yoshi-test-535996
+  - bra_property_oauth
+  - test2
+  - lookml-diagram
+  - NDT_dependency_issue
+  - clickhouse_fake
+  - outer_joins
+  - thelook_chris
+  - test_sym_aggs
+  - balcazartest
+  - new_project
+  - gitlab_test
+  - webhook_test
+  - testdpr
+  - vsstdb
+  - ecommerce_paramesh
+  - cromero_training
+  - raj_look
+  name: All
+
+
+# LOOKER ROLES
+- !LookerRoles
+  permission_set: User
+  model_set: All
+  teams:
+  - User
+  name: User
+- !LookerRoles
+  permission_set: Developer
+  model_set: Test_517719
+  teams:
+  - User
+  name: Developer
+- !LookerRoles
+  permission_set: Viewer
+  model_set: All
+  teams:
+  - Demo
+  name: Viewer
+- !LookerRoles
+  permission_set: Permission_set_517719
+  model_set: Test_517719
+  teams: []
+  name: User_test_ 517719
+- !LookerRoles
+  permission_set: Permission_set_517719
+  model_set: All
+  teams: []
+  name: Role_All_Models_517719
+- !LookerRoles
+  permission_set: test embedddd
+  model_set: test_embeddd
+  teams: []
+  name: test embedddd
+- !LookerRoles
+  permission_set: testOops
+  model_set: testroleOops
+  teams:
+  - grouptestttt
+  name: testOopsRole
+- !LookerRoles
+  permission_set: Allan Test
+  model_set: Allan L
+  teams: []
+  name: Allan new project
+- !LookerRoles
+  permission_set: New LAHB
+  model_set: All
+  teams: []
+  name: Role LAHB
+- !LookerRoles
+  permission_set: users
+  model_set: All
+  teams: []
+  name: users
+- !LookerRoles
+  permission_set: try
+  model_set: All
+  teams: []
+  name: try_role
+- !LookerRoles
+  permission_set: Developer
+  model_set: All
+  teams: []
+  name: haylen_mtr
+- !LookerRoles
+  permission_set: SystemActivity
+  model_set: All
+  teams: []
+  name: SystemActivity
+- !LookerRoles
+  permission_set: Developer
+  model_set: All
+  teams: []
+  name: Milford Role
+- !LookerRoles
+  permission_set: test-permset-aj
+  model_set: All
+  teams: []
+  name: test-permset-aj
+- !LookerRoles
+  permission_set: sudo_test
+  model_set: All
+  teams: []
+  name: sudo_test
+- !LookerRoles
+  permission_set: Dev_nonadmin
+  model_set: All
+  teams: []
+  name: non_admin
+- !LookerRoles
+  permission_set: Testing_Cacao_ps
+  model_set: All
+  teams: []
+  name: Cacao
+- !LookerRoles
+  permission_set: testparameshpermission
+  model_set: testparameshmodel
+  teams:
+  - closedparam
+  name: testparamesh
+- !LookerRoles
+  permission_set: clear
+  model_set: All
+  teams: []
+  name: clear
+
+
+# USER_ATTRIBUTES
+- !LookerUserAttribute
+  name: access_demo
+  uatype: string
+  hidden_value: true
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: access_filter_rmr
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: LOL
+  teams: []
+- !LookerUserAttribute
+  name: access_filter_test
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: access_grant_test
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: access_token
+  uatype: string
+  hidden_value: true
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: another_locale
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ES_ES
+  teams: []
+- !LookerUserAttribute
+  name: attrib
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: attribute
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: '%, NULL'
+  teams: []
+- !LookerUserAttribute
+  name: boolean_attribute
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: 'false'
+  teams: []
+- !LookerUserAttribute
+  name: brand
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: brand1
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: brands
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams:
+  - users: 5 Seasons
+  - Demo: Lee
+- !LookerUserAttribute
+  name: brand_name
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: brand_par
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: city_attribute
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: company
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: conn_values
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: currency
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: BRL
+  teams: []
+- !LookerUserAttribute
+  name: database
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: department
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: embed_test
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: env
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: dev
+  teams: []
+- !LookerUserAttribute
+  name: google_user_id
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: landing_page
+  uatype: relative_url
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: /browse
+  teams: []
+- !LookerUserAttribute
+  name: lastname
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: Smith
+  teams: []
+- !LookerUserAttribute
+  name: locale
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: en
+  teams: []
+- !LookerUserAttribute
+  name: milford_att
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: new11
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: new_attribute
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: "'Alaska'"
+  teams: []
+- !LookerUserAttribute
+  name: nikitha
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: APAC
+  teams: []
+- !LookerUserAttribute
+  name: number_format
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: 1.234,56
+  teams: []
+- !LookerUserAttribute
+  name: passvort
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: rajkumar
+  uatype: number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams:
+  - All Users: '1'
+- !LookerUserAttribute
+  name: rk_env
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: order_items
+  teams: []
+- !LookerUserAttribute
+  name: rk_env_default_prd
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: prd
+  teams: []
+- !LookerUserAttribute
+  name: test
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: Shashikant
+  teams:
+  - group11: chrischris
+  - group22: chrischris2
+  - group33: chrischris3
+- !LookerUserAttribute
+  name: testinguser
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: tests
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: test_attri
+  uatype: advanced_filter_string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: test_case
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: test_date_attr
+  uatype: datetime
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: '2022-05-01'
+  teams: []
