@@ -57,7 +57,7 @@ class Yaml:
                 response.append(objects)
         return response
     
-    def get_dashboard_lookml_metadata(self):
+    def get_dash_metadata(self):
         response = []
         for objects in self.parsed_yaml:
             if 'lookml' in list(objects.keys()):

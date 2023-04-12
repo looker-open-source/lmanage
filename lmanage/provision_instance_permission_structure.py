@@ -9,6 +9,7 @@ from lmanage.configurator.user_group_configuration import role_config as rc
 from lmanage.configurator.user_group_configuration import group_config as gc
 from lmanage.configurator.user_group_configuration import user_permission as up
 from lmanage.configurator.content_configuration import create_looks as cl
+from lmanage.configurator.content_configuration import create_dashboards as cd
 from lmanage.utils import parse_yaml as py
 
 
@@ -58,6 +59,12 @@ def main(**kwargs):
     if not look_metadata:
         logger.warn(
             f'no look_metadata specified please check your yaml file at {yaml_split[0]}_content.yaml')
+        
+    dash_metadata = content_yaml.get_dash_metadata()
+    if not dash_metadata:
+        logger.warn(
+            f'no dash_metadata specified please check your yaml file at {yaml_split[0]}_content.yaml')
+
 
 # ################################################################
 # # Role Config ################################################
@@ -112,12 +119,18 @@ def main(**kwargs):
 #     cuap.CreateAndAssignUserAttributes(
 #         user_attributes=user_attribute_metadata, sdk=sdk).execute()
 
+
+
 ###############################################################
 # Content Transport Config #######################################
 ###############################################################
     # FIND LOOKS AND REMAKE THEM
-    look_creator = cl.CreateInstanceLooks(folder_mapping=folder_mapping_obj, sdk=sdk, content_metadata=look_metadata)
-    t = look_creator.execute()
+    #look_creator = cl.CreateInstanceLooks(folder_mapping=folder_mapping_obj, sdk=sdk, content_metadata=look_metadata)
+    #t = look_creator.execute()
+
+    # Find DASHBOARDS AND REMAKE THEM
+    dash_creator = cd.Create_Dashboards(sdk=sdk,folder_mapping=folder_mapping_obj,content_metadata=dash_metadata)
+    dash = dash_creator.execute()
 
     logger.info('Lmanage has finished configuring your Looker instance!')
 

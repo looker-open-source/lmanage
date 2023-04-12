@@ -1,0 +1,198 @@
+# Dashboard Content
+# Opening Session Welcome to the Capturator, this is the Dashboard Content place
+# -----------------------------------------------------
+
+- !DashboardObject
+  legacy_folder_id: '2567'
+  lookml: "- dashboard: test_dashboard\n  title: Test Dashboard\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  preferred_slug: LGHnhEDcZgD93em6sKuLxc\n\
+    \  elements:\n  - title: Test Dashboard\n    name: Test Dashboard\n    model:\
+    \ looker_ecommerce\n    explore: order_items\n    type: looker_grid\n    fields:\
+    \ [order_items.count]\n    limit: 500\n    show_view_names: false\n    show_row_numbers:\
+    \ true\n    transpose: false\n    truncate_text: true\n    hide_totals: false\n\
+    \    hide_row_totals: false\n    size_to_fit: true\n    table_theme: white\n \
+    \   limit_displayed_rows: false\n    enable_conditional_formatting: false\n  \
+    \  header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:\
+    \ 12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    defaults_version: 1\n    hidden_fields: []\n    y_axes: []\n    listen:\
+    \ {}\n    row: 0\n    col: 0\n    width: 24\n    height: 12\n"
+  dashboard_id: '18'
+- !DashboardObject
+  legacy_folder_id: '2280'
+  lookml: "- dashboard: saving_dashboard\n  title: saving_dashboard\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: PpHXKLRHyFJe1lv9nAXcZX\n\
+    \  elements:\n  - title: saving_dashboard\n    name: saving_dashboard\n    model:\
+    \ mtrmisathelook\n    explore: order_items\n    type: looker_grid\n    fields:\
+    \ [revenue, users.city]\n    sorts: [revenue desc 0]\n    limit: 500\n    dynamic_fields:\
+    \ [{category: measure, expression: !!null '', label: Revenue, value_format: !!null\
+    \ '',\n        value_format_name: usd_0, based_on: order_items.sale_price, _kind_hint:\
+    \ measure,\n        measure: revenue, type: sum, _type_hint: number}]\n    show_view_names:\
+    \ false\n    show_row_numbers: true\n    transpose: false\n    truncate_text:\
+    \ true\n    hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n\
+    \    table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:\
+    \ true\n    header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:\
+    \ 12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    y_axes:\
+    \ [{label: '', orientation: right, series: [{axisId: products.item_name,\n   \
+    \         id: products.item_name, name: Item Name}], showLabels: true, showValues:\
+    \ true,\n        unpinAxis: false, tickDensity: default, tickDensityCustom: 5,\
+    \ type: linear}]\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n\
+    \    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label:\
+    \ true\n    show_x_axis_ticks: false\n    y_axis_scale_mode: linear\n    x_axis_reversed:\
+    \ false\n    y_axis_reversed: false\n    plot_size_by_field: false\n    trellis:\
+    \ ''\n    stacking: ''\n    hide_legend: false\n    legend_position: center\n\
+    \    series_types: {}\n    point_style: none\n    show_value_labels: true\n  \
+    \  label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n    ordering:\
+    \ none\n    show_null_labels: false\n    show_totals_labels: false\n    show_silhouette:\
+    \ false\n    totals_color: \"#808080\"\n    custom_color_enabled: true\n    custom_color:\
+    \ \"#079c98\"\n    show_single_value_title: false\n    single_value_title: ''\n\
+    \    value_format: ''\n    show_comparison: true\n    comparison_type: value\n\
+    \    comparison_reverse_colors: false\n    show_comparison_label: true\n    conditional_formatting:\
+    \ [{type: equal to, value: !!null '', background_color: \"#1A73E8\",\n       \
+    \ font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,\n\
+    \          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic:\
+    \ false,\n        strikethrough: false, fields: !!null ''}, {type: equal to, value:\
+    \ !!null '',\n        background_color: \"#1A73E8\", font_color: !!null '', color_application:\
+    \ {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,\n          palette_id:\
+    \ 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,\n       \
+    \ strikethrough: false, fields: !!null ''}]\n    show_null_points: true\n    interpolation:\
+    \ linear\n    defaults_version: 1\n    hidden_fields: []\n    value_labels: legend\n\
+    \    label_type: labPer\n    up_color: false\n    down_color: false\n    total_color:\
+    \ false\n    listen:\n      Email: users.email\n      Last Name: users.last_name\n\
+    \    row: 0\n    col: 0\n    width: 24\n    height: 12\n  filters:\n  - name:\
+    \ Email\n    title: Email\n    type: field_filter\n    default_value: ''\n   \
+    \ allow_multiple_values: true\n    required: false\n    ui_config:\n      type:\
+    \ tag_list\n      display: popover\n    model: mtrmisathelook\n    explore: order_items\n\
+    \    listens_to_filters: [Last Name]\n    field: users.email\n  - name: Last Name\n\
+    \    title: Last Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:\
+    \ true\n    required: false\n    ui_config:\n      type: tag_list\n      display:\
+    \ popover\n    model: mtrmisathelook\n    explore: order_items\n    listens_to_filters:\
+    \ []\n    field: users.last_name\n"
+  dashboard_id: '19'
+- !DashboardObject
+  legacy_folder_id: '2300'
+  lookml: "- dashboard: test_ticket_537845\n  title: Test Ticket 537845\n  layout:\
+    \ newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug:\
+    \ 9r6KclVyj1i1lZ0g71Gol3\n  elements:\n  - title: Google Maps\n    name: Google\
+    \ Maps\n    model: jpr_city\n    explore: lat_long\n    type: looker_google_map\n\
+    \    fields: [lat_long.location, lat_long.total_latitude]\n    sorts: [lat_long.location]\n\
+    \    limit: 500\n    hidden_fields: []\n    hidden_points_if_no: []\n    series_labels:\
+    \ {}\n    show_view_names: false\n    map_plot_mode: automagic_heatmap\n    heatmap_gridlines:\
+    \ true\n    heatmap_gridlines_empty: false\n    heatmap_opacity: 0.5\n    show_region_field:\
+    \ true\n    draw_map_labels_above_data: true\n    map_tile_provider: traffic_day\n\
+    \    map_position: custom\n    map_latitude: 20.59\n    map_longitude: 78.96\n\
+    \    map_zoom: 4\n    map_pannable: true\n    map_zoomable: true\n    map_marker_type:\
+    \ circle\n    map_marker_icon_name: default\n    map_marker_radius_mode: proportional_value\n\
+    \    map_marker_units: meters\n    map_marker_proportional_scale_type: linear\n\
+    \    map_marker_color_mode: fixed\n    show_legend: true\n    quantize_map_value_colors:\
+    \ false\n    reverse_map_value_colors: false\n    defaults_version: 0\n    series_types:\
+    \ {}\n    y_axes: []\n    listen: {}\n    row: 0\n    col: 0\n    width: 8\n \
+    \   height: 6\n  - title: Legacy\n    name: Legacy\n    model: jpr_city\n    explore:\
+    \ lat_long\n    type: looker_map\n    fields: [lat_long.location, lat_long.total_latitude]\n\
+    \    sorts: [lat_long.location]\n    limit: 500\n    map_plot_mode: points\n \
+    \   heatmap_gridlines: false\n    heatmap_gridlines_empty: false\n    heatmap_opacity:\
+    \ 0.5\n    show_region_field: true\n    draw_map_labels_above_data: true\n   \
+    \ map_tile_provider: light\n    map_position: fit_data\n    map_scale_indicator:\
+    \ 'off'\n    map_pannable: true\n    map_zoomable: true\n    map_marker_type:\
+    \ circle\n    map_marker_icon_name: default\n    map_marker_radius_mode: proportional_value\n\
+    \    map_marker_units: meters\n    map_marker_proportional_scale_type: linear\n\
+    \    map_marker_color_mode: fixed\n    show_view_names: true\n    show_legend:\
+    \ true\n    quantize_map_value_colors: false\n    reverse_map_value_colors: false\n\
+    \    hidden_fields: []\n    hidden_points_if_no: []\n    series_labels: {}\n \
+    \   defaults_version: 1\n    series_types: {}\n    y_axes: []\n    listen: {}\n\
+    \    row: 0\n    col: 8\n    width: 8\n    height: 6\n"
+  dashboard_id: '20'
+- !DashboardObject
+  legacy_folder_id: '2216'
+  lookml: "- dashboard: test_ticket_537845_scenario_b\n  title: Test Ticket 537845\
+    \ Scenario B\n  layout: newspaper\n  preferred_viewer: dashboards-next\n  description:\
+    \ ''\n  preferred_slug: RUUmqDeSYt4P8WCftDYxpH\n  elements:\n  - title: Google\
+    \ Maps\n    name: Google Maps\n    model: jpr_city\n    explore: lat_long\n  \
+    \  type: looker_google_map\n    fields: [lat_long.location, lat_long.total_latitude]\n\
+    \    sorts: [lat_long.location]\n    limit: 500\n    hidden_fields: []\n    hidden_points_if_no:\
+    \ []\n    series_labels: {}\n    show_view_names: false\n    map_plot_mode: automagic_heatmap\n\
+    \    heatmap_gridlines: true\n    heatmap_gridlines_empty: false\n    heatmap_opacity:\
+    \ 0.5\n    show_region_field: true\n    draw_map_labels_above_data: true\n   \
+    \ map_tile_provider: traffic_day\n    map_position: custom\n    map_latitude:\
+    \ 20.59\n    map_longitude: 78.96\n    map_zoom: 4\n    map_pannable: true\n \
+    \   map_zoomable: true\n    map_marker_type: circle\n    map_marker_icon_name:\
+    \ default\n    map_marker_radius_mode: proportional_value\n    map_marker_units:\
+    \ meters\n    map_marker_proportional_scale_type: linear\n    map_marker_color_mode:\
+    \ fixed\n    show_legend: true\n    quantize_map_value_colors: false\n    reverse_map_value_colors:\
+    \ false\n    defaults_version: 0\n    series_types: {}\n    y_axes: []\n    listen:\
+    \ {}\n    row: 0\n    col: 0\n    width: 8\n    height: 6\n  - title: Legacy\n\
+    \    name: Legacy\n    model: jpr_city\n    explore: lat_long\n    type: looker_map\n\
+    \    fields: [lat_long.location, lat_long.total_latitude]\n    sorts: [lat_long.location]\n\
+    \    limit: 500\n    map_plot_mode: points\n    heatmap_gridlines: false\n   \
+    \ heatmap_gridlines_empty: false\n    heatmap_opacity: 0.5\n    show_region_field:\
+    \ true\n    draw_map_labels_above_data: true\n    map_tile_provider: light\n \
+    \   map_position: fit_data\n    map_scale_indicator: 'off'\n    map_pannable:\
+    \ true\n    map_zoomable: true\n    map_marker_type: circle\n    map_marker_icon_name:\
+    \ default\n    map_marker_radius_mode: proportional_value\n    map_marker_units:\
+    \ meters\n    map_marker_proportional_scale_type: linear\n    map_marker_color_mode:\
+    \ fixed\n    show_view_names: true\n    show_legend: true\n    quantize_map_value_colors:\
+    \ false\n    reverse_map_value_colors: false\n    hidden_fields: []\n    hidden_points_if_no:\
+    \ []\n    series_labels: {}\n    defaults_version: 1\n    series_types: {}\n \
+    \   y_axes: []\n    listen: {}\n    row: 0\n    col: 8\n    width: 8\n    height:\
+    \ 6\n  - title: Heatmap Gridlines\n    name: Heatmap Gridlines\n    model: jpr_city\n\
+    \    explore: lat_long\n    type: looker_google_map\n    fields: [lat_long.location,\
+    \ lat_long.total_latitude]\n    sorts: [lat_long.location]\n    limit: 500\n \
+    \   hidden_fields: []\n    hidden_points_if_no: []\n    series_labels: {}\n  \
+    \  show_view_names: true\n    map_plot_mode: automagic_heatmap\n    heatmap_gridlines:\
+    \ true\n    heatmap_gridlines_empty: false\n    heatmap_opacity: 0.5\n    show_region_field:\
+    \ true\n    draw_map_labels_above_data: true\n    map_tile_provider: light\n \
+    \   map_position: fit_data\n    map_pannable: true\n    map_zoomable: true\n \
+    \   map_marker_type: circle\n    map_marker_icon_name: default\n    map_marker_radius_mode:\
+    \ proportional_value\n    map_marker_units: meters\n    map_marker_proportional_scale_type:\
+    \ linear\n    map_marker_color_mode: fixed\n    show_legend: true\n    quantize_map_value_colors:\
+    \ false\n    reverse_map_value_colors: false\n    defaults_version: 0\n    series_types:\
+    \ {}\n    map_scale_indicator: 'off'\n    y_axes: []\n    listen: {}\n    row:\
+    \ 0\n    col: 16\n    width: 8\n    height: 6\n"
+  dashboard_id: '22'
+- !DashboardObject
+  legacy_folder_id: '2194'
+  lookml: "- dashboard: test_ticket_537845_scenario_c\n  title: Test Ticket 537845\
+    \ Scenario C\n  layout: newspaper\n  preferred_viewer: dashboards-next\n  description:\
+    \ ''\n  preferred_slug: F3AaNcZMlgGellY2Fzo2Ql\n  elements:\n  - title: Google\
+    \ Maps\n    name: Google Maps\n    model: jpr_city\n    explore: lat_long\n  \
+    \  type: looker_google_map\n    fields: [lat_long.location, lat_long.total_latitude]\n\
+    \    sorts: [lat_long.location]\n    limit: 500\n    hidden_fields: []\n    hidden_points_if_no:\
+    \ []\n    series_labels: {}\n    show_view_names: false\n    map_plot_mode: automagic_heatmap\n\
+    \    heatmap_gridlines: true\n    heatmap_gridlines_empty: false\n    heatmap_opacity:\
+    \ 0.5\n    show_region_field: true\n    draw_map_labels_above_data: true\n   \
+    \ map_tile_provider: traffic_day\n    map_position: custom\n    map_latitude:\
+    \ 20.59\n    map_longitude: 78.96\n    map_zoom: 4\n    map_pannable: true\n \
+    \   map_zoomable: true\n    map_marker_type: circle\n    map_marker_icon_name:\
+    \ default\n    map_marker_radius_mode: proportional_value\n    map_marker_units:\
+    \ meters\n    map_marker_proportional_scale_type: linear\n    map_marker_color_mode:\
+    \ fixed\n    show_legend: true\n    quantize_map_value_colors: false\n    reverse_map_value_colors:\
+    \ false\n    defaults_version: 0\n    series_types: {}\n    y_axes: []\n    listen:\
+    \ {}\n    row: 0\n    col: 0\n    width: 8\n    height: 6\n  - title: Legacy\n\
+    \    name: Legacy\n    model: jpr_city\n    explore: lat_long\n    type: looker_map\n\
+    \    fields: [lat_long.location, lat_long.total_latitude]\n    sorts: [lat_long.location]\n\
+    \    limit: 500\n    map_plot_mode: points\n    heatmap_gridlines: false\n   \
+    \ heatmap_gridlines_empty: false\n    heatmap_opacity: 0.5\n    show_region_field:\
+    \ true\n    draw_map_labels_above_data: true\n    map_tile_provider: light\n \
+    \   map_position: fit_data\n    map_scale_indicator: 'off'\n    map_pannable:\
+    \ true\n    map_zoomable: true\n    map_marker_type: circle\n    map_marker_icon_name:\
+    \ default\n    map_marker_radius_mode: proportional_value\n    map_marker_units:\
+    \ meters\n    map_marker_proportional_scale_type: linear\n    map_marker_color_mode:\
+    \ fixed\n    show_view_names: true\n    show_legend: true\n    quantize_map_value_colors:\
+    \ false\n    reverse_map_value_colors: false\n    hidden_fields: []\n    hidden_points_if_no:\
+    \ []\n    series_labels: {}\n    defaults_version: 1\n    series_types: {}\n \
+    \   y_axes: []\n    listen: {}\n    row: 0\n    col: 8\n    width: 8\n    height:\
+    \ 6\n  - title: Traffic Day\n    name: Traffic Day\n    model: jpr_city\n    explore:\
+    \ lat_long\n    type: looker_google_map\n    fields: [lat_long.location, lat_long.total_latitude]\n\
+    \    sorts: [lat_long.location]\n    limit: 500\n    hidden_fields: []\n    hidden_points_if_no:\
+    \ []\n    series_labels: {}\n    show_view_names: true\n    map_plot_mode: automagic_heatmap\n\
+    \    heatmap_gridlines: true\n    heatmap_gridlines_empty: false\n    heatmap_opacity:\
+    \ 0.5\n    show_region_field: true\n    draw_map_labels_above_data: true\n   \
+    \ map_tile_provider: traffic_day\n    map_position: fit_data\n    map_pannable:\
+    \ true\n    map_zoomable: true\n    map_marker_type: circle\n    map_marker_icon_name:\
+    \ default\n    map_marker_radius_mode: proportional_value\n    map_marker_units:\
+    \ meters\n    map_marker_proportional_scale_type: linear\n    map_marker_color_mode:\
+    \ fixed\n    show_legend: true\n    quantize_map_value_colors: false\n    reverse_map_value_colors:\
+    \ false\n    defaults_version: 0\n    series_types: {}\n    map_scale_indicator:\
+    \ 'off'\n    y_axes: []\n    listen: {}\n    row: 0\n    col: 16\n    width: 8\n\
+    \    height: 6\n"
+  dashboard_id: '23'

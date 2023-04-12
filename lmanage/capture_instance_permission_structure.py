@@ -39,17 +39,6 @@ def main(**kwargs):
     yaml.register_class(loc.LookObject)
     yaml.register_class(loc.DashboardObject)
 
-###############################################################
-# Capture Dashboard Content #######################################
-###############################################################
-    dash_content = dc.CaptureDashboards(sdk=sdk).execute()
-    print(f'{yaml_path}')
-    with open(f'{yaml_path}.yaml', 'w') as file:
-        fd_yml_txt = '''# Dashboard Content\n# Opening Session Welcome to the Capturator, this is the Dashboard Content place\n# -----------------------------------------------------\n\n'''
-        file.write(fd_yml_txt)
-        yaml.dump(dash_content, file)
-
-    logger.info(div)
 
 ###############################################################
 # Capture Folder Config #######################################
@@ -96,15 +85,27 @@ def main(**kwargs):
 ###############################################################
 # Capture Users Content #######################################
 ###############################################################
+    # Capture Look Content
     looks = lc.CaptureLookObject(sdk=sdk).execute()
     with open(f'{yaml_path}_content.yaml', 'a') as file:
         file.write('\n\n# LookData\n')
         yaml.dump(looks, file)
 
+    # Capture Dashboard Content 
+    dash_content = dc.CaptureDashboards(sdk=sdk).execute()
+    print(f'{yaml_path}')
+    with open(f'{yaml_path}.yaml', 'w') as file:
+        fd_yml_txt = '''# Dashboard Content\n# Opening Session Welcome to the Capturator, this is the Dashboard Content place\n# -----------------------------------------------------\n\n'''
+        file.write(fd_yml_txt)
+        yaml.dump(dash_content, file)
+
+    logger.info(div)
 
     # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
     logger.info('Lmanage has finished capturing your Looker instance!')
     logger.info('please find the captured instance at %s', yaml_path)
+
+
 
 
 if __name__ == "__main__":

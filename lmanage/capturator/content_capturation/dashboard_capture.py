@@ -48,8 +48,6 @@ class CaptureDashboards():
 
     def execute(self):
         all_dashboards = self.get_all_dashboards()
-        del all_dashboards[5:]
-
         all_dashboards = self.get_dashboard_lookml(all_dashboards)
         dash_objs = self.create_Dashboard_obj(all_dashboards)
         return dash_objs
