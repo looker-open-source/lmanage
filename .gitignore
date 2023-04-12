@@ -3,6 +3,7 @@ looker_backup_content/
 
 dist/
 tests/example_yamls/
+output/
 #Ignore all setup files
 .venv/
 .vscode/
@@ -34,6 +35,7 @@ tests/test_find_content_with_lookml_params.py
 tests/test_validate_content.py
 tests/test_lookml_files.py
 tests/snap_db_response.json
+tests/test_lookml_files/aws_thelook_redshift/
 
 #Ignore pycache
 __pycache__/
