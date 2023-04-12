@@ -39,7 +39,6 @@ def main(**kwargs):
     yaml.register_class(loc.LookObject)
     yaml.register_class(loc.DashboardObject)
 
-
 ###############################################################
 # Capture Folder Config #######################################
 ###############################################################

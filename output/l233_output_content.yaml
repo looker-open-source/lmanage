@@ -1,0 +1,144 @@
+# LookData
+- !LookObject
+  legacy_folder_id: '81'
+  look_id: '6'
+  title: Total Test
+  query_obj:
+    model: system__activity
+    view: event
+    fields:
+    - event.created_date
+    - event.count
+    pivots:
+    fill_fields:
+    - event.created_date
+    filters:
+    filter_expression:
+    sorts:
+    - event.created_date desc
+    limit: '500'
+    column_limit: '50'
+    total: true
+    row_total:
+    subtotals:
+    vis_config:
+      show_view_names: false
+      show_row_numbers: true
+      transpose: false
+      truncate_text: true
+      hide_totals: false
+      hide_row_totals: false
+      size_to_fit: true
+      table_theme: white
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      header_text_alignment: left
+      header_font_size: 12
+      rows_font_size: 12
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      hidden_pivots: {}
+      type: looker_grid
+      defaults_version: 1
+    filter_config: {}
+    visible_ui_sections:
+    dynamic_fields: '[{"category":"table_calculation","expression":"  sum(${event.count})\n","label":"event
+      count","value_format":null,"value_format_name":null,"_kind_hint":"measure","table_calculation":"event_count","_type_hint":"number"}]'
+    query_timezone:
+  description: ''
+- !LookObject
+  legacy_folder_id: '83'
+  look_id: '7'
+  title: look
+  query_obj:
+    model: system__activity
+    view: look
+    fields:
+    - look.id
+    - look.moved_to_trash
+    - look.link
+    - history.id
+    - look.title
+    - look.count
+    pivots:
+    fill_fields:
+    filters:
+    filter_expression:
+    sorts:
+    - look.count desc 0
+    limit: '500'
+    column_limit:
+    total:
+    row_total:
+    subtotals:
+    vis_config:
+      show_view_names: false
+      show_row_numbers: true
+      transpose: false
+      truncate_text: true
+      hide_totals: false
+      hide_row_totals: false
+      size_to_fit: true
+      table_theme: white
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      header_text_alignment: left
+      header_font_size: 12
+      rows_font_size: 12
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      type: looker_grid
+      defaults_version: 1
+    filter_config: {}
+    visible_ui_sections:
+    dynamic_fields:
+    query_timezone:
+  description: ''
+- !LookObject
+  legacy_folder_id: '85'
+  look_id: '8'
+  title: look
+  query_obj:
+    model: system__activity
+    view: look
+    fields:
+    - look.id
+    - look.moved_to_trash
+    - look.link
+    - history.id
+    - look.title
+    - look.count
+    pivots:
+    fill_fields:
+    filters:
+    filter_expression:
+    sorts:
+    - look.count desc 0
+    limit: '500'
+    column_limit:
+    total:
+    row_total:
+    subtotals:
+    vis_config:
+      show_view_names: false
+      show_row_numbers: true
+      transpose: false
+      truncate_text: true
+      hide_totals: false
+      hide_row_totals: false
+      size_to_fit: true
+      table_theme: white
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      header_text_alignment: left
+      header_font_size: 12
+      rows_font_size: 12
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      type: looker_grid
+      defaults_version: 1
+    filter_config: {}
+    visible_ui_sections:
+    dynamic_fields:
+    query_timezone:
+  description: ''

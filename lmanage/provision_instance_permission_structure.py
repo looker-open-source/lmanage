@@ -132,6 +132,7 @@ def main(**kwargs):
     dash_creator = cd.Create_Dashboards(sdk=sdk,folder_mapping=folder_mapping_obj,content_metadata=dash_metadata)
     dash = dash_creator.execute()
 
+
     logger.info('Lmanage has finished configuring your Looker instance!')
 
 

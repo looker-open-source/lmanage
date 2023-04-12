@@ -1,0 +1,200 @@
+# FOLDER_PERMISSIONS
+# Opening Session Welcome to the Capturator, this is the Folder place
+# -----------------------------------------------------
+
+- !LookerFolder
+  parent_id:
+  id: '1'
+  name: Shared
+  subfolder:
+  - !LookerFolder
+    parent_id: '1'
+    id: '83'
+    name: monkey
+    subfolder:
+    - !LookerFolder
+      parent_id: '83'
+      id: '84'
+      name: monkey_sub
+      subfolder:
+      - !LookerFolder
+        parent_id: '84'
+        id: '85'
+        name: monkey_sub_sub
+        subfolder: []
+        content_metadata_id: '100'
+        team_edit: []
+        team_view: []
+      content_metadata_id: '99'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '98'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '81'
+    name: test
+    subfolder:
+    - !LookerFolder
+      parent_id: '81'
+      id: '82'
+      name: blok
+      subfolder: []
+      content_metadata_id: '97'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '96'
+    team_edit: []
+    team_view: []
+  content_metadata_id: '1'
+  team_edit:
+  - All Users
+  team_view: []
+# Looker Role
+# Opening Session Welcome to the Capturator, this is the Role place
+# -----------------------------------------------------
+
+
+
+# PERMISSION SETS
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - mobile_app_access
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  name: Viewer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  name: User
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_without_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  - use_sql_runner
+  name: Developer
+
+
+# MODEL SETS
+- !LookerModelSet
+  models:
+  - naga_234_test
+  - lookml-diagram
+  - large_project
+  - extension-api-explorer
+  - cloud_logging
+  name: All
+
+
+# LOOKER ROLES
+- !LookerRoles
+  permission_set: User
+  model_set: All
+  teams:
+  - User
+  name: User
+- !LookerRoles
+  permission_set: Developer
+  model_set: All
+  teams: []
+  name: Developer
+- !LookerRoles
+  permission_set: Viewer
+  model_set: All
+  teams: []
+  name: Viewer
+
+
+# USER_ATTRIBUTES
+- !LookerUserAttribute
+  name: first_name
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: id
+  uatype: number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: landing_page
+  uatype: relative_url
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: /browse
+  teams: []
+- !LookerUserAttribute
+  name: locale
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: number_format
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: rajk
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: ''
+  teams: []

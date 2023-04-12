@@ -13,8 +13,15 @@ class CaptureLookObject():
         self.sdk = sdk
 
     def all_looks(self):
-        all_looks_object = self.sdk.all_looks()
-        all_looks_id = [look.id for look in all_looks_object]
+        all_look_meta = None
+        trys = 0
+        while all_look_meta is None:
+            try:
+                logger.info('running the all look sdk call to get existing look metadata')
+                all_look_meta = self.sdk.all_looks()
+            except:
+                return_sleep_message
+        all_looks_id = [look.id for look in all_look_meta]
         return all_looks_id
 
     def get_look_metadata(self, look_id: str) -> dict:
@@ -51,6 +58,11 @@ class CaptureLookObject():
             (k, query_metadata[k]) for k in metadata_keep_keys)
         return restricted_look_metadata
 
+    def calc_done_percent(self,iterator: int, total: int) -> str:
+        percent = (iterator/total) * 100
+        return f'{int(percent)} %'
+
+
     def execute(self):
         '''
         1. get all the looks and extract the id's
@@ -59,9 +71,15 @@ class CaptureLookObject():
         '''
         all_look_data = self.all_looks()
         looks = []
+        content = 1
         for look in all_look_data:
+            total = len(all_look_data)
+            percent_complete = self.calc_done_percent(iterator=content, total=total)
+            logger.info(f'you have captured {percent_complete} of looks in your instance')
             lmetadata = self.get_look_metadata(look_id=look)
             if lmetadata.folder.is_personal:
+                pass
+            elif lmetadata.folder.is_embed:
                 pass
             else:
                 query_object = lmetadata.query.__dict__
@@ -77,4 +95,5 @@ class CaptureLookObject():
                     look_id=look_id,
                     title=title)
                 looks.append(look_obj)
+            content += 1
         return looks
