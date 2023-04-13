@@ -1,0 +1,910 @@
+
+
+# LookData
+- !LookObject
+  legacy_folder_id: '81'
+  look_id: '6'
+  title: Total Test
+  query_obj:
+    model: system__activity
+    view: event
+    fields:
+    - event.created_date
+    - event.count
+    pivots:
+    fill_fields:
+    - event.created_date
+    filters:
+    filter_expression:
+    sorts:
+    - event.created_date desc
+    limit: '500'
+    column_limit: '50'
+    total: true
+    row_total:
+    subtotals:
+    vis_config:
+      show_view_names: false
+      show_row_numbers: true
+      transpose: false
+      truncate_text: true
+      hide_totals: false
+      hide_row_totals: false
+      size_to_fit: true
+      table_theme: white
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      header_text_alignment: left
+      header_font_size: 12
+      rows_font_size: 12
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      hidden_pivots: {}
+      type: looker_grid
+      defaults_version: 1
+    filter_config: {}
+    visible_ui_sections:
+    dynamic_fields: '[{"category":"table_calculation","expression":"  sum(${event.count})\n","label":"event
+      count","value_format":null,"value_format_name":null,"_kind_hint":"measure","table_calculation":"event_count","_type_hint":"number"}]'
+    query_timezone:
+  description: ''
+- !LookObject
+  legacy_folder_id: '83'
+  look_id: '7'
+  title: look
+  query_obj:
+    model: system__activity
+    view: look
+    fields:
+    - look.id
+    - look.moved_to_trash
+    - look.link
+    - history.id
+    - look.title
+    - look.count
+    pivots:
+    fill_fields:
+    filters:
+    filter_expression:
+    sorts:
+    - look.count desc 0
+    limit: '500'
+    column_limit:
+    total:
+    row_total:
+    subtotals:
+    vis_config:
+      show_view_names: false
+      show_row_numbers: true
+      transpose: false
+      truncate_text: true
+      hide_totals: false
+      hide_row_totals: false
+      size_to_fit: true
+      table_theme: white
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      header_text_alignment: left
+      header_font_size: 12
+      rows_font_size: 12
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      type: looker_grid
+      defaults_version: 1
+    filter_config: {}
+    visible_ui_sections:
+    dynamic_fields:
+    query_timezone:
+  description: ''
+- !LookObject
+  legacy_folder_id: '85'
+  look_id: '8'
+  title: look
+  query_obj:
+    model: system__activity
+    view: look
+    fields:
+    - look.id
+    - look.moved_to_trash
+    - look.link
+    - history.id
+    - look.title
+    - look.count
+    pivots:
+    fill_fields:
+    filters:
+    filter_expression:
+    sorts:
+    - look.count desc 0
+    limit: '500'
+    column_limit:
+    total:
+    row_total:
+    subtotals:
+    vis_config:
+      show_view_names: false
+      show_row_numbers: true
+      transpose: false
+      truncate_text: true
+      hide_totals: false
+      hide_row_totals: false
+      size_to_fit: true
+      table_theme: white
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      header_text_alignment: left
+      header_font_size: 12
+      rows_font_size: 12
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      type: looker_grid
+      defaults_version: 1
+    filter_config: {}
+    visible_ui_sections:
+    dynamic_fields:
+    query_timezone:
+  description: ''
+
+
+# Dashboard Content
+- !DashboardObject
+  legacy_folder_id: '63'
+  lookml: "- dashboard: new_dashboard\n  title: New Dashboard\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: uVAFzjmk3mOdUsCE8sky0q\n\
+    \  elements:\n  - title: Untitled\n    name: Untitled\n    model: system__activity\n\
+    \    explore: history\n    type: looker_line\n    fields: [history.created_hour,\
+    \ source_query_rank.sorted_source, history.query_run_count]\n    pivots: [source_query_rank.sorted_source]\n\
+    \    filters:\n      history.created_date: 1 days\n    sorts: [source_query_rank.sorted_source\
+    \ desc, history.created_hour desc]\n    column_limit: 50\n    x_axis_gridlines:\
+    \ false\n    y_axis_gridlines: true\n    show_view_names: false\n    show_y_axis_labels:\
+    \ true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:\
+    \ 5\n    show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:\
+    \ linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:\
+    \ false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n\
+    \    legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  show_null_points: true\n    interpolation: linear\n    defaults_version: 1\n\
+    \    row:\n    col:\n    width:\n    height:\n"
+  dashboard_id: '5'
+- !DashboardObject
+  legacy_folder_id: '85'
+  lookml: "- dashboard: new_dashboard\n  title: New Dashboard\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: altLyIglxfRs8N3WaNfTKQ\n\
+    \  elements:\n  - name: ''\n    type: text\n    title_text: ''\n    subtitle_text:\
+    \ ''\n    body_text: '[{\"type\":\"h1\",\"children\":[{\"text\":\"jkjkjkjk\"}],\"\
+    align\":\"center\"}]'\n    rich_content_json: '{\"format\":\"slate\"}'\n    row:\n\
+    \    col:\n    width:\n    height:\n"
+  dashboard_id: '6'
+- !DashboardObject
+  legacy_folder_id: '81'
+  lookml: "- dashboard: new_dashboard\n  title: New Dashboard\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: SkRfx99hbJYDPBuNXZRsdi\n\
+    \  elements:\n  - title: Untitled\n    name: Untitled\n    model: system__activity\n\
+    \    explore: field_usage\n    type: table\n    fields: [field_usage.field]\n\
+    \    limit: 500\n    row:\n    col:\n    width:\n    height:\n"
+  dashboard_id: '7'
+- !DashboardObject
+  legacy_folder_id: lookml
+  lookml: "- dashboard: audit_pulse\n  title: Audit Pulse\n  layout: newspaper\n \
+    \ preferred_viewer: dashboards-next\n  description: ''\n  elements:\n  - title:\
+    \ Services\n    name: Services\n    model: cloud_logging\n    explore: all_logs\n\
+    \    type: single_value\n    fields: [all_logs.service_count]\n    limit: 500\n\
+    \    column_limit: 50\n    custom_color_enabled: true\n    show_single_value_title:\
+    \ true\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:\
+    \ false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    defaults_version: 1\n    listen:\n      Date Filter: all_logs.timestamp_date\n\
+    \      Service(s): all_logs.proto_payload__audit_log__service_name\n    row: 0\n\
+    \    col: 0\n    width: 6\n    height: 3\n  - title: IPs\n    name: IPs\n    model:\
+    \ cloud_logging\n    explore: all_logs\n    type: single_value\n    fields: [all_logs.ip_count]\n\
+    \    limit: 500\n    column_limit: 50\n    custom_color_enabled: true\n    show_single_value_title:\
+    \ true\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:\
+    \ false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    defaults_version: 1\n    hidden_pivots: {}\n    listen:\n      Date\
+    \ Filter: all_logs.timestamp_date\n      Service(s): all_logs.proto_payload__audit_log__service_name\n\
+    \    row: 0\n    col: 6\n    width: 6\n    height: 3\n  - title: Principals\n\
+    \    name: Principals\n    model: cloud_logging\n    explore: all_logs\n    type:\
+    \ single_value\n    fields: [all_logs.principal_count]\n    limit: 500\n    column_limit:\
+    \ 50\n    custom_color_enabled: true\n    show_single_value_title: true\n    show_comparison:\
+    \ false\n    comparison_type: value\n    comparison_reverse_colors: false\n  \
+    \  show_comparison_label: true\n    enable_conditional_formatting: false\n   \
+    \ conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    defaults_version: 1\n    hidden_pivots: {}\n    listen:\n      Date\
+    \ Filter: all_logs.timestamp_date\n      Service(s): all_logs.proto_payload__audit_log__service_name\n\
+    \    row: 0\n    col: 12\n    width: 6\n    height: 3\n  - title: Methods\n  \
+    \  name: Methods\n    model: cloud_logging\n    explore: all_logs\n    type: single_value\n\
+    \    fields: [all_logs.method_count]\n    limit: 500\n    column_limit: 50\n \
+    \   custom_color_enabled: true\n    show_single_value_title: true\n    show_comparison:\
+    \ false\n    comparison_type: value\n    comparison_reverse_colors: false\n  \
+    \  show_comparison_label: true\n    enable_conditional_formatting: false\n   \
+    \ conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    defaults_version: 1\n    hidden_pivots: {}\n    listen:\n      Date\
+    \ Filter: all_logs.timestamp_date\n      Service(s): all_logs.proto_payload__audit_log__service_name\n\
+    \    row: 0\n    col: 18\n    width: 6\n    height: 3\n  - title: Methods Trend\n\
+    \    name: Methods Trend\n    model: cloud_logging\n    explore: all_logs\n  \
+    \  type: looker_line\n    fields: [all_logs.method_count, all_logs.date]\n   \
+    \ sorts: [all_logs.date]\n    limit: 500\n    column_limit: 50\n    x_axis_gridlines:\
+    \ false\n    y_axis_gridlines: false\n    show_view_names: false\n    show_y_axis_labels:\
+    \ true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:\
+    \ 5\n    show_x_axis_label: false\n    show_x_axis_ticks: false\n    y_axis_scale_mode:\
+    \ linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:\
+    \ false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n\
+    \    legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  show_null_points: false\n    interpolation: linear\n    y_axes: [{label: '',\
+    \ orientation: left, series: [{axisId: all_logs.total_methods_used,\n        \
+    \    id: all_logs.total_methods_used, name: Total Methods Used}], showLabels:\
+    \ false,\n        showValues: false, unpinAxis: true, tickDensity: default, tickDensityCustom:\
+    \ 5,\n        type: linear}]\n    x_axis_zoom: true\n    y_axis_zoom: true\n \
+    \   series_types: {}\n    custom_color_enabled: true\n    show_single_value_title:\
+    \ true\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:\
+    \ false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    defaults_version: 1\n    hidden_pivots: {}\n    title_hidden: true\n\
+    \    listen:\n      Date Filter: all_logs.timestamp_date\n      Date Granularity:\
+    \ all_logs.date_granularity\n      Service(s): all_logs.proto_payload__audit_log__service_name\n\
+    \    row: 3\n    col: 18\n    width: 6\n    height: 3\n  - title: Services Trend\n\
+    \    name: Services Trend\n    model: cloud_logging\n    explore: all_logs\n \
+    \   type: looker_line\n    fields: [all_logs.service_count, all_logs.date]\n \
+    \   sorts: [all_logs.date]\n    limit: 500\n    column_limit: 50\n    x_axis_gridlines:\
+    \ false\n    y_axis_gridlines: false\n    show_view_names: false\n    show_y_axis_labels:\
+    \ true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:\
+    \ 5\n    show_x_axis_label: false\n    show_x_axis_ticks: false\n    y_axis_scale_mode:\
+    \ linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:\
+    \ false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n\
+    \    legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  show_null_points: false\n    interpolation: linear\n    y_axes: [{label: '',\
+    \ orientation: left, series: [{axisId: all_logs.total_methods_used,\n        \
+    \    id: all_logs.total_methods_used, name: Total Methods Used}], showLabels:\
+    \ false,\n        showValues: false, unpinAxis: true, tickDensity: default, tickDensityCustom:\
+    \ 5,\n        type: linear}]\n    x_axis_zoom: true\n    y_axis_zoom: true\n \
+    \   series_types: {}\n    custom_color_enabled: true\n    show_single_value_title:\
+    \ true\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:\
+    \ false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    defaults_version: 1\n    hidden_pivots: {}\n    title_hidden: true\n\
+    \    listen:\n      Date Filter: all_logs.timestamp_date\n      Date Granularity:\
+    \ all_logs.date_granularity\n      Service(s): all_logs.proto_payload__audit_log__service_name\n\
+    \    row: 3\n    col: 0\n    width: 6\n    height: 3\n  - title: IP Trend\n  \
+    \  name: IP Trend\n    model: cloud_logging\n    explore: all_logs\n    type:\
+    \ looker_line\n    fields: [all_logs.ip_count, all_logs.date]\n    sorts: [all_logs.date]\n\
+    \    limit: 500\n    column_limit: 50\n    x_axis_gridlines: false\n    y_axis_gridlines:\
+    \ false\n    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:\
+    \ true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n\
+    \    show_x_axis_label: false\n    show_x_axis_ticks: false\n    y_axis_scale_mode:\
+    \ linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:\
+    \ false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n\
+    \    legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  show_null_points: false\n    interpolation: linear\n    y_axes: [{label: '',\
+    \ orientation: left, series: [{axisId: all_logs.total_methods_used,\n        \
+    \    id: all_logs.total_methods_used, name: Total Methods Used}], showLabels:\
+    \ false,\n        showValues: false, unpinAxis: true, tickDensity: default, tickDensityCustom:\
+    \ 5,\n        type: linear}]\n    x_axis_zoom: true\n    y_axis_zoom: true\n \
+    \   series_types: {}\n    custom_color_enabled: true\n    show_single_value_title:\
+    \ true\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:\
+    \ false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    defaults_version: 1\n    hidden_pivots: {}\n    title_hidden: true\n\
+    \    listen:\n      Date Filter: all_logs.timestamp_date\n      Date Granularity:\
+    \ all_logs.date_granularity\n      Service(s): all_logs.proto_payload__audit_log__service_name\n\
+    \    row: 3\n    col: 6\n    width: 6\n    height: 3\n  - title: Principals Trend\n\
+    \    name: Principals Trend\n    model: cloud_logging\n    explore: all_logs\n\
+    \    type: looker_line\n    fields: [all_logs.principal_count, all_logs.date]\n\
+    \    sorts: [all_logs.date]\n    limit: 500\n    column_limit: 50\n    x_axis_gridlines:\
+    \ false\n    y_axis_gridlines: false\n    show_view_names: false\n    show_y_axis_labels:\
+    \ true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:\
+    \ 5\n    show_x_axis_label: false\n    show_x_axis_ticks: false\n    y_axis_scale_mode:\
+    \ linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:\
+    \ false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n\
+    \    legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  show_null_points: false\n    interpolation: linear\n    y_axes: [{label: '',\
+    \ orientation: left, series: [{axisId: all_logs.total_methods_used,\n        \
+    \    id: all_logs.total_methods_used, name: Total Methods Used}], showLabels:\
+    \ false,\n        showValues: false, unpinAxis: true, tickDensity: default, tickDensityCustom:\
+    \ 5,\n        type: linear}]\n    x_axis_zoom: true\n    y_axis_zoom: true\n \
+    \   series_types: {}\n    custom_color_enabled: true\n    show_single_value_title:\
+    \ true\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:\
+    \ false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    defaults_version: 1\n    hidden_pivots: {}\n    title_hidden: true\n\
+    \    listen:\n      Date Filter: all_logs.timestamp_date\n      Date Granularity:\
+    \ all_logs.date_granularity\n      Service(s): all_logs.proto_payload__audit_log__service_name\n\
+    \    row: 3\n    col: 12\n    width: 6\n    height: 3\n  - title: Top IP Activity\n\
+    \    name: Top IP Activity\n    model: cloud_logging\n    explore: all_logs\n\
+    \    type: looker_bar\n    fields: [all_logs.proto_payload__audit_log__request_metadata__caller_ip,\
+    \ all_logs.service_count,\n      all_logs.method_count, all_logs.count]\n    filters:\n\
+    \      all_logs.proto_payload__audit_log__request_metadata__caller_ip: \"-NULL,-private\"\
+    \n      all_logs.is_system_or_service_account: 'No'\n    sorts: [all_logs.count\
+    \ desc]\n    limit: 20\n    column_limit: 50\n    x_axis_gridlines: false\n  \
+    \  y_axis_gridlines: false\n    show_view_names: false\n    show_y_axis_labels:\
+    \ true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:\
+    \ 5\n    show_x_axis_label: false\n    show_x_axis_ticks: true\n    y_axis_scale_mode:\
+    \ linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:\
+    \ false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n\
+    \    legend_position: center\n    point_style: circle\n    show_value_labels:\
+    \ false\n    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n\
+    \    ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    color_application:\n\
+    \      collection_id: 5b121cce-cf79-457c-a52a-9162dc174766\n      palette_id:\
+    \ 55dee055-18cf-4472-9669-469322a6f264\n      options:\n        steps: 5\n   \
+    \ y_axes: [{label: !!null '', orientation: top, series: [{axisId: all_logs.service_count,\n\
+    \            id: all_logs.service_count, name: Service Count}], showLabels: true,\
+    \ showValues: true,\n        unpinAxis: false, tickDensity: default, tickDensityCustom:\
+    \ 5, type: linear},\n      {label: '', orientation: bottom, series: [{axisId:\
+    \ all_logs.method_count, id: all_logs.method_count,\n            name: Method\
+    \ Count}], showLabels: true, showValues: true, unpinAxis: false,\n        tickDensity:\
+    \ default, tickDensityCustom: 5, type: linear}]\n    size_by_field: all_logs.method_count\n\
+    \    x_axis_zoom: true\n    y_axis_zoom: true\n    series_types:\n      all_logs.method_count:\
+    \ scatter\n    series_colors:\n      all_logs.method_count: \"#93CF6C\"\n    series_labels:\
+    \ {}\n    defaults_version: 1\n    hidden_fields: [all_logs.count]\n    hidden_points_if_no:\
+    \ []\n    hidden_pivots: {}\n    show_row_numbers: true\n    transpose: false\n\
+    \    truncate_text: true\n    hide_totals: false\n    hide_row_totals: false\n\
+    \    size_to_fit: true\n    table_theme: white\n    enable_conditional_formatting:\
+    \ false\n    header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:\
+    \ 12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    show_null_points: true\n    note_state: collapsed\n    note_display:\
+    \ hover\n    note_text: Number of Services accessed by IP and Methods executed\
+    \ by IP\n    listen:\n      Date Filter: all_logs.timestamp_date\n      Date Granularity:\
+    \ all_logs.date_granularity\n      Service(s): all_logs.proto_payload__audit_log__service_name\n\
+    \    row: 6\n    col: 0\n    width: 12\n    height: 13\n  - title: Top Principals\
+    \ by Service\n    name: Top Principals by Service\n    model: cloud_logging\n\
+    \    explore: all_logs\n    type: looker_donut_multiples\n    fields: [all_logs.proto_payload__audit_log__authentication_info__principal_email,\n\
+    \      all_logs.proto_payload__audit_log__service_name, all_logs.count]\n    pivots:\
+    \ [all_logs.proto_payload__audit_log__service_name]\n    filters:\n      all_logs.is_system_or_service_account:\
+    \ 'No'\n      all_logs.proto_payload__audit_log__authentication_info__principal_email:\
+    \ \"-NULL\"\n    sorts: [all_logs.proto_payload__audit_log__service_name, all_logs.count\
+    \ desc 0]\n    limit: 9\n    column_limit: 50\n    show_value_labels: false\n\
+    \    font_size: 12\n    charts_across: 3\n    color_application:\n      collection_id:\
+    \ 5b121cce-cf79-457c-a52a-9162dc174766\n      palette_id: 55dee055-18cf-4472-9669-469322a6f264\n\
+    \      options:\n        steps: 5\n    series_colors:\n      container - all_logs.count:\
+    \ \"#93CF6C\"\n      cloudsql - all_logs.count: \"#FFE663\"\n      cloudasset\
+    \ - all_logs.count: \"#5DC370\"\n    x_axis_gridlines: false\n    y_axis_gridlines:\
+    \ true\n    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:\
+    \ true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n\
+    \    show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:\
+    \ linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:\
+    \ false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n\
+    \    legend_position: center\n    point_style: none\n    label_density: 25\n \
+    \   x_axis_scale: auto\n    y_axis_combined: true\n    ordering: none\n    show_null_labels:\
+    \ false\n    show_totals_labels: false\n    show_silhouette: false\n    totals_color:\
+    \ \"#808080\"\n    defaults_version: 1\n    series_types: {}\n    hidden_pivots:\
+    \ {}\n    listen:\n      Date Filter: all_logs.timestamp_date\n      Date Granularity:\
+    \ all_logs.date_granularity\n      Service(s): all_logs.proto_payload__audit_log__service_name\n\
+    \    row: 6\n    col: 12\n    width: 12\n    height: 13\n  filters:\n  - name:\
+    \ Date Filter\n    title: Date Filter\n    type: field_filter\n    default_value:\
+    \ 7 day\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: relative_timeframes\n      display: inline\n      options: []\n \
+    \   model: cloud_logging\n    explore: all_logs\n    listens_to_filters: []\n\
+    \    field: all_logs.timestamp_date\n  - name: Date Granularity\n    title: Date\
+    \ Granularity\n    type: field_filter\n    default_value: hour\n    allow_multiple_values:\
+    \ true\n    required: false\n    ui_config:\n      type: button_toggles\n    \
+    \  display: inline\n    model: cloud_logging\n    explore: all_logs\n    listens_to_filters:\
+    \ []\n    field: all_logs.date_granularity\n  - name: Service(s)\n    title: Service(s)\n\
+    \    type: field_filter\n    default_value: ''\n    allow_multiple_values: true\n\
+    \    required: false\n    ui_config:\n      type: advanced\n      display: popover\n\
+    \      options: []\n    model: cloud_logging\n    explore: all_logs\n    listens_to_filters:\
+    \ []\n    field: all_logs.proto_payload__audit_log__service_name\n"
+  dashboard_id: cloud_logging::audit_pulse
+- !DashboardObject
+  legacy_folder_id: lookml
+  lookml: "- dashboard: data_access_logs\n  title: Data Access Logs\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  elements:\n  - title:\
+    \ Top Users who Accessed Data\n    name: Top Users who Accessed Data\n    model:\
+    \ cloud_logging\n    explore: all_logs\n    type: looker_bar\n    fields: [all_logs.proto_payload__audit_log__authentication_info__principal_email,\n\
+    \      all_logs.count_dal_event, all_logs.proto_payload__audit_log__service_name]\n\
+    \    pivots: [all_logs.proto_payload__audit_log__service_name]\n    filters:\n\
+    \      all_logs.proto_payload__audit_log__authentication_info__principal_email:\
+    \ \"-NULL\"\n      all_logs.is_system_or_service_account: 'No'\n      all_logs.log_id:\
+    \ '\"cloudaudit.googleapis.com/data_access\"'\n    sorts: [all_logs.proto_payload__audit_log__service_name,\
+    \ all_logs.count_dal_event\n        desc 0]\n    limit: 500\n    column_limit:\
+    \ 50\n    x_axis_gridlines: false\n    y_axis_gridlines: false\n    show_view_names:\
+    \ false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:\
+    \ default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: false\n \
+    \   show_x_axis_ticks: true\n    y_axis_scale_mode: linear\n    x_axis_reversed:\
+    \ false\n    y_axis_reversed: false\n    plot_size_by_field: false\n    trellis:\
+    \ ''\n    stacking: normal\n    limit_displayed_rows: false\n    legend_position:\
+    \ center\n    point_style: none\n    show_value_labels: true\n    label_density:\
+    \ 25\n    x_axis_scale: auto\n    y_axis_combined: true\n    ordering: none\n\
+    \    show_null_labels: false\n    show_totals_labels: false\n    show_silhouette:\
+    \ false\n    totals_color: \"#808080\"\n    color_application:\n      collection_id:\
+    \ 5b121cce-cf79-457c-a52a-9162dc174766\n      palette_id: 55dee055-18cf-4472-9669-469322a6f264\n\
+    \      options:\n        steps: 5\n    y_axes: [{label: Data Access Events, orientation:\
+    \ bottom, series: [{axisId: bigquery\n              - _all_logs.count_dal_event,\
+    \ id: bigquery - _all_logs.count_dal_event,\n            name: bigquery}, {axisId:\
+    \ cloudsql - _all_logs.count_dal_event, id: cloudsql\n              - _all_logs.count_dal_event,\
+    \ name: cloudsql}, {axisId: k8s - _all_logs.count_dal_event,\n            id:\
+    \ k8s - _all_logs.count_dal_event, name: k8s}, {axisId: storage - _all_logs.count_dal_event,\n\
+    \            id: storage - _all_logs.count_dal_event, name: storage}], showLabels:\
+    \ true,\n        showValues: true, unpinAxis: false, tickDensity: default, tickDensityCustom:\
+    \ 5,\n        type: linear}]\n    x_axis_label: User\n    x_axis_zoom: true\n\
+    \    y_axis_zoom: true\n    series_types: {}\n    show_row_numbers: true\n   \
+    \ transpose: false\n    truncate_text: true\n    hide_totals: false\n    hide_row_totals:\
+    \ false\n    size_to_fit: true\n    table_theme: white\n    enable_conditional_formatting:\
+    \ false\n    header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:\
+    \ 12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    hidden_pivots: {}\n    defaults_version: 1\n    hidden_fields: []\n\
+    \    note_state: collapsed\n    note_display: hover\n    note_text: CSA 5.01\n\
+    \    listen:\n      Service(s): all_logs.proto_payload__audit_log__service_name\n\
+    \      Date: all_logs.timestamp_date\n    row: 2\n    col: 13\n    width: 11\n\
+    \    height: 10\n  - title: Cloud Storage Object Accessed by New IP\n    name:\
+    \ Cloud Storage Object Accessed by New IP\n    model: cloud_logging\n    explore:\
+    \ all_logs\n    type: looker_grid\n    fields: [all_logs.proto_payload__audit_log__request_metadata__caller_ip,\
+    \ all_logs.proto_payload__audit_log__authentication_info__principal_email,\n \
+    \     all_logs.timestamp_date, ip_stats.first_instance_time, ip_stats.last_instance_time,\n\
+    \      all_logs.method_count, all_logs.resource_count]\n    filters:\n      all_logs.is_system_or_service_account:\
+    \ 'No'\n      all_logs.proto_payload__audit_log__service_name: storage\n     \
+    \ ip_stats.is_new_ip: 'Yes'\n    sorts: [all_logs.timestamp_date desc]\n    limit:\
+    \ 500\n    column_limit: 50\n    show_view_names: false\n    show_row_numbers:\
+    \ false\n    transpose: false\n    truncate_text: true\n    hide_totals: false\n\
+    \    hide_row_totals: false\n    size_to_fit: true\n    table_theme: white\n \
+    \   limit_displayed_rows: false\n    enable_conditional_formatting: false\n  \
+    \  header_text_alignment: left\n    header_font_size: '12'\n    rows_font_size:\
+    \ '12'\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    color_application:\n      collection_id: 5b121cce-cf79-457c-a52a-9162dc174766\n\
+    \      palette_id: 55dee055-18cf-4472-9669-469322a6f264\n    show_sql_query_menu_options:\
+    \ false\n    show_totals: true\n    show_row_totals: true\n    truncate_header:\
+    \ false\n    series_labels:\n      _all_logs.timestamp_time: Timestamp\n     \
+    \ user_ip_stats.first_instance_time: IP First Used\n      user_ip_stats.last_instance_time:\
+    \ IP Last Used\n      all_logs.proto_payload__audit_log__authentication_info__principal_email:\
+    \ Email\n      all_logs.proto_payload__audit_log__request_metadata__caller_ip:\
+    \ New IP\n      all_logs.proto_payload__audit_log__method_name: Method Name\n\
+    \      all_logs.proto_payload__audit_log__resource_name: Resource Name\n     \
+    \ all_logs.timestamp_date: Access Date\n      ip_stats.first_instance_time: IP\
+    \ First Appears\n      ip_stats.last_instance_time: IP Last Appears\n    series_column_widths:\n\
+    \      _all_logs.proto_payload__audit_log__authentication_info__principal_email:\
+    \ 187\n      _all_logs.timestamp_date: 123\n      user_ip_stats.first_instance_time:\
+    \ 155\n      _all_logs.proto_payload__audit_log__resource_name: 421\n      user_ip_stats.last_instance_time:\
+    \ 160\n      _all_logs.proto_payload__audit_log__request_metadata__caller_ip:\
+    \ 256\n      all_logs.timestamp_date: 173\n      all_logs.proto_payload__audit_log__resource_name:\
+    \ 438\n      ip_stats.first_instance_date: 118\n      ip_stats.last_instance_date:\
+    \ 133\n      all_logs.proto_payload__audit_log__method_name: 235\n      all_logs.proto_payload__audit_log__request_metadata__caller_ip:\
+    \ 403\n      all_logs.proto_payload__audit_log__authentication_info__principal_email:\
+    \ 345\n      ip_stats.first_instance_time: 169\n      ip_stats.last_instance_time:\
+    \ 171\n      all_logs.method_count: 193\n      all_logs.resource_count: 234\n\
+    \    series_cell_visualizations:\n      all_logs.method_count:\n        is_active:\
+    \ true\n      all_logs.resource_count:\n        is_active: true\n        palette:\n\
+    \          palette_id: 540a327a-0a3a-035b-8109-81be398be765\n          collection_id:\
+    \ 5b121cce-cf79-457c-a52a-9162dc174766\n          custom_colors:\n          -\
+    \ \"#436FB8\"\n          - \"#170658\"\n    series_text_format:\n      all_logs.proto_payload__audit_log__request_metadata__caller_ip:\n\
+    \        bg_color: \"#FFE663\"\n        bold: true\n    hidden_pivots: {}\n  \
+    \  x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_y_axis_labels:\
+    \ true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:\
+    \ 5\n    show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:\
+    \ linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:\
+    \ false\n    trellis: ''\n    stacking: ''\n    legend_position: center\n    point_style:\
+    \ none\n    show_value_labels: false\n    label_density: 25\n    x_axis_scale:\
+    \ auto\n    y_axis_combined: true\n    ordering: none\n    show_null_labels: false\n\
+    \    show_totals_labels: false\n    show_silhouette: false\n    totals_color:\
+    \ \"#808080\"\n    defaults_version: 1\n    series_types: {}\n    hidden_fields:\
+    \ []\n    y_axes: []\n    note_state: collapsed\n    note_display: hover\n   \
+    \ note_text: CSA 5.31\n    listen:\n      Date: all_logs.timestamp_date\n    row:\
+    \ 23\n    col: 0\n    width: 24\n    height: 5\n  - title: Data Access by Service\n\
+    \    name: Data Access by Service\n    model: cloud_logging\n    explore: all_logs\n\
+    \    type: looker_column\n    fields: [all_logs.count_dal_event, all_logs.proto_payload__audit_log__service_name,\n\
+    \      all_logs.timestamp_date]\n    pivots: [all_logs.proto_payload__audit_log__service_name]\n\
+    \    fill_fields: [all_logs.timestamp_date]\n    filters:\n      all_logs.is_system_or_service_account:\
+    \ 'No'\n      all_logs.log_id: '\"cloudaudit.googleapis.com/data_access\"'\n \
+    \   sorts: [all_logs.proto_payload__audit_log__service_name, all_logs.timestamp_date\n\
+    \        desc]\n    limit: 500\n    column_limit: 50\n    x_axis_gridlines: false\n\
+    \    y_axis_gridlines: false\n    show_view_names: false\n    show_y_axis_labels:\
+    \ true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:\
+    \ 5\n    show_x_axis_label: false\n    show_x_axis_ticks: true\n    y_axis_scale_mode:\
+    \ linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:\
+    \ false\n    trellis: ''\n    stacking: normal\n    limit_displayed_rows: false\n\
+    \    legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    color_application:\n\
+    \      collection_id: 5b121cce-cf79-457c-a52a-9162dc174766\n      palette_id:\
+    \ 55dee055-18cf-4472-9669-469322a6f264\n      options:\n        steps: 5\n   \
+    \ x_axis_zoom: true\n    y_axis_zoom: true\n    series_types: {}\n    series_colors:\
+    \ {}\n    hidden_pivots: {}\n    show_null_points: true\n    interpolation: linear\n\
+    \    defaults_version: 1\n    hidden_fields: []\n    y_axes: []\n    listen:\n\
+    \      Service(s): all_logs.proto_payload__audit_log__service_name\n      Date:\
+    \ all_logs.timestamp_date\n    row: 2\n    col: 0\n    width: 13\n    height:\
+    \ 10\n  - name: ''\n    type: text\n    title_text: ''\n    body_text: '[{\"type\"\
+    :\"h1\",\"children\":[{\"text\":\"Data Access across All Services\"}],\"align\"\
+    :\"center\"},{\"type\":\"p\",\"children\":[{\"text\":\"(select\n      services\
+    \ in above filter)\"}],\"id\":1676658408271,\"align\":\"center\"}]'\n    rich_content_json:\
+    \ '{\"format\":\"slate\"}'\n    row: 0\n    col: 0\n    width: 24\n    height:\
+    \ 2\n  - name: \" (2)\"\n    type: text\n    title_text: ''\n    body_text: '[{\"\
+    type\":\"h1\",\"children\":[{\"text\":\"Cloud Storage\",\"bold\":true}],\"align\"\
+    :\"center\"}]'\n    rich_content_json: '{\"format\":\"slate\"}'\n    row: 21\n\
+    \    col: 0\n    width: 24\n    height: 2\n  - title: Location of Data Access\n\
+    \    name: Location of Data Access\n    model: cloud_logging\n    explore: all_logs\n\
+    \    type: looker_google_map\n    fields: [ip_to_geo_mapping.location, all_logs.count,\
+    \ ip_to_geo_mapping.city_name,\n      ip_to_geo_mapping.country_name, all_logs.proto_payload__audit_log__authentication_info__principal_email]\n\
+    \    filters:\n      all_logs.is_audit_log: 'Yes'\n      all_logs.is_system_or_service_account:\
+    \ 'No'\n      all_logs.date_granularity: day\n      all_logs.log_id: '\"cloudaudit.googleapis.com/data_access\"\
+    '\n    sorts: [all_logs.count desc 0]\n    limit: 500\n    column_limit: 50\n\
+    \    hidden_fields: []\n    hidden_points_if_no: []\n    series_labels: {}\n \
+    \   show_view_names: false\n    map_plot_mode: points\n    heatmap_gridlines:\
+    \ false\n    heatmap_gridlines_empty: false\n    heatmap_opacity: 0.5\n    show_region_field:\
+    \ true\n    draw_map_labels_above_data: true\n    map_tile_provider: light\n \
+    \   map_position: custom\n    map_latitude: 38\n    map_longitude: 290\n    map_zoom:\
+    \ 4\n    map_pannable: true\n    map_zoomable: true\n    map_marker_type: circle\n\
+    \    map_marker_icon_name: default\n    map_marker_radius_mode: proportional_value\n\
+    \    map_marker_units: meters\n    map_marker_radius_min: 50000\n    map_marker_radius_max:\
+    \ 600000\n    map_marker_proportional_scale_type: linear\n    map_marker_color_mode:\
+    \ fixed\n    show_legend: true\n    quantize_map_value_colors: false\n    reverse_map_value_colors:\
+    \ false\n    custom_color_enabled: true\n    show_single_value_title: true\n \
+    \   show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:\
+    \ false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    series_types: {}\n    defaults_version: 0\n    hidden_pivots: {}\n\
+    \    y_axes: []\n    listen:\n      Date: all_logs.timestamp_date\n      Service(s):\
+    \ all_logs.proto_payload__audit_log__service_name\n    row: 12\n    col: 0\n \
+    \   width: 24\n    height: 9\n  - name: \" (3)\"\n    type: text\n    title_text:\
+    \ ''\n    body_text: '[{\"type\":\"h1\",\"children\":[{\"text\":\"BigQuery\",\"\
+    bold\":true}],\"align\":\"center\"}]'\n    rich_content_json: '{\"format\":\"\
+    slate\"}'\n    row: 28\n    col: 0\n    width: 24\n    height: 2\n  - title: Top\
+    \ Data Access Users\n    name: Top Data Access Users\n    model: cloud_logging\n\
+    \    explore: all_logs\n    type: looker_grid\n    fields: [all_logs.proto_payload__audit_log__authentication_info__principal_email,\n\
+    \      all_logs.billed_gb]\n    filters:\n      all_logs.log_id: '\"cloudaudit.googleapis.com/data_access\"\
+    '\n      all_logs.proto_payload__audit_log__service_name_long: bigquery.googleapis.com\n\
+    \    sorts: [all_logs.billed_gb desc 0]\n    limit: 500\n    column_limit: 50\n\
+    \    show_view_names: false\n    show_row_numbers: false\n    transpose: false\n\
+    \    truncate_text: true\n    hide_totals: false\n    hide_row_totals: false\n\
+    \    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows: false\n\
+    \    enable_conditional_formatting: true\n    header_text_alignment: left\n  \
+    \  header_font_size: '12'\n    rows_font_size: '12'\n    conditional_formatting_include_totals:\
+    \ false\n    conditional_formatting_include_nulls: false\n    show_sql_query_menu_options:\
+    \ false\n    show_totals: true\n    show_row_totals: true\n    truncate_header:\
+    \ false\n    series_labels:\n      all_logs.proto_payload__audit_log__authentication_info__principal_email:\
+    \ Email\n    series_cell_visualizations:\n      all_logs.billed_gb:\n        is_active:\
+    \ true\n    conditional_formatting: []\n    x_axis_gridlines: false\n    y_axis_gridlines:\
+    \ true\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:\
+    \ default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n  \
+    \  show_x_axis_ticks: true\n    y_axis_scale_mode: linear\n    x_axis_reversed:\
+    \ false\n    y_axis_reversed: false\n    plot_size_by_field: false\n    x_axis_zoom:\
+    \ true\n    y_axis_zoom: true\n    trellis: ''\n    stacking: ''\n    legend_position:\
+    \ center\n    series_types: {}\n    point_style: none\n    show_value_labels:\
+    \ true\n    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n\
+    \    ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:\
+    \ 1\n    hidden_pivots: {}\n    note_state: collapsed\n    note_display: hover\n\
+    \    note_text: CSA 5.02\n    listen:\n      Date: all_logs.timestamp_date\n \
+    \     Service(s): all_logs.proto_payload__audit_log__service_name\n    row: 30\n\
+    \    col: 0\n    width: 5\n    height: 6\n  - title: Queries by User per Day\n\
+    \    name: Queries by User per Day\n    model: cloud_logging\n    explore: all_logs\n\
+    \    type: looker_area\n    fields: [all_logs.proto_payload__audit_log__authentication_info__principal_email,\n\
+    \      all_logs.billed_gb, all_logs.timestamp_date]\n    pivots: [all_logs.proto_payload__audit_log__authentication_info__principal_email]\n\
+    \    fill_fields: [all_logs.timestamp_date]\n    filters:\n      all_logs.log_id:\
+    \ '\"cloudaudit.googleapis.com/data_access\"'\n      all_logs.proto_payload__audit_log__service_name_long:\
+    \ bigquery.googleapis.com\n      all_logs.job_config_type: QUERY\n    sorts: [all_logs.proto_payload__audit_log__authentication_info__principal_email\n\
+    \        desc, all_logs.timestamp_date desc]\n    limit: 500\n    column_limit:\
+    \ 50\n    x_axis_gridlines: false\n    y_axis_gridlines: false\n    show_view_names:\
+    \ false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:\
+    \ default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n  \
+    \  show_x_axis_ticks: true\n    y_axis_scale_mode: linear\n    x_axis_reversed:\
+    \ false\n    y_axis_reversed: false\n    plot_size_by_field: false\n    trellis:\
+    \ ''\n    stacking: normal\n    limit_displayed_rows: false\n    legend_position:\
+    \ center\n    point_style: none\n    show_value_labels: true\n    label_density:\
+    \ 25\n    x_axis_scale: auto\n    y_axis_combined: true\n    show_null_points:\
+    \ true\n    interpolation: linear\n    show_totals_labels: false\n    show_silhouette:\
+    \ false\n    totals_color: \"#808080\"\n    color_application:\n      collection_id:\
+    \ 5b121cce-cf79-457c-a52a-9162dc174766\n      palette_id: 55dee055-18cf-4472-9669-469322a6f264\n\
+    \      options:\n        steps: 5\n    y_axes: [{label: '', orientation: left,\
+    \ series: [{axisId: all_logs.billed_gb,\n            id: trelane@google.com -\
+    \ all_logs.billed_gb, name: trelane@google.com},\n          {axisId: all_logs.billed_gb,\
+    \ id: hutz@google.com - all_logs.billed_gb, name: hutz@google.com},\n        \
+    \  {axisId: all_logs.billed_gb, id: cbaer@google.com - all_logs.billed_gb,\n \
+    \           name: cbaer@google.com}], showLabels: true, showValues: true, unpinAxis:\
+    \ false,\n        tickDensity: default, tickDensityCustom: 5, type: linear}]\n\
+    \    x_axis_label: Date\n    x_axis_zoom: true\n    y_axis_zoom: true\n    series_types:\
+    \ {}\n    series_colors: {}\n    series_labels:\n      all_logs.proto_payload__audit_log__authentication_info__principal_email:\
+    \ Email\n    label_color: [\"#\"]\n    ordering: none\n    show_null_labels: false\n\
+    \    show_sql_query_menu_options: false\n    show_totals: true\n    show_row_totals:\
+    \ true\n    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n\
+    \    truncate_header: false\n    size_to_fit: true\n    series_cell_visualizations:\n\
+    \      all_logs.billed_gb:\n        is_active: true\n    table_theme: white\n\
+    \    enable_conditional_formatting: true\n    header_text_alignment: left\n  \
+    \  header_font_size: '12'\n    rows_font_size: '12'\n    conditional_formatting:\
+    \ []\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    defaults_version: 1\n    hidden_pivots: {}\n    hide_totals: false\n\
+    \    hide_row_totals: false\n    note_state: collapsed\n    note_display: hover\n\
+    \    note_text: CSA 5.03\n    listen:\n      Date: all_logs.timestamp_date\n \
+    \     Service(s): all_logs.proto_payload__audit_log__service_name\n    row: 30\n\
+    \    col: 5\n    width: 19\n    height: 6\n  filters:\n  - name: Date\n    title:\
+    \ Date\n    type: field_filter\n    default_value: 7 day\n    allow_multiple_values:\
+    \ true\n    required: false\n    ui_config:\n      type: relative_timeframes\n\
+    \      display: inline\n      options: []\n    model: cloud_logging\n    explore:\
+    \ all_logs\n    listens_to_filters: []\n    field: all_logs.timestamp_date\n \
+    \ - name: Service(s)\n    title: Service(s)\n    type: field_filter\n    default_value:\
+    \ bigquery,cloudsql,storage,k8s\n    allow_multiple_values: true\n    required:\
+    \ false\n    ui_config:\n      type: checkboxes\n      display: popover\n    model:\
+    \ cloud_logging\n    explore: all_logs\n    listens_to_filters: []\n    field:\
+    \ all_logs.proto_payload__audit_log__service_name\n"
+  dashboard_id: cloud_logging::data_access_logs
+- !DashboardObject
+  legacy_folder_id: lookml
+  lookml: "- dashboard: principal_lookup\n  title: Principal Lookup\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  elements:\n  - title:\
+    \ IPs Used - Last 30 Days\n    name: IPs Used - Last 30 Days\n    model: cloud_logging\n\
+    \    explore: all_logs\n    type: looker_grid\n    fields: [all_logs.proto_payload__audit_log__request_metadata__caller_ip,\
+    \ all_logs.min_timestamp,\n      all_logs.max_timestamp, all_logs.count]\n   \
+    \ sorts: [all_logs.max_timestamp desc]\n    limit: 500\n    column_limit: 50\n\
+    \    show_view_names: false\n    show_row_numbers: true\n    transpose: false\n\
+    \    truncate_text: true\n    hide_totals: false\n    hide_row_totals: false\n\
+    \    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows: false\n\
+    \    enable_conditional_formatting: true\n    header_text_alignment: left\n  \
+    \  header_font_size: '12'\n    rows_font_size: '12'\n    conditional_formatting_include_totals:\
+    \ false\n    conditional_formatting_include_nulls: false\n    show_sql_query_menu_options:\
+    \ false\n    show_totals: true\n    show_row_totals: true\n    truncate_header:\
+    \ false\n    series_labels:\n      all_logs.min_timestamp: First Used\n      all_logs.max_timestamp:\
+    \ Last Used\n    series_cell_visualizations: {}\n    conditional_formatting: [{type:\
+    \ along a scale..., value: !!null '', background_color: \"#29bff3\",\n       \
+    \ font_color: !!null '', color_application: {collection_id: create-a-color-collection,\n\
+    \          palette_id: create-a-color-collection-sequential-0}, bold: false, italic:\
+    \ false,\n        strikethrough: false, fields: !!null ''}]\n    x_axis_gridlines:\
+    \ false\n    y_axis_gridlines: true\n    show_y_axis_labels: true\n    show_y_axis_ticks:\
+    \ true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n\
+    \    show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:\
+    \ linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:\
+    \ false\n    trellis: ''\n    stacking: ''\n    legend_position: center\n    point_style:\
+    \ none\n    show_value_labels: false\n    label_density: 25\n    x_axis_scale:\
+    \ auto\n    y_axis_combined: true\n    ordering: none\n    show_null_labels: false\n\
+    \    show_totals_labels: false\n    show_silhouette: false\n    totals_color:\
+    \ \"#808080\"\n    defaults_version: 1\n    series_types: {}\n    hidden_fields:\
+    \ []\n    y_axes: []\n    listen:\n      Principal Email: all_logs.proto_payload__audit_log__authentication_info__principal_email\n\
+    \      Date: all_logs.timestamp_date\n    row: 2\n    col: 7\n    width: 17\n\
+    \    height: 8\n  - title: Services Used\n    name: Services Used\n    model:\
+    \ cloud_logging\n    explore: all_logs\n    type: looker_pie\n    fields: [all_logs.proto_payload__audit_log__service_name,\
+    \ all_logs.count]\n    sorts: [all_logs.count desc 0]\n    limit: 500\n    column_limit:\
+    \ 50\n    value_labels: legend\n    label_type: labPer\n    inner_radius: 50\n\
+    \    color_application:\n      collection_id: 5b121cce-cf79-457c-a52a-9162dc174766\n\
+    \      palette_id: 55dee055-18cf-4472-9669-469322a6f264\n      options:\n    \
+    \    steps: 5\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_view_names:\
+    \ false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:\
+    \ default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n  \
+    \  show_x_axis_ticks: true\n    y_axis_scale_mode: linear\n    x_axis_reversed:\
+    \ false\n    y_axis_reversed: false\n    plot_size_by_field: false\n    trellis:\
+    \ ''\n    stacking: ''\n    limit_displayed_rows: false\n    legend_position:\
+    \ center\n    point_style: none\n    show_value_labels: false\n    label_density:\
+    \ 25\n    x_axis_scale: auto\n    y_axis_combined: true\n    ordering: none\n\
+    \    show_null_labels: false\n    show_totals_labels: false\n    show_silhouette:\
+    \ false\n    totals_color: \"#808080\"\n    defaults_version: 1\n    series_types:\
+    \ {}\n    hidden_fields: []\n    y_axes: []\n    listen:\n      Principal Email:\
+    \ all_logs.proto_payload__audit_log__authentication_info__principal_email\n  \
+    \    Date: all_logs.timestamp_date\n    row: 2\n    col: 0\n    width: 7\n   \
+    \ height: 8\n  - title: Historical API Usage\n    name: Historical API Usage\n\
+    \    model: cloud_logging\n    explore: all_logs\n    type: looker_column\n  \
+    \  fields: [all_logs.timestamp_date, all_logs.count, all_logs.method_count]\n\
+    \    fill_fields: [all_logs.timestamp_date]\n    filters:\n      all_logs.count:\
+    \ NOT NULL\n    sorts: [all_logs.timestamp_date]\n    limit: 500\n    column_limit:\
+    \ 50\n    x_axis_gridlines: false\n    y_axis_gridlines: false\n    show_view_names:\
+    \ false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:\
+    \ default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n  \
+    \  show_x_axis_ticks: true\n    y_axis_scale_mode: linear\n    x_axis_reversed:\
+    \ false\n    y_axis_reversed: false\n    plot_size_by_field: false\n    trellis:\
+    \ ''\n    stacking: ''\n    limit_displayed_rows: false\n    legend_position:\
+    \ center\n    point_style: circle\n    show_value_labels: true\n    label_density:\
+    \ 25\n    x_axis_scale: auto\n    y_axis_combined: true\n    ordering: none\n\
+    \    show_null_labels: false\n    show_totals_labels: false\n    show_silhouette:\
+    \ false\n    totals_color: \"#808080\"\n    color_application:\n      collection_id:\
+    \ 5b121cce-cf79-457c-a52a-9162dc174766\n      palette_id: 55dee055-18cf-4472-9669-469322a6f264\n\
+    \      options:\n        steps: 5\n    y_axes: [{label: '', orientation: left,\
+    \ series: [{axisId: all_logs.count, id: all_logs.count,\n            name: Event\
+    \ Count}], showLabels: true, showValues: true, unpinAxis: false,\n        tickDensity:\
+    \ default, tickDensityCustom: 5, type: linear}, {label: !!null '',\n        orientation:\
+    \ right, series: [{axisId: all_logs.total_methods_used, id: all_logs.total_methods_used,\n\
+    \            name: Total Methods Used}], showLabels: true, showValues: true, unpinAxis:\
+    \ false,\n        tickDensity: default, tickDensityCustom: 5, type: linear}]\n\
+    \    size_by_field: all_logs.method_count\n    x_axis_zoom: true\n    y_axis_zoom:\
+    \ true\n    series_types:\n      all_logs.total_methods_used: scatter\n      all_logs.method_count:\
+    \ scatter\n    series_labels:\n      all_logs.method_count: Methods Used\n   \
+    \ reference_lines: []\n    hidden_pivots: {}\n    show_null_points: true\n   \
+    \ interpolation: linear\n    defaults_version: 1\n    listen:\n      Principal\
+    \ Email: all_logs.proto_payload__audit_log__authentication_info__principal_email\n\
+    \      Date: all_logs.timestamp_date\n    row: 12\n    col: 10\n    width: 14\n\
+    \    height: 8\n  - title: Recent API Usage\n    name: Recent API Usage\n    model:\
+    \ cloud_logging\n    explore: all_logs\n    type: looker_grid\n    fields: [all_logs.timestamp_date,\
+    \ all_logs.proto_payload__audit_log__method_name,\n      all_logs.count]\n   \
+    \ filters:\n      all_logs.timestamp_date: 7 days\n    sorts: [all_logs.count\
+    \ desc]\n    limit: 500\n    column_limit: 50\n    show_view_names: false\n  \
+    \  show_row_numbers: false\n    transpose: false\n    truncate_text: true\n  \
+    \  hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n   \
+    \ table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:\
+    \ false\n    header_text_alignment: left\n    header_font_size: '12'\n    rows_font_size:\
+    \ '12'\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    color_application:\n      collection_id: 5b121cce-cf79-457c-a52a-9162dc174766\n\
+    \      palette_id: 55dee055-18cf-4472-9669-469322a6f264\n      options:\n    \
+    \    steps: 5\n    show_sql_query_menu_options: false\n    show_totals: true\n\
+    \    show_row_totals: true\n    truncate_header: false\n    series_labels:\n \
+    \     all_logs.proto_payload__audit_log__method_name: Method\n      all_logs.proto_payload__audit_log__authentication_info__principal_email:\
+    \ Principal\n        Email\n      all_logs.timestamp_date: Date\n    series_cell_visualizations:\n\
+    \      all_logs.count:\n        is_active: true\n    x_axis_gridlines: false\n\
+    \    y_axis_gridlines: false\n    y_axes: [{label: '', orientation: left, series:\
+    \ [{axisId: all_logs.count, id: all_logs.count,\n            name: Event Count}],\
+    \ showLabels: true, showValues: true, unpinAxis: false,\n        tickDensity:\
+    \ default, tickDensityCustom: 5, type: linear}, {label: !!null '',\n        orientation:\
+    \ right, series: [{axisId: all_logs.total_methods_used, id: all_logs.total_methods_used,\n\
+    \            name: Total Methods Used}], showLabels: true, showValues: true, unpinAxis:\
+    \ false,\n        tickDensity: default, tickDensityCustom: 5, type: linear}]\n\
+    \    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:\
+    \ default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n  \
+    \  show_x_axis_ticks: true\n    y_axis_scale_mode: linear\n    x_axis_reversed:\
+    \ false\n    y_axis_reversed: false\n    size_by_field: all_logs.total_methods_used\n\
+    \    plot_size_by_field: false\n    x_axis_zoom: true\n    y_axis_zoom: true\n\
+    \    trellis: ''\n    stacking: ''\n    legend_position: center\n    series_types:\
+    \ {}\n    point_style: circle\n    show_value_labels: true\n    label_density:\
+    \ 25\n    x_axis_scale: auto\n    y_axis_combined: true\n    reference_lines:\
+    \ []\n    ordering: none\n    show_null_labels: false\n    show_totals_labels:\
+    \ false\n    show_silhouette: false\n    totals_color: \"#808080\"\n    hidden_pivots:\
+    \ {}\n    show_null_points: true\n    interpolation: linear\n    defaults_version:\
+    \ 1\n    series_column_widths:\n      all_logs.timestamp_date: 113\n      all_logs.proto_payload__audit_log__method_name:\
+    \ 452\n    note_state: collapsed\n    note_display: above\n    note_text: Last\
+    \ 7 Days\n    listen:\n      Principal Email: all_logs.proto_payload__audit_log__authentication_info__principal_email\n\
+    \    row: 12\n    col: 0\n    width: 10\n    height: 8\n  - name: ''\n    type:\
+    \ text\n    title_text: ''\n    body_text: '[{\"type\":\"h2\",\"children\":[{\"\
+    text\":\"API Usage\"}],\"align\":\"center\"}]'\n    rich_content_json: '{\"format\"\
+    :\"slate\"}'\n    row: 10\n    col: 0\n    width: 24\n    height: 2\n  - title:\
+    \ email\n    name: email\n    model: cloud_logging\n    explore: all_logs\n  \
+    \  type: single_value\n    fields: [all_logs.proto_payload__audit_log__authentication_info__principal_email]\n\
+    \    sorts: [all_logs.proto_payload__audit_log__authentication_info__principal_email]\n\
+    \    limit: 500\n    column_limit: 50\n    custom_color_enabled: true\n    show_single_value_title:\
+    \ false\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:\
+    \ false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_view_names:\
+    \ false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:\
+    \ default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n  \
+    \  show_x_axis_ticks: true\n    y_axis_scale_mode: linear\n    x_axis_reversed:\
+    \ false\n    y_axis_reversed: false\n    plot_size_by_field: false\n    trellis:\
+    \ ''\n    stacking: ''\n    limit_displayed_rows: false\n    legend_position:\
+    \ center\n    point_style: none\n    show_value_labels: false\n    label_density:\
+    \ 25\n    x_axis_scale: auto\n    y_axis_combined: true\n    ordering: none\n\
+    \    show_null_labels: false\n    show_totals_labels: false\n    show_silhouette:\
+    \ false\n    totals_color: \"#808080\"\n    defaults_version: 1\n    series_types:\
+    \ {}\n    listen:\n      Principal Email: all_logs.proto_payload__audit_log__authentication_info__principal_email\n\
+    \      Date: all_logs.timestamp_date\n    row: 0\n    col: 0\n    width: 24\n\
+    \    height: 2\n  filters:\n  - name: Principal Email\n    title: Principal Email\n\
+    \    type: field_filter\n    default_value: hutz@google.com\n    allow_multiple_values:\
+    \ true\n    required: false\n    ui_config:\n      type: tag_list\n      display:\
+    \ popover\n    model: cloud_logging\n    explore: all_logs\n    listens_to_filters:\
+    \ []\n    field: all_logs.proto_payload__audit_log__authentication_info__principal_email\n\
+    \  - name: Date\n    title: Date\n    type: field_filter\n    default_value: 30\
+    \ day\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: relative_timeframes\n      display: inline\n      options: []\n \
+    \   model: cloud_logging\n    explore: all_logs\n    listens_to_filters: []\n\
+    \    field: all_logs.timestamp_date\n"
+  dashboard_id: cloud_logging::principal_lookup
+- !DashboardObject
+  legacy_folder_id: lookml
+  lookml: "- dashboard: unusual_api_usage\n  title: Unusual API Usage\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  elements:\n  - title:\
+    \ Unusual API Usage\n    name: Unusual API Usage\n    model: cloud_logging\n \
+    \   explore: unusual_api_usage\n    type: looker_column\n    fields: [unusual_api_usage.principal_email,\
+    \ unusual_api_usage.history_date, unusual_api_usage.total_log_events,\n      unusual_api_usage.abnormal_threshold,\
+    \ unusual_api_usage.threshold]\n    filters:\n      unusual_api_usage.exceeds_threshold:\
+    \ 'Yes'\n    sorts: [unusual_api_usage.total_log_events desc]\n    limit: 500\n\
+    \    column_limit: 50\n    x_axis_gridlines: false\n    y_axis_gridlines: false\n\
+    \    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:\
+    \ true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n\
+    \    show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:\
+    \ linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:\
+    \ false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n\
+    \    legend_position: center\n    point_style: none\n    show_value_labels: true\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    color_application:\n\
+    \      collection_id: 5b121cce-cf79-457c-a52a-9162dc174766\n      palette_id:\
+    \ 55dee055-18cf-4472-9669-469322a6f264\n      options:\n        steps: 5\n   \
+    \ x_axis_zoom: true\n    y_axis_zoom: true\n    series_types: {}\n    series_colors:\n\
+    \      unusual_api_usage.abnormal_threshold: \"#e8503f\"\n    series_labels:\n\
+    \      unusual_api_usage.total_log_events: API Events\n      unusual_api_usage.abnormal_threshold:\
+    \ 3 Stddev of Typical Usage\n    reference_lines: []\n    show_null_points: true\n\
+    \    interpolation: linear\n    show_row_numbers: true\n    transpose: false\n\
+    \    truncate_text: true\n    hide_totals: false\n    hide_row_totals: false\n\
+    \    size_to_fit: true\n    table_theme: white\n    enable_conditional_formatting:\
+    \ false\n    header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:\
+    \ 12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    hidden_pivots: {}\n    defaults_version: 1\n    hidden_fields: [unusual_api_usage.history_date,\
+    \ unusual_api_usage.threshold]\n    y_axes: []\n    note_state: collapsed\n  \
+    \  note_display: above\n    note_text: Each principal email below has exceeded\
+    \ the \"normal\" threshold of API\n      usage on a particular day\n    listen:\n\
+    \      Current Date: unusual_api_usage.date\n      Historical Date: unusual_api_usage.historical_date\n\
+    \      Number of Standard Deviations: unusual_api_usage.standard_deviation\n \
+    \     Sample Size: unusual_api_usage.sample_size\n      Is System or Service Account\
+    \ (Yes / No): unusual_api_usage.is_system_or_service_account\n      Method / API\
+    \ Name: unusual_api_usage.method_name\n      'Minimum # of Events': unusual_api_usage.total_log_events\n\
+    \    row: 4\n    col: 0\n    width: 24\n    height: 10\n  - title: Details\n \
+    \   name: Details\n    model: cloud_logging\n    explore: unusual_api_usage\n\
+    \    type: looker_grid\n    fields: [unusual_api_usage.principal_email, unusual_api_usage.history_date,\
+    \ unusual_api_usage.sample_size,\n      unusual_api_usage.normal_avg, unusual_api_usage.total_log_events,\
+    \ unusual_api_usage.abnormal_threshold]\n    filters:\n      unusual_api_usage.exceeds_threshold:\
+    \ 'Yes'\n    sorts: [variance desc]\n    limit: 500\n    column_limit: 50\n  \
+    \  dynamic_fields: [{category: table_calculation, expression: \"${unusual_api_usage.total_log_events}\\\
+    \n          \\ - ${unusual_api_usage.abnormal_threshold}\", label: Variance, value_format:\
+    \ !!null '',\n        value_format_name: decimal_2, _kind_hint: measure, table_calculation:\
+    \ variance,\n        _type_hint: number}, {category: table_calculation, expression:\
+    \ \"${unusual_api_usage.normal_avg}\",\n        label: Historical Avg, value_format:\
+    \ !!null '', value_format_name: decimal_0,\n        _kind_hint: dimension, table_calculation:\
+    \ historical_avg, _type_hint: number,\n        is_disabled: true}]\n    show_view_names:\
+    \ false\n    show_row_numbers: true\n    transpose: false\n    truncate_text:\
+    \ true\n    hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n\
+    \    table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:\
+    \ false\n    header_text_alignment: left\n    header_font_size: '12'\n    rows_font_size:\
+    \ '12'\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:\
+    \ false\n    color_application:\n      collection_id: 5b121cce-cf79-457c-a52a-9162dc174766\n\
+    \      palette_id: 55dee055-18cf-4472-9669-469322a6f264\n      options:\n    \
+    \    steps: 5\n    show_sql_query_menu_options: false\n    show_totals: true\n\
+    \    show_row_totals: true\n    truncate_header: false\n    series_labels:\n \
+    \     unusual_api_usage.normal_avg: Historical Avg\n      unusual_api_usage.total_log_events:\
+    \ API Events\n      unusual_api_usage.abnormal_threshold: 3 Stddev of Historical\
+    \ Average\n    series_cell_visualizations:\n      normal_api_usage.total_log_events:\n\
+    \        is_active: true\n      variance:\n        is_active: true\n    series_value_format:\n\
+    \      normal_api_usage.normal_avg:\n        name: decimal_0\n        decimals:\
+    \ '0'\n        format_string: \"#,##0\"\n        label: Decimals (0)\n       \
+    \ label_prefix: Decimals\n      normal_api_usage.abnormal_threshold:\n       \
+    \ name: decimal_0\n        decimals: '0'\n        format_string: \"#,##0\"\n \
+    \       label: Decimals (0)\n        label_prefix: Decimals\n      variance:\n\
+    \        name: decimal_0\n        decimals: '0'\n        format_string: \"#,##0\"\
+    \n        label: Decimals (0)\n        label_prefix: Decimals\n    x_axis_gridlines:\
+    \ false\n    y_axis_gridlines: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:\
+    \ true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n\
+    \    show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:\
+    \ linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:\
+    \ false\n    x_axis_zoom: true\n    y_axis_zoom: true\n    trellis: ''\n    stacking:\
+    \ ''\n    legend_position: center\n    series_types: {}\n    point_style: none\n\
+    \    series_colors:\n      unusual_api_usage.abnormal_threshold: \"#e8503f\"\n\
+    \    show_value_labels: true\n    label_density: 25\n    x_axis_scale: auto\n\
+    \    y_axis_combined: true\n    reference_lines: []\n    ordering: none\n    show_null_labels:\
+    \ false\n    show_totals_labels: false\n    show_silhouette: false\n    totals_color:\
+    \ \"#808080\"\n    show_null_points: true\n    interpolation: linear\n    hidden_pivots:\
+    \ {}\n    defaults_version: 1\n    hidden_fields: []\n    y_axes: []\n    listen:\n\
+    \      Sample Size: unusual_api_usage.sample_size\n      Current Date: unusual_api_usage.date\n\
+    \      Number of Standard Deviations: unusual_api_usage.standard_deviation\n \
+    \     Historical Date: unusual_api_usage.historical_date\n      Is System or Service\
+    \ Account (Yes / No): unusual_api_usage.is_system_or_service_account\n      Method\
+    \ / API Name: unusual_api_usage.method_name\n      'Minimum # of Events': unusual_api_usage.total_log_events\n\
+    \    row: 14\n    col: 0\n    width: 24\n    height: 8\n  - name: ''\n    type:\
+    \ text\n    title_text: ''\n    body_text: '[{\"type\":\"h3\",\"children\":[{\"\
+    text\":\"How to use this dashboard\"}]},{\"type\":\"p\",\"children\":[{\"text\"\
+    :\"\"}],\"id\":1678383357236},{\"type\":\"p\",\"id\":1678383472297,\"children\"\
+    :[{\"text\":\"Dates\",\"bold\":true},{\"text\":\"\n      - Use the filters above\
+    \ to compare API usage from a “Current Period” against\n      a “Historical” time\
+    \ period that will represent “Normal” behavior over that time.\n      \"}]},{\"\
+    type\":\"p\",\"id\":1678383439807,\"children\":[{\"text\":\"Standard Deviations\"\
+    ,\"bold\":true},{\"text\":\"\n      - choose the threshold that should be exceeded\
+    \ to determine “Unusual” usage.\n      \"}]},{\"type\":\"p\",\"id\":1678383525042,\"\
+    children\":[{\"text\":\"Sample Size\",\"bold\":true},{\"text\":\"\n      - number\
+    \ of historical dates that were used to determine a “Normal” average\"}]}]'\n\
+    \    rich_content_json: '{\"format\":\"slate\"}'\n    row: 0\n    col: 0\n   \
+    \ width: 24\n    height: 4\n  filters:\n  - name: Current Date\n    title: Current\
+    \ Date\n    type: field_filter\n    default_value: 7 days\n    allow_multiple_values:\
+    \ true\n    required: false\n    ui_config:\n      type: advanced\n      display:\
+    \ popover\n    model: cloud_logging\n    explore: unusual_api_usage\n    listens_to_filters:\
+    \ []\n    field: unusual_api_usage.date\n  - name: Historical Date\n    title:\
+    \ Historical Date\n    type: field_filter\n    default_value: 90 days\n    allow_multiple_values:\
+    \ true\n    required: false\n    ui_config:\n      type: advanced\n      display:\
+    \ popover\n    model: cloud_logging\n    explore: unusual_api_usage\n    listens_to_filters:\
+    \ []\n    field: unusual_api_usage.historical_date\n  - name: Number of Standard\
+    \ Deviations\n    title: Number of Standard Deviations\n    type: field_filter\n\
+    \    default_value: '3'\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: dropdown_menu\n      display: inline\n    model:\
+    \ cloud_logging\n    explore: unusual_api_usage\n    listens_to_filters: []\n\
+    \    field: unusual_api_usage.standard_deviation\n  - name: Sample Size\n    title:\
+    \ Sample Size\n    type: field_filter\n    default_value: \">=3\"\n    allow_multiple_values:\
+    \ true\n    required: false\n    ui_config:\n      type: range_slider\n      display:\
+    \ inline\n    model: cloud_logging\n    explore: unusual_api_usage\n    listens_to_filters:\
+    \ []\n    field: unusual_api_usage.sample_size\n  - name: 'Minimum # of Events'\n\
+    \    title: 'Minimum # of Events'\n    type: field_filter\n    default_value:\
+    \ \">=10\"\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: advanced\n      display: popover\n      options:\n      - '1'\n \
+    \     - '2'\n      - '3'\n    model: cloud_logging\n    explore: unusual_api_usage\n\
+    \    listens_to_filters: []\n    field: unusual_api_usage.total_log_events\n \
+    \ - name: Is System or Service Account (Yes / No)\n    title: Is System or Service\
+    \ Account (Yes / No)\n    type: field_filter\n    default_value: 'No'\n    allow_multiple_values:\
+    \ true\n    required: false\n    ui_config:\n      type: button_toggles\n    \
+    \  display: inline\n    model: cloud_logging\n    explore: unusual_api_usage\n\
+    \    listens_to_filters: []\n    field: unusual_api_usage.is_system_or_service_account\n\
+    \  - name: Method / API Name\n    title: Method / API Name\n    type: field_filter\n\
+    \    default_value: ''\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: tag_list\n      display: popover\n    model: cloud_logging\n\
+    \    explore: unusual_api_usage\n    listens_to_filters: []\n    field: unusual_api_usage.method_name\n"
+  dashboard_id: cloud_logging::unusual_api_usage

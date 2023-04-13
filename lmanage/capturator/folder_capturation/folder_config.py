@@ -2,6 +2,7 @@ import logging
 import coloredlogs
 from lmanage.utils import looker_object_constructors as loc
 from lmanage.utils.errorhandling import return_sleep_message
+from progress.bar import ChargingBar
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -84,6 +85,7 @@ class CaptureFolderConfig():
     def create_folder_objects(self, folder_list):
         '''creating folder objects (class in utils folder)'''
         response = {}
+        bar = ChargingBar('Folder Capture Progress', max=len(folder_list))
         folder_list = sorted(folder_list, key=int, reverse=True)
         for folder in folder_list:
             f_metadata = None
@@ -109,8 +111,10 @@ class CaptureFolderConfig():
 
                 created_folder_object = loc.LookerFolder(
                     id=folder, folder_metadata=f_metadata, access_list=a_list)
-                logger.info('capturing folder %s', f_metadata.get('name'))
+                logger.debug('capturing folder %s', f_metadata.get('name'))
                 response[folder] = created_folder_object
+                bar.next()
+        bar.finish()
         root_content_meta = self.get_content_access_metadata(
             cmi=1, root_folder=True)
         root_f_meta = None

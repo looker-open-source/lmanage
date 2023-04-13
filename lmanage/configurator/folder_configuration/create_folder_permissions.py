@@ -3,6 +3,7 @@ import time
 import coloredlogs
 from looker_sdk import models, error
 from lmanage.utils import errorhandling
+from progress.bar import ChargingBar
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -79,7 +80,7 @@ class CreateAndProvisionInstanceFolders():
         folder = self.sdk.content_metadata(
             content_metadata_id=content_metadata_id).name
         group = self.sdk.search_groups(id=group_id)[0].name
-        logger.info(
+        logger.debug(
             f'''--> Successfully permissioned group {group} with {permission_input} access, on folder {folder}.''')
 
     def check_existing_access(self,
@@ -197,7 +198,7 @@ class CreateAndProvisionInstanceFolders():
                 current_access = cm_accesses.get(group_id)
 
                 if current_access.permission_type == permission:
-                    logger.info(
+                    logger.debug(
                         f'''--> Group {group_name} already has access, to folder {folder_name}
                         no changes made.''')
 
@@ -216,7 +217,7 @@ class CreateAndProvisionInstanceFolders():
                         content_metadata_id=cmaid).name
                     group_name = self.sdk.search_groups(id=group_id)[0].name
 
-                    logging.info(
+                    logging.debug(
                         f'--> Updating group id {group_name} permission type to {permission} on folder {folder_name}.')
 
             # no existing access
@@ -231,8 +232,10 @@ class CreateAndProvisionInstanceFolders():
                 )
 
     def provision_folders_with_group_access(self, content_access_metadata_list: list):
+        bar = ChargingBar('Updating Inheritance', max=len(content_access_metadata_list))
 
         for folder_tree in content_access_metadata_list:
+            bar.next()
             
             for access_item in folder_tree:
                 content_metadata_id = access_item["cmi"]
@@ -244,6 +247,7 @@ class CreateAndProvisionInstanceFolders():
 
                 self.sync_folder_permission(cmaid=content_metadata_id,
                                             gp_permissions=gp_permissions)
+        bar.finish()
 
     def remove_content_access(self,
                               cm_accesses: dict):
@@ -272,7 +276,7 @@ class CreateAndProvisionInstanceFolders():
         gp_permissions = [
             perms for perms in gp_permissions if perms.get('id') != 'no_id']
         
-        logger.info('syncing folder permissions for content metadata id %s', cmaid)
+        logger.debug('syncing folder permissions for content metadata id %s', cmaid)
 
         if not gp_permissions:
             self.update_folder_inheritance(
@@ -307,7 +311,7 @@ class CreateAndProvisionInstanceFolders():
                 )
             )
         except error.SDKError:
-            logger.info('All Users group already configured')
+            logger.debug('All Users group already configured')
         clean = list()
         for avt in content_access_metadata_list:
             temp = {}
@@ -336,13 +340,18 @@ class CreateAndProvisionInstanceFolders():
 
     def execute(self):
         # CONFIGURE FOLDERS WITH EDIT AND VIEW ACCESS
+        bar = ChargingBar('Configuring Content Access', max=len(self.instance_folder_metadata))
         content_access_metadata = []
         for folder_obj in self.instance_folder_metadata:
+            bar.next()
             r = self.get_content_access_metadata(folder=folder_obj)
             content_access_metadata.append(r)
+        bar.finish()
+        
 
         # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML
         self.provision_folders_with_group_access(
             content_access_metadata_list=content_access_metadata)
         self.remove_all_user_group(
             content_access_metadata_list=content_access_metadata)
+        

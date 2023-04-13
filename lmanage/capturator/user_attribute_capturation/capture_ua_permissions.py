@@ -3,6 +3,7 @@ import coloredlogs
 from time import sleep
 from lmanage.utils.looker_object_constructors import LookerUserAttribute 
 from lmanage.utils.errorhandling import return_error_message, return_sleep_message
+from progress.bar import ChargingBar
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -37,7 +38,9 @@ class ExtractUserAttributes():
         group_metadata = {
             group.id: group.name for group in self.all_group_metadata}
         response = []
+        bar = ChargingBar('User Attribute Capture Progress', max=len(self.all_group_metadata))
         for ua in self.user_attribute_metadata:
+            bar.next()
             group_assign = None
             trys = 0
             while group_assign is None:
@@ -66,4 +69,5 @@ class ExtractUserAttributes():
                 teams_val=team_values
             )
             response.append(looker_ua)
+        bar.finish()
         return response

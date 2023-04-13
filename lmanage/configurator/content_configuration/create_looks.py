@@ -1,6 +1,7 @@
 import logging
 from looker_sdk import models40 as models, error
 import coloredlogs
+from progress.bar import ChargingBar
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -39,27 +40,31 @@ class CreateInstanceLooks():
         return response
 
     def create_look(self, query_id: int, look_metadata: dict, folder_mapping: dict) -> dict:
-        legacy_fid=look_metadata.get('legacy_folder_id')
+        legacy_fid = look_metadata.get('legacy_folder_id')
         look_body = models.WriteLookWithQuery(
-                title=look_metadata.get('title'),
-                description=look_metadata['description'],
-                query_id=query_id,
-                folder_id=folder_mapping.get(legacy_fid))
+            title=look_metadata.get('title'),
+            description=look_metadata['description'],
+            query_id=query_id,
+            folder_id=folder_mapping.get(legacy_fid))
         response = self.sdk.create_look(body=look_body)
         return response
-        
+
     def execute(self) -> dict:
+        bar = ChargingBar('Creating Looks', max=len(self.content_metadata))
         look_mapping = []
 
-
         for look in self.content_metadata:
+            bar.next()
             query = self.create_query(look_metadata=look)
-            new_look = self.create_look(query_id=query.id, look_metadata=look, folder_mapping=self.folder_mapping)
+            new_look = self.create_look(
+                query_id=query.id, look_metadata=look, folder_mapping=self.folder_mapping)
             temp = {}
             temp['look_mapping'] = {}
-            temp['look_mapping'][look.get('look_id')] =new_look.get('id')
+            temp['look_mapping'][look.get('look_id')] = new_look.get('id')
             temp['folder_mapping'] = {}
-            temp['folder_mapping'][look.get('legacy_folder_id')] = self.folder_mapping.get(look.get('legacy_folder_id'))
+            temp['folder_mapping'][look.get('legacy_folder_id')] = self.folder_mapping.get(
+                look.get('legacy_folder_id'))
             look_mapping.append(temp)
-            
+
+        bar.finish()
         return look_mapping

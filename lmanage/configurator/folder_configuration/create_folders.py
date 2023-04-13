@@ -1,6 +1,7 @@
 import logging
 from looker_sdk import models, error
 import coloredlogs
+from progress.bar import ChargingBar
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -34,7 +35,9 @@ class CreateInstanceFolders():
                 error_count = 1
 
     def unnest_folder_data(self, folder_data):
+        bar = ChargingBar('Creating Folders', max=len(folder_data))
         for d in folder_data:
+            bar.next
             folder_dict = d
             metadata_list = []
             metadata_list = self.walk_folder_structure(
@@ -42,8 +45,8 @@ class CreateInstanceFolders():
                 data_storage=metadata_list,
                 parent_name='1')
 
-
-        logger.info('retrieved yaml folder files')
+        bar.finish()
+        logger.debug('retrieved yaml folder files')
         logger.debug('folder metadata = %s', metadata_list)
 
         return metadata_list
@@ -54,18 +57,19 @@ class CreateInstanceFolders():
                               parent_name: str):
         folder_name = dict_obj.get('name')
 
-        
         try:
             if parent_name == 'Shared':
-                logger.info(f'Creating folder Shared Child Folder "{folder_name}"')
-                folder = self.create_folder(folder_name=folder_name, parent_id='1')    
+                logger.info(
+                    f'Creating folder Shared Child Folder "{folder_name}"')
+                folder = self.create_folder(
+                    folder_name=folder_name, parent_id='1')
                 new_folder_id = folder.get('id')
             elif parent_name == '1':
                 folder = self.sdk.folder(folder_id='1')
                 new_folder_id = 'Shared'
             else:
                 folder = self.create_folder(folder_name=folder_name,
-                                        parent_id=parent_name)
+                                            parent_id=parent_name)
                 new_folder_id = folder.get('id')
 
             temp = {}
@@ -76,12 +80,11 @@ class CreateInstanceFolders():
             temp['team_edit'] = dict_obj.get('team_edit')
             temp['team_view'] = dict_obj.get('team_view')
             logger.debug('data_structure to be appended = %s', temp)
-            data_storage.append(temp)            
+            data_storage.append(temp)
         except error.SDKError as e:
             logger.warn('error %s', e)
             logger.warn(
                 'you have a duplicate folder called %s with the same parent, this is against best practice and LManage is ignoring it', folder_name)
-
 
         if isinstance(dict_obj.get('subfolder'), list):
             for subfolder in dict_obj.get('subfolder'):
@@ -102,7 +105,6 @@ class CreateInstanceFolders():
             )
         )
         return folder
-
 
     def sync_folders(self, created_folder: list):
         all_folders = self.sdk.all_folders()
@@ -133,7 +135,8 @@ class CreateInstanceFolders():
         folder_metadata_list = []
         all_folders = self.get_all_folders()
         self.scour_folder()
-        created_folder_metadata = self.unnest_folder_data(folder_data=self.folder_metadata)
+        created_folder_metadata = self.unnest_folder_data(
+            folder_data=self.folder_metadata)
         return created_folder_metadata
 
     def create_folder_mapping_dict(self, folder_metadata: list) -> dict:
@@ -147,4 +150,3 @@ class CreateInstanceFolders():
             response[lid] = fid
 
         return response
-             

@@ -1,0 +1,1325 @@
+# Dashboard Content
+# Opening Session Welcome to the Capturator, this is the Dashboard Content place
+# -----------------------------------------------------
+
+- !DashboardObject
+  legacy_folder_id: '44'
+  lookml:
+  - dashboard: ramp_up
+    title: Ramp up
+    layout: newspaper
+    preferred_slug: Hg9r9IMjyuhs3hBMRdB4Y0
+    elements:
+    - name: Prasad_testing
+      title: Prasad_testing
+      model: bq_weather_explore
+      explore: gsod
+      type: looker_column
+      fields:
+      - gsod.year
+      - gsod.rainfall
+      - gsod.average_rainfall
+      sorts:
+      - gsod.average_rainfall desc
+      limit: 500
+      stacking: percent
+      show_value_labels: false
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      row: 2
+      col: 1
+      width: 10
+      height: 6
+    - title: Untitled
+      name: Untitled
+      model: training_advanced
+      explore: products
+      type: looker_column
+      fields:
+      - products.category
+      - distribution_centers.count
+      sorts:
+      - distribution_centers.count desc
+      limit: 500
+      stacking: ''
+      show_value_labels: false
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      row: 2
+      col: 11
+      width: 13
+      height: 6
+    - name: My description
+      type: text
+      title_text: My description
+      subtitle_text: this is more detail
+      body_text: This is the full story
+      row: 0
+      col: 1
+      width: 23
+      height: 2
+    - name: Dynamic PoP filter
+      title: Dynamic PoP filter
+      model: prasad_s_ecommerce
+      explore: order_items
+      type: table
+      fields:
+      - order_items.dynamic_measure
+      - order_items.pre_post
+      filters:
+        order_items.reporting_period: 2018/08/01 to 2018/08/16
+        order_items.dynamic_measure_type: total^_sale^_price
+      sorts:
+      - order_items.pre_post
+      limit: 500
+      column_limit: 50
+      dynamic_fields:
+      - table_calculation: percent_change
+        label: Percent change
+        expression: (${order_items.dynamic_measure} - offset(${order_items.dynamic_measure},1))/
+          offset(${order_items.dynamic_measure},1)
+        value_format:
+        value_format_name: percent_1
+        _kind_hint: measure
+        _type_hint: number
+      show_view_names: false
+      show_row_numbers: true
+      truncate_column_names: false
+      hide_totals: false
+      hide_row_totals: false
+      table_theme: editable
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      series_types: {}
+      row: 8
+      col: 0
+      width: 8
+      height: 6
+    - name: Goals tile
+      title: Goals tile
+      model: prasad_s_ecommerce
+      explore: order_items
+      type: looker_area
+      fields:
+      - order_items.created_week
+      - order_items.total_sale_price
+      fill_fields:
+      - order_items.created_week
+      filters:
+        order_items.created_date: this quarter
+      sorts:
+      - order_items.created_week
+      limit: 500
+      column_limit: 50
+      dynamic_fields:
+      - table_calculation: goal
+        label: Goal
+        expression: 11350 + 0*mean(${order_items.total_sale_price})
+        value_format:
+        value_format_name:
+        _kind_hint: measure
+        _type_hint: number
+      - table_calculation: cumulative_goal
+        label: Cumulative goal
+        expression: running_total(${goal})
+        value_format:
+        value_format_name:
+        _kind_hint: measure
+        _type_hint: number
+      - table_calculation: day_in_qtr
+        label: Day in qtr
+        expression: row()*7 + 0*mean(${order_items.total_sale_price})
+        value_format:
+        value_format_name:
+        _kind_hint: measure
+        _type_hint: number
+      stacking: ''
+      show_value_labels: false
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      x_axis_reversed: false
+      y_axis_reversed: false
+      show_null_points: true
+      point_style: none
+      interpolation: linear
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      ordering: none
+      show_null_labels: false
+      hidden_fields:
+      - goal
+      - day_in_qtr
+      series_types:
+        cumulative_goal: line
+      series_colors:
+        order_items.total_sale_price: '#0a1b1c'
+      series_labels:
+        cumulative_goal: Goal
+      reference_lines:
+      - reference_type: range
+        line_value: mean
+        range_start: max
+        range_end: max
+        margin_top: deviation
+        margin_value: mean
+        margin_bottom: deviation
+        label_position: right
+        color: '#000000'
+        label: 'Goal: {{max}}'
+      hidden_series: []
+      row: 8
+      col: 8
+      width: 8
+      height: 6
+    - title: New Tile
+      name: New Tile
+      model: russ_sandbox
+      explore: events
+      type: looker_line
+      fields:
+      - users.count
+      - users.created_second
+      fill_fields:
+      - users.created_second
+      filters:
+        users.created_second: 2019/11/11
+      sorts:
+      - users.created_second
+      limit: 5000
+      query_timezone: America/Los_Angeles
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: false
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      y_axis_scale_mode: linear
+      x_axis_reversed: false
+      y_axis_reversed: false
+      plot_size_by_field: false
+      trellis: ''
+      stacking: ''
+      limit_displayed_rows: false
+      legend_position: center
+      point_style: none
+      show_value_labels: false
+      label_density: 25
+      x_axis_scale: ordinal
+      x_axis_datetime_label: '%H:%M:%S'
+      y_axis_combined: true
+      show_null_points: true
+      interpolation: linear
+      listen: {}
+      row: 14
+      col: 0
+      width: 24
+      height: 6
+  dashboard_id: '6'
+- !DashboardObject
+  legacy_folder_id: '18'
+  lookml:
+  - dashboard: bug_repro
+    title: bug repro
+    layout: newspaper
+    preferred_slug: Fdl6Zxu1CMi7kAcUCicOdz
+    elements:
+    - title: Fun Tile Name
+      name: Fun Tile Name
+      model: training_advanced
+      explore: order_items
+      type: table
+      fields:
+      - order_items.count
+      filters: {}
+      limit: 500
+      listen:
+        Untitled Filter: order_items.created_date
+      row: 0
+      col: 0
+      width: 24
+      height: 8
+    - title: New Tile
+      name: New Tile
+      model: training_advanced
+      explore: subtotals_via_cross_join
+      type: looker_column
+      fields:
+      - order_items.created_year
+      - order_items.count
+      - order_items.complete
+      - subtotal_over.status
+      pivots:
+      - order_items.complete
+      - subtotal_over.status
+      fill_fields:
+      - order_items.created_year
+      filters:
+        products.category: Swim
+      sorts:
+      - order_items.created_year
+      - order_items.complete
+      - subtotal_over.status
+      limit: 500
+      stacking: ''
+      show_value_labels: false
+      label_density: 25
+      legend_position: right
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: true
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      show_null_points: false
+      point_style: circle
+      interpolation: step
+      show_row_numbers: true
+      truncate_column_names: false
+      hide_totals: false
+      hide_row_totals: false
+      table_theme: editable
+      enable_conditional_formatting: false
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      series_types:
+        No - ZZZZZZZZZZ - order_items.count: line
+      y_axes:
+      - label: ''
+        maxValue:
+        minValue:
+        orientation: left
+        showLabels: true
+        showValues: true
+        tickDensity: default
+        tickDensityCustom: 5
+        type: linear
+        unpinAxis: false
+        valueFormat:
+        series:
+        - id: No - Cancelled
+          name: No - Cancelled
+          axisId: order_items.count
+        - id: No - Processing
+          name: No - Processing
+          axisId: order_items.count
+        - id: No - Returned
+          name: No - Returned
+          axisId: order_items.count
+        - id: No - Shipped
+          name: No - Shipped
+          axisId: order_items.count
+        - id: No - ZZZZZZZZZZ
+          name: No - SUBTOTAL
+          axisId: order_items.count
+        - id: Yes - Complete
+          name: Yes - Complete
+          axisId: order_items.count
+        - id: Yes - ZZZZZZZZZZ
+          name: Yes - SUBTOTAL
+          axisId: order_items.count
+      series_labels:
+        No - ZZZZZZZZZZ - order_items.count: No - SUBTOTAL
+        Yes - ZZZZZZZZZZ - order_items.count: Yes - SUBTOTAL
+      limit_displayed_rows_values:
+        show_hide: hide
+        first_last: first
+        num_rows: 0
+      series_colors:
+        Yes - ZZZZZZZZZZ - order_items.count: '#000000'
+        Yes - Complete - order_items.count: '#000000'
+      hidden_series:
+      - Yes - Complete
+      - Yes - ZZZZZZZZZZ
+      row: 8
+      col: 0
+      width: 24
+      height: 8
+    - title: Subtotals - Chart with Pivoted Subtotals (Column)
+      name: Subtotals - Chart with Pivoted Subtotals (Column)
+      model: training_advanced
+      explore: subtotals_via_cross_join
+      type: looker_column
+      fields:
+      - order_items.created_year
+      - order_items.count
+      - order_items.complete
+      - subtotal_over.status
+      pivots:
+      - order_items.complete
+      - subtotal_over.status
+      fill_fields:
+      - order_items.created_year
+      filters:
+        products.category: Swim
+      sorts:
+      - order_items.created_year
+      - order_items.complete
+      - subtotal_over.status
+      limit: 500
+      stacking: ''
+      show_value_labels: false
+      label_density: 25
+      legend_position: right
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: true
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      show_null_points: false
+      point_style: circle
+      interpolation: step
+      show_row_numbers: true
+      truncate_column_names: false
+      hide_totals: false
+      hide_row_totals: false
+      table_theme: editable
+      enable_conditional_formatting: false
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      series_types:
+        No - ZZZZZZZZZZ - order_items.count: line
+      y_axes:
+      - label: ''
+        maxValue:
+        minValue:
+        orientation: left
+        showLabels: true
+        showValues: true
+        tickDensity: default
+        tickDensityCustom: 5
+        type: linear
+        unpinAxis: false
+        valueFormat:
+        series:
+        - id: No - Cancelled
+          name: No - Cancelled
+          axisId: order_items.count
+        - id: No - Processing
+          name: No - Processing
+          axisId: order_items.count
+        - id: No - Returned
+          name: No - Returned
+          axisId: order_items.count
+        - id: No - Shipped
+          name: No - Shipped
+          axisId: order_items.count
+        - id: No - ZZZZZZZZZZ
+          name: No - SUBTOTAL
+          axisId: order_items.count
+        - id: Yes - Complete
+          name: Yes - Complete
+          axisId: order_items.count
+        - id: Yes - ZZZZZZZZZZ
+          name: Yes - SUBTOTAL
+          axisId: order_items.count
+      series_labels:
+        No - ZZZZZZZZZZ - order_items.count: No - SUBTOTAL
+        Yes - ZZZZZZZZZZ - order_items.count: Yes - SUBTOTAL
+      limit_displayed_rows_values:
+        show_hide: hide
+        first_last: first
+        num_rows: 0
+      series_colors:
+        Yes - ZZZZZZZZZZ - order_items.count: '#000000'
+        Yes - Complete - order_items.count: '#000000'
+      hidden_series:
+      - Yes - Complete
+      - Yes - ZZZZZZZZZZ
+      row: 16
+      col: 0
+      width: 24
+      height: 8
+    filters:
+    - name: Untitled Filter
+      title: Untitled Filter
+      type: field_filter
+      default_value:
+      allow_multiple_values: true
+      required: false
+      model: training_advanced
+      explore: order_items
+      listens_to_filters: []
+      field: order_items.created_date
+  dashboard_id: '7'
+- !DashboardObject
+  legacy_folder_id: '1155'
+  lookml:
+  - dashboard: subtotals_via_cross_join_example
+    title: Subtotals via Cross Join Example
+    layout: newspaper
+    preferred_slug: Y5iyhOo71jJupOYXMLU9EQ
+    embed_style:
+      background_color: '#f6f8fa'
+      show_title: false
+      title_color: '#3a4245'
+      show_filters_bar: false
+      tile_text_color: '#3a4245'
+      text_tile_text_color: ''
+    elements:
+    - name: ''
+      type: text
+      title_text: ''
+      subtitle_text: 'Specific Example Explanation (at Right):'
+      body_text: "Created_Year is from Base Table, whereas Department is from Subtotal\
+        \ View  (hence 'SUBTOTAL' Values in Department)\n\nSUBTOTAL rows give expected\
+        \ summaries for each unique combination of values in non-subtotaled fields\
+        \ (in this case just each Created_Year).\n\nE.G. 2013 Order Items Count for\
+        \ Men + 2013 Order Items Count for Women = 2013 Order Items Count for SUBTOTAL\n\
+        \nNote: Total Orders(Men) + Total Orders(Women) doesn't always = Total Orders(SUBTOTAL)\
+        \ because it's COUNT(DISTINCT ORDER_ID) and ORDER_IDs can repeat\n\nAvg Price\
+        \ and First Order Date act as expected, i.e. Avg is correctly calculated in\
+        \ SUBTOTAL and First Order Date = MIN Date for entire SUBTOTAL population\n\
+        \nYou can also easily add a 'subtotal_over_for_pivot' view to enable pivoted\
+        \ subtotals"
+      row: 0
+      col: 6
+      width: 6
+      height: 11
+    - name: Subtotals - Table with Pivoted Subtotals
+      title: Subtotals - Table with Pivoted Subtotals
+      model: training_advanced
+      explore: subtotals_via_cross_join
+      type: table
+      fields:
+      - order_items.created_year
+      - order_items.count
+      - order_items.complete
+      - subtotal_over.department
+      - subtotal_over_for_pivot.status
+      pivots:
+      - order_items.complete
+      - subtotal_over_for_pivot.status
+      filters: {}
+      sorts:
+      - order_items.complete 0
+      - order_items.created_year
+      - subtotal_over.department
+      limit: 500
+      column_limit: 50
+      show_view_names: true
+      show_row_numbers: false
+      truncate_column_names: false
+      hide_totals: false
+      hide_row_totals: false
+      table_theme: editable
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      conditional_formatting_ignored_fields: []
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      title_hidden: true
+      listen:
+        Product Category: products.category
+        Brand: products.brand
+        Created Year: order_items.created_year
+      row: 5
+      col: 12
+      width: 12
+      height: 6
+    - name: Subtotals Example - Basic Table
+      title: Subtotals Example - Basic Table
+      model: training_advanced
+      explore: subtotals_via_cross_join
+      type: table
+      fields:
+      - order_items.created_year
+      - order_items.count
+      - order_items.total_orders
+      - order_items.total_sales_price
+      - order_items.average_sales_price
+      - order_items.first_order_date
+      - subtotal_over.department
+      filters: {}
+      sorts:
+      - order_items.created_year
+      - subtotal_over.department_formatted
+      - subtotal_over.department
+      limit: 500
+      show_view_names: true
+      show_row_numbers: false
+      truncate_column_names: false
+      hide_totals: false
+      hide_row_totals: false
+      table_theme: editable
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      conditional_formatting_ignored_fields: []
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      title_hidden: true
+      listen:
+        Product Category: products.category
+        Brand: products.brand
+        Created Year: order_items.created_year
+      row: 0
+      col: 12
+      width: 12
+      height: 5
+    - name: Subtotals - Year, Quarter, Month (Quarter and Month Subtotaled)
+      title: Subtotals - Year, Quarter, Month (Quarter and Month Subtotaled)
+      model: training_advanced
+      explore: subtotals_via_cross_join
+      type: table
+      fields:
+      - order_items.created_year
+      - subtotal_over.created_quarter
+      - subtotal_over.created_month
+      - order_items.count
+      filters: {}
+      sorts:
+      - order_items.created_year
+      - subtotal_over.created_quarter
+      - subtotal_over.created_month
+      limit: 500
+      column_limit: 50
+      show_view_names: true
+      show_row_numbers: false
+      truncate_column_names: false
+      hide_totals: false
+      hide_row_totals: false
+      table_theme: editable
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      conditional_formatting_ignored_fields: []
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      listen:
+        Product Category: products.category
+        Brand: products.brand
+        Created Year: order_items.created_year
+      row: 11
+      col: 0
+      width: 8
+      height: 37
+    - name: Subtotals - Year, Quarter, Month (only Month Subtotaled)
+      title: Subtotals - Year, Quarter, Month (only Month Subtotaled)
+      model: training_advanced
+      explore: subtotals_via_cross_join
+      type: table
+      fields:
+      - order_items.created_year
+      - order_items.count
+      - order_items.created_quarter
+      - subtotal_over.created_month
+      filters: {}
+      sorts:
+      - order_items.created_year
+      - order_items.created_quarter
+      - subtotal_over.created_month_formatter
+      - subtotal_over.created_month
+      limit: 500
+      column_limit: 50
+      show_view_names: true
+      show_row_numbers: false
+      truncate_column_names: false
+      hide_totals: false
+      hide_row_totals: false
+      table_theme: editable
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      conditional_formatting_ignored_fields: []
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      listen:
+        Product Category: products.category
+        Brand: products.brand
+        Created Year: order_items.created_year
+      row: 11
+      col: 8
+      width: 8
+      height: 37
+    - name: ' (2)'
+      type: text
+      title_text: ''
+      subtitle_text: 'Summary: (See explore and view files for more details)'
+      body_text: "HOW IT WORKS:   ( Try it with Explore from here )\n\nWhen fields\
+        \ are added from the 'Fields with Subtotals' View, a special subtotal copy\
+        \ of the raw data is added using an intentional fan-out.\n\nOn the subtotal\
+        \ copy of the data, fields from the 'subtotal view' are simply given the value\
+        \ 'SUBTOTAL'. This results in a subtotal of the data for all dimensions from\
+        \ the base views. (i.e. there's a copy of the data which is not broken out\
+        \ by dimensions from the subtotal view).\n\nFEATURES:\n\nCan subtotal on multiple\
+        \ fields at once. Just bring whichever fields you want to roll up to a SUBTOTAL\
+        \ from 'Fields with Subtotals' view instead of the base view\n\nNested subtotals\
+        \ and subtotals for pivoted dimensions can also be enabled.\n\nFilter as usual\
+        \ on Base View Fields - subtotals work automatically\n\nMore dimensions can\
+        \ be made available for subtotaling by simply copying an existing subtotal\
+        \ field and changing the base field reference"
+      row: 0
+      col: 0
+      width: 6
+      height: 11
+    - name: Subtotals - Year, Quarter (subtotal), Month (nested subtotal)
+      title: Subtotals - Year, Quarter (subtotal), Month (nested subtotal)
+      model: training_advanced
+      explore: subtotals_via_cross_join
+      type: table
+      fields:
+      - order_items.created_year
+      - subtotal_over.created_quarter
+      - order_items.count
+      - subtotal_over_level2.created_month
+      filters: {}
+      sorts:
+      - order_items.created_year
+      - subtotal_over.created_quarter
+      - subtotal_over_level2.created_month
+      limit: 500
+      column_limit: 50
+      show_view_names: true
+      show_row_numbers: false
+      truncate_column_names: false
+      hide_totals: false
+      hide_row_totals: false
+      table_theme: editable
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      conditional_formatting_ignored_fields: []
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      listen:
+        Product Category: products.category
+        Brand: products.brand
+        Created Year: order_items.created_year
+      row: 11
+      col: 16
+      width: 8
+      height: 37
+    filters:
+    - name: Product Category
+      title: Product Category
+      type: field_filter
+      default_value: Swim
+      allow_multiple_values: true
+      required: false
+      model: training_advanced
+      explore: subtotals_via_cross_join
+      listens_to_filters: []
+      field: products.category
+    - name: Brand
+      title: Brand
+      type: field_filter
+      default_value: ''
+      allow_multiple_values: true
+      required: false
+      model: training_advanced
+      explore: subtotals_via_cross_join
+      listens_to_filters: []
+      field: products.brand
+    - name: Created Year
+      title: Created Year
+      type: field_filter
+      default_value: 2 years
+      allow_multiple_values: true
+      required: false
+      model: training_advanced
+      explore: subtotals_via_cross_join
+      listens_to_filters: []
+      field: order_items.created_year
+  dashboard_id: '8'
+- !DashboardObject
+  legacy_folder_id: '44'
+  lookml:
+  - dashboard: ramp_plan_1__3_5_model_in_the_cs_ramp_plan
+    title: Ramp plan 1 - 3.5 model in the CS RAMP PLAN
+    layout: newspaper
+    preferred_slug: AFlENsrUo67N9KYkrdtyWm
+    elements:
+    - name: Return rate by cities
+      title: Return rate by cities
+      model: prasad_s_ecommerce
+      explore: order_items
+      type: looker_column
+      fields:
+      - order_items.percent_returned
+      - users.city
+      - users.user_count
+      sorts:
+      - users.user_count desc
+      limit: 10
+      stacking: ''
+      show_value_labels: true
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: false
+      show_view_names: false
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: false
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      show_null_points: true
+      point_style: circle
+      interpolation: linear
+      y_axes:
+      - label: ''
+        maxValue:
+        minValue:
+        orientation: left
+        showLabels: true
+        showValues: false
+        tickDensity: default
+        tickDensityCustom: 5
+        type: linear
+        unpinAxis: false
+        valueFormat:
+        series:
+        - id: order_items.percent_returned
+          name: Percent Returned
+          axisId: order_items.percent_returned
+      - label:
+        maxValue:
+        minValue:
+        orientation: right
+        showLabels: true
+        showValues: true
+        tickDensity: default
+        tickDensityCustom: 5
+        type: linear
+        unpinAxis: false
+        valueFormat:
+        series:
+        - id: users.user_count
+          name: User Count
+          axisId: users.user_count
+      series_types: {}
+      row: 15
+      col: 0
+      width: 24
+      height: 7
+    - title: Active users by age
+      name: Active users by age
+      model: prasad_s_ecommerce
+      explore: order_items
+      type: looker_column
+      fields:
+      - users.age_bucket
+      - users.user_count
+      sorts:
+      - users.age_bucket
+      limit: 500
+      column_limit: 50
+      stacking: ''
+      show_value_labels: true
+      label_density: 19
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: false
+      show_view_names: false
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: true
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      series_colors:
+        users.user_count: '#663816'
+      y_axes:
+      - label: Total number of users
+        maxValue:
+        minValue:
+        orientation: left
+        showLabels: true
+        showValues: false
+        tickDensity: default
+        tickDensityCustom: 5
+        type: linear
+        unpinAxis: false
+        valueFormat:
+        series:
+        - id: users.user_count
+          name: User Count
+          axisId: users.user_count
+      reference_lines:
+      - reference_type: line
+        line_value: mean
+        range_start: max
+        range_end: min
+        margin_top: deviation
+        margin_value: mean
+        margin_bottom: deviation
+        label_position: right
+        color: '#000000'
+      x_axis_reversed: false
+      hide_legend: false
+      limit_displayed_rows_values:
+        show_hide: hide
+        first_last: first
+        num_rows: 0
+      listen:
+        TIme: inventory_items.sold_date
+      row: 4
+      col: 0
+      width: 8
+      height: 6
+    - title: Revenue Trend
+      name: Revenue Trend
+      model: prasad_s_ecommerce
+      explore: order_items
+      type: looker_area
+      fields:
+      - order_items.total_sale_price
+      - order_items.created_date
+      filters:
+        order_items.created_date: 1 months
+        order_items.total_sale_price: NOT NULL
+      sorts:
+      - order_items.created_date desc
+      limit: 500
+      stacking: ''
+      show_value_labels: false
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: false
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      show_null_points: false
+      point_style: none
+      interpolation: linear
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      map_plot_mode: points
+      heatmap_gridlines: false
+      heatmap_gridlines_empty: false
+      heatmap_opacity: 0.5
+      show_region_field: true
+      draw_map_labels_above_data: true
+      map_tile_provider: positron
+      map_position: fit_data
+      map_scale_indicator: off
+      map_pannable: true
+      map_zoomable: true
+      map_marker_type: circle
+      map_marker_icon_name: default
+      map_marker_radius_mode: proportional_value
+      map_marker_units: meters
+      map_marker_proportional_scale_type: linear
+      map_marker_color_mode: fixed
+      show_legend: true
+      quantize_map_value_colors: false
+      reverse_map_value_colors: false
+      leftAxisLabelVisible: false
+      leftAxisLabel: ''
+      rightAxisLabelVisible: false
+      rightAxisLabel: ''
+      barColors:
+      - red
+      - blue
+      smoothedBars: false
+      orientation: automatic
+      labelPosition: left
+      percentType: total
+      percentPosition: inline
+      valuePosition: right
+      labelColorEnabled: false
+      labelColor: '#FFF'
+      font_size: '12'
+      groupBars: true
+      labelSize: 10pt
+      showLegend: true
+      ordering: none
+      show_null_labels: false
+      series_types: {}
+      swap_axes: false
+      hide_legend: false
+      focus_on_hover: true
+      y_axes:
+      - label: Total Revenue
+        maxValue:
+        minValue:
+        orientation: left
+        showLabels: true
+        showValues: true
+        tickDensity: default
+        tickDensityCustom: 5
+        type: linear
+        unpinAxis: false
+        valueFormat:
+        series:
+        - id: order_items.total_sale_price
+          name: Order Items Total Sale Price
+          axisId: order_items.total_sale_price
+      trend_lines:
+      - color: '#000000'
+        label_position: right
+        period: 7
+        regression_type: linear
+        series_index: 1
+        show_label: true
+      x_axis_label: Time
+      row: 4
+      col: 16
+      width: 8
+      height: 6
+    - title: Prasad's Business Pulse
+      name: Prasad's Business Pulse
+      model: prasad_s_ecommerce
+      explore: order_items
+      type: single_value
+      fields:
+      - order_items.total_sale_price
+      limit: 500
+      custom_color_enabled: true
+      custom_color: forestgreen
+      show_single_value_title: true
+      show_comparison: false
+      comparison_type: value
+      comparison_reverse_colors: false
+      show_comparison_label: true
+      stacking: ''
+      show_value_labels: false
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      series_types: {}
+      value_format: $#,##0.00
+      single_value_title: Total Revenue
+      note_state: expanded
+      note_display: above
+      note_text: ''
+      listen:
+        TIme: inventory_items.created_date
+      row: 0
+      col: 0
+      width: 24
+      height: 4
+    - title: Where are my users?
+      name: Where are my users?
+      model: prasad_s_ecommerce
+      explore: order_items
+      type: looker_map
+      fields:
+      - order_items.total_sale_price
+      - users.location
+      - users.city
+      sorts:
+      - order_items.total_sale_price desc
+      limit: 500
+      map_plot_mode: points
+      heatmap_gridlines: false
+      heatmap_gridlines_empty: false
+      heatmap_opacity: 0.5
+      show_region_field: true
+      draw_map_labels_above_data: true
+      map_tile_provider: darkmatter
+      map_position: custom
+      map_scale_indicator: off
+      map_pannable: true
+      map_zoomable: true
+      map_marker_type: circle
+      map_marker_icon_name: default
+      map_marker_radius_mode: proportional_value
+      map_marker_units: meters
+      map_marker_proportional_scale_type: linear
+      map_marker_color_mode: fixed
+      show_view_names: true
+      show_legend: true
+      quantize_map_value_colors: false
+      reverse_map_value_colors: false
+      custom_color_enabled: true
+      custom_color: forestgreen
+      show_single_value_title: true
+      show_comparison: false
+      comparison_type: value
+      comparison_reverse_colors: false
+      show_comparison_label: true
+      stacking: ''
+      show_value_labels: false
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      series_types: {}
+      value_format: $#,##0.00
+      single_value_title: Total Revenue
+      map_latitude: 38.58252615935333
+      map_longitude: -88.28613281250001
+      map_zoom: 4
+      row: 4
+      col: 8
+      width: 8
+      height: 6
+    - title: My Top 5 Brands
+      name: My Top 5 Brands
+      model: prasad_s_ecommerce
+      explore: order_items
+      type: looker_donut_multiples
+      fields:
+      - products.brand
+      - user_rev.average_profit
+      - user_rev.average_rev
+      sorts:
+      - user_rev.average_profit desc
+      limit: 5
+      show_value_labels: false
+      font_size: 16
+      value_labels: labels
+      label_type: labPer
+      leftAxisLabelVisible: false
+      leftAxisLabel: ''
+      rightAxisLabelVisible: false
+      rightAxisLabel: ''
+      barColors:
+      - red
+      - blue
+      smoothedBars: false
+      orientation: automatic
+      labelPosition: left
+      percentType: total
+      percentPosition: inline
+      valuePosition: right
+      labelColorEnabled: false
+      labelColor: '#FFF'
+      stacking: ''
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      series_types: {}
+      inner_radius: 60
+      charts_across: 5
+      hide_legend: false
+      row: 10
+      col: 0
+      width: 24
+      height: 5
+    - title: New Tile
+      name: New Tile
+      model: prasad_s_ecommerce
+      explore: order_items
+      type: single_value
+      fields:
+      - users.created_date
+      - users.user_count
+      fill_fields:
+      - users.created_date
+      sorts:
+      - users.created_date desc
+      dynamic_fields:
+      - table_calculation: total_number_of_new_users
+        label: Total Number of New Users
+        expression: offset(${users.user_count},1)
+        value_format:
+        value_format_name:
+        _kind_hint: measure
+        _type_hint: number
+      - table_calculation: comparison
+        label: Comparison
+        expression: offset(${users.user_count},2)
+        value_format:
+        value_format_name:
+        _kind_hint: measure
+        _type_hint: number
+      custom_color_enabled: true
+      custom_color: forestgreen
+      show_single_value_title: true
+      show_comparison: true
+      comparison_type: value
+      comparison_reverse_colors: false
+      show_comparison_label: true
+      stacking: ''
+      show_value_labels: false
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      series_types: {}
+      hidden_fields:
+      - users.user_count
+      single_value_title: Total Number of New Users Yesterday
+      comparison_label: New User signed up day before
+      row:
+      col:
+      width:
+      height:
+    filters:
+    - name: TIme
+      title: TIme
+      type: date_filter
+      default_value: 1 months
+      allow_multiple_values: true
+      required: false
+  dashboard_id: '9'
+- !DashboardObject
+  legacy_folder_id: '44'
+  lookml:
+  - dashboard: look_ml_dashboard__ramp
+    title: Look ML dashboard - RAMP
+    layout: newspaper
+    preferred_slug: fvXsbjfJx6X7TtQFUd6O6X
+  dashboard_id: '10'

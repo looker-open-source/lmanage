@@ -10,18 +10,13 @@ repository = "https://github.com/looker-open-source/lmanage"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.9"
-# pandas = ">=3.8,<3.9"
 click = "^7.1.2"
-icecream = "^2.1.0"
 ipython = "^7.20.0"
 tabulate = "^0.8.8"
 coloredlogs = "^15.0"
 verboselogs = "^1.7"
 coloredlogger = "^1.3.12"
-pytest-mock = "^3.5.1"
 snoop = "^0.3.0"
-debugpy = "^1.3.0"
-pynvim = "^0.4.3"
 pylint = "^2.9.5"
 lkml = "^1.1.1"
 flake8 = "^4.0.1"
@@ -31,13 +26,9 @@ looker-sdk = "^22.4.0"
 sqlparse = "^0.4.2"
 XlsxWriter = "^3.0.3"
 "ruamel.yaml" = "^0.17.21"
-pandas = "^1.5.2"
-mypy = "^0.991"
-retrying = "^1.3.4"
-poetry = "^1.4.2"
+progress = "^1.6"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
 autopep8 = "^1.5.5"
 
 [build-system]

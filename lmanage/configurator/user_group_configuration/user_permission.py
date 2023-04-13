@@ -4,6 +4,7 @@ import coloredlogs
 from looker_sdk import models, error
 from lmanage.configurator.user_group_configuration.role_config import CreateRoleBase
 from lmanage.utils.errorhandling import return_error_message
+from progress.bar import ChargingBar
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -41,8 +42,10 @@ class CreateInstanceRoles(CreateRoleBase):
         permission_lookup = self.create_permission_lookup()
 
         role_output = []
+        bar = ChargingBar('Creating User Roles', max=len(self.role_metadata))
 
         for r_metadata in self.role_metadata:
+            bar.next()
             role_name = r_metadata.get('name')
             model_set_id = model_lookup.get(
                 r_metadata.get('model_set') if r_metadata.get('model_set') == 'All' else r_metadata.get('model_set').lower())
@@ -73,6 +76,7 @@ class CreateInstanceRoles(CreateRoleBase):
             else:
                 pass
         logger.debug(role_output)
+        bar.finish()
         return role_output
 
     def set_role(self, role_id: str, group_id: list) -> str:

@@ -2,7 +2,9 @@ import logging
 import time
 import coloredlogs
 import lmanage.utils.looker_object_constructors as loc
-from lmanage.utils.errorhandling import return_sleep_message
+from lmanage.utils.errorhandling import return_sleep_message, calc_done_percent
+from progress.bar import ChargingBar
+from progress.spinner import Spinner
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -13,8 +15,18 @@ class CaptureLookObject():
         self.sdk = sdk
 
     def all_looks(self):
-        all_looks_object = self.sdk.all_looks()
-        all_looks_id = [look.id for look in all_looks_object]
+        spinner = Spinner('loading')
+        all_look_meta = None
+        trys = 0
+        while all_look_meta is None:
+            try:
+                with Spinner('Capturing all Look Metadata') as bar:
+                    bar.next()
+                    logger.debug('running the all look sdk call to get existing look metadata')
+                    all_look_meta = self.sdk.all_looks()
+            except:
+                return_sleep_message
+        all_looks_id = [look.id for look in all_look_meta]
         return all_looks_id
 
     def get_look_metadata(self, look_id: str) -> dict:
@@ -51,6 +63,7 @@ class CaptureLookObject():
             (k, query_metadata[k]) for k in metadata_keep_keys)
         return restricted_look_metadata
 
+
     def execute(self):
         '''
         1. get all the looks and extract the id's
@@ -58,10 +71,15 @@ class CaptureLookObject():
         3. create custom look object and add to list
         '''
         all_look_data = self.all_looks()
+        bar = ChargingBar('Look Capture Progress', max=len(all_look_data))
         looks = []
+        content = 1
         for look in all_look_data:
+            total = len(all_look_data)
             lmetadata = self.get_look_metadata(look_id=look)
             if lmetadata.folder.is_personal:
+                pass
+            elif lmetadata.folder.is_embed:
                 pass
             else:
                 query_object = lmetadata.query.__dict__
@@ -77,4 +95,7 @@ class CaptureLookObject():
                     look_id=look_id,
                     title=title)
                 looks.append(look_obj)
+            content += 1
+            bar.next()
+        bar.finish()
         return looks

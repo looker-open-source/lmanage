@@ -66,12 +66,12 @@ def main(**kwargs):
             f'no dash_metadata specified please check your yaml file at {yaml_split[0]}_content.yaml')
 
 
-# ################################################################
-# # Role Config ################################################
-# ################################################################
-#     # Create Permission and Model Sets
-#     rc.CreateRoleBase(permissions=permission_set_metadata,
-#                       model_sets=model_set_metadata, sdk=sdk). execute()
+################################################################
+# Role Config ################################################
+################################################################
+    # Create Permission and Model Sets
+    rc.CreateRoleBase(permissions=permission_set_metadata,
+                      model_sets=model_set_metadata, sdk=sdk). execute()
 ###############################################################
 # Folder Config ################################################
 ###############################################################
@@ -85,39 +85,39 @@ def main(**kwargs):
         folder_metadata=created_folder_metadata)
 
 
-# ################################################################
-# # Group Config ################################################
-# ################################################################
-#     # CREATE NEW GROUPS FROM YAML FILE TEAM VALUES
-#     gc.CreateInstanceGroups(
-#         folders=created_folder_metadata, user_attributes=user_attribute_metadata, roles=role_metadata, sdk=sdk).execute()
+################################################################
+# Group Config ################################################
+################################################################
+    # CREATE NEW GROUPS FROM YAML FILE TEAM VALUES
+    gc.CreateInstanceGroups(
+        folders=created_folder_metadata, user_attributes=user_attribute_metadata, roles=role_metadata, sdk=sdk).execute()
 
-#     logger.info(div)
+    logger.info(div)
 
-# ################################################################
-# # Folder Provision Config ################################################
-# ################################################################
-#     # CREATE NEW GROUPS FROM YAML FILE TEAM VALUES
+################################################################
+# Folder Provision Config ################################################
+################################################################
+    # CREATE NEW GROUPS FROM YAML FILE TEAM VALUES
 
-#     cfp.CreateAndProvisionInstanceFolders(
-#         folders=created_folder_metadata, sdk=sdk).execute()
+    cfp.CreateAndProvisionInstanceFolders(
+        folders=created_folder_metadata, sdk=sdk).execute()
 
-#     logger.info(div)
+    logger.info(div)
 
 
-# ################################################################
-# # Role Config ################################################
-# ################################################################
-#     up.CreateInstanceRoles(roles=role_metadata, sdk=sdk).execute()
+################################################################
+# Role Config ################################################
+################################################################
+    up.CreateInstanceRoles(roles=role_metadata, sdk=sdk).execute()
 
-#     logger.info(div)
+    logger.info(div)
 
-# ###############################################################
-# # User Attribute Config #######################################
-# ###############################################################
-#     # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
-#     cuap.CreateAndAssignUserAttributes(
-#         user_attributes=user_attribute_metadata, sdk=sdk).execute()
+###############################################################
+# User Attribute Config #######################################
+###############################################################
+    # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
+    cuap.CreateAndAssignUserAttributes(
+        user_attributes=user_attribute_metadata, sdk=sdk).execute()
 
 
 
@@ -125,12 +125,13 @@ def main(**kwargs):
 # Content Transport Config #######################################
 ###############################################################
     # FIND LOOKS AND REMAKE THEM
-    #look_creator = cl.CreateInstanceLooks(folder_mapping=folder_mapping_obj, sdk=sdk, content_metadata=look_metadata)
-    #t = look_creator.execute()
+    look_creator = cl.CreateInstanceLooks(folder_mapping=folder_mapping_obj, sdk=sdk, content_metadata=look_metadata)
+    look_creator.execute()
 
     # Find DASHBOARDS AND REMAKE THEM
     dash_creator = cd.Create_Dashboards(sdk=sdk,folder_mapping=folder_mapping_obj,content_metadata=dash_metadata)
-    dash = dash_creator.execute()
+    dash_creator.execute()
+
 
     logger.info('Lmanage has finished configuring your Looker instance!')
 
