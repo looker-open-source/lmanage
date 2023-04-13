@@ -9,330 +9,330 @@
   subfolder:
   - !LookerFolder
     parent_id: '1'
-    id: '913'
+    id: '956'
     name: E-Commerce
     subfolder:
     - !LookerFolder
-      parent_id: '913'
-      id: '914'
+      parent_id: '956'
+      id: '957'
       name: Sub Folder - Special
       subfolder:
       - !LookerFolder
-        parent_id: '914'
-        id: '916'
+        parent_id: '957'
+        id: '959'
         name: dev
         subfolder: []
-        content_metadata_id: '1707'
+        content_metadata_id: '1750'
         team_edit: []
         team_view: []
       - !LookerFolder
-        parent_id: '914'
-        id: '915'
+        parent_id: '957'
+        id: '958'
         name: Development
         subfolder: []
-        content_metadata_id: '1706'
+        content_metadata_id: '1749'
         team_edit: []
         team_view: []
-      content_metadata_id: '1705'
+      content_metadata_id: '1748'
       team_edit: []
       team_view: []
-    content_metadata_id: '1704'
+    content_metadata_id: '1747'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '910'
+    id: '953'
     name: Data Tools
     subfolder:
     - !LookerFolder
-      parent_id: '910'
-      id: '912'
+      parent_id: '953'
+      id: '955'
       name: Sample folder
       subfolder: []
-      content_metadata_id: '1703'
+      content_metadata_id: '1746'
       team_edit: []
       team_view: []
     - !LookerFolder
-      parent_id: '910'
-      id: '911'
+      parent_id: '953'
+      id: '954'
       name: Models XYZ
       subfolder: []
-      content_metadata_id: '1702'
+      content_metadata_id: '1745'
       team_edit: []
       team_view: []
-    content_metadata_id: '1701'
+    content_metadata_id: '1744'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '908'
+    id: '951'
     name: Marketing
     subfolder:
     - !LookerFolder
-      parent_id: '908'
-      id: '909'
+      parent_id: '951'
+      id: '952'
       name: Marketing Look Selector
       subfolder: []
-      content_metadata_id: '1700'
+      content_metadata_id: '1743'
       team_edit: []
       team_view: []
-    content_metadata_id: '1699'
+    content_metadata_id: '1742'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '907'
+    id: '950'
     name: Admin
     subfolder: []
-    content_metadata_id: '1698'
+    content_metadata_id: '1741'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '903'
+    id: '946'
     name: Looker Workflows
     subfolder:
     - !LookerFolder
-      parent_id: '903'
-      id: '906'
+      parent_id: '946'
+      id: '949'
       name: Zapier - Webhooks Integration
       subfolder: []
-      content_metadata_id: '1697'
+      content_metadata_id: '1740'
       team_edit: []
       team_view: []
     - !LookerFolder
-      parent_id: '903'
-      id: '904'
+      parent_id: '946'
+      id: '947'
       name: Slackbot
       subfolder:
       - !LookerFolder
-        parent_id: '904'
-        id: '905'
+        parent_id: '947'
+        id: '948'
         name: New Space
         subfolder: []
-        content_metadata_id: '1696'
+        content_metadata_id: '1739'
         team_edit: []
         team_view: []
-      content_metadata_id: '1695'
+      content_metadata_id: '1738'
       team_edit: []
       team_view: []
-    content_metadata_id: '1694'
+    content_metadata_id: '1737'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '901'
+    id: '944'
     name: Retail
     subfolder:
     - !LookerFolder
-      parent_id: '901'
-      id: '902'
+      parent_id: '944'
+      id: '945'
       name: Deep-dive dashboards
       subfolder: []
-      content_metadata_id: '1693'
+      content_metadata_id: '1736'
       team_edit: []
       team_view: []
-    content_metadata_id: '1692'
+    content_metadata_id: '1735'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '899'
+    id: '942'
     name: SaaS Sales and Support
     subfolder:
     - !LookerFolder
-      parent_id: '899'
-      id: '900'
+      parent_id: '942'
+      id: '943'
       name: Looks for PPT
       subfolder: []
-      content_metadata_id: '1691'
+      content_metadata_id: '1734'
       team_edit: []
       team_view: []
-    content_metadata_id: '1690'
+    content_metadata_id: '1733'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '898'
+    id: '941'
     name: SDLC Demo
     subfolder: []
-    content_metadata_id: '1689'
+    content_metadata_id: '1732'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '892'
+    id: '935'
     name: Marketplace Blocks
     subfolder:
     - !LookerFolder
-      parent_id: '892'
-      id: '897'
+      parent_id: '935'
+      id: '940'
       name: Database Blocks
       subfolder: []
-      content_metadata_id: '1688'
+      content_metadata_id: '1731'
       team_edit: []
       team_view: []
     - !LookerFolder
-      parent_id: '892'
-      id: '896'
+      parent_id: '935'
+      id: '939'
       name: JIRA Block
       subfolder: []
-      content_metadata_id: '1687'
+      content_metadata_id: '1730'
       team_edit: []
       team_view: []
     - !LookerFolder
-      parent_id: '892'
-      id: '893'
+      parent_id: '935'
+      id: '936'
       name: Not Everything Working
       subfolder:
       - !LookerFolder
-        parent_id: '893'
-        id: '895'
+        parent_id: '936'
+        id: '938'
         name: Salesforce Block
         subfolder: []
-        content_metadata_id: '1686'
+        content_metadata_id: '1729'
         team_edit: []
         team_view: []
       - !LookerFolder
-        parent_id: '893'
-        id: '894'
+        parent_id: '936'
+        id: '937'
         name: Zendesk Block
         subfolder: []
-        content_metadata_id: '1685'
+        content_metadata_id: '1728'
         team_edit: []
         team_view: []
-      content_metadata_id: '1684'
+      content_metadata_id: '1727'
       team_edit: []
       team_view: []
-    content_metadata_id: '1683'
+    content_metadata_id: '1726'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '891'
+    id: '934'
     name: BigQuery Project
     subfolder: []
-    content_metadata_id: '1682'
+    content_metadata_id: '1725'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '890'
+    id: '933'
     name: to be hidden
     subfolder: []
-    content_metadata_id: '1681'
+    content_metadata_id: '1724'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '887'
+    id: '930'
     name: Reports
     subfolder:
     - !LookerFolder
-      parent_id: '887'
-      id: '888'
+      parent_id: '930'
+      id: '931'
       name: Client A
       subfolder:
       - !LookerFolder
-        parent_id: '888'
-        id: '889'
+        parent_id: '931'
+        id: '932'
         name: User 123
         subfolder: []
-        content_metadata_id: '1680'
+        content_metadata_id: '1723'
         team_edit: []
         team_view: []
-      content_metadata_id: '1679'
+      content_metadata_id: '1722'
       team_edit: []
       team_view: []
-    content_metadata_id: '1678'
+    content_metadata_id: '1721'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '881'
+    id: '924'
     name: Corporate
     subfolder:
     - !LookerFolder
-      parent_id: '881'
-      id: '885'
+      parent_id: '924'
+      id: '928'
       name: Director Group
       subfolder:
       - !LookerFolder
-        parent_id: '885'
-        id: '886'
+        parent_id: '928'
+        id: '929'
         name: Custom Dashboards
         subfolder: []
-        content_metadata_id: '1677'
+        content_metadata_id: '1720'
         team_edit: []
         team_view: []
-      content_metadata_id: '1676'
+      content_metadata_id: '1719'
       team_edit: []
       team_view: []
     - !LookerFolder
-      parent_id: '881'
-      id: '884'
+      parent_id: '924'
+      id: '927'
       name: Exec Group
       subfolder: []
-      content_metadata_id: '1675'
+      content_metadata_id: '1718'
       team_edit: []
       team_view: []
     - !LookerFolder
-      parent_id: '881'
-      id: '883'
+      parent_id: '924'
+      id: '926'
       name: Marketing Team
       subfolder: []
-      content_metadata_id: '1674'
+      content_metadata_id: '1717'
       team_edit: []
       team_view: []
     - !LookerFolder
-      parent_id: '881'
-      id: '882'
+      parent_id: '924'
+      id: '925'
       name: Sales Team
       subfolder: []
-      content_metadata_id: '1673'
+      content_metadata_id: '1716'
       team_edit: []
       team_view: []
-    content_metadata_id: '1672'
+    content_metadata_id: '1715'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '880'
+    id: '923'
     name: Dev Dashboards
     subfolder: []
-    content_metadata_id: '1671'
+    content_metadata_id: '1714'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '879'
+    id: '922'
     name: Looks - Pricing
     subfolder: []
-    content_metadata_id: '1670'
+    content_metadata_id: '1713'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '877'
+    id: '920'
     name: Embedded Customers
     subfolder:
     - !LookerFolder
-      parent_id: '877'
-      id: '878'
+      parent_id: '920'
+      id: '921'
       name: Allegra K
       subfolder: []
-      content_metadata_id: '1669'
+      content_metadata_id: '1712'
       team_edit: []
       team_view: []
-    content_metadata_id: '1668'
+    content_metadata_id: '1711'
     team_edit: []
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '876'
+    id: '919'
     name: Demo
     subfolder: []
-    content_metadata_id: '1667'
+    content_metadata_id: '1710'
     team_edit: []
     team_view: []
   content_metadata_id: '1'
@@ -349,12 +349,200 @@
 - !LookerPermissionSet
   permissions:
   - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - manage_spaces
+  - save_content
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: try
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_without_limit
+  - embed_browse_spaces
+  - embed_save_shared_space
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - manage_stereo
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_alerts
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - sudo
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: users
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - explore
+  - mobile_app_access
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  name: test-permset-aj
+- !LookerPermissionSet
+  permissions:
+  - access_data
   - embed_browse_spaces
   - embed_save_shared_space
   - explore
   - see_looks
   - see_user_dashboards
   name: test embedddd
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - explore
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: testOops
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - embed_browse_spaces
+  - embed_save_shared_space
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - manage_stereo
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_alerts
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - sudo
+  - support_access_toggle
+  - update_datagroups
+  - use_sql_runner
+  name: Allan Test
+- !LookerPermissionSet
+  permissions:
+  - see_system_activity
+  name: SystemActivity
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - explore
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - support_access_toggle
+  - use_sql_runner
+  name: Dev_nonadmin
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - use_sql_runner
+  name: Permission_set_517719
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -388,6 +576,19 @@
   - see_looks
   - see_user_dashboards
   name: Testing_Cacao_ps
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - mobile_app_access
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  name: Viewer
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -438,106 +639,6 @@
   - update_datagroups
   - use_sql_runner
   name: clear
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - clear_cache_refresh
-  - download_without_limit
-  - explore
-  - mobile_app_access
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  - send_to_integration
-  name: test-permset-aj
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - explore
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  name: testOops
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_alerts
-  - create_custom_fields
-  - create_table_calculations
-  - download_without_limit
-  - explore
-  - follow_alerts
-  - manage_spaces
-  - save_content
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  name: try
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - create_custom_fields
-  - create_table_calculations
-  - explore
-  - save_content
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  name: New LAHB
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_alerts
-  - create_custom_fields
-  - create_prefetches
-  - create_public_looks
-  - create_table_calculations
-  - deploy
-  - develop
-  - download_without_limit
-  - embed_browse_spaces
-  - embed_save_shared_space
-  - explore
-  - follow_alerts
-  - login_special_email
-  - manage_homepage
-  - manage_models
-  - manage_spaces
-  - manage_stereo
-  - mobile_app_access
-  - save_content
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_alerts
-  - see_datagroups
-  - see_drill_overlay
-  - see_logs
-  - see_lookml
-  - see_lookml_dashboards
-  - see_looks
-  - see_pdts
-  - see_queries
-  - see_schedules
-  - see_sql
-  - see_system_activity
-  - see_user_dashboards
-  - see_users
-  - send_outgoing_webhook
-  - send_to_integration
-  - send_to_s3
-  - sudo
-  - support_access_toggle
-  - update_datagroups
-  - use_sql_runner
-  name: users
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -625,171 +726,30 @@
 - !LookerPermissionSet
   permissions:
   - access_data
-  - clear_cache_refresh
-  - download_without_limit
-  - mobile_app_access
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  - send_to_integration
-  name: Viewer
-- !LookerPermissionSet
-  permissions:
-  - access_data
   - can_create_forecast
-  - clear_cache_refresh
-  - create_alerts
-  - create_custom_fields
-  - create_public_looks
-  - create_table_calculations
-  - deploy
-  - develop
-  - download_with_limit
-  - download_without_limit
-  - explore
-  - save_content
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml
-  - see_lookml_dashboards
-  - see_looks
-  - see_sql
-  - see_user_dashboards
-  - support_access_toggle
-  - use_sql_runner
-  name: Dev_nonadmin
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
   - create_custom_fields
   - create_table_calculations
-  - download_without_limit
   - explore
-  - manage_spaces
-  - mobile_app_access
   - save_content
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml
   - see_lookml_dashboards
   - see_looks
-  - see_sql
   - see_user_dashboards
-  - use_sql_runner
-  name: Permission_set_517719
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_alerts
-  - create_custom_fields
-  - create_prefetches
-  - create_public_looks
-  - create_table_calculations
-  - deploy
-  - develop
-  - download_with_limit
-  - download_without_limit
-  - embed_browse_spaces
-  - embed_save_shared_space
-  - explore
-  - follow_alerts
-  - login_special_email
-  - manage_homepage
-  - manage_models
-  - manage_spaces
-  - manage_stereo
-  - mobile_app_access
-  - save_content
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_alerts
-  - see_datagroups
-  - see_drill_overlay
-  - see_logs
-  - see_lookml
-  - see_lookml_dashboards
-  - see_looks
-  - see_pdts
-  - see_queries
-  - see_schedules
-  - see_sql
-  - see_system_activity
-  - see_user_dashboards
-  - see_users
-  - send_outgoing_webhook
-  - send_to_integration
-  - send_to_s3
-  - send_to_sftp
-  - sudo
-  - support_access_toggle
-  - update_datagroups
-  - use_sql_runner
-  name: Allan Test
-- !LookerPermissionSet
-  permissions:
-  - see_system_activity
-  name: SystemActivity
+  name: New LAHB
 
 
 # MODEL SETS
-- !LookerModelSet
-  models:
-  - 0_vysakh_thelook
-  - balcazartest
-  - chris_test_git
-  - classicmodels
-  - clickhouse_fake
-  - combined_commits
-  - cromero_training
-  - dany_test_snow
-  - ecommerce_ivonne18
-  - ecommerce_solis2218_01
-  - enarm
-  - extension-api-explorer
-  - ivanthesis
-  - jpr_city
-  - jpr_mextoys
-  - language_and_license
-  - looker_ecommerce
-  - looker_github_analysis
-  - lookml-diagram
-  - mtrmisasnowtest
-  - mtrmisathelook
-  - raj_look
-  - remote_dependencies_test
-  - rt2218
-  - second
-  - snow_srang
-  - snow_srangala
-  - souvik2218
-  - test_create_project
-  - testdpr
-  - thelook_carlos
-  - thelook_chris
-  - thelook_jluisg
-  - thelook_srang
-  - vutorthelook
-  - vysakh_import
-  - vysakh_import_test
-  name: Test_517719
 - !LookerModelSet
   models:
   - extension-api-explorer
   name: test_embeddd
 - !LookerModelSet
   models:
-  - balcazartest
-  name: testroleOops
-- !LookerModelSet
-  models:
   - AllanL
   name: Allan L
+- !LookerModelSet
+  models:
+  - balcazartest
+  name: testroleOops
 - !LookerModelSet
   models:
   - ecommerce_paramesh
@@ -915,6 +875,46 @@
   - cromero_training
   - raj_look
   name: All
+- !LookerModelSet
+  models:
+  - 0_vysakh_thelook
+  - balcazartest
+  - chris_test_git
+  - classicmodels
+  - clickhouse_fake
+  - combined_commits
+  - cromero_training
+  - dany_test_snow
+  - ecommerce_ivonne18
+  - ecommerce_solis2218_01
+  - enarm
+  - extension-api-explorer
+  - ivanthesis
+  - jpr_city
+  - jpr_mextoys
+  - language_and_license
+  - looker_ecommerce
+  - looker_github_analysis
+  - lookml-diagram
+  - mtrmisasnowtest
+  - mtrmisathelook
+  - raj_look
+  - remote_dependencies_test
+  - rt2218
+  - second
+  - snow_srang
+  - snow_srangala
+  - souvik2218
+  - test_create_project
+  - testdpr
+  - thelook_carlos
+  - thelook_chris
+  - thelook_jluisg
+  - thelook_srang
+  - vutorthelook
+  - vysakh_import
+  - vysakh_import_test
+  name: Test_517719
 
 
 # LOOKER ROLES

@@ -18,11 +18,14 @@ def return_error_message(input: str):
     return err_response
 
 
-def return_sleep_message(call_number=0):
+def return_sleep_message(call_number=0, quiet=False):
     call_number = call_number+1
     sleep_number = 2 ** call_number
     sleep(sleep_number)
-    logger.warn(f'Looker is overwhelmed sleeping for {sleep_number} secs')
+    if not quiet:
+        logger.warn(f'Looker is overwhelmed sleeping for {sleep_number} secs')
+
+
 
 
 def dedup_list_of_dicts(input: list):
