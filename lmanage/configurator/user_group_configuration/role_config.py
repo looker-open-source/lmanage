@@ -2,6 +2,7 @@ from looker_sdk import models, error
 import logging
 import coloredlogs
 from lmanage.utils import errorhandling as eh
+from progress.bar import ChargingBar
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -14,9 +15,11 @@ class CreateRoleBase():
         self.sdk = sdk
 
     def create_permission_set(self, sdk, permission_set_dict: dict):
+        bar = ChargingBar('Creating Permission Sets', max=len(permission_set_dict))
 
         final_response = []
         for permission in permission_set_dict:
+            bar.next()
             permission_set_name = permission.get('name')
             if permission_set_name == 'Admin':
                 pass
@@ -49,6 +52,7 @@ class CreateRoleBase():
                 final_response.append(temp)
 
         logger.debug(final_response)
+        bar.finish()
         return final_response
 
     def sync_permission_set(self, sdk, all_perms, permission_set_dict: dict):
@@ -67,9 +71,11 @@ class CreateRoleBase():
                 sdk.delete_permission_set(permission_set_id=permission_id)
 
     def create_model_set(self, sdk, model_set_dict: list) -> list:
+        bar = ChargingBar('Creating Model Sets', max=len(model_set_dict))
         final_response = []
         model_set_dict = eh.dedup_list_of_dicts(model_set_dict)
         for model in model_set_dict:
+            bar.next()
             model_set_name = model.get('name')
             attributed_models = model.get('models')
             body = models.WriteModelSet(
@@ -103,6 +109,7 @@ class CreateRoleBase():
                     final_response.append(temp)
 
         logger.debug(final_response)
+        bar.finish()
         return final_response
 
     def sync_model_set(self, sdk, all_models, model_set_list: list):

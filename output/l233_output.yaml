@@ -61,19 +61,6 @@
 - !LookerPermissionSet
   permissions:
   - access_data
-  - clear_cache_refresh
-  - download_without_limit
-  - mobile_app_access
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  - send_to_integration
-  name: Viewer
-- !LookerPermissionSet
-  permissions:
-  - access_data
   - can_create_forecast
   - clear_cache_refresh
   - create_custom_fields
@@ -92,6 +79,19 @@
   - see_user_dashboards
   - send_to_integration
   name: User
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - mobile_app_access
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  name: Viewer
 - !LookerPermissionSet
   permissions:
   - access_data

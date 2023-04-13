@@ -3,9 +3,13 @@ import logging
 import coloredlogs
 from time import sleep
 
-
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
+
+
+def calc_done_percent(iterator: int, total: int) -> str:
+    percent = (iterator/total) * 100
+    return f'{int(percent)} %'
 
 
 def return_error_message(input: str):

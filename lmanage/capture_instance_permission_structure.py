@@ -16,13 +16,11 @@ logging.getLogger("looker_sdk").setLevel(logging.WARNING)
 
 
 def main(**kwargs):
-    div = '-------------------------------------------------------------------'
 
     ini_file = kwargs.get("ini_file")
     yaml_path = kwargs.get("yaml_export_path")
     yaml_path = yaml_path.split('.')[0]
-    
-    logger.info(div)
+
     logger.info('creating yaml configuration file')
 
     if ini_file:
@@ -43,16 +41,11 @@ def main(**kwargs):
 # Capture Folder Config #######################################
 ###############################################################
     folder_structurelist = fc.CaptureFolderConfig(sdk=sdk).execute()
-    print(f'{yaml_path}')
     with open(f'{yaml_path}.yaml', 'w') as file:
         fd_yml_txt = '''# FOLDER_PERMISSIONS\n# Opening Session Welcome to the Capturator, this is the Folder place\n# -----------------------------------------------------\n\n'''
         file.write(fd_yml_txt)
-        # file.write('# FOLDER_PERMISSIONS\n')
         yaml.dump(folder_structurelist, file)
 
-    # yaml.dump(folder_structurelist, sys.stdout)
-
-    logger.info(div)
 ###############################################################
 # Capture Roles ###############################################
 ###############################################################
@@ -86,25 +79,20 @@ def main(**kwargs):
 ###############################################################
     # Capture Look Content
     looks = lc.CaptureLookObject(sdk=sdk).execute()
-    with open(f'{yaml_path}_content.yaml', 'a') as file:
+    with open(f'{yaml_path}_content.yaml', 'w+') as file:
         file.write('\n\n# LookData\n')
         yaml.dump(looks, file)
 
-    # Capture Dashboard Content 
+    # Capture Dashboard Content
     dash_content = dc.CaptureDashboards(sdk=sdk).execute()
-    print(f'{yaml_path}')
     with open(f'{yaml_path}_content.yaml', 'a') as file:
         fd_yml_txt = '\n\n# Dashboard Content\n'
         file.write(fd_yml_txt)
         yaml.dump(dash_content, file)
 
-    logger.info(div)
-
     # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
-    logger.info('Lmanage has finished capturing your Looker instance!')
-    logger.info('please find the captured instance at %s', yaml_path)
-
-
+    logger.info('\n\n\n Lmanage has finished capturing your Looker instance!\n')
+    logger.info('\n\nplease find captured settings metadata at: \n%s.yaml \n\ncaptured content metadata at:\n%s_content.yaml', yaml_path, yaml_path)
 
 
 if __name__ == "__main__":

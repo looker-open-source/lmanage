@@ -1,6 +1,7 @@
 import logging
 import coloredlogs
 from looker_sdk import models, error
+from progress.bar import ChargingBar
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -20,8 +21,10 @@ class CreateAndAssignUserAttributes():
     def create_user_attribute_if_not_exists(self):
         existing_ua = self.existing_user_attributes()
         yaml_user_attributes = self.user_attribute_metadata
+        bar = ChargingBar('Creating User Attributes', max=len(yaml_user_attributes))
 
         for ua in yaml_user_attributes:
+            bar.next()
             name = ua.get('name')
             if name in existing_ua.keys():
                 logger.warn(
@@ -44,6 +47,7 @@ class CreateAndAssignUserAttributes():
 
                 response = self.sdk.create_user_attribute(body=ua_permissions)
                 logger.info(f'created user attribute {response.label}')
+        bar.finish()
 
     def sync_user_attributes(self):
         instance_ua = self.existing_user_attributes()

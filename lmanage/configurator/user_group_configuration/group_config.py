@@ -2,6 +2,7 @@ import logging
 import coloredlogs
 from looker_sdk import models, error
 from lmanage.utils.errorhandling import return_error_message
+from progress.bar import ChargingBar
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -70,14 +71,17 @@ class CreateInstanceGroups():
                                     sdk,
                                     unique_group_list: list) -> list:
         group_metadata = []
+        bar = ChargingBar('Creating User Groups', max= len(unique_group_list))
 
         for group_name in unique_group_list:
+            bar.next()
             group = self.create_group_if_not_exists(sdk, group_name)
             temp = {}
             temp['group_id'] = group.id
             temp['group_name'] = group.name
             group_metadata.append(temp)
 
+        bar.finish()
         return group_metadata
 
     def sync_groups(self,
