@@ -3,7 +3,8 @@ import time
 import coloredlogs
 from looker_sdk import models, error
 from lmanage.utils import errorhandling
-from progress.bar import ChargingBar
+from tqdm import tqdm
+from lmanage.utils.errorhandling import return_sleep_message
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -217,7 +218,7 @@ class CreateAndProvisionInstanceFolders():
                         content_metadata_id=cmaid).name
                     group_name = self.sdk.search_groups(id=group_id)[0].name
 
-                    logging.debug(
+                    logger.debug(
                         f'--> Updating group id {group_name} permission type to {permission} on folder {folder_name}.')
 
             # no existing access
@@ -232,10 +233,8 @@ class CreateAndProvisionInstanceFolders():
                 )
 
     def provision_folders_with_group_access(self, content_access_metadata_list: list):
-        bar = ChargingBar('Updating Inheritance', max=len(content_access_metadata_list))
 
-        for folder_tree in content_access_metadata_list:
-            bar.next()
+        for folder_tree in tqdm(content_access_metadata_list, desc = "Folder Perms - Group Access", unit=" folders provisioned", colour="#2c8558"):
             
             for access_item in folder_tree:
                 content_metadata_id = access_item["cmi"]
@@ -247,7 +246,6 @@ class CreateAndProvisionInstanceFolders():
 
                 self.sync_folder_permission(cmaid=content_metadata_id,
                                             gp_permissions=gp_permissions)
-        bar.finish()
 
     def remove_content_access(self,
                               cm_accesses: dict):
@@ -259,7 +257,7 @@ class CreateAndProvisionInstanceFolders():
                 self.sdk.delete_content_metadata_access(
                     content_metadata_access_id=delete_cmi)
             except error.SDKError as InheritanceError:
-                logger.warn('''You have an inheritance error in your YAML file possibly 
+                logger.debug('''You have an inheritance error in your YAML file possibly 
                             around %s, skipping group_id %s''', delete_cmi, group_id)
                 logger.debug(InheritanceError)
 
@@ -340,13 +338,10 @@ class CreateAndProvisionInstanceFolders():
 
     def execute(self):
         # CONFIGURE FOLDERS WITH EDIT AND VIEW ACCESS
-        bar = ChargingBar('Configuring Content Access', max=len(self.instance_folder_metadata))
         content_access_metadata = []
-        for folder_obj in self.instance_folder_metadata:
-            bar.next()
+        for folder_obj in tqdm(self.instance_folder_metadata, desc = "Folder Perms - Edit/View Access", unit=" folders", colour="#2c8558"):
             r = self.get_content_access_metadata(folder=folder_obj)
             content_access_metadata.append(r)
-        bar.finish()
         
 
         # ADD AND SYNC CONTENT VIEW ACCESS WITH YAML

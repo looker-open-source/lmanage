@@ -14,8 +14,7 @@ class Create_Dashboards():
         self.content_metadata = content_metadata
 
     def upload_dashboards(self) -> None:
-        for i in tqdm(range(len(self.content_metadata))):
-            dash = self.content_metadata[i]
+        for dash in tqdm(self.content_metadata, desc = "Dashboard Upload", unit=" dashboards", colour="#2c8558"):
             new_folder_id = self.folder_mapping[dash['legacy_folder_id']]
             self.sdk.import_dashboard_from_lookml(body=models.WriteDashboardLookml(
                 folder_id = new_folder_id,

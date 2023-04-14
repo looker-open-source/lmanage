@@ -11,6 +11,8 @@ from lmanage.configurator.user_group_configuration import user_permission as up
 from lmanage.configurator.content_configuration import create_looks as cl
 from lmanage.configurator.content_configuration import create_dashboards as cd
 from lmanage.utils import parse_yaml as py
+from yaspin import yaspin
+
 
 
 logger = logging.getLogger(__name__)
@@ -24,10 +26,13 @@ def main(**kwargs):
     ini_file = kwargs.get("ini_file")
     yaml_path = kwargs.get("yaml_config_path")
     logger.info(div)
-    logger.info('parsing yaml file')
-    yaml_split = yaml_path.split('.')
-    settings_yaml = py.Yaml(yaml_path=f'{yaml_split[0]}.yaml')
-    content_yaml = py.Yaml(yaml_path=f'{yaml_split[0]}_content.yaml')
+    #logger.info('parsing yaml file')
+    with yaspin(text="Parsing Yaml File", color="cyan") as sp:
+        yaml_split = yaml_path.split('.')
+        settings_yaml = py.Yaml(yaml_path=f'{yaml_split[0]}.yaml')
+        content_yaml = py.Yaml(yaml_path=f'{yaml_split[0]}_content.yaml')
+        sp.write("✔ Yaml Parsing Complete")
+
 
     if ini_file:
         sdk = looker_sdk.init40(config_file=ini_file)
@@ -70,8 +75,8 @@ def main(**kwargs):
 # Role Config ################################################
 ################################################################
     # Create Permission and Model Sets
-    rc.CreateRoleBase(permissions=permission_set_metadata,
-                      model_sets=model_set_metadata, sdk=sdk). execute()
+    #rc.CreateRoleBase(permissions=permission_set_metadata,
+    #                  model_sets=model_set_metadata, sdk=sdk). execute()
 ###############################################################
 # Folder Config ################################################
 ###############################################################

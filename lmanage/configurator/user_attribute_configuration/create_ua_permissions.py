@@ -1,10 +1,10 @@
 import logging
 import coloredlogs
 from looker_sdk import models, error
-from progress.bar import ChargingBar
+from tqdm import tqdm
 
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
+#logger = logging.getLogger(__name__)
+#coloredlogs.install(level='DEBUG')
 
 
 class CreateAndAssignUserAttributes():
@@ -21,13 +21,11 @@ class CreateAndAssignUserAttributes():
     def create_user_attribute_if_not_exists(self):
         existing_ua = self.existing_user_attributes()
         yaml_user_attributes = self.user_attribute_metadata
-        bar = ChargingBar('Creating User Attributes', max=len(yaml_user_attributes))
 
-        for ua in yaml_user_attributes:
-            bar.next()
+        for ua in tqdm(yaml_user_attributes, desc = "User Attribute Creation", unit=" attributes", colour="#2c8558"):
             name = ua.get('name')
             if name in existing_ua.keys():
-                logger.warn(
+                logging.warning(
                     f'user attribute {name} already exists on this instance')
             else:
                 datatype = ua.get('uatype')
@@ -46,8 +44,7 @@ class CreateAndAssignUserAttributes():
                 )
 
                 response = self.sdk.create_user_attribute(body=ua_permissions)
-                logger.info(f'created user attribute {response.label}')
-        bar.finish()
+                logging.info(f'created user attribute {response.label}')
 
     def sync_user_attributes(self):
         instance_ua = self.existing_user_attributes()
@@ -71,7 +68,7 @@ class CreateAndAssignUserAttributes():
             if ua_name not in config_ua:
                 ua_id = instance_ua.get(ua_name)
                 self.sdk.delete_user_attribute(ua_id)
-                logger.info(
+                logging.info(
                     f'''deleting ua {ua_name} because
                     it is not listed in the yaml config''')
 

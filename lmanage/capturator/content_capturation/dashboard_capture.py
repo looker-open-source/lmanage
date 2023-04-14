@@ -4,11 +4,6 @@ from time import sleep
 import logging
 from lmanage.utils.errorhandling import return_sleep_message, calc_done_percent
 from lmanage.utils.looker_object_constructors import DashboardObject
-import logging
-import coloredlogs
-
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
 
 
 class CaptureDashboards():
@@ -18,32 +13,33 @@ class CaptureDashboards():
 
     def get_all_dashboards(self) -> dict:
         all_dashboards = self.sdk.all_dashboards()
-        scrub_dashboards = {dash.id: dash.folder.id for dash in all_dashboards if not dash.folder.is_personal or dash.folder.is_embed}
+        scrub_dashboards = {dash.id: dash.folder.id for dash in all_dashboards if not dash.folder.is_personal or not dash.folder.is_embed}
         return scrub_dashboards
 
     def get_dashboard_lookml(self, all_dashboards: dict) -> list:
-        logging.info("Beginning Dashboard Capture:")
+        #logging.info("Beginning Dashboard Capture:")
         response = []
   
-        for did in tqdm(range(len(all_dashboards))):
-            dash_id = all_dashboards[did]
-         
+        for dash_id in tqdm(all_dashboards, desc = "Dashboard Capture", unit=" dashboards", colour="#2c8558"):
+        
             lookml = None
             trys = 0
+            if "::" in dash_id:
+                continue
+            else:
+                while lookml is None:
+                    trys += 1
+                    try:
+                        lookml = self.sdk.dashboard_lookml(dashboard_id=dash_id)
+                    except:
+                        return_sleep_message(call_number=trys, quiet=True)
 
-            while lookml is None:
-                trys += 1
-                try:
-                    lookml = self.sdk.dashboard_lookml(dashboard_id=dash_id)
-                except:
-                    return_sleep_message(call_number=trys)
-
-            captured_dashboard = DashboardObject(
-                legacy_folder_id=all_dashboards.get(dash_id),
-                lookml=lookml.lookml,
-                dashboard_id=dash_id)
-            response.append(captured_dashboard)
-        
+                captured_dashboard = DashboardObject(
+                    legacy_folder_id=all_dashboards.get(dash_id),
+                    lookml=lookml.lookml,
+                    dashboard_id=dash_id)
+                response.append(captured_dashboard)
+            
 
         return response
 

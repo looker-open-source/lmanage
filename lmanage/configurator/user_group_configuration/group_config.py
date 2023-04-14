@@ -2,7 +2,7 @@ import logging
 import coloredlogs
 from looker_sdk import models, error
 from lmanage.utils.errorhandling import return_error_message
-from progress.bar import ChargingBar
+from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -51,7 +51,7 @@ class CreateInstanceGroups():
         """
         # get group if exists
         try:
-            logger.info(f'Creating group "{group_name}"')
+            logger.debug(f'Creating group "{group_name}"')
             group = sdk.create_group(
                 body=models.WriteGroup(
                     can_add_to_content_metadata=True,
@@ -61,7 +61,7 @@ class CreateInstanceGroups():
             return group
         except error.SDKError as grouperr:
             err_msg = return_error_message(grouperr)
-            logger.warn(
+            logger.debug(
                 'You have hit a warning creating your group; warning = %s', err_msg)
             logger.debug(grouperr)
             group = sdk.search_groups(name=group_name)
@@ -71,17 +71,14 @@ class CreateInstanceGroups():
                                     sdk,
                                     unique_group_list: list) -> list:
         group_metadata = []
-        bar = ChargingBar('Creating User Groups', max= len(unique_group_list))
 
-        for group_name in unique_group_list:
-            bar.next()
+        for group_name in tqdm(unique_group_list, desc = "Creating User Groups", unit=" user groups", colour="#2c8558"):
             group = self.create_group_if_not_exists(sdk, group_name)
             temp = {}
             temp['group_id'] = group.id
             temp['group_name'] = group.name
             group_metadata.append(temp)
 
-        bar.finish()
         return group_metadata
 
     def sync_groups(self,

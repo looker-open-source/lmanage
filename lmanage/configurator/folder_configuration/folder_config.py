@@ -4,7 +4,7 @@ from looker_sdk import models, error
 import coloredlogs
 
 logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
+coloredlogs.install(level='INFO')
 logging.getLogger("requests").setLevel(logging.WARNING)
 
 

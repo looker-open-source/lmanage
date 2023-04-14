@@ -4,7 +4,8 @@ import coloredlogs
 from looker_sdk import models, error
 from lmanage.configurator.user_group_configuration.role_config import CreateRoleBase
 from lmanage.utils.errorhandling import return_error_message
-from progress.bar import ChargingBar
+from lmanage.utils.errorhandling import return_sleep_message
+from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -42,10 +43,8 @@ class CreateInstanceRoles(CreateRoleBase):
         permission_lookup = self.create_permission_lookup()
 
         role_output = []
-        bar = ChargingBar('Creating User Roles', max=len(self.role_metadata))
 
-        for r_metadata in self.role_metadata:
-            bar.next()
+        for r_metadata in tqdm(self.role_metadata, desc = "User Role Creation", unit=" user roles", colour="#2c8558"):
             role_name = r_metadata.get('name')
             model_set_id = model_lookup.get(
                 r_metadata.get('model_set') if r_metadata.get('model_set') == 'All' else r_metadata.get('model_set').lower())
@@ -64,11 +63,12 @@ class CreateInstanceRoles(CreateRoleBase):
 
                 except error.SDKError as roleerror:
                     err_msg = return_error_message(roleerror)
-                    logger.warn(
+                    logger.debug(
                         'You have hit a warning creating your role \'%s\'; warning = %s', role_name, err_msg)
                     role_id = self.sdk.search_roles(name=role_name)[0].id
                     role = self.sdk.update_role(
                         role_id=str(role_id), body=body)
+        
                 temp = {}
                 temp['role_id'] = role.id
                 temp['role_name'] = role_name
@@ -76,16 +76,15 @@ class CreateInstanceRoles(CreateRoleBase):
             else:
                 pass
         logger.debug(role_output)
-        bar.finish()
         return role_output
 
     def set_role(self, role_id: str, group_id: list) -> str:
         try:
             self.sdk.set_role_groups(role_id, group_id)
-            return logger.info(f'attributing {group_id} permissions on instance')
+            return logger.debug(f'attributing {group_id} permissions on instance')
         except error.SDKError as role_err:
             err_msg = return_error_message(role_err)
-            logger.warn(
+            logger.debug(
                 'You have hit a warning setting your role, warning = %s', err_msg)
             logger.debug(role_err)
 
@@ -93,7 +92,7 @@ class CreateInstanceRoles(CreateRoleBase):
         role_lookup = self.create_allrole_lookup()
         group_lookup = self.create_allgroup_lookup()
 
-        for r_metadata in self.role_metadata:
+        for r_metadata in tqdm(self.role_metadata, desc = "Instance Role Attribution", unit=" roles", colour="#2c8558"):
             role_name = r_metadata.get('name')
             teams = r_metadata.get('teams')
             role_id = role_lookup.get(role_name)

@@ -2,7 +2,7 @@ from looker_sdk import models, error
 import logging
 import coloredlogs
 from lmanage.utils import errorhandling as eh
-from progress.bar import ChargingBar
+from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -15,11 +15,9 @@ class CreateRoleBase():
         self.sdk = sdk
 
     def create_permission_set(self, sdk, permission_set_dict: dict):
-        bar = ChargingBar('Creating Permission Sets', max=len(permission_set_dict))
 
         final_response = []
-        for permission in permission_set_dict:
-            bar.next()
+        for permission in tqdm(permission_set_dict, desc = "Creating Permission Sets", unit=" perm sets", colour="#2c8558"):
             permission_set_name = permission.get('name')
             if permission_set_name == 'Admin':
                 pass
@@ -37,7 +35,7 @@ class CreateRoleBase():
                     logger.debug(permerr)
                     err_msg = eh.return_error_message(permerr)
                     logger.debug(permerr)
-                    logger.warn(
+                    logger.debug(
                         'you have a warning permission set %s, warning = %s already exists on this instance', permission_set_name, err_msg)
 
                     perm = sdk.search_permission_sets(
@@ -52,7 +50,6 @@ class CreateRoleBase():
                 final_response.append(temp)
 
         logger.debug(final_response)
-        bar.finish()
         return final_response
 
     def sync_permission_set(self, sdk, all_perms, permission_set_dict: dict):
@@ -71,11 +68,9 @@ class CreateRoleBase():
                 sdk.delete_permission_set(permission_set_id=permission_id)
 
     def create_model_set(self, sdk, model_set_dict: list) -> list:
-        bar = ChargingBar('Creating Model Sets', max=len(model_set_dict))
         final_response = []
         model_set_dict = eh.dedup_list_of_dicts(model_set_dict)
-        for model in model_set_dict:
-            bar.next()
+        for model in tqdm(model_set_dict, desc = "Creating Model Sets", unit=" model sets", colour="#2c8558"):
             model_set_name = model.get('name')
             attributed_models = model.get('models')
             body = models.WriteModelSet(
@@ -86,7 +81,7 @@ class CreateRoleBase():
                 final_response.append(temp)
             except error.SDKError as modelerror:
                 err_msg = eh.return_error_message(modelerror)
-                logger.warn(
+                logger.debug(
                     'you have a warning in creating model set %s, warning = %s', model_set_name, err_msg)
                 logger.debug(modelerror)
                 model = sdk.search_model_sets(name=model_set_name)[0]
@@ -101,7 +96,7 @@ class CreateRoleBase():
                     final_response.append(temp)
                 except error.SDKError as txt:
                     err_msg = eh.return_error_message(txt)
-                    logger.warn(
+                    logger.debug(
                         'The model %s, has encountered a warning, warning = %s', model_set_name, err_msg)
                     temp = {}
                     temp['model_set_name'] = model.name
@@ -109,7 +104,6 @@ class CreateRoleBase():
                     final_response.append(temp)
 
         logger.debug(final_response)
-        bar.finish()
         return final_response
 
     def sync_model_set(self, sdk, all_models, model_set_list: list):

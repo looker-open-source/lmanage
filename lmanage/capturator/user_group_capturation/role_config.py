@@ -3,12 +3,10 @@ import coloredlogs
 import itertools
 from lmanage.utils.looker_object_constructors import LookerPermissionSet, LookerModelSet, LookerRoles
 from lmanage.utils import errorhandling
-from progress.bar import ChargingBar
+from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
-
-
 
 
 class ExtractRoleInfo():
@@ -71,9 +69,7 @@ class ExtractRoleInfo():
 
     def extract_role_info(self):
         response = []
-        bar = ChargingBar('Role Capture Progress', max=len(self.role_base))
-        for role in self.role_base:
-            bar.next()
+        for role in tqdm(self.role_base, desc = "Role Capture", unit=" roles", colour="#2c8558"):
             groups = None
             trys = 0
             while groups is None:
@@ -88,5 +84,4 @@ class ExtractRoleInfo():
                                      model_set=role.model_set.name, teams=role_groups, name=role.name)
             response.append(lookerrole)
 
-        bar.finish()
         return response

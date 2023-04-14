@@ -1,7 +1,7 @@
 import logging
 from looker_sdk import models40 as models, error
 import coloredlogs
-from progress.bar import ChargingBar
+from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -50,11 +50,9 @@ class CreateInstanceLooks():
         return response
 
     def execute(self) -> dict:
-        bar = ChargingBar('Creating Looks', max=len(self.content_metadata))
         look_mapping = []
 
-        for look in self.content_metadata:
-            bar.next()
+        for look in tqdm(self.content_metadata, desc = "Look Creation", unit=" attributes", colour="#2c8558"):
             query = self.create_query(look_metadata=look)
             new_look = self.create_look(
                 query_id=query.id, look_metadata=look, folder_mapping=self.folder_mapping)
@@ -66,5 +64,4 @@ class CreateInstanceLooks():
                 look.get('legacy_folder_id'))
             look_mapping.append(temp)
 
-        bar.finish()
         return look_mapping

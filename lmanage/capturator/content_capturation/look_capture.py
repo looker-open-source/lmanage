@@ -3,11 +3,10 @@ import time
 import coloredlogs
 import lmanage.utils.looker_object_constructors as loc
 from lmanage.utils.errorhandling import return_sleep_message, calc_done_percent
-from progress.bar import ChargingBar
-from progress.spinner import Spinner
+from tqdm import tqdm
 
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
+#logger = logging.getLogger(__name__)
+#coloredlogs.install(level='DEBUG')
 
 
 class CaptureLookObject():
@@ -15,15 +14,11 @@ class CaptureLookObject():
         self.sdk = sdk
 
     def all_looks(self):
-        spinner = Spinner('loading')
         all_look_meta = None
         trys = 0
         while all_look_meta is None:
             try:
-                with Spinner('Capturing all Look Metadata') as bar:
-                    bar.next()
-                    logger.debug('running the all look sdk call to get existing look metadata')
-                    all_look_meta = self.sdk.all_looks()
+                all_look_meta = self.sdk.all_looks()
             except:
                 return_sleep_message
         all_looks_id = [look.id for look in all_look_meta]
@@ -71,10 +66,9 @@ class CaptureLookObject():
         3. create custom look object and add to list
         '''
         all_look_data = self.all_looks()
-        bar = ChargingBar('Look Capture Progress', max=len(all_look_data))
         looks = []
         content = 1
-        for look in all_look_data:
+        for look in tqdm(all_look_data, desc = "Look Capture", unit=" looks", colour="#2c8558"):
             total = len(all_look_data)
             lmetadata = self.get_look_metadata(look_id=look)
             if lmetadata.folder.is_personal:
@@ -96,6 +90,4 @@ class CaptureLookObject():
                     title=title)
                 looks.append(look_obj)
             content += 1
-            bar.next()
-        bar.finish()
         return looks

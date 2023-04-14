@@ -1,10 +1,10 @@
 import logging
 from looker_sdk import models, error
 import coloredlogs
-from progress.bar import ChargingBar
+from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
+coloredlogs.install(level='INFO')
 logging.getLogger("requests").setLevel(logging.WARNING)
 
 
@@ -22,22 +22,22 @@ class CreateInstanceFolders():
         exempt_folders = ['1', '2', '3', '4', 'lookml']
         folders = self.get_all_folders()
         error_count = 0
+        #allowed_folders = [folder_obj for folder_obj in folders.keys() if folder_obj not in exempt_folders]
         while error_count < 1:
             folders = self.get_all_folders()
             x = [folder_obj for folder_obj in folders.keys(
             ) if folder_obj not in exempt_folders]
+        #for fid in tqdm(allowed_folders):
             try:
                 self.sdk.delete_folder(folder_id=x[0])
-                logger.info('deleting folder %s to start afresh',
+                logger.debug('deleting folder %s to start afresh',
                             folders.get(x[0]))
             except error.SDKError as e:
                 logger.error(e)
                 error_count = 1
 
     def unnest_folder_data(self, folder_data):
-        bar = ChargingBar('Creating Folders', max=len(folder_data))
-        for d in folder_data:
-            bar.next
+        for d in tqdm(folder_data, desc = "Unesting Folder Data", unit=" unested", colour="#2c8558"):
             folder_dict = d
             metadata_list = []
             metadata_list = self.walk_folder_structure(
@@ -45,7 +45,6 @@ class CreateInstanceFolders():
                 data_storage=metadata_list,
                 parent_name='1')
 
-        bar.finish()
         logger.debug('retrieved yaml folder files')
         logger.debug('folder metadata = %s', metadata_list)
 
@@ -59,7 +58,7 @@ class CreateInstanceFolders():
 
         try:
             if parent_name == 'Shared':
-                logger.info(
+                logger.debug(
                     f'Creating folder Shared Child Folder "{folder_name}"')
                 folder = self.create_folder(
                     folder_name=folder_name, parent_id='1')
@@ -97,7 +96,7 @@ class CreateInstanceFolders():
                       folder_name: str,
                       parent_id: str,
                       ):
-        logger.info(f'Creating folder "{folder_name}"')
+        logger.debug(f'Creating folder "{folder_name}"')
         folder = self.sdk.create_folder(
             body=models.CreateFolder(
                 name=folder_name,
@@ -123,11 +122,11 @@ class CreateInstanceFolders():
             if fids not in created_folder_ids:
                 try:
                     self.sdk.delete_folder(folder_id=fids)
-                    logger.info(
+                    logger.debug(
                         'deleting folder %s to sync with yaml config', fids)
 
                 except error.SDKError as InheritanceError:
-                    logger.info('root folder has been deleted so %s',
+                    logger.debug('root folder has been deleted so %s',
                                 InheritanceError)
         return 'your folders are in sync with your yaml file'
 
