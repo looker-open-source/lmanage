@@ -5,22 +5,6 @@ import coloredlogs
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
 
-# folder_permissions:
-#   business_operations_folder:
-#   - name: 'Business Operations'
-#     team_view:
-#       - BusinessOperations
-#     subfolder:
-#       - name: test_sub
-#         team_edit:
-#           - Freddy
-#         team_view:
-#           - hugo
-#   - name: 'sexy time'
-#     team_edit:
-#       - sexy_group1
-
-
 class CreateFolderOutput():
     def __init__(self, folder_list):
         self.folder_list = folder_list
@@ -46,7 +30,6 @@ class CreateFolderOutput():
             data_storage = []
             x = self.create_folder_structure(
                 folder_obj=folders, data_storage=data_storage)
-
         return x
 
     def execute(self):

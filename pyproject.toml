@@ -26,7 +26,8 @@ looker-sdk = "^22.4.0"
 sqlparse = "^0.4.2"
 XlsxWriter = "^3.0.3"
 "ruamel.yaml" = "^0.17.21"
-progress = "^1.6"
+tqdm = "^4.65.0"
+poetry = "^1.4.2"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.5"

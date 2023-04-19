@@ -1,0 +1,34 @@
+import looker_sdk
+from tqdm import tqdm
+from looker_sdk import models40 as models
+from ruamel.yaml import YAML
+from lmanage.utils.looker_object_constructors import DashboardObject
+from lmanage.utils.errorhandling import return_sleep_message
+
+
+class Create_Dashboards():
+
+    def __init__(self, sdk, folder_mapping, content_metadata) -> None:
+        self.sdk = sdk
+        self.folder_mapping = folder_mapping
+        self.content_metadata = content_metadata
+    
+    def amend_lookml_str(self, lookml: str) -> str:
+        yaml=YAML(typ='safe')   # default, if not specfied, is 'rt' (round-trip)
+        x = yaml.load(lookml)
+        print(x)
+
+
+    def upload_dashboards(self) -> None:
+        for dash in tqdm(self.content_metadata, desc = "Dashboard Upload", unit="dashboards", colour="#2c8558"):
+            t = dash.get('legacy_folder_id')
+            new_folder_id = self.folder_mapping.get(t)
+            lookml = lookml[0]
+            
+            # lookml = self.amend_lookml_str(dash['lookml'])
+            self.sdk.import_dashboard_from_lookml(body=models.WriteDashboardLookml(
+                folder_id = new_folder_id,
+                lookml = lookml))
+
+    def execute(self):
+        self.upload_dashboards()

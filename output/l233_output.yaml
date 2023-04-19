@@ -65,6 +65,8 @@
   - clear_cache_refresh
   - create_custom_fields
   - create_table_calculations
+  - deploy
+  - develop
   - download_without_limit
   - explore
   - manage_spaces
@@ -75,10 +77,12 @@
   - see_lookml
   - see_lookml_dashboards
   - see_looks
+  - see_pdts
   - see_sql
   - see_user_dashboards
   - send_to_integration
-  name: User
+  - use_sql_runner
+  name: Developer
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -99,8 +103,6 @@
   - clear_cache_refresh
   - create_custom_fields
   - create_table_calculations
-  - deploy
-  - develop
   - download_without_limit
   - explore
   - manage_spaces
@@ -111,12 +113,10 @@
   - see_lookml
   - see_lookml_dashboards
   - see_looks
-  - see_pdts
   - see_sql
   - see_user_dashboards
   - send_to_integration
-  - use_sql_runner
-  name: Developer
+  name: User
 
 
 # MODEL SETS
@@ -147,6 +147,11 @@
   model_set: All
   teams: []
   name: Viewer
+- !LookerRoles
+  permission_set: Developer
+  model_set: All
+  teams: []
+  name: haylen_mtr
 
 
 # USER_ATTRIBUTES
