@@ -200,22 +200,6 @@
     team_view: []
   - !LookerFolder
     parent_id: '1'
-    id: '1882'
-    name: SaaS Sales and Support
-    subfolder:
-    - !LookerFolder
-      parent_id: '1882'
-      id: '1923'
-      name: Looks for PPT
-      subfolder: []
-      content_metadata_id: '28264'
-      team_edit: []
-      team_view: []
-    content_metadata_id: '27788'
-    team_edit: []
-    team_view: []
-  - !LookerFolder
-    parent_id: '1'
     id: '1840'
     name: Retail
     subfolder:
@@ -363,25 +347,46 @@
 - !LookerPermissionSet
   permissions:
   - access_data
-  - mobile_app_access
-  - see_system_activity
-  name: system_activity_role_AH_test
-- !LookerPermissionSet
-  permissions:
-  - access_data
   - can_create_forecast
   - clear_cache_refresh
+  - create_alerts
   - create_custom_fields
+  - create_prefetches
   - create_public_looks
   - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - embed_browse_spaces
   - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
   - mobile_app_access
   - save_content
+  - save_sql_runner_content
+  - schedule_look_emails
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
   - see_schedules
+  - see_sql
   - see_sql_runner_content
   - see_user_dashboards
   - see_users
-  name: Access Data Only
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - use_sql_runner
+  name: DevOps
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -397,6 +402,81 @@
   - see_looks
   - see_user_dashboards
   name: View Only
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - mobile_app_access
+  - see_system_activity
+  name: system_activity_role_AH_test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_table_calculations
+  - develop
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_lookml
+  - see_looks
+  - see_schedules
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  name: Explore User
+- !LookerPermissionSet
+  permissions:
+  - manage_models
+  - mobile_app_access
+  name: Manage models
+- !LookerPermissionSet
+  permissions:
+  - login_special_email
+  - mobile_app_access
+  name: login_special_email
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_looks
+  - see_user_dashboards
+  name: Minimum Permisions
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  name: viewer+sql
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - mobile_app_access
+  name: View Test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - explore
+  - save_content
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - use_sql_runner
+  name: Explore But No Download
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -440,6 +520,34 @@
   - send_to_sftp
   - use_sql_runner
   name: explorer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - download_with_limit
+  - follow_alerts
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: trafficguard_viewers
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_public_looks
+  - create_table_calculations
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_schedules
+  - see_sql_runner_content
+  - see_user_dashboards
+  - see_users
+  name: Access Data Only
 - !LookerPermissionSet
   permissions:
   - access_data
@@ -493,145 +601,13 @@
   - see_looks
   - see_user_dashboards
   name: Viewer Test
-- !LookerPermissionSet
-  permissions:
-  - login_special_email
-  - mobile_app_access
-  name: login_special_email
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - see_looks
-  - see_user_dashboards
-  name: Minimum Permisions
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - see_lookml_dashboards
-  - see_looks
-  - see_sql
-  - see_user_dashboards
-  name: viewer+sql
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - explore
-  - save_content
-  - see_drill_overlay
-  - see_lookml
-  - see_lookml_dashboards
-  - see_looks
-  - see_sql
-  - see_user_dashboards
-  - use_sql_runner
-  name: Explore But No Download
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_alerts
-  - create_custom_fields
-  - create_table_calculations
-  - develop
-  - download_without_limit
-  - explore
-  - follow_alerts
-  - mobile_app_access
-  - save_content
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_lookml
-  - see_looks
-  - see_schedules
-  - see_user_dashboards
-  - see_users
-  - send_outgoing_webhook
-  - send_to_integration
-  - send_to_s3
-  - send_to_sftp
-  name: Explore User
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - download_with_limit
-  - follow_alerts
-  - schedule_external_look_emails
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml_dashboards
-  - see_looks
-  - see_user_dashboards
-  name: trafficguard_viewers
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_alerts
-  - create_custom_fields
-  - create_prefetches
-  - create_public_looks
-  - create_table_calculations
-  - deploy
-  - develop
-  - download_with_limit
-  - embed_browse_spaces
-  - explore
-  - follow_alerts
-  - login_special_email
-  - manage_homepage
-  - manage_models
-  - manage_spaces
-  - mobile_app_access
-  - save_content
-  - save_sql_runner_content
-  - schedule_look_emails
-  - see_datagroups
-  - see_drill_overlay
-  - see_logs
-  - see_lookml
-  - see_lookml_dashboards
-  - see_looks
-  - see_pdts
-  - see_queries
-  - see_schedules
-  - see_sql
-  - see_sql_runner_content
-  - see_user_dashboards
-  - see_users
-  - send_outgoing_webhook
-  - send_to_integration
-  - send_to_s3
-  - send_to_sftp
-  - use_sql_runner
-  name: DevOps
-- !LookerPermissionSet
-  permissions:
-  - access_data
-  - mobile_app_access
-  name: View Test
-- !LookerPermissionSet
-  permissions:
-  - manage_models
-  - mobile_app_access
-  name: Manage models
 
 
 # MODEL SETS
 - !LookerModelSet
   models:
-  - movistar_finance
-  name: finance
-- !LookerModelSet
-  models:
-  - thelook
-  name: thelook
-- !LookerModelSet
-  models:
-  - thelook
-  name: kate_demo
+  - retail_block_model
+  name: socal4-demo-1
 - !LookerModelSet
   models:
   - snowflake
@@ -677,8 +653,16 @@
   name: Manage Models
 - !LookerModelSet
   models:
-  - retail_block_model
-  name: socal4-demo-1
+  - thelook
+  name: thelook
+- !LookerModelSet
+  models:
+  - movistar_finance
+  name: finance
+- !LookerModelSet
+  models:
+  - thelook
+  name: kate_demo
 
 
 # LOOKER ROLES

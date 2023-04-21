@@ -3,12 +3,11 @@ import logging
 from lmanage.utils.errorhandling import return_sleep_message
 from lmanage.utils.looker_object_constructors import DashboardObject
 import coloredlogs
-import yaml
+from yaspin import yaspin
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
 logging.getLogger("looker_sdk").setLevel(logging.WARNING)
-
 
 class CaptureDashboards():
 
@@ -16,10 +15,37 @@ class CaptureDashboards():
         self.sdk = sdk
 
     def get_all_dashboards(self) -> dict:
-        all_dashboards = self.sdk.all_dashboards()
+        system_folders = ['Users','Embed Users','Embed Groups']
         scrub_dashboards = {}
-
-        scrub_dashboards = {dash.id: dash.folder.id for dash in all_dashboards if not dash.folder.is_personal and not dash.folder.is_embed and not dash.folder.is_personal_descendant and dash.folder.id!= 'lookml'}
+        with yaspin().white.bold.shark.on_blue as sp:
+            sp.text="getting all system look metadata (can take a while)"
+            all_dashboards = self.sdk.all_dashboards(fields="id,folder")
+            folder_length = len(all_dashboards)
+        
+        folder_history = {}
+        l =0
+        for dash in all_dashboards:
+            l +=1
+            if dash.folder.id in list(folder_history.keys()):
+                folder_root = folder_history.get(dash.folder.id)
+            else:
+                folder_root = None
+                trys = 0
+                while folder_root is None:
+                    trys += 1
+                    try:
+                        with yaspin().white.bold.shark.on_blue as sp:
+                            sp.text=f"getting folder ancestors for folder {l} / {folder_length}"
+                            folder_root = self.sdk.folder_ancestors(folder_id=dash.folder.id, fields="name") 
+                    except:
+                        return_sleep_message(call_number=trys, quiet=False)
+                folder_history[dash.folder.id] = folder_root
+            
+            if folder_root:
+                if folder_root[0].id not in system_folders:
+                    scrub_dashboards[dash.id] = dash.folder.id
+            else:
+                continue
         return scrub_dashboards
 
     def get_dashboard_lookml(self, all_dashboards: dict) -> list:

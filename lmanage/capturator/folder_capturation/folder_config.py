@@ -101,7 +101,7 @@ class CaptureFolderConfig():
                 logger.debug(f_metadata)
 
             if f_metadata.is_personal or f_metadata.is_personal_descendant or f_metadata.is_embed:
-                logger.warn(
+                logger.debug(
                     'folder %s  will be ignored as it\'s a personal folder or embed folder', f_metadata.name)
             else:
                 content_metadata_id = f_metadata.get('content_metadata_id')
