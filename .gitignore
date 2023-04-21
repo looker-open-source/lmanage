@@ -4,6 +4,7 @@ looker_backup_content/
 dist/
 tests/example_yamls/
 output/
+.history/
 #Ignore all setup files
 .venv/
 .vscode/
