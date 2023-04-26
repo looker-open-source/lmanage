@@ -1,0 +1,808 @@
+# FOLDER_PERMISSIONS
+# Opening Session Welcome to the Capturator, this is the Folder place
+# -----------------------------------------------------
+
+- !LookerFolder
+  parent_id:
+  id: '1'
+  name: Shared
+  subfolder:
+  - !LookerFolder
+    parent_id: '1'
+    id: '2567'
+    name: Demo
+    subfolder: []
+    content_metadata_id: '34241'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '2280'
+    name: Embedded Customers
+    subfolder:
+    - !LookerFolder
+      parent_id: '2280'
+      id: '2300'
+      name: Allegra K
+      subfolder: []
+      content_metadata_id: '32714'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '32601'
+    team_edit: []
+    team_view:
+    - Embed Shared Group customerABC
+  - !LookerFolder
+    parent_id: '1'
+    id: '2216'
+    name: Looks - Pricing
+    subfolder: []
+    content_metadata_id: '32020'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '2194'
+    name: Dev Dashboards
+    subfolder: []
+    content_metadata_id: '31927'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '2165'
+    name: Corporate
+    subfolder:
+    - !LookerFolder
+      parent_id: '2165'
+      id: '2175'
+      name: Sales Team
+      subfolder: []
+      content_metadata_id: '31767'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '2165'
+      id: '2174'
+      name: Marketing Team
+      subfolder: []
+      content_metadata_id: '31766'
+      team_edit:
+      - Marketing
+      team_view: []
+    - !LookerFolder
+      parent_id: '2165'
+      id: '2167'
+      name: Exec Group
+      subfolder: []
+      content_metadata_id: '31693'
+      team_edit:
+      - Company B
+      team_view: []
+    - !LookerFolder
+      parent_id: '2165'
+      id: '2166'
+      name: Director Group
+      subfolder:
+      - !LookerFolder
+        parent_id: '2166'
+        id: '2168'
+        name: Custom Dashboards
+        subfolder: []
+        content_metadata_id: '31694'
+        team_edit: []
+        team_view: []
+      content_metadata_id: '31692'
+      team_edit:
+      - Company A
+      team_view: []
+    content_metadata_id: '31691'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '2144'
+    name: Reports
+    subfolder:
+    - !LookerFolder
+      parent_id: '2144'
+      id: '2155'
+      name: Client A
+      subfolder:
+      - !LookerFolder
+        parent_id: '2155'
+        id: '2156'
+        name: User 123
+        subfolder: []
+        content_metadata_id: '31610'
+        team_edit: []
+        team_view: []
+      content_metadata_id: '31609'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '31412'
+    team_edit:
+    - Embed Users
+    - Embed Shared Group SSO User
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '2093'
+    name: to be hidden
+    subfolder: []
+    content_metadata_id: '30703'
+    team_edit: []
+    team_view:
+    - All Users
+  - !LookerFolder
+    parent_id: '1'
+    id: '2040'
+    name: BigQuery Project
+    subfolder: []
+    content_metadata_id: '30180'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '1906'
+    name: Marketplace Blocks
+    subfolder:
+    - !LookerFolder
+      parent_id: '1906'
+      id: '1907'
+      name: Not Everything Working
+      subfolder:
+      - !LookerFolder
+        parent_id: '1907'
+        id: '1904'
+        name: Zendesk Block
+        subfolder: []
+        content_metadata_id: '28159'
+        team_edit: []
+        team_view: []
+      - !LookerFolder
+        parent_id: '1907'
+        id: '1903'
+        name: Salesforce Block
+        subfolder: []
+        content_metadata_id: '28158'
+        team_edit: []
+        team_view: []
+      content_metadata_id: '28174'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '1906'
+      id: '1902'
+      name: JIRA Block
+      subfolder: []
+      content_metadata_id: '28157'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '1906'
+      id: '1879'
+      name: Database Blocks
+      subfolder: []
+      content_metadata_id: '27757'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '28173'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '1895'
+    name: SDLC Demo
+    subfolder: []
+    content_metadata_id: '27921'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '1840'
+    name: Retail
+    subfolder:
+    - !LookerFolder
+      parent_id: '1840'
+      id: '1853'
+      name: Deep-dive dashboards
+      subfolder: []
+      content_metadata_id: '27427'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '27087'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '1253'
+    name: Looker Workflows
+    subfolder:
+    - !LookerFolder
+      parent_id: '1253'
+      id: '1254'
+      name: Slackbot
+      subfolder:
+      - !LookerFolder
+        parent_id: '1254'
+        id: '1588'
+        name: New Space
+        subfolder: []
+        content_metadata_id: '23569'
+        team_edit: []
+        team_view: []
+      content_metadata_id: '19583'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '1253'
+      id: '302'
+      name: Zapier - Webhooks Integration
+      subfolder: []
+      content_metadata_id: '7057'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '19582'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '1149'
+    name: Admin
+    subfolder: []
+    content_metadata_id: '18147'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '1097'
+    name: Marketing
+    subfolder:
+    - !LookerFolder
+      parent_id: '1097'
+      id: '1827'
+      name: Marketing Look Selector
+      subfolder: []
+      content_metadata_id: '26820'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '17574'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '782'
+    name: Data Tools
+    subfolder:
+    - !LookerFolder
+      parent_id: '782'
+      id: '2763'
+      name: Models XYZ
+      subfolder: []
+      content_metadata_id: '34740'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '782'
+      id: '2702'
+      name: Sample folder
+      subfolder: []
+      content_metadata_id: '34643'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '13644'
+    team_edit: []
+    team_view: []
+  - !LookerFolder
+    parent_id: '1'
+    id: '16'
+    name: E-Commerce
+    subfolder:
+    - !LookerFolder
+      parent_id: '16'
+      id: '2179'
+      name: Sub Folder - Special
+      subfolder:
+      - !LookerFolder
+        parent_id: '2179'
+        id: '2487'
+        name: Development
+        subfolder: []
+        content_metadata_id: '33848'
+        team_edit: []
+        team_view: []
+      - !LookerFolder
+        parent_id: '2179'
+        id: '2486'
+        name: dev
+        subfolder: []
+        content_metadata_id: '33847'
+        team_edit: []
+        team_view: []
+      content_metadata_id: '31815'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '2'
+    team_edit: []
+    team_view:
+    - All Users
+    - Embed Users
+    - All Looker Users (Non-Admin)
+    - Marketing
+  content_metadata_id: '1'
+  team_edit: []
+  team_view:
+  - All Users
+  - Embed Users
+  - All Looker Users (Non-Admin)
+  - Marketing
+# Looker Role
+# Opening Session Welcome to the Capturator, this is the Role place
+# -----------------------------------------------------
+
+
+
+# PERMISSION SETS
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - create_alerts
+  - follow_alerts
+  - login_special_email
+  - mobile_app_access
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: View Only
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_table_calculations
+  - develop
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_lookml
+  - see_looks
+  - see_schedules
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  name: Explore User
+- !LookerPermissionSet
+  permissions:
+  - manage_models
+  - mobile_app_access
+  name: Manage models
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - explore
+  - save_content
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - use_sql_runner
+  name: Explore But No Download
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - download_with_limit
+  - download_without_limit
+  - explore
+  - follow_alerts
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_schedules
+  - see_sql
+  - see_user_dashboards
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - use_sql_runner
+  name: explorer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - download_without_limit
+  - embed_browse_spaces
+  - explore
+  - login_special_email
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_system_activity
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - sudo
+  - support_access_toggle
+  - use_sql_runner
+  name: Developer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - mobile_app_access
+  - see_system_activity
+  name: system_activity_role_AH_test
+- !LookerPermissionSet
+  permissions:
+  - login_special_email
+  - mobile_app_access
+  name: login_special_email
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - download_with_limit
+  - follow_alerts
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: trafficguard_viewers
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_looks
+  - see_user_dashboards
+  name: Minimum Permisions
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_alerts
+  - create_custom_fields
+  - create_prefetches
+  - create_public_looks
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_with_limit
+  - embed_browse_spaces
+  - explore
+  - follow_alerts
+  - login_special_email
+  - manage_homepage
+  - manage_models
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - save_sql_runner_content
+  - schedule_look_emails
+  - see_datagroups
+  - see_drill_overlay
+  - see_logs
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_schedules
+  - see_sql
+  - see_sql_runner_content
+  - see_user_dashboards
+  - see_users
+  - send_outgoing_webhook
+  - send_to_integration
+  - send_to_s3
+  - send_to_sftp
+  - use_sql_runner
+  name: DevOps
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - mobile_app_access
+  - save_content
+  - see_drill_overlay
+  - see_looks
+  - see_user_dashboards
+  name: Viewer Test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_public_looks
+  - create_table_calculations
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_schedules
+  - see_sql_runner_content
+  - see_user_dashboards
+  - see_users
+  name: Access Data Only
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  name: viewer+sql
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - mobile_app_access
+  name: View Test
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - deploy
+  - develop
+  - explore
+  - mobile_app_access
+  - save_content
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - use_sql_runner
+  name: NoSharing
+
+
+# MODEL SETS
+- !LookerModelSet
+  models:
+  - thelook
+  name: kate_demo
+- !LookerModelSet
+  models:
+  - thelook
+  name: thelook
+- !LookerModelSet
+  models:
+  - snowflake
+  name: snorest
+- !LookerModelSet
+  models:
+  - movistar_finance
+  name: finance
+- !LookerModelSet
+  models:
+  - arima_model_info
+  - google_analytics_forecast
+  - block_google_ads_transfer_new_v2
+  - admin_power_pack
+  - powered_by
+  - block_zendesk_config
+  - movistar
+  - movistar_finance
+  - looker_on_looker
+  - snowflake_usage_block
+  - bq_to_looker_demo
+  - video_store
+  - dataplex
+  - retail_block_model
+  - thelook
+  - sfdc_demo
+  - thelook_adwords
+  - sdlc_thelook
+  - omni_channel
+  - lpp_demo
+  - cortex_sap_finance
+  - bigquery_information_schema
+  - mynewproject
+  - extension-api-explorer
+  - frasers
+  - sales
+  - block_snowflake_usage_v2
+  - demo_management
+  - lookml-diagram
+  - block_redshift_admin_v2
+  - partner_fr
+  - data-dictionary
+  name: All
+- !LookerModelSet
+  models:
+  - test_manage_models_b
+  name: Manage Models
+- !LookerModelSet
+  models:
+  - retail_block_model
+  name: socal4-demo-1
+
+
+# LOOKER ROLES
+- !LookerRoles
+  permission_set: Developer
+  model_set: All
+  teams:
+  - All Looker Users (Non-Admin)
+  name: Non-Admin
+- !LookerRoles
+  permission_set: Developer
+  model_set: All
+  teams: []
+  name: Developer
+- !LookerRoles
+  permission_set: View Only
+  model_set: thelook
+  teams: []
+  name: View Only
+- !LookerRoles
+  permission_set: Developer
+  model_set: thelook
+  teams: []
+  name: testrole
+- !LookerRoles
+  permission_set: DevOps
+  model_set: All
+  teams: []
+  name: MyNewRole
+- !LookerRoles
+  permission_set: explorer
+  model_set: All
+  teams: []
+  name: explorer
+- !LookerRoles
+  permission_set: View Only
+  model_set: All
+  teams: []
+  name: View_Only_All_Models
+- !LookerRoles
+  permission_set: Access Data Only
+  model_set: All
+  teams: []
+  name: Example Access Data
+- !LookerRoles
+  permission_set: View Test
+  model_set: All
+  teams: []
+  name: CH Test
+- !LookerRoles
+  permission_set: Explore User
+  model_set: thelook
+  teams:
+  - All Looker Users (Non-Admin)
+  - Marketing
+  name: Explore The Look
+- !LookerRoles
+  permission_set: Manage models
+  model_set: Manage Models
+  teams: []
+  name: Manage Models Test
+- !LookerRoles
+  permission_set: Developer
+  model_set: Manage Models
+  teams: []
+  name: Manage Models Dev
+- !LookerRoles
+  permission_set: Explore User
+  model_set: All
+  teams:
+  - Embed Shared Group SSO User
+  name: Embed Power User
+- !LookerRoles
+  permission_set: NoSharing
+  model_set: thelook
+  teams: []
+  name: NoShae_TheLook
+- !LookerRoles
+  permission_set: Viewer Test
+  model_set: thelook
+  teams:
+  - All Looker Users (Non-Admin)
+  name: Viewer Test
+- !LookerRoles
+  permission_set: system_activity_role_AH_test
+  model_set: All
+  teams: []
+  name: ah_sysactivity_test_role
+- !LookerRoles
+  permission_set: login_special_email
+  model_set: All
+  teams: []
+  name: login_special_email
+- !LookerRoles
+  permission_set: NoSharing
+  model_set: thelook
+  teams: []
+  name: No Sharing
+- !LookerRoles
+  permission_set: trafficguard_viewers
+  model_set: All
+  teams: []
+  name: trafficguard_viewers
+- !LookerRoles
+  permission_set: Minimum Permisions
+  model_set: All
+  teams: []
+  name: No Permissions
+- !LookerRoles
+  permission_set: Developer
+  model_set: kate_demo
+  teams: []
+  name: kate demo
+- !LookerRoles
+  permission_set: Explore But No Download
+  model_set: thelook
+  teams: []
+  name: Explore But No Download
+- !LookerRoles
+  permission_set: viewer+sql
+  model_set: All
+  teams: []
+  name: viewer_sql
+- !LookerRoles
+  permission_set: Developer
+  model_set: kate_demo
+  teams: []
+  name: ah_dev
+- !LookerRoles
+  permission_set: View Only
+  model_set: snorest
+  teams: []
+  name: ah_user
+- !LookerRoles
+  permission_set: Developer
+  model_set: socal4-demo-1
+  teams: []
+  name: socal4-developer-retail-only
+- !LookerRoles
+  permission_set: Explore User
+  model_set: finance
+  teams: []
+  name: Movi_Fiance

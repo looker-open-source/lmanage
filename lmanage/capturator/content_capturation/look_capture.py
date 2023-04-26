@@ -4,25 +4,31 @@ import coloredlogs
 import lmanage.utils.looker_object_constructors as loc
 from lmanage.utils.errorhandling import return_sleep_message
 from tqdm import tqdm
+from yaspin import yaspin
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
 
 class CaptureLookObject():
-    def __init__(self, sdk):
+    def __init__(self, sdk, folder_root: dict):
         self.sdk = sdk
+        self.folder_root = folder_root
 
     def all_looks(self):
+        system_folders = ['Users','Embed Users','Embed Groups']
         all_look_meta = None
-        trys = 0
-        while all_look_meta is None:
-            try:
-                all_look_meta = self.sdk.all_looks()
-            except:
-                return_sleep_message
+        with yaspin().white.bold.shark.on_blue as sp:
+            sp.text="getting all system look metadata (can take a while)"
+            all_look_meta = self.sdk.all_looks(fields='id,folder')
+            
         scrub_looks = {}
+        for look in all_look_meta:
+            folder_root = self.folder_root.get(look.folder.id,[{'name': 'Users'}])[0]['name']
+            if look.folder.id in list(self.folder_root.keys()) and folder_root not in system_folders:
+                scrub_looks[look.id] = look.folder.id 
+            else:
+                continue
 
-        scrub_looks = {look.id: look.folder.id for look in all_look_meta if not look.folder.is_personal and not look.folder.is_embed and not look.folder.is_personal_descendant}
         return scrub_looks
 
     def get_look_metadata(self, look_id: str) -> dict:

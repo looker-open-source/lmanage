@@ -4,48 +4,41 @@ from time import sleep
 from lmanage.utils.looker_object_constructors import LookerUserAttribute 
 from lmanage.utils.errorhandling import return_error_message, return_sleep_message
 from tqdm import tqdm
+from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 
 class ExtractUserAttributes():
     def __init__(self,  sdk):
         self.sdk = sdk
         self.user_attribute_metadata = self.existing_user_attributes()
         self.all_group_metadata = self.all_group_metadatas()
+    
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
+    def get_all_user_attributes(self) -> dict:
+        response = self.sdk.all_user_attributes()
+        return response
 
     def existing_user_attributes(self) -> dict:
-        ex_ua = None
-        trys = 0
-        while ex_ua is None:
-            trys += 1
-            try:
-                ex_ua = self.sdk.all_user_attributes()
-            except:
-                return_sleep_message(call_number=trys)
-        for ua in enumerate(ex_ua):
-            if ua[1].get('is_system'):
-                ua_idx = ua[0]
-                ex_ua.pop(ua_idx)
-        return ex_ua
+        ex_ua = self.get_all_user_attributes()
+        resp = [ua for ua in ex_ua if not ua.is_system]
+        return resp
 
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def all_group_metadatas(self):
-        return self.sdk.all_groups()
+        response=self.sdk.all_groups()
+        return response 
+
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
+    def all_user_attribute_group_value_metadata(self, uaid: int):
+        response = self.sdk.all_user_attribute_group_values(uaid)
+        return response
+
 
     def create_user_attributes(self):
-
         group_metadata = {
             group.id: group.name for group in self.all_group_metadata}
         response = []
         for ua in tqdm(self.user_attribute_metadata, desc = "User Attribute Capture", unit=" user att", colour="#2c8558"):
-            group_assign = None
-            trys = 0
-            while group_assign is None:
-                trys += 1
-                try:
-                    group_assign = self.sdk.all_user_attribute_group_values(
-                        user_attribute_id=ua.id)
-                    # logger.info(
-                    #     'capturing groups associated with user attribute %s', group_assign[0].get('user_attribute_id'))
-                except:
-                    return_sleep_message(call_number=trys)
+            group_assign = self.all_user_attribute_group_value_metadata(uaid=ua.id)
             team_values = []
 
             for group in group_assign:

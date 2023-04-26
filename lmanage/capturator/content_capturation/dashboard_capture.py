@@ -3,23 +3,31 @@ import logging
 from lmanage.utils.errorhandling import return_sleep_message
 from lmanage.utils.looker_object_constructors import DashboardObject
 import coloredlogs
-import yaml
+from yaspin import yaspin
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
 logging.getLogger("looker_sdk").setLevel(logging.WARNING)
 
-
 class CaptureDashboards():
-
-    def __init__(self, sdk):
+    def __init__(self, sdk, folder_root: dict):
         self.sdk = sdk
+        self.folder_root = folder_root
 
     def get_all_dashboards(self) -> dict:
-        all_dashboards = self.sdk.all_dashboards()
+        system_folders = ['Users','Embed Users','Embed Groups', 'LookML Dashboards']
         scrub_dashboards = {}
-
-        scrub_dashboards = {dash.id: dash.folder.id for dash in all_dashboards if not dash.folder.is_personal and not dash.folder.is_embed and not dash.folder.is_personal_descendant and dash.folder.id!= 'lookml'}
+        with yaspin().white.bold.shark.on_blue as sp:
+            sp.text="getting all system dashboard metadata (can take a while)"
+            all_dashboards = self.sdk.all_dashboards(fields="id,folder")
+        
+        for dash in all_dashboards:
+            if dash.folder.id == 'lookml':
+                continue
+            else:
+                folder_root = self.folder_root.get(dash.folder.id, [{'name':'Users'}])[0]['name']
+                if dash.folder.id in list(self.folder_root.keys()) and folder_root not in system_folders:
+                    scrub_dashboards[dash.id] = dash.folder.id 
         return scrub_dashboards
 
     def get_dashboard_lookml(self, all_dashboards: dict) -> list:

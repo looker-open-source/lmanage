@@ -41,13 +41,17 @@ def main(**kwargs):
 ###############################################################
 # Capture Folder Config #######################################
 ###############################################################
-    folder_structurelist = fc.CaptureFolderConfig(sdk=sdk).execute()
+    folder_returns = fc.CaptureFolderConfig(sdk=sdk).execute()
+    folder_structure_list = folder_returns[1]
+
     with open(f'{yaml_path}.yaml', 'w') as file:
         fd_yml_txt = '''# FOLDER_PERMISSIONS\n# Opening Session Welcome to the Capturator, this is the Folder place\n# -----------------------------------------------------\n\n'''
         file.write(fd_yml_txt)
-        yaml.dump(folder_structurelist, file)
+        yaml.dump(folder_structure_list, file)
 
- ###############################################################
+    folder_root_dict = folder_returns[0]
+
+###############################################################
 # Capture Roles ###############################################
 ###############################################################
     roles = rc.ExtractRoleInfo(sdk=sdk)
@@ -79,13 +83,13 @@ def main(**kwargs):
 # Capture Users Content #######################################
 ###############################################################
     # Capture Look Content
-    looks = lc.CaptureLookObject(sdk=sdk).execute()
+    looks = lc.CaptureLookObject(sdk=sdk, folder_root=folder_root_dict).execute()
     with open(f'{yaml_path}_content.yaml', 'w+') as file:
         file.write('\n\n# LookData\n')
         yaml.dump(looks, file)
 
     # Capture Dashboard Content
-    dash_content = dc.CaptureDashboards(sdk=sdk).execute()
+    dash_content = dc.CaptureDashboards(sdk=sdk, folder_root=folder_root_dict).execute()
     with open(f'{yaml_path}_content.yaml', 'a') as file:
         fd_yml_txt = '\n\n# Dashboard Content\n'
         file.write(fd_yml_txt)
