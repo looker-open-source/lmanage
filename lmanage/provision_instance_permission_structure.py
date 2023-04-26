@@ -70,9 +70,9 @@ def main(**kwargs):
 ################################################################
 # Role Config ################################################
 ################################################################
-#     # Create Permission and Model Sets
-#     rc.CreateRoleBase(permissions=permission_set_metadata,
-#                       model_sets=model_set_metadata, sdk=sdk).execute()
+    # Create Permission and Model Sets
+    rc.CreateRoleBase(permissions=permission_set_metadata,
+                      model_sets=model_set_metadata, sdk=sdk).execute()
 
 # ###############################################################
 # Folder Config ################################################
@@ -118,7 +118,7 @@ def main(**kwargs):
 # Content Transport Config #######################################
 ###############################################################
     # EMPTY TRASH CAN OF ALL DELETED CONTENT
-    ccp.CleanInstanceContent().execute(sdk=sdk)
+    ccp.CleanInstanceContent(sdk=sdk).execute()
     
     # FIND LOOKS AND REMAKE THEM
     look_creator = cl.CreateInstanceLooks(

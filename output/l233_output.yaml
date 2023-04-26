@@ -61,31 +61,6 @@
 - !LookerPermissionSet
   permissions:
   - access_data
-  - can_create_forecast
-  - clear_cache_refresh
-  - create_custom_fields
-  - create_table_calculations
-  - deploy
-  - develop
-  - download_without_limit
-  - explore
-  - manage_spaces
-  - mobile_app_access
-  - save_content
-  - schedule_look_emails
-  - see_drill_overlay
-  - see_lookml
-  - see_lookml_dashboards
-  - see_looks
-  - see_pdts
-  - see_sql
-  - see_user_dashboards
-  - send_to_integration
-  - use_sql_runner
-  name: Developer
-- !LookerPermissionSet
-  permissions:
-  - access_data
   - clear_cache_refresh
   - download_without_limit
   - mobile_app_access
@@ -117,6 +92,31 @@
   - see_user_dashboards
   - send_to_integration
   name: User
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_without_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  - use_sql_runner
+  name: Developer
 
 
 # MODEL SETS
@@ -125,6 +125,7 @@
   - naga_234_test
   - lookml-diagram
   - large_project
+  - data_block_acs_bigquery
   - extension-api-explorer
   - cloud_logging
   name: All

@@ -14,7 +14,6 @@ class Create_Dashboards():
 
     
     def upload_dashboards(self) -> None:
-        self.empty_looker_dashboard_trash()
         for dash in tqdm(self.content_metadata, desc = "Dashboard Upload", unit="dashboards", colour="#2c8558"):
             t = dash.get('legacy_folder_id')
             new_folder_id = self.folder_mapping.get(t)

@@ -148,21 +148,6 @@
 
 # Dashboard Content
 - !DashboardObject
-  legacy_folder_id: '85'
-  lookml: "- dashboard: new_dashboard\n  title: New Dashboard\n  layout: newspaper\n\
-    \  preferred_viewer: dashboards-next\n  description: this is my description\n\
-    \  preferred_slug: altLyIglxfRs8N3WaNfTKQ\n  elements:\n  - name: ''\n    type:\
-    \ text\n    title_text: ''\n    body_text: '[{\"type\":\"h1\",\"children\":[{\"\
-    text\":\"jkjkjkjk\"}],\"align\":\"center\"}]'\n    rich_content_json: '{\"format\"\
-    :\"slate\"}'\n    row: 0\n    col: 0\n    width: 8\n    height: 6\n  - title:\
-    \ Untitled\n    name: Untitled\n    model: system__activity\n    explore: history\n\
-    \    type: table\n    fields: [history.created_day_of_week, user_query_rank.user_name,\
-    \ history.query_run_count]\n    pivots: [user_query_rank.user_name]\n    filters:\n\
-    \      history.created_date: 7 days\n    sorts: [user_query_rank.user_name desc]\n\
-    \    column_limit: 50\n    listen: {}\n    row: 0\n    col: 8\n    width: 8\n\
-    \    height: 6\n"
-  dashboard_id: '6'
-- !DashboardObject
   legacy_folder_id: '81'
   lookml: "- dashboard: new_dashboard\n  title: New Dashboard\n  layout: newspaper\n\
     \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: SkRfx99hbJYDPBuNXZRsdi\n\
