@@ -28,6 +28,7 @@ XlsxWriter = "^3.0.3"
 tqdm = "^4.65.0"
 # poetry = "^1.4.2"
 yaspin = "^2.3.0"
+tenacity = "^8.2.2"
 
 [tool.poetry.dev-dependencies]
 

@@ -1,10 +1,7 @@
 from tqdm import tqdm
 from looker_sdk import models40 as models
-import yaml 
 import coloredlogs
 import logging
-from lmanage.utils.looker_object_constructors import DashboardObject
-from lmanage.utils.errorhandling import return_sleep_message
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
 
@@ -14,13 +11,6 @@ class Create_Dashboards():
         self.sdk = sdk
         self.folder_mapping = folder_mapping
         self.content_metadata = content_metadata
-
-    def empty_looker_dashboard_trash(self) -> None:
-        trash_dash = self.sdk.search_dashboards(deleted='True')
-        trash_dash_id_list = [dash.id for dash in trash_dash]
-        for dash_id in tqdm(trash_dash_id_list, 'Scrubbing Dash', unit='dashboards',colour="#2c8558"):
-            self.sdk.delete_dashboard(dashboard_id=dash_id)
-            logger.debug(f'cleaning the trash dashboard {dash_id} from instance')
 
     
     def upload_dashboards(self) -> None:

@@ -10,8 +10,9 @@ logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
 
 class CaptureLookObject():
-    def __init__(self, sdk):
+    def __init__(self, sdk, folder_root: dict):
         self.sdk = sdk
+        self.folder_root = folder_root
 
     def all_looks(self):
         system_folders = ['Users','Embed Users','Embed Groups']
@@ -19,32 +20,12 @@ class CaptureLookObject():
         with yaspin().white.bold.shark.on_blue as sp:
             sp.text="getting all system look metadata (can take a while)"
             all_look_meta = self.sdk.all_looks(fields='id,folder')
-            folder_length = len(all_look_meta)
             
         scrub_looks = {}
-        folder_history = {}
- 
-        l = 0
         for look in all_look_meta:
-            l+=1
-            if look.folder.id in list(folder_history.keys()):
-                folder_root = folder_history.get(look.folder.id)
-            else:
-                folder_root = None
-                trys = 0
-                while folder_root is None:
-                    trys += 1
-                    try:
-                        with yaspin().white.bold.shark.on_blue as sp:
-                            sp.text=f"getting folder ancestors for folder {l} / {folder_length}"
-                            folder_root = self.sdk.folder_ancestors(folder_id=look.folder.id,fields="name") 
-                    except:
-                        return_sleep_message(call_number=trys, quiet=False)
-                    folder_history[look.folder.id] = folder_root
-            if folder_root:
-                fid = folder_root[0].id
-                if folder_root[0].id not in system_folders:
-                    scrub_looks[look.id] = look.folder.id 
+            folder_root = self.folder_root.get(look.folder.id,[{'name': 'Users'}])[0]['name']
+            if look.folder.id in list(self.folder_root.keys()) and folder_root not in system_folders:
+                scrub_looks[look.id] = look.folder.id 
             else:
                 continue
 

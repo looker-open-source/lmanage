@@ -10,6 +10,7 @@ from lmanage.configurator.user_group_configuration import group_config as gc
 from lmanage.configurator.user_group_configuration import user_permission as up
 from lmanage.configurator.content_configuration import create_looks as cl
 from lmanage.configurator.content_configuration import create_dashboards as cd
+from lmanage.configurator.content_configuration import create_content_prep as ccp
 from lmanage.utils import parse_yaml as py
 
 
@@ -69,11 +70,11 @@ def main(**kwargs):
 ################################################################
 # Role Config ################################################
 ################################################################
-    # Create Permission and Model Sets
-    rc.CreateRoleBase(permissions=permission_set_metadata,
-                      model_sets=model_set_metadata, sdk=sdk).execute()
+#     # Create Permission and Model Sets
+#     rc.CreateRoleBase(permissions=permission_set_metadata,
+#                       model_sets=model_set_metadata, sdk=sdk).execute()
 
-###############################################################
+# ###############################################################
 # Folder Config ################################################
 ###############################################################
     # CREATE NEW FOLDERS
@@ -116,6 +117,9 @@ def main(**kwargs):
 ###############################################################
 # Content Transport Config #######################################
 ###############################################################
+    # EMPTY TRASH CAN OF ALL DELETED CONTENT
+    ccp.CleanInstanceContent().execute(sdk=sdk)
+    
     # FIND LOOKS AND REMAKE THEM
     look_creator = cl.CreateInstanceLooks(
         folder_mapping=folder_mapping_obj, sdk=sdk, content_metadata=look_metadata)
