@@ -1,14 +1,15 @@
-# Looker Instance Settings Capture and Configurations
+# Looker Instance Object Migrator Tool 
+## The tool is opinionated in functionality by not migrating content or settings that are established on a per user basis.
 
-The Looker Capturator and Configurator are API based CLI tools to capture Looker security based settings and preserve a point in time snapshot as a text based file. This file can then be used to configure or amend existing settings in a Looker instance. 
+The Looker Object Migrator Tool is an API based CLI tool to capture Looker Objects preserving a point in time snapshot as a text based file. This file can then be version controlled and used to configure or amend existing objects in a Looker instance. 
 
-The advantages of having your security permissioning set out in a text file are numerous, for example: 
-- version controlling your security updates (or even setting up automated processes such as gitops)
+The advantages of having Looker Objects set out in a text file are numerous, for example: 
+- version controlling Looker objects such as content or Folder structure and permissions (or even setting up automated processes such as gitops)
 - massively reducing number of clicks required to set up an instance from scratch, or revert an instance back to desired state
 - defining one source of truth across multiple looker instances, for instance shards
 - having a clearly defined security permission doc that can interact with other services such as SAML.
 
-The tools are designed to work in concert although it's entirely possible to use them individually.
+The Object Migrator Tool is comprised of two commands a capture tool and configure tool. The tools are designed to work in concert, i.e. the configure tool is expecting the output of the capture tool, although it's entirely possible to use them individually.
 
 ## Impacted Settings
 The Looker Instance settings that are impacted by these tools are: 
@@ -19,8 +20,7 @@ The Looker Instance settings that are impacted by these tools are:
 - User Roles
 - User Permission Sets
 - User Model Sets
-
-The tool purposely does not affect settings on a per user basis. This is an opinionated choice because I believe that everyone in a large Looker deployment should fit into a group of some sort. It's incredibly easy to have security protocol drift when deviating from a ratified plan because of 'feature testing'.
+- Looker Content (looks and dashboards)
 
 ## Typical Workflow
 
@@ -29,8 +29,8 @@ The tool purposely does not affect settings on a per user basis. This is an opin
 3. Check Yaml file into a version control system of choice
 4. Restore Looker system settings using the LManage Configurator command
 
-#### [Capturator specific documentation](https://github.com/looker-open-source/lmanage/blob/main/instructions/capturator_README.md)
-#### [Configurator specific documentation](https://github.com/looker-open-source/lmanage/blob/main/instructions/configurator_README.md)
+#### [Capture Tool aka Capturator specific documentation](https://github.com/looker-open-source/lmanage/blob/main/instructions/capturator_README.md)
+#### [Configure Tool aka Configurator specific documentation](https://github.com/looker-open-source/lmanage/blob/main/instructions/configurator_README.md)
 
 
 

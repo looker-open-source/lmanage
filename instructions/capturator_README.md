@@ -1,5 +1,5 @@
 # capturator
-The capturator is the sister command to the configurator, it's use is solely to generate a point in time representation of a Looker instance settings as a Yaml file that can be used by the configurator command to provision your instance.
+The capturator is the instance capture portion of the Instance Migrator Tool. It's use is to generate a point in time representation of a Looker instance settings and content and preserve a representation of those objects as a Yaml file that can be used by the configurator command to provision your instance. The tool will generate two yaml files that will be created in the folder of your choice, the value you enter as your `yaml-export-path` for Looker settings and a file appended with `content`, for referencing the Looker content to be transitioned. 
 
 ##### Example usage
 `lmanage capturator --ini-file ~/my_permissions/looker.ini  --yaml-export-path ./config/my_full_instance_config.yaml `
@@ -16,9 +16,9 @@ verify_ssl=True
 ```
 - **level** (`--level`, `-l`) **Optional** Set this flag to DEBUG to receive expanded results in stdout for debugging  
 
-##### Anatomy of your Yaml File
+##### Anatomy of your Settings Yaml File
 ###### Roles
-###### Example Output
+###### Example Output From File
 ```
 # PERMISSION SETS
 - !LookerPermissionSet
@@ -148,5 +148,71 @@ The user attribure parameters are synonomous with the existing Looker UI control
 Please try to understand how USER_ATTRIBUTES are utilized and referenced in Looker and they are super powerful and dangerous, familiarize yourself with these useful docs. 
 - [User Attribute Looker Docs](https://cloud.google.com/looker/docs/admin-panel-users-user-attributes#:~:text=Looker%20automatically%20includes%20some%20user,but%20should%20not%20be%20deleted.)
 
+###### Content
+###### Example Output From File
+```
+# LookData
+- !LookObject
+  legacy_folder_id: '302'
+  look_id: '2112'
+  title: Look_Title 
+  query_obj:
+    model: thelook
+    view: order_items
+    fields:
+    - users.count
+    pivots:
+    fill_fields:
+    filters:
+    filter_expression:
+    sorts:
+    - order_items.created_year desc
+    - users.count desc
+    limit: '500'
+    column_limit: '50'
+    total:
+    row_total:
+    subtotals:
+    vis_config:
+      type: single_value
+      show_single_value_title: true
+      show_comparison: false
+      comparison_type: value
+      comparison_reverse_colors: false
+      show_comparison_label: true
+      colors:
+      - '#5245ed'
+      - '#a2dcf3'
+      - '#776fdf'
+      - '#1ea8df'
+      - '#49cec1'
+      - '#776fdf'
+      - '#49cec1'
+      - '#1ea8df'
+      - '#a2dcf3'
+      - '#776fdf'
+      - '#776fdf'
+      - '#635189'
+      color_palette: Default
+      hidden_fields: []
+      y_axes: []
+    filter_config:
+    visible_ui_sections:
+    dynamic_fields: '[]'
+    query_timezone: America/Los_Angeles
+  description: ''
+# Dashboard Content
+- !DashboardObject
+  legacy_folder_id: '81'
+  lookml: "- dashboard: new_dashboard\n  title: New Dashboard\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: SkRfx99hbJYDPBuNXZRsdi\n\
+    \  elements:\n  - title: Untitled\n    name: Untitled\n    model: system__activity\n\
+    \    explore: field_usage\n    type: table\n    fields: [field_usage.field]\n\
+    \    limit: 500\n    row:\n    col:\n    width:\n    height:\n"
+  dashboard_id: '7'
+```
+The content.yaml file is generated automatically using the `Yaml-Export-Path` at it's root and stores the export from looks and dashboards in the instance you're running the capturator against.
 
+The dashboard is stored in lookml and can be amended here (e.g. changing model name or explore name) if desired.
+ 
 **This is not an officially supported Google Product.**
