@@ -48,4 +48,4 @@ jobs:
         cd .github
         echo ${{ github.head_ref }}
         echo ${{ github.event.push.ref }}
-        lmanage configurator  -yp ../lmanage/configurator/instance_configuration_settings/fullinstance.yaml
+        lmanage configurator  -yp /output/dev_output.yaml

@@ -86,10 +86,10 @@ def main(**kwargs):
 # Capture Users Content #######################################
 ###############################################################
     # Capture Content Boards
-    boards = bc.CaptureBoards(sdk=sdk).execute()
-    with open(f'{yaml_path}_content.yaml', 'w+') as file:
-        file.write('\n\n# BoardData\n')
-        yaml.dump(boards, file)
+    # boards = bc.CaptureBoards(sdk=sdk).execute()
+    # with open(f'{yaml_path}_content.yaml', 'w+') as file:
+    #     file.write('\n\n# BoardData\n')
+    #     yaml.dump(boards, file)
 
     # Capture Look Content
     looks = lc.CaptureLookObject(
