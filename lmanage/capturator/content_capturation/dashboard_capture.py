@@ -19,7 +19,7 @@ class CaptureDashboards():
         scrub_dashboards = {}
         with yaspin().white.bold.shark.on_blue as sp:
             sp.text="getting all system dashboard metadata (can take a while)"
-            all_dashboards = self.sdk.all_dashboards(fields="id,folder")
+            all_dashboards = self.sdk.all_dashboards(fields="id,folder, slug")
         
         for dash in all_dashboards:
             if dash.folder.id == 'lookml':
@@ -27,7 +27,9 @@ class CaptureDashboards():
             else:
                 folder_root = self.folder_root.get(dash.folder.id, [{'name':'Users'}])[0]['name']
                 if dash.folder.id in list(self.folder_root.keys()) and folder_root not in system_folders:
-                    scrub_dashboards[dash.id] = dash.folder.id 
+                    scrub_dashboards[dash.id] = {}
+                    scrub_dashboards[dash.id]['folder_id'] = dash.folder.id
+                    scrub_dashboards[dash.id]['slug'] = dash.slug 
         return scrub_dashboards
 
     def get_dashboard_lookml(self, all_dashboards: dict) -> list:
@@ -51,7 +53,8 @@ class CaptureDashboards():
                 captured_dashboard = DashboardObject(
                     legacy_folder_id=all_dashboards.get(dash_id),
                     lookml=lookml.lookml,
-                    dashboard_id=dash_id)
+                    dashboard_id=dash_id,
+                    dashboard_slug=all_dashboards.get(dash_id).get('slug'))
                 response.append(captured_dashboard)
         return response
 

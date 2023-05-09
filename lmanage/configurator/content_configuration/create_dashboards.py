@@ -14,8 +14,9 @@ class Create_Dashboards():
 
     
     def upload_dashboards(self) -> None:
+        resp = []
         for dash in tqdm(self.content_metadata, desc = "Dashboard Upload", unit="dashboards", colour="#2c8558"):
-            t = dash.get('legacy_folder_id')
+            t = dash.get('legacy_folder_id').get('folder_id')
             new_folder_id = self.folder_mapping.get(t)
             new_folder_id = new_folder_id if new_folder_id != 'Shared' else 1 
             body = models.WriteDashboardLookml(
@@ -23,7 +24,13 @@ class Create_Dashboards():
                 lookml=dash['lookml']
             )
             # lookml = self.amend_lookml_str(dash['lookml'])
-            self.sdk.import_dashboard_from_lookml(body=body)
+            temp = {}
+            new_dash = self.sdk.import_dashboard_from_lookml(body=body)
+            temp[dash['dashboard_id']] = new_dash.dashboard_id if new_dash.dashboard_id else dash['dashboard_slug']
+            resp.append(temp)
+        return resp
+
 
     def execute(self):
-        self.upload_dashboards()
+        mapping = self.upload_dashboards()
+        return mapping

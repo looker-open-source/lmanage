@@ -82,7 +82,18 @@ class LookObject():
 
 
 class DashboardObject():
-    def __init__(self, legacy_folder_id, lookml, dashboard_id) -> None:
+    def __init__(self, legacy_folder_id, lookml, dashboard_id, dashboard_slug) -> None:
         self.legacy_folder_id = legacy_folder_id
         self.lookml = lookml
         self.dashboard_id = dashboard_id
+        self.dashboard_slug = dashboard_slug
+
+
+class BoardObject():
+    def __init__(self, content_metadata_id, section_order, title, primary_homepage, board_sections, description) -> None:
+        self.content_metadata_id = content_metadata_id
+        self.section_order = section_order
+        self.title = title
+        self.primary_homepage = primary_homepage
+        self.board_sections = board_sections
+        self.description = description

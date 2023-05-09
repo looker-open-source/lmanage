@@ -63,3 +63,10 @@ class Yaml:
             if 'lookml' in list(objects.keys()):
                 response.append(objects)
         return response
+
+    def get_board_metadata(self):
+        response = []
+        for objects in self.parsed_yaml:
+            if 'board_sections' in list(objects.keys()):
+                response.append(objects)
+        return response

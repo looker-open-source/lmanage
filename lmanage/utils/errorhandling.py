@@ -1,6 +1,7 @@
 import ast
 import logging
 import coloredlogs
+from looker_sdk import error
 from time import sleep
 import random
 
@@ -23,31 +24,13 @@ def return_error_message(input: str):
 
     return err_response
 
-def backoff_jitter(func):
-    """
-    This decorator adds jitter to a loop.
-    Args:
-      delay: The delay in seconds.
-    Returns:
-      A decorator that adds jitter to a loop.
-    """
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        jitter_delay = random.uniform(0.3,1.3)
-        sleep(jitter_delay)
-        print(f' {jitter_delay}')
-        return result
-    return wrapper
-
-    # def (func):
-    #     def wrapper(*args, **kwargs):
-    #         for _ in range(int(delay)):
-    #             func(*args, **kwargs)
-    #             sleep(random.uniform(0, delay))
-    #     return wrapper
-    # return decorator
-
-
+def user_authentication_test(sdk) -> bool:
+    try:
+        sdk.me()
+        return True
+    except error.SDKError():
+        return False
+    
 def return_sleep_message(call_number=0, quiet=False):
     call_number = call_number+1
     sleep_number = 2 ** call_number

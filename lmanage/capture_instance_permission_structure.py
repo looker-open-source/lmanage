@@ -2,14 +2,11 @@ import logging
 import coloredlogs
 import looker_sdk
 import ruamel.yaml
-import json
 from lmanage.capturator.user_group_capturation import role_config as rc
 from lmanage.capturator.user_attribute_capturation import capture_ua_permissions as cup
-from lmanage.capturator.folder_capturation import folder_config as fc
-from lmanage.capturator.folder_capturation import create_folder_yaml_structure as cfp
-from lmanage.capturator.content_capturation import dashboard_capture as dc
-from lmanage.capturator.content_capturation import look_capture as lc
-from lmanage.utils import looker_object_constructors as loc
+from lmanage.capturator.folder_capturation import folder_config as fc, create_folder_yaml_structure as cfp
+from lmanage.capturator.content_capturation import dashboard_capture as dc, look_capture as lc, board_capture as bc
+from lmanage.utils import looker_object_constructors as loc, errorhandling as eh
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -28,6 +25,11 @@ def main(**kwargs):
         sdk = looker_sdk.init40(config_file=ini_file)
     else:
         sdk = looker_sdk.init40()
+    if eh.user_authentication_test(sdk=sdk):
+        logger.info('User is successfully authenticated to the API')
+    else:
+        raise Exception(
+            "User is not successfully authenticated please verify credentials")
 
     yaml = ruamel.yaml.YAML()
     yaml.register_class(loc.LookerFolder)
@@ -37,6 +39,7 @@ def main(**kwargs):
     yaml.register_class(loc.LookerUserAttribute)
     yaml.register_class(loc.LookObject)
     yaml.register_class(loc.DashboardObject)
+    yaml.register_class(loc.BoardObject)
 
 ###############################################################
 # Capture Folder Config #######################################
@@ -82,19 +85,26 @@ def main(**kwargs):
 ###############################################################
 # Capture Users Content #######################################
 ###############################################################
-    # Capture Look Content
-    looks = lc.CaptureLookObject(sdk=sdk, folder_root=folder_root_dict).execute()
+    # Capture Content Boards
+    boards = bc.CaptureBoards(sdk=sdk).execute()
     with open(f'{yaml_path}_content.yaml', 'w+') as file:
+        file.write('\n\n# BoardData\n')
+        yaml.dump(boards, file)
+
+    # Capture Look Content
+    looks = lc.CaptureLookObject(
+        sdk=sdk, folder_root=folder_root_dict).execute()
+    with open(f'{yaml_path}_content.yaml', 'a') as file:
         file.write('\n\n# LookData\n')
         yaml.dump(looks, file)
 
     # Capture Dashboard Content
-    dash_content = dc.CaptureDashboards(sdk=sdk, folder_root=folder_root_dict).execute()
+    dash_content = dc.CaptureDashboards(
+        sdk=sdk, folder_root=folder_root_dict).execute()
     with open(f'{yaml_path}_content.yaml', 'a') as file:
         fd_yml_txt = '\n\n# Dashboard Content\n'
         file.write(fd_yml_txt)
         yaml.dump(dash_content, file)
-
 
     # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
     logger.info('\n\n\n Lmanage has finished capturing your Looker instance!\n')

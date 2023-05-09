@@ -2,16 +2,10 @@ import logging
 import coloredlogs
 import looker_sdk
 from lmanage.configurator.user_attribute_configuration import create_ua_permissions as cuap
-from lmanage.configurator.folder_configuration import folder_config as fc
-from lmanage.configurator.folder_configuration import create_folder_permissions as cfp
-from lmanage.configurator.folder_configuration import create_folders as cf
-from lmanage.configurator.user_group_configuration import role_config as rc
-from lmanage.configurator.user_group_configuration import group_config as gc
-from lmanage.configurator.user_group_configuration import user_permission as up
-from lmanage.configurator.content_configuration import create_looks as cl
-from lmanage.configurator.content_configuration import create_dashboards as cd
-from lmanage.configurator.content_configuration import create_content_prep as ccp
-from lmanage.utils import parse_yaml as py
+from lmanage.configurator.folder_configuration import folder_config as fc, create_folder_permissions as cfp, create_folders as cf
+from lmanage.configurator.user_group_configuration import role_config as rc, group_config as gc, user_permission as up
+from lmanage.configurator.content_configuration import create_looks as cl, create_dashboards as cd, create_content_prep as ccp, create_boards as cb
+from lmanage.utils import parse_yaml as py, errorhandling as eh
 
 
 logger = logging.getLogger(__name__)
@@ -34,6 +28,11 @@ def main(**kwargs):
         sdk = looker_sdk.init40(config_file=ini_file)
     else:
         sdk = looker_sdk.init40()
+    
+    if eh.user_authentication_test(sdk=sdk):
+        logger.info('User is successfully authenticated to the API')
+    else:
+        raise Exception("User is not successfully authenticated please verify credentials")
 
     folder_metadata = settings_yaml.get_folder_metadata()
     if not folder_metadata:
@@ -65,6 +64,11 @@ def main(**kwargs):
     if not dash_metadata:
         logger.warn(
             f'no dash_metadata specified please check your yaml file at {yaml_split[0]}_content.yaml')
+
+    board_metadata = content_yaml.get_board_metadata()
+    if not board_metadata:
+        logger.warn(
+            f'no board_metadata specified please check your yaml file at {yaml_split[0]}_content.yaml')
 
 
 ################################################################
@@ -123,12 +127,16 @@ def main(**kwargs):
     # FIND LOOKS AND REMAKE THEM
     look_creator = cl.CreateInstanceLooks(
         folder_mapping=folder_mapping_obj, sdk=sdk, content_metadata=look_metadata)
-    look_creator.execute()
+    look_mapping_dict = look_creator.execute()
 
     # Find DASHBOARDS AND REMAKE THEM
     dash_creator = cd.Create_Dashboards(
         sdk=sdk, folder_mapping=folder_mapping_obj, content_metadata=dash_metadata)
-    dash_creator.execute()
+    content_mapping_dict = dash_creator.execute()
+
+    # REMAKE BOARDS
+    board_creator = cb.Create_Boards(sdk=sdk,board_metadata=board_metadata, dashboard_mapping=dash_creator, look_mapping=look_creator)
+    board_creator.execute()
 
     logger.info('lmanage has finished configuring your Looker instance!')
 
