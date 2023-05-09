@@ -135,8 +135,8 @@ def main(**kwargs):
     content_mapping_dict = dash_creator.execute()
 
     # REMAKE BOARDS
-    board_creator = cb.Create_Boards(sdk=sdk,board_metadata=board_metadata, dashboard_mapping=dash_creator, look_mapping=look_creator)
-    board_creator.execute()
+    # board_creator = cb.Create_Boards(sdk=sdk,board_metadata=board_metadata, dashboard_mapping=dash_creator, look_mapping=look_creator)
+    # board_creator.execute()
 
     logger.info('lmanage has finished configuring your Looker instance!')
 

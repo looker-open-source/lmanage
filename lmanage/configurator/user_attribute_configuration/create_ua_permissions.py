@@ -55,6 +55,7 @@ class CreateAndAssignUserAttributes():
             'email',
             'first_name',
             'id',
+            'google_user_id',
             'landing_page',
             'last_name',
             'number_format',
