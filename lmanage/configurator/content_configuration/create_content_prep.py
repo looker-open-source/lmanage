@@ -35,7 +35,7 @@ class CleanInstanceContent():
 
 
     def delete_instance_dash(self, dashboards: list) -> None:
-        delete_id_list = [dash.id for dash in dashboards]
+        delete_id_list = [dash.id for dash in dashboards if '::' not in dash.id]
         for dash_id in tqdm(delete_id_list, 'Scrubbing Instance Dashboards', unit='dashboards', colour="#2c8558"):
             self.sdk.delete_dashboard(dashboard_id=dash_id)
             logger.debug(

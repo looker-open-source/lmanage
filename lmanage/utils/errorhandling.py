@@ -24,6 +24,12 @@ def return_error_message(input: str):
 
     return err_response
 
+def test_object_data(object: list) -> bool:
+    if object:
+        return True
+    else:
+        return False
+
 def user_authentication_test(sdk) -> bool:
     try:
         sdk.me()

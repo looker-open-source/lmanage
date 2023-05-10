@@ -40,6 +40,7 @@ def main(**kwargs):
     yaml.register_class(loc.LookObject)
     yaml.register_class(loc.DashboardObject)
     yaml.register_class(loc.BoardObject)
+    yaml.register_class(cup.LookerUserAttribute)
 
 ###############################################################
 # Capture Folder Config #######################################
@@ -77,7 +78,6 @@ def main(**kwargs):
 # Capture User Attributes #####################################
 ###############################################################
     looker_ua = cup.ExtractUserAttributes(sdk=sdk).create_user_attributes()
-    yaml.register_class(cup.LookerUserAttribute)
     with open(f'{yaml_path}.yaml', 'a') as file:
         file.write('\n\n# USER_ATTRIBUTES\n')
         yaml.dump(looker_ua, file)
@@ -94,9 +94,15 @@ def main(**kwargs):
     # Capture Look Content
     looks = lc.CaptureLookObject(
         sdk=sdk, folder_root=folder_root_dict).execute()
+
     with open(f'{yaml_path}_content.yaml', 'a') as file:
         file.write('\n\n# LookData\n')
-        yaml.dump(looks, file)
+        if eh.test_object_data(looks):
+            looks = looks
+            yaml.dump(looks, file)
+        else:
+            looks = '#No Captured Looks'        
+            file.write(looks)
 
     # Capture Dashboard Content
     dash_content = dc.CaptureDashboards(
@@ -104,8 +110,13 @@ def main(**kwargs):
     with open(f'{yaml_path}_content.yaml', 'a') as file:
         fd_yml_txt = '\n\n# Dashboard Content\n'
         file.write(fd_yml_txt)
-        yaml.dump(dash_content, file)
-
+        if eh.test_object_data(dash_content):
+            dash_content = dash_content
+            yaml.dump(dash_content, file)
+        else:
+            dash_content = '#No Captured Dashboards'
+            file.write(dash_content)
+        
     # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
     logger.info('\n\n\n Lmanage has finished capturing your Looker instance!\n')
     logger.info('\n\nplease find captured settings metadata at: \n%s.yaml \n\ncaptured content metadata at:\n%s_content.yaml', yaml_path, yaml_path)
