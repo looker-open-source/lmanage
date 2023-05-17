@@ -2,6 +2,7 @@ import logging
 from looker_sdk import models40 as models, error
 import coloredlogs
 from tqdm import tqdm
+from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -38,6 +39,7 @@ class CreateInstanceLooks():
         )
         response = self.sdk.create_query(body=query_body)
         return response
+
     def create_look(self, query_id: int, look_metadata: dict, folder_mapping: dict) -> dict:
         legacy_fid = look_metadata.get('legacy_folder_id')
         look_body = models.WriteLookWithQuery(

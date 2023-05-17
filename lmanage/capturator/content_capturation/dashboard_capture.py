@@ -37,6 +37,7 @@ class CaptureDashboards():
         response = []
   
         for dash_id in tqdm(all_dashboards, desc = "Dashboard Capture", unit=" dashboards", colour="#2c8558"):
+            schedule_plans = self.sdk.scheduled_plans_for_dashboard(dashboard_id=dash_id, all_users=True)
         
             lookml = None
             trys = 0
@@ -54,7 +55,9 @@ class CaptureDashboards():
                     legacy_folder_id=all_dashboards.get(dash_id),
                     lookml=lookml.lookml,
                     dashboard_id=dash_id,
-                    dashboard_slug=all_dashboards.get(dash_id).get('slug'))
+                    dashboard_slug=all_dashboards.get(dash_id).get('slug'),
+                    schedule_plans=schedule_plans
+                    )
                 response.append(captured_dashboard)
         return response
 

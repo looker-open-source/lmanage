@@ -5,6 +5,7 @@ import lmanage.utils.looker_object_constructors as loc
 from lmanage.utils.errorhandling import return_sleep_message
 from tqdm import tqdm
 from yaspin import yaspin
+from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')
@@ -14,12 +15,17 @@ class CaptureLookObject():
         self.sdk = sdk
         self.folder_root = folder_root
 
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
+    def get_all_looks_metadata(self) -> list:
+       response = self.sdk.all_looks(fields='id,folder') 
+       return response
+
     def all_looks(self):
         system_folders = ['Users','Embed Users','Embed Groups']
         all_look_meta = None
         with yaspin().white.bold.shark.on_blue as sp:
             sp.text="getting all system look metadata (can take a while)"
-            all_look_meta = self.sdk.all_looks(fields='id,folder')
+            all_look_meta = self.get_all_looks_metadata()
             
         scrub_looks = {}
         for look in all_look_meta:
@@ -76,8 +82,8 @@ class CaptureLookObject():
         looks = []
         content = 1
         for look in tqdm(all_look_data, desc = "Look Capture", unit=" looks", colour="#2c8558"):
-            total = len(all_look_data)
             lmetadata = self.get_look_metadata(look_id=look)
+            schedule_metadata= self.sdk.scheduled_plans_for_look(look_id=lmetadata.id, all_users=True)
             query_object = lmetadata.query.__dict__
             nq_obj = self.clean_query_obj(query_metadata=query_object)
 
@@ -89,7 +95,8 @@ class CaptureLookObject():
                 description=lmetadata.description,
                 legacy_folder_id=legacy_folder,
                 look_id=look_id,
-                title=title)
+                title=title,
+                schedule_plans=schedule_metadata)
             looks.append(look_obj)
             content += 1
         return looks

@@ -4,7 +4,7 @@ import looker_sdk
 from lmanage.configurator.user_attribute_configuration import create_ua_permissions as cuap
 from lmanage.configurator.folder_configuration import folder_config as fc, create_folder_permissions as cfp, create_folders as cf
 from lmanage.configurator.user_group_configuration import role_config as rc, group_config as gc, user_permission as up
-from lmanage.configurator.content_configuration import create_looks as cl, create_dashboards as cd, create_content_prep as ccp, create_boards as cb
+from lmanage.configurator.content_configuration import create_looks as cl, create_dashboards as cd, create_content_prep as ccp, create_boards as cb, create_schedules as sc
 from lmanage.utils import parse_yaml as py, errorhandling as eh
 
 
@@ -133,6 +133,9 @@ def main(**kwargs):
     dash_creator = cd.Create_Dashboards(
         sdk=sdk, folder_mapping=folder_mapping_obj, content_metadata=dash_metadata)
     content_mapping_dict = dash_creator.execute()
+
+    schedule_creator = sc.Create_Schedules(sdk=sdk, folder_mapping=folder_mapping_obj, content_metadata=dash_metadata) 
+    schedule_creator.execute()
 
     # REMAKE BOARDS
     # board_creator = cb.Create_Boards(sdk=sdk,board_metadata=board_metadata, dashboard_mapping=dash_creator, look_mapping=look_creator)

@@ -41,7 +41,9 @@ def main(**kwargs):
     yaml.register_class(loc.DashboardObject)
     yaml.register_class(loc.BoardObject)
     yaml.register_class(cup.LookerUserAttribute)
-
+    yaml.register_class(looker_sdk.sdk.api40.models.ScheduledPlan)
+    yaml.register_class(looker_sdk.sdk.api40.models.ScheduledPlanDestination)
+    yaml.register_class(looker_sdk.sdk.api40.models.UserPublic)
 ###############################################################
 # Capture Folder Config #######################################
 ###############################################################
@@ -116,6 +118,7 @@ def main(**kwargs):
         else:
             dash_content = '#No Captured Dashboards'
             file.write(dash_content)
+
         
     # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
     logger.info('\n\n\n Lmanage has finished capturing your Looker instance!\n')
