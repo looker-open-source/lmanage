@@ -95,8 +95,8 @@ def main(**kwargs):
     looks = lc.CaptureLookObject(
         sdk=sdk, folder_root=folder_root_dict).execute()
 
-    with open(f'{yaml_path}_content.yaml', 'a') as file:
-        file.write('\n\n# LookData\n')
+    with open(f'{yaml_path}_content.yaml', 'wb+') as file:
+        file.write(bytes('\n\n# LookData\n', 'utf-8'))
         if eh.test_object_data(looks):
             looks = looks
             yaml.dump(looks, file)
@@ -107,14 +107,14 @@ def main(**kwargs):
     # Capture Dashboard Content
     dash_content = dc.CaptureDashboards(
         sdk=sdk, folder_root=folder_root_dict).execute()
-    with open(f'{yaml_path}_content.yaml', 'a') as file:
-        fd_yml_txt = '\n\n# Dashboard Content\n'
+    with open(f'{yaml_path}_content.yaml', 'ab') as file:
+        fd_yml_txt = bytes('\n\n# Dashboard Content\n', 'utf-8')
         file.write(fd_yml_txt)
         if eh.test_object_data(dash_content):
             dash_content = dash_content
             yaml.dump(dash_content, file)
         else:
-            dash_content = '#No Captured Dashboards'
+            dash_content = bytes('#No Captured Dashboards', 'utf-8')
             file.write(dash_content)
         
     # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM

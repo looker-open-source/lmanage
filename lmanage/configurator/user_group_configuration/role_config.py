@@ -3,6 +3,7 @@ import logging
 import coloredlogs
 from lmanage.utils import errorhandling as eh
 from tqdm import tqdm
+from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -17,7 +18,7 @@ class CreateRoleBase():
     def create_permission_set(self, sdk, permission_set_dict: dict):
 
         final_response = []
-        for permission in tqdm(permission_set_dict, desc = "Creating Permission Sets", unit=" perm sets", colour="#2c8558"):
+        for permission in tqdm(permission_set_dict, desc="Creating Permission Sets", unit=" perm sets", colour="#2c8558"):
             permission_set_name = permission.get('name')
             if permission_set_name == 'Admin':
                 pass
@@ -67,16 +68,27 @@ class CreateRoleBase():
                 permission_id = permissions_dict.get(permission_set_name)
                 sdk.delete_permission_set(permission_set_id=permission_id)
 
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
+    def search_looker_model_set(self, sdk, model_set_name: str):
+        model_set_id = sdk.search_model_sets(name=model_set_name)[0].id
+        return model_set_id
+
+    # @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
+    def create_looker_model_set(self, body: models.WriteModelSet):
+        sdk = self.sdk
+        model = sdk.create_model_set(body=body)
+        return model
+
     def create_model_set(self, sdk, model_set_dict: list) -> list:
         final_response = []
         model_set_dict = eh.dedup_list_of_dicts(model_set_dict)
-        for model in tqdm(model_set_dict, desc = "Creating Model Sets", unit=" model sets", colour="#2c8558"):
+        for model in tqdm(model_set_dict, desc="Creating Model Sets", unit=" model sets", colour="#2c8558"):
             model_set_name = model.get('name')
             attributed_models = model.get('models')
             body = models.WriteModelSet(
                 name=model_set_name.lower(), models=attributed_models)
             try:
-                model = sdk.create_model_set(body=body)
+                model_set_id = self.create_looker_model_set(body=body).id
                 temp = {}
                 final_response.append(temp)
             except error.SDKError as modelerror:

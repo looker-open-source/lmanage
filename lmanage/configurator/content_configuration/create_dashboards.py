@@ -27,7 +27,7 @@ class Create_Dashboards():
             # lookml = self.amend_lookml_str(dash['lookml'])
             temp = {}
             new_dash = self.sdk.import_dashboard_from_lookml(body=body)
-            temp[dash['dashboard_id']] = new_dash.dashboard_id if new_dash.dashboard_id else dash['dashboard_slug']
+            temp[dash['dashboard_id']] = new_dash.id 
             resp.append(temp)
         return resp
 

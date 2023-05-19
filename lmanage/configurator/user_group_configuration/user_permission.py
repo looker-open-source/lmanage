@@ -6,6 +6,7 @@ from lmanage.configurator.user_group_configuration.role_config import CreateRole
 from lmanage.utils.errorhandling import return_error_message
 from lmanage.utils.errorhandling import return_sleep_message
 from tqdm import tqdm
+from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='INFO')
@@ -37,6 +38,12 @@ class CreateInstanceRoles(CreateRoleBase):
         all_roles = self.sdk.all_roles()
         role_dict = {role.name: role.id for role in all_roles}
         return role_dict
+    
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
+    def update_looker_role(self, role_id: str, body: models.WriteRole):
+        role = self.sdk.update_role(role_id=role_id, body=body)
+        return role
+
 
     def create_instance_roles(self):
         model_lookup = self.create_model_lookup()
@@ -66,9 +73,8 @@ class CreateInstanceRoles(CreateRoleBase):
                     logger.debug(
                         'You have hit a warning creating your role \'%s\'; warning = %s', role_name, err_msg)
                     role_id = self.sdk.search_roles(name=role_name)[0].id
-                    role = self.sdk.update_role(
+                    role = self.update_looker_role(
                         role_id=str(role_id), body=body)
-        
                 temp = {}
                 temp['role_id'] = role.id
                 temp['role_name'] = role_name
