@@ -95,7 +95,7 @@ def main(**kwargs):
     looks = lc.CaptureLookObject(
         sdk=sdk, folder_root=folder_root_dict).execute()
 
-    with open(f'{yaml_path}_content.yaml', 'wb+') as file:
+    with open(f'{yaml_path}_content.yaml', 'wb') as file:
         file.write(bytes('\n\n# LookData\n', 'utf-8'))
         if eh.test_object_data(looks):
             looks = looks
