@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lmanage"
-version = "0.3.09"
+version = "0.3.11"
 description = "LManage is a collection of useful tools for Looker admins to help curate and cleanup content and it's associated source LookML."
 keywords = ["keyword", "another_keyword"]
 authors = ["hselbie <hselbie@gmail.com>"]
@@ -17,11 +17,9 @@ coloredlogs = "^15.0"
 verboselogs = "^1.7"
 coloredlogger = "^1.3.12"
 pylint = "^2.9.5"
-lkml = "^1.1.1"
 flake8 = "^4.0.1"
 autopep8 = "^1.6.0"
 PyYAML = "^6.0"
-looker-sdk = "^22.4.0"
 sqlparse = "^0.4.2"
 XlsxWriter = "^3.0.3"
 "ruamel.yaml" = "^0.17.21"
@@ -29,6 +27,8 @@ tqdm = "^4.65.0"
 # poetry = "^1.4.2"
 yaspin = "^2.3.0"
 tenacity = "^8.2.2"
+looker-sdk = "^23.8.1"
+poetry = "^1.4.2"
 
 [tool.poetry.dev-dependencies]
 

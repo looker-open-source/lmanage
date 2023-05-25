@@ -2,7 +2,7 @@ import logging
 import coloredlogs
 from looker_sdk import models, error
 from tqdm import tqdm
-
+from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
 #logger = logging.getLogger(__name__)
 #coloredlogs.install(level='DEBUG')
 
