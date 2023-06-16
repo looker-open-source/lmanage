@@ -1,5 +1,6 @@
 import logging
 import datetime 
+import os
 BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
 
 # These are the sequences need to get colored ouput
@@ -55,6 +56,7 @@ class ColoredLogger(logging.Logger):
         console.setFormatter(color_formatter)
 
         current_time = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
+        os.makedirs("logs", exist_ok=True)
 
         file = logging.FileHandler(
             f"logs/logs_{current_time}.log", encoding="utf-8", mode="a")
