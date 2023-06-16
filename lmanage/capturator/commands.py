@@ -13,13 +13,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import coloredlogs
 import logging
 import click
 from lmanage import capture_instance_permission_structure
+from lmanage.utils import logger_creation as log_color
 
-logger = logging.getLogger(__name__)
-
+logging.setLoggerClass(log_color.ColoredLogger)
+logger = logging.getLogger('capturator')
 
 @click.group(name='capturator')
 def capturator():
@@ -38,7 +38,8 @@ def capturator():
 def capturator(**kwargs):
     """Captures security settings for your looker instance"""
     level = kwargs.get('level', 'INFO')
-    coloredlogs.install(level=level, logger=logger)
+    # coloredlogs.install(level=level, logger=logger)
+    logger.setLevel(logging.DEBUG)
     for k, v in kwargs.items():
         if {v} != None:
             logger.info(

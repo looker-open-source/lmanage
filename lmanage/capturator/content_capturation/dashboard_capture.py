@@ -1,13 +1,10 @@
 from tqdm import tqdm
 import logging
-from lmanage.utils.errorhandling import return_sleep_message
-from lmanage.utils.looker_object_constructors import DashboardObject
-import coloredlogs
+from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 from yaspin import yaspin
 
+logging.setLoggerClass(log_color.ColoredLogger)
 logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
-logging.getLogger("looker_sdk").setLevel(logging.WARNING)
 
 class CaptureDashboards():
     def __init__(self, sdk, folder_root: dict):
@@ -15,21 +12,16 @@ class CaptureDashboards():
         self.folder_root = folder_root
 
     def get_all_dashboards(self) -> dict:
-        system_folders = ['Users','Embed Users','Embed Groups', 'LookML Dashboards']
         scrub_dashboards = {}
         with yaspin().white.bold.shark.on_blue as sp:
             sp.text="getting all system dashboard metadata (can take a while)"
             all_dashboards = self.sdk.all_dashboards(fields="id,folder, slug")
         
         for dash in all_dashboards:
-            if dash.folder.id == 'lookml':
-                continue
-            else:
-                folder_root = self.folder_root.get(dash.folder.id, [{'name':'Users'}])[0]['name']
-                if dash.folder.id in list(self.folder_root.keys()) and folder_root not in system_folders:
-                    scrub_dashboards[dash.id] = {}
-                    scrub_dashboards[dash.id]['folder_id'] = dash.folder.id
-                    scrub_dashboards[dash.id]['slug'] = dash.slug 
+            if dash.folder.id in self.folder_root:
+                scrub_dashboards[dash.id] = {}
+                scrub_dashboards[dash.id]['folder_id'] = dash.folder.id
+                scrub_dashboards[dash.id]['slug'] = dash.slug 
         return scrub_dashboards
 
     def get_dashboard_lookml(self, all_dashboards: dict) -> list:
@@ -49,9 +41,10 @@ class CaptureDashboards():
                     try:
                         lookml = self.sdk.dashboard_lookml(dashboard_id=dash_id)
                     except:
-                        return_sleep_message(call_number=trys, quiet=True)
+                        eh.return_sleep_message(call_number=trys, quiet=True)
                 
-                captured_dashboard = DashboardObject(
+                logger.debug(lookml.lookml)
+                captured_dashboard = loc.DashboardObject(
                     legacy_folder_id=all_dashboards.get(dash_id),
                     lookml=lookml.lookml,
                     dashboard_id=dash_id,

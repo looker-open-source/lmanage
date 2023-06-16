@@ -1,11 +1,11 @@
 import logging
-import coloredlogs
 import looker_sdk
 from looker_sdk import models
 from role_config import CreateRoleBase
+from lmanage.utils import logger_creation as log_color
 
+logging.setLoggerClass(log_color.ColoredLogger)
 logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
 
 
 class CreateInstanceRoles(CreateRoleBase):

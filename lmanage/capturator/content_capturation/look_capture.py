@@ -1,17 +1,15 @@
 import logging
 import time
-import coloredlogs
-import lmanage.utils.looker_object_constructors as loc
-from lmanage.utils.errorhandling import return_sleep_message
+from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 from tqdm import tqdm
 from yaspin import yaspin
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
+logging.setLoggerClass(log_color.ColoredLogger)
+logger = logging.getLogger('look_capture')
 
-class CaptureLookObject():
-    def __init__(self, sdk, folder_root: dict):
+class LookCapture:
+    def __init__(self, sdk, folder_root):
         self.sdk = sdk
         self.folder_root = folder_root
 
@@ -29,8 +27,7 @@ class CaptureLookObject():
             
         scrub_looks = {}
         for look in all_look_meta:
-            folder_root = self.folder_root.get(look.folder.id,[{'name': 'Users'}])[0]['name']
-            if look.folder.id in list(self.folder_root.keys()) and folder_root not in system_folders:
+            if look.folder.id in self.folder_root:
                 scrub_looks[look.id] = look.folder.id 
             else:
                 continue
@@ -44,7 +41,7 @@ class CaptureLookObject():
             try:
                 look_meta = self.sdk.look(look_id=look_id)
             except:
-                return_sleep_message
+                eh.return_sleep_message
         return look_meta
 
     def clean_query_obj(self, query_metadata: dict) -> dict:
@@ -86,6 +83,7 @@ class CaptureLookObject():
             schedule_metadata= self.sdk.scheduled_plans_for_look(look_id=lmetadata.id, all_users=True)
             query_object = lmetadata.query.__dict__
             nq_obj = self.clean_query_obj(query_metadata=query_object)
+            logger.debug(nq_obj)
 
             legacy_folder = lmetadata.folder_id
             look_id = lmetadata.id

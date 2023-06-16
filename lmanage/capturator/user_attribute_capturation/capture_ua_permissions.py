@@ -1,10 +1,11 @@
 import logging
-import coloredlogs
 from time import sleep
-from lmanage.utils.looker_object_constructors import LookerUserAttribute 
-from lmanage.utils.errorhandling import return_error_message, return_sleep_message
+from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 from tqdm import tqdm
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
+logging.setLoggerClass(log_color.ColoredLogger)
+logger = logging.getLogger(__name__)
+
 
 class ExtractUserAttributes():
     def __init__(self,  sdk):
@@ -46,7 +47,7 @@ class ExtractUserAttributes():
                 teams = {}
                 teams[group_name] = group.value
                 team_values.append(teams)
-            looker_ua = LookerUserAttribute(
+            looker_ua = loc.LookerUserAttribute(
                 name=ua.name,
                 uatype=ua.type,
                 hidden_value=ua.value_is_hidden,

@@ -1,12 +1,10 @@
 import logging
-import coloredlogs
 import itertools
-from lmanage.utils.looker_object_constructors import LookerPermissionSet, LookerModelSet, LookerRoles
-from lmanage.utils import errorhandling
 from tqdm import tqdm
+from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 
+logging.setLoggerClass(log_color.ColoredLogger)
 logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
 
 
 class ExtractRoleInfo():
@@ -37,11 +35,11 @@ class ExtractRoleInfo():
 
     def extract_permission_sets(self):
         response = []
-        p_list = errorhandling.dedup_list_of_dicts(
+        p_list = eh.dedup_list_of_dicts(
             self.create_list_of_permission_sets())
         for role in p_list:
             logger.debug(role)
-            perm_set = LookerPermissionSet(
+            perm_set = loc.LookerPermissionSet(
                 name=role.get('name'),
                 permissions=role.get('permissions'))
             response.append(perm_set)
@@ -59,10 +57,10 @@ class ExtractRoleInfo():
 
     def extract_model_sets(self):
         response = []
-        role_list = errorhandling.dedup_list_of_dicts(
+        role_list = eh.dedup_list_of_dicts(
             self.create_list_of_roles())
         for role in role_list:
-            model_set = LookerModelSet(
+            model_set = loc.LookerModelSet(
                 models=role.get('models'), name=role.get('name'))
             response.append(model_set)
         return response
@@ -77,10 +75,10 @@ class ExtractRoleInfo():
                 try:
                     groups = self.sdk.role_groups(role_id=role.id)
                 except:
-                    errorhandling.return_sleep_message(call_number=trys)
+                    eh.return_sleep_message(call_number=trys)
             role_groups = [group.name for group in groups]
 
-            lookerrole = LookerRoles(permission_set=role.permission_set.name,
+            lookerrole = loc.LookerRoles(permission_set=role.permission_set.name,
                                      model_set=role.model_set.name, teams=role_groups, name=role.name)
             response.append(lookerrole)
 

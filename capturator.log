@@ -1,0 +1,3 @@
+2023-06-16 20:49:32,391 - capturator - [1;37mINFO[0m - You have set /usr/local/google/home/hugoselbie/code_sample/py/ini/rbrobowski.ini for your ini_file variable
+2023-06-16 20:49:32,394 - capturator - [1;37mINFO[0m - You have set /usr/local/google/home/hugoselbie/code_sample/py/lmanage/output/rbrobowski.yaml for your yaml_export_path variable
+2023-06-16 20:49:32,395 - capturator - [1;37mINFO[0m - You have set DEBUG for your level variable

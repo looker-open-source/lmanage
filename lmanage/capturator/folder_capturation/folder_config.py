@@ -1,14 +1,13 @@
 import logging
 import coloredlogs
 from yaspin import yaspin
-from lmanage.utils import looker_object_constructors as loc
+from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 from looker_sdk import error
 from tqdm import tqdm
 from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
 
+logging.setLoggerClass(log_color.ColoredLogger)
 logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
-logging.getLogger("requests").setLevel(logging.WARNING)
 
 
 class CaptureFolderConfig():
@@ -16,12 +15,6 @@ class CaptureFolderConfig():
 
     def __init__(self, sdk):
         self.sdk = sdk
-
-    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
-    def get_folder_ancestors(self, dashboard_folder_id: str) -> dict:
-        response = self.sdk.folder_ancestors(
-            folder_id=dashboard_folder_id, fields="name")
-        return response
 
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def get_all_folders(self) -> list:
@@ -33,56 +26,20 @@ class CaptureFolderConfig():
         response = self.sdk.folder(folder_id)
         return response
 
-    def get_all_folders(self) -> dict:
+    def get_clean_folders(self) -> list:
         '''retriving all Looker instance folder id and creating a dict of folder to root folder'''
-        system_folder_id = ['1', '2', '3', '4', '5']
-        trys = 0
+        system_folder_id = ['1', '2', '3', '4', '5', 'lookml']
         all_folder_metadata = None
         while all_folder_metadata is None:
             try:
                 with yaspin().white.bold.shark.on_blue as sp:
                     sp.text = f"getting folder metadata"
-                    all_folder_metadata = self.sdk.all_folders()
+                    all_folder_metadata = self.get_all_folders()
             except error.SDKError as e:
                 logger.debug(e)
         all_folder_metadata = [
-            folder.id for folder in all_folder_metadata if not folder.is_personal]
-        folder_length = len(all_folder_metadata)
-
-        folder_history = {}
-
-        l = 0
-        for dash in all_folder_metadata:
-            l += 1
-            if dash in list(folder_history.keys()):
-                folder_root = folder_history.get(dash)
-            else:
-                folder_root = None
-                trys = 0
-                with yaspin().white.bold.shark.on_blue as sp:
-                    sp.text = f"getting folder ancestors for folder {l} / {folder_length}"
-                    folder_root = self.get_folder_ancestors(
-                        dashboard_folder_id=dash)
-                if not folder_root:
-                    folder = self.get_folder_metadata(dash)
-                    folder_history[dash] = [{'name': folder.name}]
-                else:
-                    folder_history[dash] = folder_root
-        return folder_history
-
-    @staticmethod
-    def clean_folders(folder_list):
-        '''removing standard system folders from lmanage.folder list'''
-        system_folders = ['Users', 'Embed Users', 'Embed Groups']
-        removal_folder_id = ['1', '2', '3', '4',  'lookml', '5']
-        response = []
-        folder_list = {k: v for k, v in folder_list.items()
-                       if k not in removal_folder_id}
-        cleaned_folders = {folder_id: root_name for folder_id,
-                           root_name in folder_list.items() if root_name[0]['name'] not in system_folders}
-
-        response = sorted(list(cleaned_folders.keys()), reverse=True)
-        return response
+            folder.id for folder in all_folder_metadata if not folder.is_personal if not folder.is_personal_descendant if not folder.is_embed if folder.id not in system_folder_id]
+        return all_folder_metadata
 
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def get_all_content_metadata_accesses(self, cmi: int) -> dict:
@@ -189,10 +146,9 @@ class CaptureFolderConfig():
 
     def execute(self):
         '''main function to do chain all the processes'''
-        folders = self.get_all_folders()
-        clean_folders = self.clean_folders(folder_list=folders)
+        clean_folders = self.get_clean_folders()
         created_folder_list = self.create_folder_objects(
             folder_list=clean_folders)
         final_folder_list = self.create_nested_folder_objects(
             folder_list=created_folder_list)
-        return folders, final_folder_list
+        return clean_folders, final_folder_list

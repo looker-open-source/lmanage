@@ -1,17 +1,14 @@
 import logging
-import coloredlogs
 import looker_sdk
 import ruamel.yaml
 from lmanage.capturator.user_group_capturation import role_config as rc
 from lmanage.capturator.user_attribute_capturation import capture_ua_permissions as cup
 from lmanage.capturator.folder_capturation import folder_config as fc, create_folder_yaml_structure as cfp
 from lmanage.capturator.content_capturation import dashboard_capture as dc, look_capture as lc, board_capture as bc
-from lmanage.utils import looker_object_constructors as loc, errorhandling as eh
+from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 
+logging.setLoggerClass(log_color.ColoredLogger)
 logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
-logging.getLogger("looker_sdk").setLevel(logging.WARNING)
-
 
 def main(**kwargs):
 
@@ -40,7 +37,6 @@ def main(**kwargs):
     yaml.register_class(loc.LookObject)
     yaml.register_class(loc.DashboardObject)
     yaml.register_class(loc.BoardObject)
-    yaml.register_class(cup.LookerUserAttribute)
     yaml.register_class(looker_sdk.sdk.api40.models.ScheduledPlan)
     yaml.register_class(looker_sdk.sdk.api40.models.ScheduledPlanDestination)
     yaml.register_class(looker_sdk.sdk.api40.models.UserPublic)
@@ -55,7 +51,7 @@ def main(**kwargs):
         file.write(fd_yml_txt)
         yaml.dump(folder_structure_list, file)
 
-    folder_root_dict = folder_returns[0]
+    folder_root = folder_returns[0]
 
 ###############################################################
 # Capture Roles ###############################################
@@ -94,21 +90,23 @@ def main(**kwargs):
     #     yaml.dump(boards, file)
 
     # Capture Look Content
-    looks = lc.CaptureLookObject(
-        sdk=sdk, folder_root=folder_root_dict).execute()
+    lcapture = lc.LookCapture(
+        sdk=sdk, folder_root=folder_root)
+    looks = lcapture.execute()
 
     with open(f'{yaml_path}_content.yaml', 'wb') as file:
         file.write(bytes('\n\n# LookData\n', 'utf-8'))
+
         if eh.test_object_data(looks):
             looks = looks
             yaml.dump(looks, file)
         else:
-            looks = '#No Captured Looks'        
+            looks = bytes('#No Captured Looks', 'utf-8')
             file.write(looks)
 
     # Capture Dashboard Content
     dash_content = dc.CaptureDashboards(
-        sdk=sdk, folder_root=folder_root_dict).execute()
+        sdk=sdk, folder_root=folder_root).execute()
     with open(f'{yaml_path}_content.yaml', 'ab') as file:
         fd_yml_txt = bytes('\n\n# Dashboard Content\n', 'utf-8')
         file.write(fd_yml_txt)
