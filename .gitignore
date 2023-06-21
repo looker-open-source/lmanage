@@ -37,6 +37,7 @@ tests/test_validate_content.py
 tests/test_lookml_files.py
 tests/snap_db_response.json
 tests/test_lookml_files/aws_thelook_redshift/
+logs/
 
 #Ignore pycache
 __pycache__/

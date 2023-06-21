@@ -14,7 +14,7 @@ client_id=abc
 client_secret=xyz
 verify_ssl=True
 ```
-- **level** (`--level`, `-l`) **Optional** Set this flag to DEBUG to receive expanded results in stdout for debugging  
+- **level** (`--verbose`, `-v`) **Optional** Set this flag to receive expanded results in stdout for debugging  
 
 ##### Anatomy of your Settings Yaml File
 ###### Roles
