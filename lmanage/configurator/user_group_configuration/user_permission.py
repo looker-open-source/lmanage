@@ -1,15 +1,11 @@
-import logging
-import json
-import coloredlogs
 from looker_sdk import models, error
 from lmanage.configurator.user_group_configuration.role_config import CreateRoleBase
 from lmanage.utils.errorhandling import return_error_message
-from lmanage.utils.errorhandling import return_sleep_message
+from lmanage.utils import logger_creation as log_color
 from tqdm import tqdm
 from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
 
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
+#logger = log_color.init_logger(__name__, logger_level)
 
 
 class CreateInstanceRoles(CreateRoleBase):

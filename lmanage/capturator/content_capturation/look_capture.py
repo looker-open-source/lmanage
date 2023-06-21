@@ -1,17 +1,15 @@
-import logging
-import time
 from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 from tqdm import tqdm
 from yaspin import yaspin
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 
-logging.setLoggerClass(log_color.ColoredLogger)
-logger = logging.getLogger('look_capture')
+#logger = log_color.init_logger(__name__, logger_level)
 
 class LookCapture:
-    def __init__(self, sdk, folder_root):
+    def __init__(self, sdk, folder_root, logger):
         self.sdk = sdk
         self.folder_root = folder_root
+        self.logger = logger
 
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def get_all_looks_metadata(self) -> list:
@@ -27,7 +25,7 @@ class LookCapture:
             
         scrub_looks = {}
         for look in all_look_meta:
-            if look.folder.id in self.folder_root:
+            if look.folder.id in self.folder_root or look.folder.id == '1':
                 scrub_looks[look.id] = look.folder.id 
             else:
                 continue
@@ -83,7 +81,7 @@ class LookCapture:
             schedule_metadata= self.sdk.scheduled_plans_for_look(look_id=lmetadata.id, all_users=True)
             query_object = lmetadata.query.__dict__
             nq_obj = self.clean_query_obj(query_metadata=query_object)
-            logger.debug(nq_obj)
+            self.logger.debug(nq_obj)
 
             legacy_folder = lmetadata.folder_id
             look_id = lmetadata.id

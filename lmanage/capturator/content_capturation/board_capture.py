@@ -2,12 +2,10 @@ from tqdm import tqdm
 import logging
 from lmanage.utils.errorhandling import return_sleep_message
 from lmanage.utils.looker_object_constructors import BoardObject
-import coloredlogs
+from lmanage.utils import logger_creation as log_color
 from yaspin import yaspin
+#logger = log_color.init_logger(__name__, logger_level)
 
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
-logging.getLogger("looker_sdk").setLevel(logging.WARNING)
 
 class CaptureBoards():
     def __init__(self, sdk):

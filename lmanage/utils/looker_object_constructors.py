@@ -1,10 +1,5 @@
-import logging
-import coloredlogs
 import ruamel.yaml
 
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
-logging.getLogger("looker_sdk").setLevel(logging.WARNING)
 
 yaml = ruamel.yaml.YAML()
 

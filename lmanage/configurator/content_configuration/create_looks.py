@@ -1,13 +1,10 @@
 import logging
 from looker_sdk import models40 as models, error
-import coloredlogs
 from tqdm import tqdm
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
+from lmanage.utils import logger_creation as log_color
 
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
-logging.getLogger("requests").setLevel(logging.WARNING)
-
+#logger = log_color.init_logger(__name__, logger_level)
 
 class CreateInstanceLooks():
     def __init__(self, folder_mapping, sdk, content_metadata):

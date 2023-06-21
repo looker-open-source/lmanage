@@ -1,9 +1,9 @@
 from tqdm import tqdm
 from looker_sdk import models40 as models
-import coloredlogs
-import logging
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
+from lmanage.utils import logger_creation as log_color
+
+#logger = log_color.init_logger(__name__, logger_level)
+
 
 class Create_Dashboards():
 

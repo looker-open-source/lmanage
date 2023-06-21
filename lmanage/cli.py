@@ -14,11 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import click
-import os
 from lmanage.capturator import commands as cap_commands
 from lmanage.configurator import commands as config_commands
-
-os.makedirs('logs', exist_ok=True)
 
 @click.group()
 @click.version_option()

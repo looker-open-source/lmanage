@@ -13,12 +13,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import coloredlogs
-import logging
 import click
 from lmanage import provision_instance_permission_structure
+from lmanage.utils import logger_creation as log_color
 
-logger = logging.getLogger(__name__)
+#logger = log_color.init_logger(__name__, logger_level)
 
 
 @click.group(name='configurator')

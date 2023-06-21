@@ -1,13 +1,12 @@
 import logging
 import time
-import coloredlogs
 from looker_sdk import models, error
 from lmanage.utils import errorhandling
 from tqdm import tqdm
 from lmanage.utils.errorhandling import return_sleep_message
+from lmanage.utils import logger_creation as log_color
 
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
+#logger = log_color.init_logger(__name__, logger_level)
 
 
 class CreateAndProvisionInstanceFolders():

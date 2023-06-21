@@ -7,15 +7,13 @@ from lmanage.capturator.folder_capturation import folder_config as fc, create_fo
 from lmanage.capturator.content_capturation import dashboard_capture as dc, look_capture as lc, board_capture as bc
 from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 
-logging.setLoggerClass(log_color.ColoredLogger)
-logger = logging.getLogger(__name__)
-
 def main(**kwargs):
 
     ini_file = kwargs.get("ini_file")
     yaml_path = kwargs.get("yaml_export_path")
     yaml_path = yaml_path.split('.')[0]
-
+    logger_level = kwargs.get('verbose')
+    logger = log_color.init_logger(__name__, logger_level)
     logger.info('creating yaml configuration file')
 
     if ini_file:
@@ -43,7 +41,7 @@ def main(**kwargs):
 ###############################################################
 # Capture Folder Config #######################################
 ###############################################################
-    folder_returns = fc.CaptureFolderConfig(sdk=sdk).execute()
+    folder_returns = fc.CaptureFolderConfig(sdk=sdk, logger=logger).execute()
     folder_structure_list = folder_returns[1]
 
     with open(f'{yaml_path}.yaml', 'w') as file:
@@ -56,7 +54,7 @@ def main(**kwargs):
 ###############################################################
 # Capture Roles ###############################################
 ###############################################################
-    roles = rc.ExtractRoleInfo(sdk=sdk)
+    roles = rc.ExtractRoleInfo(sdk=sdk, logger=logger)
 
     looker_permission_sets = roles.extract_permission_sets()
     looker_model_sets = roles.extract_model_sets()
@@ -75,7 +73,7 @@ def main(**kwargs):
 ###############################################################
 # Capture User Attributes #####################################
 ###############################################################
-    looker_ua = cup.ExtractUserAttributes(sdk=sdk).create_user_attributes()
+    looker_ua = cup.ExtractUserAttributes(sdk=sdk, logger=logger).create_user_attributes()
     with open(f'{yaml_path}.yaml', 'a') as file:
         file.write('\n\n# USER_ATTRIBUTES\n')
         yaml.dump(looker_ua, file)
@@ -89,9 +87,8 @@ def main(**kwargs):
     #     file.write('\n\n# BoardData\n')
     #     yaml.dump(boards, file)
 
-    # Capture Look Content
     lcapture = lc.LookCapture(
-        sdk=sdk, folder_root=folder_root)
+        sdk=sdk, folder_root=folder_root, logger=logger)
     looks = lcapture.execute()
 
     with open(f'{yaml_path}_content.yaml', 'wb') as file:
@@ -106,7 +103,7 @@ def main(**kwargs):
 
     # Capture Dashboard Content
     dash_content = dc.CaptureDashboards(
-        sdk=sdk, folder_root=folder_root).execute()
+        sdk=sdk, folder_root=folder_root, logger=logger).execute()
     with open(f'{yaml_path}_content.yaml', 'ab') as file:
         fd_yml_txt = bytes('\n\n# Dashboard Content\n', 'utf-8')
         file.write(fd_yml_txt)

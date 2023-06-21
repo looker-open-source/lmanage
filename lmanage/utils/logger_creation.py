@@ -1,65 +1,45 @@
 import logging
-import datetime 
-BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
+from rich.logging import RichHandler
+import datetime
+import os
 
-# These are the sequences need to get colored ouput
-RESET_SEQ = "\033[0m"
-COLOR_SEQ = "\033[1;%dm"
-BOLD_SEQ = "\033[1m"
+def create_timestamp():
+    timestamp = datetime.datetime.now()
+    unix_ts = timestamp.timestamp()
+    trunc_unix_ts = unix_ts - (unix_ts % 60)
+    return int(trunc_unix_ts)
 
+def init_logger(dunder_name, testing_mode) -> logging.Logger:
+    log_format = (
+        '%(asctime)s - '
+        '%(name)s - '
+        '%(funcName)s - '
+        '%(levelname)s - '
+        '%(message)s'
+    )
 
-def formatter_message(message, use_color=True):
-    if use_color:
-        message = message.replace(
-            "$RESET", RESET_SEQ).replace("$BOLD", BOLD_SEQ)
+    logging.basicConfig(
+        format=log_format,
+        datefmt=".",
+        handlers=[RichHandler()],
+    )
+    logger = logging.getLogger(dunder_name)
+
+    if testing_mode:
+        logger.setLevel(logging.DEBUG)
     else:
-        message = message.replace("$RESET", "").replace("$BOLD", "")
-    return message
+        logger.setLevel(logging.INFO)
 
+    unix_ts = create_timestamp()
 
-COLORS = {
-    'WARNING': YELLOW,
-    'INFO': WHITE,
-    'DEBUG': BLUE,
-    'CRITICAL': YELLOW,
-    'ERROR': RED
-}
+    # Create logs folder if not exists
+    os.makedirs('logs', exist_ok=True)
+    
+    # Output full log
+    fh = logging.FileHandler(f'logs/lomt_{unix_ts}.log')
+    fh.setLevel(logging.DEBUG)
+    formatter = logging.Formatter(log_format)
+    fh.setFormatter(formatter)
+    logger.addHandler(fh)
 
-
-class ColoredFormatter(logging.Formatter):
-    def __init__(self, msg, use_color=True):
-        logging.Formatter.__init__(self, msg)
-        self.use_color = use_color
-
-    def format(self, record):
-        levelname = record.levelname
-        if self.use_color and levelname in COLORS:
-            levelname_color = COLOR_SEQ % (
-                30 + COLORS[levelname]) + levelname + RESET_SEQ
-            record.levelname = levelname_color
-        return logging.Formatter.format(self, record)
-
-# Custom logger class with multiple destinations
-
-
-class ColoredLogger(logging.Logger):
-    FORMAT = "[$BOLD%(name)-20s$RESET][%(levelname)-18s]  %(message)s ($BOLD%(filename)s$RESET:%(lineno)d)"
-    COLOR_FORMAT = formatter_message(FORMAT, True)
-
-    def __init__(self, name):
-        logging.Logger.__init__(self, name, logging.DEBUG)
-
-        color_formatter = ColoredFormatter(self.COLOR_FORMAT)
-
-        console = logging.StreamHandler()
-        console.setFormatter(color_formatter)
-
-        current_time = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
-
-        file = logging.FileHandler(
-            f"logs/logs_{current_time}.log", encoding="utf-8", mode="a")
-        file.setFormatter(color_formatter)
-
-        self.addHandler(console)
-        self.addHandler(file)
-        return
+    return logger

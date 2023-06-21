@@ -1,15 +1,11 @@
-import logging
-from time import sleep
 from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 from tqdm import tqdm
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
-logging.setLoggerClass(log_color.ColoredLogger)
-logger = logging.getLogger(__name__)
-
 
 class ExtractUserAttributes():
-    def __init__(self,  sdk):
+    def __init__(self,  sdk, logger):
         self.sdk = sdk
+        self.logger = logger
         self.user_attribute_metadata = self.existing_user_attributes()
         self.all_group_metadata = self.all_group_metadatas()
     

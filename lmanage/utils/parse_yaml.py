@@ -1,10 +1,11 @@
 import json
-import yaml 
+import ruamel.yaml 
 import logging
-import coloredlogs
+from lmanage.utils import logger_creation as log_color
 
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
+#logger = log_color.init_logger(__name__, logger_level)
+
+
 
 
 class Yaml:

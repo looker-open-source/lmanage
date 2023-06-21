@@ -1,11 +1,8 @@
-import logging
-import coloredlogs
 from looker_sdk import models, error
 from lmanage.utils.errorhandling import return_error_message
 from tqdm import tqdm
-
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
+from lmanage.utils import logger_creation as log_color
+#logger = log_color.init_logger(__name__, logger_level)
 
 
 class CreateInstanceGroups():

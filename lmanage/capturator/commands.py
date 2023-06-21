@@ -18,8 +18,7 @@ import click
 from lmanage import capture_instance_permission_structure
 from lmanage.utils import logger_creation as log_color
 
-logging.setLoggerClass(log_color.ColoredLogger)
-logger = logging.getLogger('capturator')
+logger = log_color.init_logger(__name__, testing_mode=False)
 
 @click.group(name='capturator')
 def capturator():
@@ -32,14 +31,15 @@ def capturator():
                help="**OPTIONAL ** Specify API Credentials in an ini file, if no path is given program will assume these values are set as environmental variables as denoted at https: // github.com/looker-open-source/sdk-codegen  # environment-variable-configuration")
 @ click.option("-yep", "--yaml-export-path",
                help="Where to save the yaml file to use for instance configuration")
-@ click.option("-l", "--level",
-               default='INFO',
-               help="**OPTIONAL** Add the value 'DEBUG' to get a more verbose version of the returned stout text")
+@ click.option("-v", "--verbose", 
+               is_flag=True, 
+               help="**OPTIONAL** Add this flag value to get a more verbose version of the returned stout text")
+
 def capturator(**kwargs):
     """Captures security settings for your looker instance"""
-    level = kwargs.get('level', 'INFO')
-    # coloredlogs.install(level=level, logger=logger)
-    logger.setLevel(logging.DEBUG)
+    level = kwargs.get('verbose', False)
+    logger = log_color.init_logger(__name__, testing_mode=level)
+
     for k, v in kwargs.items():
         if {v} != None:
             logger.info(

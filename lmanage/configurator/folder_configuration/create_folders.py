@@ -1,11 +1,7 @@
-import logging
 from looker_sdk import models, error
-import coloredlogs
 from tqdm import tqdm
-
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
-logging.getLogger("requests").setLevel(logging.WARNING)
+from lmanage.utils import logger_creation as log_color
+#logger = log_color.init_logger(__name__, logger_level)
 
 
 class CreateInstanceFolders():

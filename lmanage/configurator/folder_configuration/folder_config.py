@@ -1,12 +1,8 @@
-import logging
 from os import name
 from looker_sdk import models, error
-import coloredlogs
+from lmanage.utils import logger_creation as log_color
 
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
-logging.getLogger("requests").setLevel(logging.WARNING)
-
+#logger = log_color.init_logger(__name__, logger_level)
 
 class FolderConfig():
     ''' Class to read in folder metadata and unested_folder_data '''

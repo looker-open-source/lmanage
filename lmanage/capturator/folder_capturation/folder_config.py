@@ -1,20 +1,17 @@
-import logging
-import coloredlogs
 from yaspin import yaspin
 from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 from looker_sdk import error
 from tqdm import tqdm
 from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
 
-logging.setLoggerClass(log_color.ColoredLogger)
-logger = logging.getLogger(__name__)
 
 
 class CaptureFolderConfig():
     ''' Class to read in folder metadata and unested_folder_data '''
 
-    def __init__(self, sdk):
+    def __init__(self, sdk, logger):
         self.sdk = sdk
+        self.logger = logger
 
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def get_all_folders(self) -> list:
@@ -36,7 +33,7 @@ class CaptureFolderConfig():
                     sp.text = f"getting folder metadata"
                     all_folder_metadata = self.get_all_folders()
             except error.SDKError as e:
-                logger.debug(e)
+                self.logger.debug(e)
         all_folder_metadata = [
             folder.id for folder in all_folder_metadata if not folder.is_personal if not folder.is_personal_descendant if not folder.is_embed if folder.id not in system_folder_id]
         return all_folder_metadata
@@ -70,7 +67,7 @@ class CaptureFolderConfig():
                 temp[permission_type] = group_meta.get('name')
                 r.append(temp)
             else:
-                logger.info(
+                self.logger.info(
                     'no group permissions set on folder, ignoring individual permissions')
                 pass
         return r
@@ -85,10 +82,10 @@ class CaptureFolderConfig():
             if f_metadata.name in ['Shared', 'Users']:
                 folder_name = f_metadata.name
                 f_metadata.name = '%s_' % folder_name
-                logger.debug(f_metadata)
+                self.logger.debug(f_metadata)
 
             if f_metadata.is_personal or f_metadata.is_personal_descendant or f_metadata.is_embed:
-                logger.debug(
+                self.logger.debug(
                     'folder %s  will be ignored as it\'s a personal folder or embed folder', f_metadata.name)
             else:
                 content_metadata_id = f_metadata.get('content_metadata_id')
@@ -97,7 +94,7 @@ class CaptureFolderConfig():
 
                 created_folder_object = loc.LookerFolder(
                     id=folder, folder_metadata=f_metadata, access_list=a_list)
-                logger.debug('capturing folder %s', f_metadata.get('name'))
+                self.logger.debug('capturing folder %s', f_metadata.get('name'))
                 response[folder] = created_folder_object
 
         root_content_meta = self.get_content_access_metadata(

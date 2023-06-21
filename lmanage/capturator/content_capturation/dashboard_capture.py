@@ -3,13 +3,13 @@ import logging
 from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 from yaspin import yaspin
 
-logging.setLoggerClass(log_color.ColoredLogger)
-logger = logging.getLogger(__name__)
+#logger = log_color.init_logger(__name__, logger_level)
 
 class CaptureDashboards():
-    def __init__(self, sdk, folder_root: dict):
+    def __init__(self, sdk, folder_root: dict, logger):
         self.sdk = sdk
         self.folder_root = folder_root
+        self.logger = logger
 
     def get_all_dashboards(self) -> dict:
         scrub_dashboards = {}
@@ -29,13 +29,13 @@ class CaptureDashboards():
         response = []
   
         for dash_id in tqdm(all_dashboards, desc = "Dashboard Capture", unit=" dashboards", colour="#2c8558"):
-            schedule_plans = self.sdk.scheduled_plans_for_dashboard(dashboard_id=dash_id, all_users=True)
-        
+                
             lookml = None
             trys = 0
             if "::" in dash_id:
                 continue
             else:
+                schedule_plans = self.sdk.scheduled_plans_for_dashboard(dashboard_id=dash_id, all_users=True)
                 while lookml is None:
                     trys += 1
                     try:
@@ -43,7 +43,7 @@ class CaptureDashboards():
                     except:
                         eh.return_sleep_message(call_number=trys, quiet=True)
                 
-                logger.debug(lookml.lookml)
+                self.logger.debug(lookml.lookml)
                 captured_dashboard = loc.DashboardObject(
                     legacy_folder_id=all_dashboards.get(dash_id),
                     lookml=lookml.lookml,

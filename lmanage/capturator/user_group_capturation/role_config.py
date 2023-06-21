@@ -1,15 +1,14 @@
 import logging
-import itertools
 from tqdm import tqdm
 from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 
-logging.setLoggerClass(log_color.ColoredLogger)
-logger = logging.getLogger(__name__)
+#logger = log_color.init_logger(__name__, logger_level)
 
 
 class ExtractRoleInfo():
-    def __init__(self, sdk):
+    def __init__(self, sdk, logger):
         self.sdk = sdk
+        self.logger = logger
         self.role_base = self.get_all_roles()
 
     def get_all_roles(self):
@@ -38,7 +37,7 @@ class ExtractRoleInfo():
         p_list = eh.dedup_list_of_dicts(
             self.create_list_of_permission_sets())
         for role in p_list:
-            logger.debug(role)
+            self.logger.debug(role)
             perm_set = loc.LookerPermissionSet(
                 name=role.get('name'),
                 permissions=role.get('permissions'))

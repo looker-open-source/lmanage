@@ -1,8 +1,6 @@
 from tqdm import tqdm
-import coloredlogs
-import logging
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
+from lmanage.utils import logger_creation as log_color
+#logger = log_color.init_logger(__name__, logger_level)
 
 
 class CleanInstanceContent():

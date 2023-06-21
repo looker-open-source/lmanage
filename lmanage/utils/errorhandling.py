@@ -1,12 +1,9 @@
 import ast
 import logging
-import coloredlogs
 from looker_sdk import error
 from time import sleep
-import random
 
 logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
 
 
 def calc_done_percent(iterator: int, total: int) -> str:

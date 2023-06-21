@@ -1,17 +1,11 @@
 import logging
-import coloredlogs
 import looker_sdk
 from lmanage.configurator.user_attribute_configuration import create_ua_permissions as cuap
 from lmanage.configurator.folder_configuration import folder_config as fc, create_folder_permissions as cfp, create_folders as cf
 from lmanage.configurator.user_group_configuration import role_config as rc, group_config as gc, user_permission as up
 from lmanage.configurator.content_configuration import create_looks as cl, create_dashboards as cd, create_content_prep as ccp, create_boards as cb, create_schedules as sc
-from lmanage.utils import parse_yaml as py, errorhandling as eh
-
-
-logger = logging.getLogger(__name__)
-coloredlogs.install(level='INFO')
-logging.getLogger("looker_sdk").setLevel(logging.WARNING)
-
+from lmanage.utils import parse_yaml as py, errorhandling as eh, logger_creation as log_color
+#logger = log_color.init_logger(__name__, logger_level)
 
 def main(**kwargs):
     div = '----------------------------------------------------------------------------------------'

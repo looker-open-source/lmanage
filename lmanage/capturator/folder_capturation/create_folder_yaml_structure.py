@@ -2,8 +2,7 @@ import logging
 import time
 from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 
-logging.setLoggerClass(log_color.ColoredLogger)
-logger = logging.getLogger(__name__)
+#logger = log_color.init_logger(__name__, logger_level)
 
 class CreateFolderOutput():
     def __init__(self, folder_list):
