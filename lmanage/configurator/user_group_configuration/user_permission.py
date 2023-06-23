@@ -1,17 +1,14 @@
 from looker_sdk import models, error
 from lmanage.configurator.user_group_configuration.role_config import CreateRoleBase
 from lmanage.utils.errorhandling import return_error_message
-from lmanage.utils import logger_creation as log_color
 from tqdm import tqdm
 from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
 
-#logger = log_color.init_logger(__name__, logger_level)
-
-
 class CreateInstanceRoles(CreateRoleBase):
-    def __init__(self, roles, sdk):
+    def __init__(self, roles, sdk, logger):
         self.role_metadata = roles
         self.sdk = sdk
+        self.logger = logger
 
     def create_permission_lookup(self):
         all_permission_sets = self.get_all_permission_sets()
@@ -66,7 +63,7 @@ class CreateInstanceRoles(CreateRoleBase):
 
                 except error.SDKError as roleerror:
                     err_msg = return_error_message(roleerror)
-                    logger.debug(
+                    self.logger.debug(
                         'You have hit a warning creating your role \'%s\'; warning = %s', role_name, err_msg)
                     role_id = self.sdk.search_roles(name=role_name)[0].id
                     role = self.update_looker_role(
@@ -77,18 +74,18 @@ class CreateInstanceRoles(CreateRoleBase):
                 role_output.append(temp)
             else:
                 pass
-        logger.debug(role_output)
+        self.logger.debug(role_output)
         return role_output
 
     def set_role(self, role_id: str, group_id: list) -> str:
         try:
             self.sdk.set_role_groups(role_id, group_id)
-            return logger.debug(f'attributing {group_id} permissions on instance')
+            return self.logger.debug(f'attributing {group_id} permissions on instance')
         except error.SDKError as role_err:
             err_msg = return_error_message(role_err)
-            logger.debug(
+            self.logger.debug(
                 'You have hit a warning setting your role, warning = %s', err_msg)
-            logger.debug(role_err)
+            self.logger.debug(role_err)
 
     def attribute_instance_roles(self, created_role_metadata: list):
         role_lookup = self.create_allrole_lookup()

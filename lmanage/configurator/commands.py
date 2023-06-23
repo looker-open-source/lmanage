@@ -17,9 +17,6 @@ import click
 from lmanage import provision_instance_permission_structure
 from lmanage.utils import logger_creation as log_color
 
-#logger = log_color.init_logger(__name__, logger_level)
-
-
 @click.group(name='configurator')
 def configurator():
     """Configures security settings for your looker instance"""
@@ -31,13 +28,14 @@ def configurator():
                help="**OPTIONAL ** Specify API Credentials in an ini file, if no path is given program will assume these values are set as environmental variables as denoted at https: // github.com/looker-open-source/sdk-codegen  # environment-variable-configuration")
 @ click.option("-yp", "--yaml-config-path",
                help="Path to the yaml file to use for instance configuration")
-@ click.option("-l", "--level",
-               default='INFO',
-               help="**OPTIONAL** Add the value 'DEBUG' to get a more verbose version of the returned stout text")
+@ click.option("-v", "--verbose", 
+               is_flag=True, 
+               help="**OPTIONAL** Add this flag value to get a more verbose version of the returned stout text")
 def configurator(**kwargs):
     """Configures security settings for your looker instance"""
-    level = kwargs.get('level', 'INFO')
-    coloredlogs.install(level=level, logger=logger)
+    level = kwargs.get('verbose', False)
+    logger = log_color.init_logger(__name__, testing_mode=level)
+
     for k, v in kwargs.items():
         if {v} != None:
             logger.info(

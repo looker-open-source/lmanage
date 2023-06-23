@@ -12,8 +12,10 @@ def main(**kwargs):
 
     ini_file = kwargs.get("ini_file")
     yaml_path = kwargs.get("yaml_config_path")
+    logger_level = kwargs.get('verbose')
+    logger = log_color.init_logger(__name__, logger_level)
     logger.info(div)
-    #logger.info('parsing yaml file')
+    logger.info('parsing yaml file')
     yaml_split = yaml_path.split('.')
     settings_yaml = py.Yaml(yaml_path=f'{yaml_split[0]}.yaml')
     content_yaml = py.Yaml(yaml_path=f'{yaml_split[0]}_content.yaml')
@@ -70,14 +72,14 @@ def main(**kwargs):
 ################################################################
     # Create Permission and Model Sets
     rc.CreateRoleBase(permissions=permission_set_metadata,
-                      model_sets=model_set_metadata, sdk=sdk).execute()
+                      model_sets=model_set_metadata, sdk=sdk, logger=logger).execute()
 
 # ###############################################################
 # Folder Config ################################################
 ###############################################################
     # CREATE NEW FOLDERS
     folder_objects = cf.CreateInstanceFolders(
-        folder_metadata=folder_metadata, sdk=sdk)
+        folder_metadata=folder_metadata, sdk=sdk, logger=logger)
     created_folder_metadata = folder_objects.create_folders()
 
     # CREATE FOLDER TO FOLDER Dict
@@ -90,7 +92,11 @@ def main(**kwargs):
 ################################################################
     # CREATE NEW GROUPS FROM YAML FILE TEAM VALUES
     gc.CreateInstanceGroups(
-        folders=created_folder_metadata, user_attributes=user_attribute_metadata, roles=role_metadata, sdk=sdk).execute()
+        folders=created_folder_metadata, 
+        user_attributes=user_attribute_metadata, 
+        roles=role_metadata, 
+        sdk=sdk, 
+        logger=logger).execute()
 
 ################################################################
 # Folder Provision Config ################################################
@@ -98,38 +104,49 @@ def main(**kwargs):
     # CREATE NEW GROUPS FROM YAML FILE TEAM VALUES
 
     cfp.CreateAndProvisionInstanceFolders(
-        folders=created_folder_metadata, sdk=sdk).execute()
+        folders=created_folder_metadata, 
+        sdk=sdk, logger=logger).execute()
 
 ################################################################
 # Role Config ################################################
 ################################################################
-    up.CreateInstanceRoles(roles=role_metadata, sdk=sdk).execute()
+    up.CreateInstanceRoles(roles=role_metadata, 
+                           sdk=sdk, 
+                           logger=logger).execute()
 
 ###############################################################
 # User Attribute Config #######################################
 ###############################################################
     # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
     cuap.CreateAndAssignUserAttributes(
-        user_attributes=user_attribute_metadata, sdk=sdk).execute()
+        user_attributes=user_attribute_metadata, 
+        sdk=sdk, 
+        logger=logger).execute()
 
 ###############################################################
 # Content Transport Config #######################################
 ###############################################################
     # EMPTY TRASH CAN OF ALL DELETED CONTENT
-    ccp.CleanInstanceContent(sdk=sdk).execute()
+    ccp.CleanInstanceContent(sdk=sdk, logger=logger).execute()
     
     # FIND LOOKS AND REMAKE THEM
     look_creator = cl.CreateInstanceLooks(
-        folder_mapping=folder_mapping_obj, sdk=sdk, content_metadata=look_metadata)
+        folder_mapping=folder_mapping_obj, 
+        sdk=sdk, 
+        content_metadata=look_metadata,
+        logger=logger)
     look_mapping_dict = look_creator.execute()
 
     # Find DASHBOARDS AND REMAKE THEM
     dash_creator = cd.Create_Dashboards(
-        sdk=sdk, folder_mapping=folder_mapping_obj, content_metadata=dash_metadata)
+        sdk=sdk, 
+        folder_mapping=folder_mapping_obj, 
+        content_metadata=dash_metadata,
+        logger=logger)
     content_mapping_dict = dash_creator.execute()
 
-    schedule_creator = sc.Create_Schedules(sdk=sdk, folder_mapping=folder_mapping_obj, content_metadata=dash_metadata) 
-    schedule_creator.execute()
+    # schedule_creator = sc.Create_Schedules(sdk=sdk, folder_mapping=folder_mapping_obj, content_metadata=dash_metadata) 
+    # schedule_creator.execute()
 
     # REMAKE BOARDS
     # board_creator = cb.Create_Boards(sdk=sdk,board_metadata=board_metadata, dashboard_mapping=dash_creator, look_mapping=look_creator)

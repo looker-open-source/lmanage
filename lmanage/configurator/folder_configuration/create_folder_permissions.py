@@ -5,14 +5,13 @@ from lmanage.utils import errorhandling
 from tqdm import tqdm
 from lmanage.utils.errorhandling import return_sleep_message
 from lmanage.utils import logger_creation as log_color
-
-#logger = log_color.init_logger(__name__, logger_level)
-
+from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 
 class CreateAndProvisionInstanceFolders():
-    def __init__(self, folders, sdk):
+    def __init__(self, folders, sdk, logger):
         self.sdk = sdk
         self.instance_folder_metadata = folders
+        self.logger = logger
 
     def get_content_access_metadata(self, folder: dict) -> list:
         response = []
@@ -33,7 +32,7 @@ class CreateAndProvisionInstanceFolders():
         if isinstance(edit_group, list):
             for group in edit_group:
                 group_dict = {}
-                egmetadata = self.sdk.search_groups(name=group)
+                egmetadata = self.search_looker_groups(name=group)
                 group_dict['name'] = group
                 group_dict['id'] = egmetadata[0].id
                 group_dict['permission'] = 'edit'
@@ -48,7 +47,7 @@ class CreateAndProvisionInstanceFolders():
         if isinstance(view_group, list):
             for group in view_group:
                 group_dict = {}
-                vgmetadata = self.sdk.search_groups(name=group)
+                vgmetadata = self.search_looker_groups(name=group)
                 group_dict['name'] = group
                 group_dict['id'] = vgmetadata[0].id
                 group_dict['permission'] = 'view'
@@ -63,7 +62,8 @@ class CreateAndProvisionInstanceFolders():
         temp_dict['group_permissions'] = perms
         response.append(temp_dict)
         return response
-
+    
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def create_content_metadata_access(
         self,
             group_id: int,
@@ -79,8 +79,8 @@ class CreateAndProvisionInstanceFolders():
         )
         folder = self.sdk.content_metadata(
             content_metadata_id=content_metadata_id).name
-        group = self.sdk.search_groups(id=group_id)[0].name
-        logger.debug(
+        group = self.search_looker_groups(id=group_id)[0].name
+        self.logger.debug(
             f'''--> Successfully permissioned group {group} with {permission_input} access, on folder {folder}.''')
 
     def check_existing_access(self,
@@ -92,6 +92,8 @@ class CreateAndProvisionInstanceFolders():
                 content_metadata_id=content_metadata_id)}
         return response
 
+
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def check_folder_ancestors(self,
                                group_id: int,
                                cmaid: int):
@@ -162,6 +164,7 @@ class CreateAndProvisionInstanceFolders():
         else:
             return False
 
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def update_folder_inheritance(
             self,
             cmaid: int,
@@ -171,6 +174,13 @@ class CreateAndProvisionInstanceFolders():
             content_metadata_id=cmaid,
             body=models.WriteContentMeta(inherits=inheritance)
         )
+
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
+    def search_looker_groups(self, id=None, name=None) -> list:
+        if id is not None:
+            return self.sdk.search_groups(id=id)
+        elif name is not None:
+            return self.sdk.search_groups(name=name)
 
     def add_content_access(
         self,
@@ -189,13 +199,14 @@ class CreateAndProvisionInstanceFolders():
                 cmaid=cmaid,
                 inheritance=False
             )
-            group_name = self.sdk.search_groups(id=group_id)[0].name
+            group_name = self.search_looker_groups(id=group_id)[0].name
+            self.logger.debug(group_name)
 
             if group_id in cm_accesses.keys():
                 current_access = cm_accesses.get(group_id)
 
                 if current_access.permission_type == permission:
-                    logger.debug(
+                    self.logger.debug(
                         f'''--> Group {group_name} already has access, to folder {folder_name}
                         no changes made.''')
 
@@ -209,12 +220,12 @@ class CreateAndProvisionInstanceFolders():
                                 group_id=group_id
                             ))
                     except error.SDKError as foldererror:
-                        logger.debug(foldererror)
+                        self.logger.debug(foldererror)
                     folder_name = self.sdk.content_metadata(
                         content_metadata_id=cmaid).name
-                    group_name = self.sdk.search_groups(id=group_id)[0].name
+                    group_name = self.search_looker_groups(id=group_id)[0].name
 
-                    logger.debug(
+                    self.logger.debug(
                         f'--> Updating group id {group_name} permission type to {permission} on folder {folder_name}.')
 
             # no existing access
@@ -253,9 +264,9 @@ class CreateAndProvisionInstanceFolders():
                 self.sdk.delete_content_metadata_access(
                     content_metadata_access_id=delete_cmi)
             except error.SDKError as InheritanceError:
-                logger.debug('''You have an inheritance error in your YAML file possibly 
+                self.logger.debug('''You have an inheritance error in your YAML file possibly 
                             around %s, skipping group_id %s''', delete_cmi, group_id)
-                logger.debug(InheritanceError)
+                self.logger.debug(InheritanceError)
 
     def sync_folder_permission(
         self,
@@ -270,7 +281,7 @@ class CreateAndProvisionInstanceFolders():
         gp_permissions = [
             perms for perms in gp_permissions if perms.get('id') != 'no_id']
 
-        logger.debug(
+        self.logger.debug(
             'syncing folder permissions for content metadata id %s', cmaid)
 
         if not gp_permissions:
@@ -306,7 +317,7 @@ class CreateAndProvisionInstanceFolders():
                 )
             )
         except error.SDKError:
-            logger.debug('All Users group already configured')
+            self.logger.debug('All Users group already configured')
         clean = list()
         for avt in content_access_metadata_list:
             temp = {}
@@ -327,7 +338,7 @@ class CreateAndProvisionInstanceFolders():
                     content_metadata_id=content_metadata_id)}
 
             for id, value in content_metadata_accesses.items():
-                logger.debug(f'Checking item {value.id}')
+                self.logger.debug(f'Checking item {value.id}')
                 if value.group_id == 1:
                     cmaid = value.id
                     self.sdk.delete_content_metadata_access(

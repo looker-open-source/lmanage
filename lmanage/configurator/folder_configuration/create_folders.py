@@ -5,9 +5,10 @@ from lmanage.utils import logger_creation as log_color
 
 
 class CreateInstanceFolders():
-    def __init__(self, folder_metadata, sdk):
+    def __init__(self, folder_metadata, sdk, logger):
         self.sdk = sdk
         self.folder_metadata = folder_metadata
+        self.logger = logger
 
     def get_all_folders(self):
         instance_folders = self.sdk.all_folders()
@@ -26,10 +27,10 @@ class CreateInstanceFolders():
         #for fid in tqdm(allowed_folders):
             try:
                 self.sdk.delete_folder(folder_id=x[0])
-                logger.debug('deleting folder %s to start afresh',
+                self.logger.debug('deleting folder %s to start afresh',
                             folders.get(x[0]))
             except error.SDKError as e:
-                logger.error(e)
+                self.logger.error(e)
                 error_count = 1
 
     def unnest_folder_data(self, folder_data):
@@ -41,8 +42,8 @@ class CreateInstanceFolders():
                 data_storage=metadata_list,
                 parent_name='1')
 
-        logger.debug('retrieved yaml folder files')
-        logger.debug('folder metadata = %s', metadata_list)
+        self.logger.debug('retrieved yaml folder files')
+        self.logger.debug('folder metadata = %s', metadata_list)
 
         return metadata_list
 
@@ -54,7 +55,7 @@ class CreateInstanceFolders():
 
         try:
             if parent_name == 'Shared':
-                logger.debug(
+                self.logger.debug(
                     f'Creating folder Shared Child Folder "{folder_name}"')
                 folder = self.create_folder(
                     folder_name=folder_name, parent_id='1')
@@ -74,11 +75,11 @@ class CreateInstanceFolders():
             temp['content_metadata_id'] = folder.get('content_metadata_id')
             temp['team_edit'] = dict_obj.get('team_edit')
             temp['team_view'] = dict_obj.get('team_view')
-            logger.debug('data_structure to be appended = %s', temp)
+            self.logger.debug('data_structure to be appended = %s', temp)
             data_storage.append(temp)
         except error.SDKError as e:
-            logger.warn('error %s', e)
-            logger.warn(
+            self.logger.warn('error %s', e)
+            self.logger.warn(
                 'you have a duplicate folder called %s with the same parent, this is against best practice and LManage is ignoring it', folder_name)
 
         if isinstance(dict_obj.get('subfolder'), list):
@@ -92,7 +93,7 @@ class CreateInstanceFolders():
                       folder_name: str,
                       parent_id: str,
                       ):
-        logger.debug(f'Creating folder "{folder_name}"')
+        self.logger.debug(f'Creating folder "{folder_name}"')
         folder = self.sdk.create_folder(
             body=models.CreateFolder(
                 name=folder_name,
@@ -118,11 +119,11 @@ class CreateInstanceFolders():
             if fids not in created_folder_ids:
                 try:
                     self.sdk.delete_folder(folder_id=fids)
-                    logger.debug(
+                    self.logger.debug(
                         'deleting folder %s to sync with yaml config', fids)
 
                 except error.SDKError as InheritanceError:
-                    logger.debug('root folder has been deleted so %s',
+                    self.logger.debug('root folder has been deleted so %s',
                                 InheritanceError)
         return 'your folders are in sync with your yaml file'
 

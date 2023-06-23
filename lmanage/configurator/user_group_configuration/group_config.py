@@ -1,16 +1,15 @@
 from looker_sdk import models, error
 from lmanage.utils.errorhandling import return_error_message
 from tqdm import tqdm
-from lmanage.utils import logger_creation as log_color
-#logger = log_color.init_logger(__name__, logger_level)
-
+from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 
 class CreateInstanceGroups():
-    def __init__(self, folders, user_attributes, roles, sdk) -> None:
+    def __init__(self, folders, user_attributes, roles, sdk, logger) -> None:
         self.folder_metadata = folders
         self.user_attribute_metadata = user_attributes
         self.role_metadata = roles
         self.sdk = sdk
+        self.logger = logger
 
     def extract_teams(self, container, data_storage, ua: bool):
         for team in container:
@@ -37,6 +36,12 @@ class CreateInstanceGroups():
                         data_storage.append(group)
             else:
                 pass
+    
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
+    def search_looker_groups(self, sdk, group_name: str) -> list:
+        s = sdk.search_groups(name=group_name)
+        return s
+        
 
     def create_group_if_not_exists(self,
                                    sdk,
@@ -48,7 +53,7 @@ class CreateInstanceGroups():
         """
         # get group if exists
         try:
-            logger.debug(f'Creating group "{group_name}"')
+            self.logger.debug(f'Creating group "{group_name}"')
             group = sdk.create_group(
                 body=models.WriteGroup(
                     can_add_to_content_metadata=True,
@@ -58,10 +63,10 @@ class CreateInstanceGroups():
             return group
         except error.SDKError as grouperr:
             err_msg = return_error_message(grouperr)
-            logger.debug(
+            self.logger.debug(
                 'You have hit a warning creating your group; warning = %s', err_msg)
-            logger.debug(grouperr)
-            group = sdk.search_groups(name=group_name)
+            self.logger.debug(grouperr)
+            group = self.search_looker_groups(sdk = self.sdk, group_name=group_name)
             return group[0]
 
     def get_instance_group_metadata(self,
@@ -89,7 +94,7 @@ class CreateInstanceGroups():
         for group_name in group_dict.keys():
             if group_name not in group_name_list:
                 self.sdk.delete_group(group_id=group_dict[group_name])
-                logger.info(
+                self.logger.info(
                     f'deleting group {group_name} to sync with yaml config')
 
         return 'your groups are in sync with your yaml file'

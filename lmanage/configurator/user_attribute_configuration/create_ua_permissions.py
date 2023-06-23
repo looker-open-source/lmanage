@@ -2,14 +2,13 @@ import logging
 from looker_sdk import models, error
 from tqdm import tqdm
 from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
-from lmanage.utils import logger_creation as log_color
-#logger = log_color.init_logger(__name__, logger_level)
 
 
 class CreateAndAssignUserAttributes():
-    def __init__(self, user_attributes, sdk):
+    def __init__(self, user_attributes, sdk, logger):
         self.user_attribute_metadata = user_attributes
         self.sdk = sdk
+        self.logger = logger
 
     def existing_user_attributes(self) -> dict:
         all_instance_ua = self.sdk.all_user_attributes()

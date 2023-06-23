@@ -8,10 +8,11 @@ from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
 
 
 class CreateRoleBase():
-    def __init__(self, permissions, model_sets, sdk):
+    def __init__(self, logger, permissions, model_sets, sdk):
         self.permission_set_metadata = permissions
         self.model_set_metadata = model_sets
         self.sdk = sdk
+        self.logger = logger
 
     def create_permission_set(self, sdk, permission_set_dict: dict):
 
@@ -31,10 +32,10 @@ class CreateRoleBase():
                         body=body
                     )
                 except error.SDKError as permerr:
-                    logger.debug(permerr)
+                    self.logger.debug(permerr)
                     err_msg = eh.return_error_message(permerr)
-                    logger.debug(permerr)
-                    logger.debug(
+                    self.logger.debug(permerr)
+                    self.logger.debug(
                         'you have a warning permission set %s, warning = %s already exists on this instance', permission_set_name, err_msg)
 
                     perm = sdk.search_permission_sets(
@@ -48,7 +49,7 @@ class CreateRoleBase():
                 temp['pid'] = perm.id
                 final_response.append(temp)
 
-        logger.debug(final_response)
+        self.logger.debug(final_response)
         return final_response
 
     def sync_permission_set(self, sdk, all_perms, permission_set_dict: dict):
@@ -57,8 +58,8 @@ class CreateRoleBase():
         permissions_dict.pop('Admin')
         yaml_permissions = [permission.get('name').lower()
                             for permission in permission_set_dict]
-        logger.debug('yaml permissions configured = %s', yaml_permissions)
-        logger.debug('existing permsissions = %s', permissions_dict.keys())
+        self.logger.debug('yaml permissions configured = %s', yaml_permissions)
+        self.logger.debug('existing permsissions = %s', permissions_dict.keys())
 
         for permission_set_name in permissions_dict.keys():
 
@@ -91,9 +92,9 @@ class CreateRoleBase():
                 final_response.append(temp)
             except error.SDKError as modelerror:
                 err_msg = eh.return_error_message(modelerror)
-                logger.debug(
+                self.logger.debug(
                     'you have a warning in creating model set %s, warning = %s', model_set_name, err_msg)
-                logger.debug(modelerror)
+                self.logger.debug(modelerror)
                 model = sdk.search_model_sets(name=model_set_name)[0]
                 model_set_id = model.id
                 try:
@@ -106,14 +107,14 @@ class CreateRoleBase():
                     final_response.append(temp)
                 except error.SDKError as txt:
                     err_msg = eh.return_error_message(txt)
-                    logger.debug(
+                    self.logger.debug(
                         'The model %s, has encountered a warning, warning = %s', model_set_name, err_msg)
                     temp = {}
                     temp['model_set_name'] = model.name
                     temp['model_set_id'] = model.id
                     final_response.append(temp)
 
-        logger.debug(final_response)
+        self.logger.debug(final_response)
         return final_response
 
     def sync_model_set(self, sdk, all_models, model_set_list: list):
@@ -132,6 +133,7 @@ class CreateRoleBase():
         r = sdk.all_permission_sets()
         return r
 
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def get_all_model_sets(self):
         sdk = self.sdk
         r = sdk.all_model_sets()

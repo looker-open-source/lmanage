@@ -2,15 +2,13 @@ import logging
 from looker_sdk import models40 as models, error
 from tqdm import tqdm
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
-from lmanage.utils import logger_creation as log_color
-
-#logger = log_color.init_logger(__name__, logger_level)
 
 class CreateInstanceLooks():
-    def __init__(self, folder_mapping, sdk, content_metadata):
+    def __init__(self, folder_mapping, sdk, content_metadata, logger):
         self.sdk = sdk
         self.content_metadata = content_metadata
         self.folder_mapping = folder_mapping
+        self.logger = logger
 
     def create_query(self, look_metadata: dict) -> int:
         '''create a query from look metadata and return the id'''

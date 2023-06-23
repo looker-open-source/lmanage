@@ -1,12 +1,7 @@
 import json
-import ruamel.yaml 
+import ruamel.yaml as yaml
 import logging
 from lmanage.utils import logger_creation as log_color
-
-#logger = log_color.init_logger(__name__, logger_level)
-
-
-
 
 class Yaml:
     def __init__(self, yaml_path):

@@ -1,14 +1,10 @@
-import logging
 from looker_sdk import models, error
 from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 
-logging.setLoggerClass(log_color.ColoredLogger)
-logger = logging.getLogger(__name__)
-
-
 class GetInstanceGroups():
-    def __init__(self, sdk) -> None:
+    def __init__(self, sdk, logger) -> None:
         self.sdk = sdk
+        self.logger
 
     def extract_group_names(self):
         capture_groups = self.sdk.all_groups()
@@ -42,7 +38,7 @@ class GetInstanceGroups():
         """
         # get group if exists
         try:
-            logger.info(f'Creating group "{group_name}"')
+            self.logger.info(f'Creating group "{group_name}"')
             group = sdk.create_group(
                 body=models.WriteGroup(
                     can_add_to_content_metadata=True,
@@ -52,8 +48,8 @@ class GetInstanceGroups():
             return group
         except error.SDKError as grouperr:
             err_msg = eh.return_error_message(grouperr)
-            logger.info('you have an error in your group; error = %s', err_msg)
-            logger.debug(grouperr)
+            self.logger.info('you have an error in your group; error = %s', err_msg)
+            self.logger.debug(grouperr)
             group = sdk.search_groups(name=group_name)
             return group[0]
 
@@ -83,7 +79,7 @@ class GetInstanceGroups():
         for group_name in group_dict.keys():
             if group_name not in group_name_list:
                 sdk.delete_group(group_id=group_dict[group_name])
-                logger.info(
+                self.logger.info(
                     f'deleting group {group_name} to sync with yaml config')
 
         return 'your groups are in sync with your yaml file'
