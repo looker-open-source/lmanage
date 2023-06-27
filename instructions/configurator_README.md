@@ -1,7 +1,11 @@
 # configurator
 The configurator command pushes your content and settings into a new instance. It expects two files that are the format that is exported by the capturator. This tool enables a security model that is controlled from a declarative yaml file, that can be run on a specific cadence to ensure that regardless of instance drift, each time the configurator is run it will reset a Looker and content instance back to the values defined in your Yaml file. To generate the Yaml file it is possible to do so manually but much better to generate this programmatically using the [Capturator command](https://github.com/looker-open-source/lmanage/tree/main/instructions/capturator_README.md) 
 
-##### Example usage
+<span style="color:red">
+<strong>N.B. The configurator tool can delete all folders, user attributes, content, user groups, user roles, permission sets and model sets, please use with caution and test it out first.</strong></span>
+
+
+#### Example usage
 `lmanage configurator --yaml-config-path ./config/my_full_instance_config.yaml --ini-file ~/my_permissions/looker.ini`
 ##### Flags
 - **path** (`--yaml-config-path`, `-yp`) This is the path to the yaml file to use for instance configuration. 
