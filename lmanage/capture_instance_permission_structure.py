@@ -1,5 +1,6 @@
 import logging
 import looker_sdk
+import pathlib
 import ruamel.yaml
 from lmanage.capturator.user_group_capturation import role_config as rc
 from lmanage.capturator.user_attribute_capturation import capture_ua_permissions as cup
@@ -7,14 +8,16 @@ from lmanage.capturator.folder_capturation import folder_config as fc, create_fo
 from lmanage.capturator.content_capturation import dashboard_capture as dc, look_capture as lc, board_capture as bc
 from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 
-def main(**kwargs):
 
+def main(**kwargs):
     ini_file = kwargs.get("ini_file")
     yaml_path = kwargs.get("yaml_export_path")
     yaml_path = yaml_path.split('.')[0]
+    # print(f'\n\n{yaml_path}\n\n')
     logger_level = kwargs.get('verbose')
     logger = log_color.init_logger(__name__, logger_level)
     logger.info('creating yaml configuration file')
+    logger.info(yaml_path)
 
     if ini_file:
         sdk = looker_sdk.init40(config_file=ini_file)
@@ -38,9 +41,10 @@ def main(**kwargs):
     yaml.register_class(looker_sdk.sdk.api40.models.ScheduledPlan)
     yaml.register_class(looker_sdk.sdk.api40.models.ScheduledPlanDestination)
     yaml.register_class(looker_sdk.sdk.api40.models.UserPublic)
-###############################################################
-# Capture Folder Config #######################################
-###############################################################
+
+    #########################
+    # Capture Folder Config #
+    #########################
     folder_returns = fc.CaptureFolderConfig(sdk=sdk, logger=logger).execute()
     folder_structure_list = folder_returns[1]
 
@@ -51,9 +55,9 @@ def main(**kwargs):
 
     folder_root = folder_returns[0]
 
-###############################################################
-# Capture Roles ###############################################
-###############################################################
+    #################
+    # Capture Roles #
+    #################
     roles = rc.ExtractRoleInfo(sdk=sdk, logger=logger)
 
     looker_permission_sets = roles.extract_permission_sets()
@@ -70,23 +74,26 @@ def main(**kwargs):
         yaml.dump(looker_model_sets, file)
         file.write('\n\n# LOOKER ROLES\n')
         yaml.dump(looker_roles, file)
-###############################################################
-# Capture User Attributes #####################################
-###############################################################
-    looker_ua = cup.ExtractUserAttributes(sdk=sdk, logger=logger).create_user_attributes()
+
+    ###########################
+    # Capture User Attributes #
+    ###########################
+    looker_ua = cup.ExtractUserAttributes(
+        sdk=sdk, logger=logger).create_user_attributes()
     with open(f'{yaml_path}.yaml', 'a') as file:
         file.write('\n\n# USER_ATTRIBUTES\n')
         yaml.dump(looker_ua, file)
 
-###############################################################
-# Capture Users Content #######################################
-###############################################################
-    # Capture Content Boards
+    #########################
+    # Capture Users Content #
+    #########################
+    # Boards
     # boards = bc.CaptureBoards(sdk=sdk).execute()
     # with open(f'{yaml_path}_content.yaml', 'w+') as file:
     #     file.write('\n\n# BoardData\n')
     #     yaml.dump(boards, file)
 
+    # Looks
     lcapture = lc.LookCapture(
         sdk=sdk, folder_root=folder_root, logger=logger)
     looks = lcapture.execute()
@@ -101,7 +108,7 @@ def main(**kwargs):
             looks = bytes('#No Captured Looks', 'utf-8')
             file.write(looks)
 
-    # Capture Dashboard Content
+    # Dashboards
     dash_content = dc.CaptureDashboards(
         sdk=sdk, folder_root=folder_root, logger=logger).execute()
     with open(f'{yaml_path}_content.yaml', 'ab') as file:
@@ -114,7 +121,6 @@ def main(**kwargs):
             dash_content = bytes('#No Captured Dashboards', 'utf-8')
             file.write(dash_content)
 
-        
     # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
     logger.info('\n\n\n Lmanage has finished capturing your Looker instance!\n')
     logger.info('\n\nplease find captured settings metadata at: \n%s.yaml \n\ncaptured content metadata at:\n%s_content.yaml', yaml_path, yaml_path)

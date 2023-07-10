@@ -1,7 +1,8 @@
 from tqdm import tqdm
 from looker_sdk import models40 as models
 from lmanage.utils import logger_creation as log_color
-#logger = log_color.init_logger(__name__, logger_level)
+# logger = log_color.init_logger(__name__, logger_level)
+
 
 class Create_Schedules():
 
@@ -10,13 +11,13 @@ class Create_Schedules():
         self.folder_mapping = folder_mapping
         self.content_metadata = content_metadata
 
-    
     def create_schedule(self) -> None:
         resp = []
-        for dash in tqdm(self.content_metadata, desc = "Schedule Creation", unit="schedule", colour="#2c8558"):
-            if dash['schedule_plans']:
-                for schedule in dash['schedule_plans']:
-                    new_dash_id = self.sdk.search_dashboards(slug=dash['dashboard_slug'], fields='id')[0].id
+        for dash in tqdm(self.content_metadata, desc="Schedule Creation", unit="schedule", colour="#2c8558"):
+            if dash['scheduled_plans']:
+                for schedule in dash['scheduled_plans']:
+                    new_dash_id = self.sdk.search_dashboards(
+                        slug=dash['dashboard_slug'], fields='id')[0].id
                     body = models.WriteScheduledPlan(
                         user_id=2
                     )
@@ -36,9 +37,8 @@ class Create_Schedules():
 
         return resp
 
-
     def execute(self):
         mapping = self.create_schedule()
         return mapping
 
-    #write get all dashboards from looker sdk
+    # write get all dashboards from looker sdk

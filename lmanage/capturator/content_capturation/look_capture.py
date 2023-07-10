@@ -3,7 +3,8 @@ from tqdm import tqdm
 from yaspin import yaspin
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 
-#logger = log_color.init_logger(__name__, logger_level)
+# logger = log_color.init_logger(__name__, logger_level)
+
 
 class LookCapture:
     def __init__(self, sdk, folder_root, logger):
@@ -13,20 +14,20 @@ class LookCapture:
 
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def get_all_looks_metadata(self) -> list:
-       response = self.sdk.all_looks(fields='id,folder') 
-       return response
+        response = self.sdk.all_looks(fields='id,folder')
+        return response
 
     def all_looks(self):
-        system_folders = ['Users','Embed Users','Embed Groups']
+        system_folders = ['Users', 'Embed Users', 'Embed Groups']
         all_look_meta = None
         with yaspin().white.bold.shark.on_blue as sp:
-            sp.text="getting all system look metadata (can take a while)"
+            sp.text = "getting all system look metadata (can take a while)"
             all_look_meta = self.get_all_looks_metadata()
-            
+
         scrub_looks = {}
         for look in all_look_meta:
             if look.folder.id in self.folder_root or look.folder.id == '1':
-                scrub_looks[look.id] = look.folder.id 
+                scrub_looks[look.id] = look.folder.id
             else:
                 continue
 
@@ -66,7 +67,6 @@ class LookCapture:
             (k, query_metadata[k]) for k in metadata_keep_keys)
         return restricted_look_metadata
 
-
     def execute(self):
         '''
         1. get all the looks and extract the id's
@@ -76,9 +76,10 @@ class LookCapture:
         all_look_data = self.all_looks()
         looks = []
         content = 1
-        for look in tqdm(all_look_data, desc = "Look Capture", unit=" looks", colour="#2c8558"):
+        for look in tqdm(all_look_data, desc="Look Capture", unit=" looks", colour="#2c8558"):
             lmetadata = self.get_look_metadata(look_id=look)
-            schedule_metadata= self.sdk.scheduled_plans_for_look(look_id=lmetadata.id, all_users=True)
+            schedule_metadata = self.sdk.scheduled_plans_for_look(
+                look_id=lmetadata.id, all_users=True)
             query_object = lmetadata.query.__dict__
             nq_obj = self.clean_query_obj(query_metadata=query_object)
             self.logger.debug(nq_obj)
@@ -92,7 +93,7 @@ class LookCapture:
                 legacy_folder_id=legacy_folder,
                 look_id=look_id,
                 title=title,
-                schedule_plans=schedule_metadata)
+                scheduled_plans=schedule_metadata)
             looks.append(look_obj)
             content += 1
         return looks

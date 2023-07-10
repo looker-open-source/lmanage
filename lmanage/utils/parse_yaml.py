@@ -3,6 +3,7 @@ import ruamel.yaml as yaml
 import logging
 from lmanage.utils import logger_creation as log_color
 
+
 class Yaml:
     def __init__(self, yaml_path):
         self.yaml_path = yaml_path
@@ -52,7 +53,7 @@ class Yaml:
             if 'query_obj' in list(objects.keys()):
                 response.append(objects)
         return response
-    
+
     def get_dash_metadata(self):
         response = []
         for objects in self.parsed_yaml:

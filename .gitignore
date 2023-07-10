@@ -42,3 +42,7 @@ logs/
 #Ignore pycache
 __pycache__/
 *.pyc
+
+# Ignore config & capturator files
+looker.ini
+_content.yaml

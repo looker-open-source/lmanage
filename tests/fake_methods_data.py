@@ -105,7 +105,7 @@ class MockSDK():
 
     def update_permission_set(self):
         pass
-    
+
     def all_looks(self):
         pass
 
@@ -114,6 +114,7 @@ class MockSDK():
 
     def create_look(self):
         pass
+
 
 class MockAll_look_Response():
     def __init__(self, id, folder):

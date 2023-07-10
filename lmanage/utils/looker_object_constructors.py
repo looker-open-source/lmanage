@@ -68,22 +68,22 @@ class LookerGroup():
 
 
 class LookObject():
-    def __init__(self, description, query_obj, title, legacy_folder_id, look_id, schedule_plans):
+    def __init__(self, description, query_obj, title, legacy_folder_id, look_id, scheduled_plans):
         self.legacy_folder_id = legacy_folder_id
         self.look_id = look_id
         self.title = title
         self.query_obj = query_obj
         self.description = description
-        self.schedule_plans = schedule_plans
+        self.scheduled_plans = scheduled_plans
 
 
 class DashboardObject():
-    def __init__(self, legacy_folder_id, lookml, dashboard_id, dashboard_slug, schedule_plans) -> None:
+    def __init__(self, legacy_folder_id, lookml, dashboard_id, dashboard_slug, scheduled_plans) -> None:
         self.legacy_folder_id = legacy_folder_id
         self.lookml = lookml
         self.dashboard_id = dashboard_id
         self.dashboard_slug = dashboard_slug
-        self.schedule_plans = schedule_plans
+        self.scheduled_plans = scheduled_plans
 
 
 class BoardObject():

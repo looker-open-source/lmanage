@@ -3,11 +3,13 @@ from rich.logging import RichHandler
 import datetime
 import os
 
+
 def create_timestamp():
     timestamp = datetime.datetime.now()
     unix_ts = timestamp.timestamp()
     trunc_unix_ts = unix_ts - (unix_ts % 60)
     return int(trunc_unix_ts)
+
 
 def init_logger(dunder_name, testing_mode) -> logging.Logger:
     log_format = (
@@ -34,7 +36,7 @@ def init_logger(dunder_name, testing_mode) -> logging.Logger:
 
     # Create logs folder if not exists
     os.makedirs('logs', exist_ok=True)
-    
+
     # Output full log
     fh = logging.FileHandler(f'logs/lomt_{unix_ts}.log')
     fh.setLevel(logging.DEBUG)

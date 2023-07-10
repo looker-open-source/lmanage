@@ -5,7 +5,6 @@ from tqdm import tqdm
 from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
 
 
-
 class CaptureFolderConfig():
     ''' Class to read in folder metadata and unested_folder_data '''
 
@@ -94,7 +93,8 @@ class CaptureFolderConfig():
 
                 created_folder_object = loc.LookerFolder(
                     id=folder, folder_metadata=f_metadata, access_list=a_list)
-                self.logger.debug('capturing folder %s', f_metadata.get('name'))
+                self.logger.debug('capturing folder %s',
+                                  f_metadata.get('name'))
                 response[folder] = created_folder_object
 
         root_content_meta = self.get_content_access_metadata(
@@ -106,14 +106,14 @@ class CaptureFolderConfig():
         response['1'] = root_folder
         return response
 
-    @ staticmethod
+    @staticmethod
     def get_highest_folders(folder_list):
         '''helper to isolate highest level folders and return as a list'''
         response = [
             folder for folder in folder_list if folder.parent_id == '1']
         return response
 
-    @ staticmethod
+    @staticmethod
     def get_subfolders(folder_list, parent_id):
         '''helper function to get all subfolders for a given parent'''
         response = []

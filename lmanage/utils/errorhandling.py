@@ -21,11 +21,13 @@ def return_error_message(input: str):
 
     return err_response
 
+
 def test_object_data(object: list) -> bool:
     if object:
         return True
     else:
         return False
+
 
 def user_authentication_test(sdk) -> bool:
     try:
@@ -33,7 +35,8 @@ def user_authentication_test(sdk) -> bool:
         return True
     except error.SDKError():
         return False
-    
+
+
 def return_sleep_message(call_number=0, quiet=False):
     call_number = call_number+1
     sleep_number = 2 ** call_number
