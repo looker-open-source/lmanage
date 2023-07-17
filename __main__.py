@@ -19,6 +19,7 @@ import click
 from lmanage.mapview import mapview_execute
 from lmanage.configurator import provision_instance_permission_structure
 from lmanage.capturator import capture_instance_permission_structure
+from lmanage.looker_config_handler import LookerConfigHandler
 
 logger = logging.getLogger(__name__)
 
@@ -80,8 +81,8 @@ def configurator(**kwargs):
 @command()
 @ click.option("-i", "--ini-file",
                help="**OPTIONAL ** Specify API Credentials in an ini file, if no path is given program will assume these values are set as environmental variables as denoted at https: // github.com/looker-open-source/sdk-codegen  # environment-variable-configuration")
-@ click.option("-yep", "--yaml-export-path",
-               help="Where to save the yaml file to use for instance configuration")
+@ click.option("-yed", "--yaml-export-dir",
+               help="Where to save the yaml files to use for instance configuration")
 @ click.option("-l", "--level",
                default='INFO',
                help="**OPTIONAL** Add the value 'DEBUG' to get a more verbose version of the returned stout text")
@@ -95,4 +96,5 @@ def capturator(**kwargs):
         else:
             logger.debug(
                 f'There is no value set for {k} please use the `--help` flag to see input parameters')
-    capture_instance_permission_structure.main(**kwargs)
+    # capture_instance_permission_structure.main(**kwargs)
+    # LookerConfigHandler(**kwargs)

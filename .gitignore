@@ -45,4 +45,4 @@ __pycache__/
 
 # Ignore config & capturator files
 looker.ini
-_content.yaml
+config/

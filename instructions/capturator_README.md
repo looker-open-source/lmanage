@@ -1,11 +1,16 @@
 # capturator
-The capturator is the instance capture portion of the Instance Migrator Tool. It's use is to generate a point in time representation of a Looker instance settings and content and preserve a representation of those objects as a Yaml file that can be used by the configurator command to provision your instance. The tool will generate two yaml files that will be created in the folder of your choice, the value you enter as your `yaml-export-path` for Looker settings and a file appended with `content`, for referencing the Looker content to be transitioned. 
+
+The capturator is the instance capture portion of the Instance Migrator Tool. It's use is to generate a point in time representation of a Looker instance settings and content and preserve a representation of those objects as a Yaml file that can be used by the configurator command to provision your instance. The tool will generate two yaml files that will be created in the folder of your choice, the value you enter as your `yaml-export-dir` for Looker settings and a file appended with `content`, for referencing the Looker content to be transitioned.
 
 ##### Example usage
-`lmanage capturator --ini-file ~/my_permissions/looker.ini  --yaml-export-path ./config/my_full_instance_config.yaml `
+
+`lmanage capturator --ini-file ~/my_permissions/looker.ini  --yaml-export-dir ./config`
+
 ##### Flags
-- **path** (`--yaml-export-path`, `-yep`) This is the path to generate the yaml file to use for instance configuration. 
+
+- **yaml-export-dir** (`--yaml-export-dir`, `-yed`) This is the directory to generate the yaml files to use for instance configuration.
 - **ini-file** (`--ini-file`, `-i`) This is the file path to the ini file that you've created to use the Looker SDK
+
 ```
 #example Ini file
 [Looker_Instance]
@@ -14,11 +19,15 @@ client_id=abc
 client_secret=xyz
 verify_ssl=True
 ```
-- **level** (`--verbose`, `-v`) **Optional** Set this flag to receive expanded results in stdout for debugging  
+
+- **level** (`--verbose`, `-v`) **Optional** Set this flag to receive expanded results in stdout for debugging
 
 ##### Anatomy of your Settings Yaml File
+
 ###### Roles
+
 ###### Example Output From File
+
 ```
 # PERMISSION SETS
 - !LookerPermissionSet
@@ -45,12 +54,15 @@ verify_ssl=True
   - HugoTesty
   name: test_role
 ```
+
 In this context, the `name` parameter is analagous to the name of the Looker object, and the `teams` parameter is analagous to a Looker User Group. Please review these links before constructing your [role](https://docs.looker.com/admin-options/settings/roles)
 
 ###### Folders
+
 ###### Example Output
+
 ```
-# FOLDER PERMISSONS 
+# FOLDER PERMISSONS
 - !LookerFolder
   parent_id:
   id: '1'
@@ -108,7 +120,9 @@ In this context, the `name` parameter is analagous to the name of the Looker obj
   team_view:
   - All Users
 ```
+
 Each folder at the highest level will be nested beneath the `/Shared` folder on Looker. To see where a nested folder structure exists, the keyword `subfolder` is used. Folder permissions are attributed using the keywords `team_edit` and `team_view`. If no values are presented then LManage Capturator will assume inheritance of the permission of it's parent folder. The above folder structure can be represented as:
+
 ```
 Shared Folder
 ├── suffering_succotash Folder
@@ -117,14 +131,17 @@ Shared Folder
 │   │   ├── another_one
 
 ```
+
 ###### Important
 
-Please try to understand how folder permissions are inherited in Looker, familiarize yourself with these useful docs. 
+Please try to understand how folder permissions are inherited in Looker, familiarize yourself with these useful docs.
+
 - [Looker Docs](https://cloud.google.com/looker/docs/organizing-spaces)
 - [Designing and configuring a system of access levels](https://docs.looker.com/admin-options/tutorials/access-controls)
 - [Best Practice, Secure your Folders](https://help.looker.com/hc/en-us/articles/360001897687-Best-Practice-Secure-Your-Spaces-A-Content-Access-Walk-through)
 
 ###### User Attributes
+
 ###### Example output
 
 ```
@@ -141,21 +158,25 @@ Please try to understand how folder permissions are inherited in Looker, familia
   - new york team: New York
   - safetyfirst: least_privilege
 ```
-The user attribure parameters are synonomous with the existing Looker UI controls with the exception that `teams` represent user groups and are represented as a key/value pair.  
+
+The user attribure parameters are synonomous with the existing Looker UI controls with the exception that `teams` represent user groups and are represented as a key/value pair.
 
 ###### Important
 
-Please try to understand how USER_ATTRIBUTES are utilized and referenced in Looker and they are super powerful and dangerous, familiarize yourself with these useful docs. 
+Please try to understand how USER_ATTRIBUTES are utilized and referenced in Looker and they are super powerful and dangerous, familiarize yourself with these useful docs.
+
 - [User Attribute Looker Docs](https://cloud.google.com/looker/docs/admin-panel-users-user-attributes#:~:text=Looker%20automatically%20includes%20some%20user,but%20should%20not%20be%20deleted.)
 
 ###### Content
+
 ###### Example Output From File
+
 ```
 # LookData
 - !LookObject
   legacy_folder_id: '302'
   look_id: '2112'
-  title: Look_Title 
+  title: Look_Title
   query_obj:
     model: thelook
     view: order_items
@@ -211,8 +232,9 @@ Please try to understand how USER_ATTRIBUTES are utilized and referenced in Look
     \    limit: 500\n    row:\n    col:\n    width:\n    height:\n"
   dashboard_id: '7'
 ```
-The content.yaml file is generated automatically using the `Yaml-Export-Path` at it's root and stores the export from looks and dashboards in the instance you're running the capturator against.
+
+The content.yaml file is generated automatically using the `Yaml-Export-Dir` at it's root and stores the export from looks and dashboards in the instance you're running the capturator against.
 
 The dashboard is stored in lookml and can be amended here (e.g. changing model name or explore name) if desired.
- 
+
 **This is not an officially supported Google Product.**

@@ -2,7 +2,7 @@ import logging
 from tqdm import tqdm
 from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 
-#logger = log_color.init_logger(__name__, logger_level)
+# logger = log_color.init_logger(__name__, logger_level)
 
 
 class ExtractRoleInfo():
@@ -25,7 +25,8 @@ class ExtractRoleInfo():
         response = []
         for role in self.role_base:
             if role.permission_set is None:
-                raise Exception(f'role name {role.name} has no permission_set, please add one to be captured or delete the role')
+                raise Exception(
+                    f'Role name {role.name} has no permission_set, please add one to be captured or delete the role.')
             temp = {}
             temp['name'] = role.permission_set.name
             temp['permissions'] = role.permission_set.permissions
@@ -66,7 +67,7 @@ class ExtractRoleInfo():
 
     def extract_role_info(self):
         response = []
-        for role in tqdm(self.role_base, desc = "Role Capture", unit=" roles", colour="#2c8558"):
+        for role in tqdm(self.role_base, desc='Role Capture', unit=' roles', colour='#2c8558'):
             groups = None
             trys = 0
             while groups is None:
@@ -76,9 +77,8 @@ class ExtractRoleInfo():
                 except:
                     eh.return_sleep_message(call_number=trys)
             role_groups = [group.name for group in groups]
-
             lookerrole = loc.LookerRoles(permission_set=role.permission_set.name,
-                                     model_set=role.model_set.name, teams=role_groups, name=role.name)
+                                         model_set=role.model_set.name, teams=role_groups, name=role.name)
             response.append(lookerrole)
 
         return response

@@ -17,8 +17,10 @@ import logging
 import click
 from lmanage import capture_instance_permission_structure
 from lmanage.utils import logger_creation as log_color
+from lmanage.looker_config_handler import LookerConfigHandler
 
 logger = log_color.init_logger(__name__, testing_mode=False)
+
 
 @click.group(name='capturator')
 def capturator():
@@ -29,12 +31,11 @@ def capturator():
 @capturator.command()
 @ click.option("-i", "--ini-file",
                help="**OPTIONAL ** Specify API Credentials in an ini file, if no path is given program will assume these values are set as environmental variables as denoted at https: // github.com/looker-open-source/sdk-codegen  # environment-variable-configuration")
-@ click.option("-yep", "--yaml-export-path",
-               help="Where to save the yaml file to use for instance configuration")
-@ click.option("-v", "--verbose", 
-               is_flag=True, 
+@ click.option("-yed", "--yaml-export-dir",
+               help="Where to save the yaml files to use for instance configuration")
+@ click.option("-v", "--verbose",
+               is_flag=True,
                help="**OPTIONAL** Add this flag value to get a more verbose version of the returned stout text")
-
 def capturator(**kwargs):
     """Captures security settings for your looker instance"""
     level = kwargs.get('verbose', False)
@@ -47,7 +48,8 @@ def capturator(**kwargs):
         else:
             logger.debug(
                 f'There is no value set for {k} please use the `--help` flag to see input parameters')
-    capture_instance_permission_structure.main(**kwargs)
+    # capture_instance_permission_structure.main(**kwargs)
+    LookerConfigHandler(**kwargs).handle()
 
 
 if __name__ == '__main__':
