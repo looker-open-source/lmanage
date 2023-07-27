@@ -1,26 +1,19 @@
-import looker_sdk
-from looker_sdk import error
 from lmanage.capturator.folder_capturation import folder_config as fc
 from lmanage.capturator.user_group_capturation import role_config as rc
 from lmanage.capturator.user_attribute_capturation import capture_ua_permissions as cup
 from lmanage.capturator.content_capturation import dashboard_capture as dc, look_capture as lc, board_capture as bc
 from lmanage.looker_config import LookerConfig
 from lmanage.logger_config import setup_logger
+from lmanage.looker_auth import LookerAuth
 
 logger = setup_logger()
 
 
-class LookerConfigReader():
+class LookerApiReader():
     def __init__(self, ini_file):
-        self.sdk = looker_sdk.init40(
-            config_file=ini_file) if ini_file else looker_sdk.init40()
-        if self.__auth_check():
-            logger.info('User is successfully authenticated to the API')
-        else:
-            raise Exception(
-                'User is not successfully authenticated.  Please verify credentials in .ini file.')
+        self.sdk = LookerAuth().authenticate(ini_file)
 
-    def read(self) -> LookerConfig:
+    def get_config(self) -> LookerConfig:
         settings = self.__read_settings()
         content = self.__read_content()
         return LookerConfig(settings, content)
@@ -66,10 +59,3 @@ class LookerConfigReader():
             'looks': looks,
             'dashboards': dashboards
         }
-
-    def __auth_check(self):
-        try:
-            self.sdk.me()
-            return True
-        except error.SDKError():
-            return False

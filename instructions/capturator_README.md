@@ -1,14 +1,14 @@
 # capturator
 
-The capturator is the instance capture portion of the Instance Migrator Tool. It's use is to generate a point in time representation of a Looker instance settings and content and preserve a representation of those objects as a Yaml file that can be used by the configurator command to provision your instance. The tool will generate two yaml files that will be created in the folder of your choice, the value you enter as your `yaml-export-dir` for Looker settings and a file appended with `content`, for referencing the Looker content to be transitioned.
+The capturator is the instance capture portion of the Instance Migrator Tool. It's use is to generate a point in time representation of a Looker instance settings and content and preserve a representation of those objects as a Yaml file that can be used by the configurator command to provision your instance. The tool will generate two yaml files that will be created in the folder of your choice, the value you enter as your `config-dir` for Looker settings and a file appended with `content`, for referencing the Looker content to be transitioned.
 
 ##### Example usage
 
-`lmanage capturator --ini-file ~/my_permissions/looker.ini  --yaml-export-dir ./config`
+`lmanage capturator --ini-file ~/my_permissions/looker.ini  --config-dir ./config`
 
 ##### Flags
 
-- **yaml-export-dir** (`--yaml-export-dir`, `-yed`) This is the directory to generate the yaml files to use for instance configuration.
+- **config-dir** (`--config-dir`, `-cd`) This is the directory to generate the yaml files to use for instance configuration.
 - **ini-file** (`--ini-file`, `-i`) This is the file path to the ini file that you've created to use the Looker SDK
 
 ```
@@ -233,7 +233,7 @@ Please try to understand how USER_ATTRIBUTES are utilized and referenced in Look
   dashboard_id: '7'
 ```
 
-The content.yaml file is generated automatically using the `Yaml-Export-Dir` at it's root and stores the export from looks and dashboards in the instance you're running the capturator against.
+The content.yaml file is generated automatically inside of the `config-dir` and stores the export from looks and dashboards in the instance you're running the capturator against.
 
 The dashboard is stored in lookml and can be amended here (e.g. changing model name or explore name) if desired.
 
