@@ -7,9 +7,9 @@ from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 
 
 class LookCapture:
-    def __init__(self, sdk, folder_root, logger):
+    def __init__(self, sdk, content_folders, logger):
         self.sdk = sdk
-        self.folder_root = folder_root
+        self.content_folders = content_folders
         self.logger = logger
 
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
@@ -26,7 +26,7 @@ class LookCapture:
 
         scrub_looks = {}
         for look in all_look_meta:
-            if look.folder.id in self.folder_root or look.folder.id == '1':
+            if look.folder.id in self.content_folders or look.folder.id == '1':
                 scrub_looks[look.id] = look.folder.id
             else:
                 continue

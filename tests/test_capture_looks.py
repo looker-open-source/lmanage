@@ -10,7 +10,7 @@ input_data = fake_methods_data.input_data
 
 def test_get_all_looks_metadata(mocker):
     sdk = fake_methods_data.MockSDK()
-    look_obj = lc.LookCapture(sdk=sdk, folder_root=123)
+    look_obj = lc.LookCapture(sdk=sdk, content_folders=123)
     all_look_data = fake_methods_data.MockAll_look_Response(
         id='123', folder='123')
     mocker.patch.object(sdk, "all_looks")

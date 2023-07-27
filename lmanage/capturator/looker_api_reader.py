@@ -10,6 +10,8 @@ logger = setup_logger()
 
 
 class LookerApiReader():
+    shared_folder_id = '1'
+
     def __init__(self, ini_file):
         self.sdk = LookerAuth().authenticate(ini_file)
 
@@ -23,7 +25,7 @@ class LookerApiReader():
         folder_returns = fc.CaptureFolderConfig(
             sdk=self.sdk, logger=logger).execute()
         folder_structure_list = folder_returns[1]
-        self.folder_root = folder_returns[0]
+        self.content_folders = [self.shared_folder_id] + folder_returns[0]
 
         # Roles, Permission Sets & Model Sets
         role_info = rc.ExtractRoleInfo(sdk=self.sdk, logger=logger)
@@ -49,11 +51,11 @@ class LookerApiReader():
 
         # Looks
         looks = lc.LookCapture(
-            sdk=self.sdk, folder_root=self.folder_root, logger=logger).execute()
+            sdk=self.sdk, content_folders=self.content_folders, logger=logger).execute()
 
         # Dashboards
         dashboards = dc.CaptureDashboards(
-            sdk=self.sdk, folder_root=self.folder_root, logger=logger).execute()
+            sdk=self.sdk, content_folders=self.content_folders, logger=logger).execute()
 
         return {
             'looks': looks,

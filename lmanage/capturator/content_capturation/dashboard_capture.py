@@ -9,9 +9,9 @@ logger = log_color.init_logger(__name__, True)
 
 
 class CaptureDashboards():
-    def __init__(self, sdk, folder_root: dict, logger):
+    def __init__(self, sdk, content_folders: dict, logger):
         self.sdk = sdk
-        self.folder_root = folder_root
+        self.content_folders = content_folders
         self.logger = logger
 
     def get_all_dashboards(self) -> dict:
@@ -21,8 +21,8 @@ class CaptureDashboards():
             all_dashboards = self.sdk.all_dashboards(fields="id,folder, slug")
 
         for dash in all_dashboards:
-            logger.info(self.folder_root)
-            if dash.folder.id in self.folder_root:
+            logger.info(self.content_folders)
+            if dash.folder.id in self.content_folders:
                 scrub_dashboards[dash.id] = {}
                 scrub_dashboards[dash.id]['folder_id'] = dash.folder.id
                 scrub_dashboards[dash.id]['slug'] = dash.slug
