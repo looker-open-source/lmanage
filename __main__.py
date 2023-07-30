@@ -29,9 +29,9 @@ def lmanage():
     pass
 
 
-def validate_args(**kwargs):
-    level = kwargs.get('verbose', False)
-    logger = log_color.init_logger(__name__, testing_mode=level)
+def log_args(**kwargs):
+    log_level = kwargs.get('verbose', False)
+    logger = log_color.init_logger(__name__, testing_mode=log_level)
     for k, v in kwargs.items():
         if {v} != None:
             logger.info(
@@ -39,6 +39,9 @@ def validate_args(**kwargs):
         else:
             logger.debug(
                 f'There is no value set for {k} please use the `--help` flag to see input parameters.')
+
+
+def clean_args(**kwargs):
     kwargs['config_dir'] = kwargs['config_dir'].rstrip('/')
     return kwargs
 
@@ -54,7 +57,8 @@ def common_options(f):
     @click.pass_context
     @wraps(f)
     def decorated_function(ctx, *args, **kwargs):
-        kwargs = validate_args(**kwargs)
+        kwargs = log_args(**kwargs)
+        kwargs = clean_args(**kwargs)
         return ctx.invoke(f, *args, **kwargs)
     return decorated_function
 
