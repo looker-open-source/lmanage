@@ -55,7 +55,7 @@ class LookerApiReader():
 
         # Dashboards
         dashboards = dc.CaptureDashboards(
-            sdk=self.sdk, content_folders=self.content_folders, logger=logger).execute()
+            sdk=self.sdk, content_folders=self.content_folders, logger=logger, all_alerts=self.sdk.search_alerts()).execute()
 
         return {
             'looks': looks,

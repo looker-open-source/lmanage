@@ -57,7 +57,7 @@ def common_options(f):
     @click.pass_context
     @wraps(f)
     def decorated_function(ctx, *args, **kwargs):
-        kwargs = log_args(**kwargs)
+        log_args(**kwargs)
         kwargs = clean_args(**kwargs)
         return ctx.invoke(f, *args, **kwargs)
     return decorated_function

@@ -2,7 +2,8 @@ from os import name
 from looker_sdk import models, error
 from lmanage.utils import logger_creation as log_color
 
-#logger = log_color.init_logger(__name__, logger_level)
+# logger = log_color.init_logger(__name__, logger_level)
+
 
 class FolderConfig():
     ''' Class to read in folder metadata and unested_folder_data '''

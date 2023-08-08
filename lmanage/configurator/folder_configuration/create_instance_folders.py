@@ -1,7 +1,7 @@
 from looker_sdk import models, error
 from tqdm import tqdm
 from lmanage.utils import logger_creation as log_color
-#logger = log_color.init_logger(__name__, logger_level)
+# logger = log_color.init_logger(__name__, logger_level)
 
 
 class CreateInstanceFolders():
@@ -19,22 +19,22 @@ class CreateInstanceFolders():
         exempt_folders = ['1', '2', '3', '4', 'lookml']
         folders = self.get_all_folders()
         error_count = 0
-        #allowed_folders = [folder_obj for folder_obj in folders.keys() if folder_obj not in exempt_folders]
+        # allowed_folders = [folder_obj for folder_obj in folders.keys() if folder_obj not in exempt_folders]
         while error_count < 1:
             folders = self.get_all_folders()
             x = [folder_obj for folder_obj in folders.keys(
             ) if folder_obj not in exempt_folders]
-        #for fid in tqdm(allowed_folders):
+        # for fid in tqdm(allowed_folders):
             try:
                 self.sdk.delete_folder(folder_id=x[0])
                 self.logger.debug('deleting folder %s to start afresh',
-                            folders.get(x[0]))
+                                  folders.get(x[0]))
             except error.SDKError as e:
                 self.logger.error(e)
                 error_count = 1
 
     def unnest_folder_data(self, folder_data):
-        for d in tqdm(folder_data, desc = "Unesting Folder Data", unit=" unested", colour="#2c8558"):
+        for d in tqdm(folder_data, desc="Unesting Folder Data", unit=" unested", colour="#2c8558"):
             folder_dict = d
             metadata_list = []
             metadata_list = self.walk_folder_structure(
@@ -124,7 +124,7 @@ class CreateInstanceFolders():
 
                 except error.SDKError as InheritanceError:
                     self.logger.debug('root folder has been deleted so %s',
-                                InheritanceError)
+                                      InheritanceError)
         return 'your folders are in sync with your yaml file'
 
     def create_folders(self):

@@ -1,14 +1,15 @@
 from tqdm import tqdm
 from looker_sdk import models40 as models
+from lmanage.configurator.create_object import CreateObject
 from lmanage.utils import logger_creation as log_color
-#logger = log_color.init_logger(__name__, logger_level)
+# logger = log_color.init_logger(__name__, logger_level)
 
-class Create_Boards():
 
+class CreateBoards(CreateObject):
     def __init__(self, sdk, board_metadata, dashboard_mapping, look_mapping) -> None:
         self.sdk = sdk
-        self.dashboard_mapping = dashboard_mapping 
-        self.look_mapping =look_mapping 
+        self.dashboard_mapping = dashboard_mapping
+        self.look_mapping = look_mapping
         self.board_metadata = board_metadata
 
     def create_boards(self, bmeta: dict):
@@ -22,7 +23,7 @@ class Create_Boards():
 
         return board
 
-    def create_board_section(self,section_object, board_id):
+    def create_board_section(self, section_object, board_id):
         new_board_section = models.WriteBoardSection(
             board_id=board_id,
             description=section_object.description,
@@ -34,9 +35,9 @@ class Create_Boards():
 
     def match_dashboard_id(self, source_dashboard_id: str) -> str:
         pass
+
     def match_look_id(self, source_look_id: str) -> str:
         pass
-
 
     def create_board_item(self, target_board_section_id):
 
@@ -44,7 +45,8 @@ class Create_Boards():
         look_id = None
 
         if target_board_section_id.dashboard_id:
-            dashboard_id = self.match_dashboard_id(target_board_section_id.dashboard_id)
+            dashboard_id = self.match_dashboard_id(
+                target_board_section_id.dashboard_id)
         if target_board_section_id.look_id:
             look_id = self.match_look_id(target_board_section_id.look_id)
 
@@ -68,7 +70,6 @@ class Create_Boards():
 
         return resp
 
-
     def execute(self):
         '''
         create boards
@@ -78,5 +79,5 @@ class Create_Boards():
         '''
         for board in self.board_metadata:
             nb = self.create_boards(bmeta=board)
-            
+
             print(nb)

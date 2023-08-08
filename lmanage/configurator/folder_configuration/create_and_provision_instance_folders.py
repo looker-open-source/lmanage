@@ -6,8 +6,10 @@ from tqdm import tqdm
 from lmanage.utils.errorhandling import return_sleep_message
 from lmanage.utils import logger_creation as log_color
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
+from lmanage.configurator.create_object import CreateObject
 
-class CreateAndProvisionInstanceFolders():
+
+class CreateAndProvisionInstanceFolders(CreateObject):
     def __init__(self, folders, sdk, logger):
         self.sdk = sdk
         self.instance_folder_metadata = folders
@@ -62,7 +64,7 @@ class CreateAndProvisionInstanceFolders():
         temp_dict['group_permissions'] = perms
         response.append(temp_dict)
         return response
-    
+
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def create_content_metadata_access(
         self,
@@ -91,7 +93,6 @@ class CreateAndProvisionInstanceFolders():
             for access in self.sdk.all_content_metadata_accesses(
                 content_metadata_id=content_metadata_id)}
         return response
-
 
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def check_folder_ancestors(self,

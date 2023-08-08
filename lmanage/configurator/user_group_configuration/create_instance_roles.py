@@ -1,8 +1,9 @@
 from looker_sdk import models, error
-from lmanage.configurator.user_group_configuration.role_config import CreateRoleBase
+from lmanage.configurator.user_group_configuration.create_role_base import CreateRoleBase
 from lmanage.utils.errorhandling import return_error_message
 from tqdm import tqdm
 from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
+
 
 class CreateInstanceRoles(CreateRoleBase):
     def __init__(self, roles, sdk, logger):
@@ -31,12 +32,11 @@ class CreateInstanceRoles(CreateRoleBase):
         all_roles = self.sdk.all_roles()
         role_dict = {role.name: role.id for role in all_roles}
         return role_dict
-    
+
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def update_looker_role(self, role_id: str, body: models.WriteRole):
         role = self.sdk.update_role(role_id=role_id, body=body)
         return role
-
 
     def create_instance_roles(self):
         model_lookup = self.create_model_lookup()
@@ -44,7 +44,7 @@ class CreateInstanceRoles(CreateRoleBase):
 
         role_output = []
 
-        for r_metadata in tqdm(self.role_metadata, desc = "User Role Creation", unit=" user roles", colour="#2c8558"):
+        for r_metadata in tqdm(self.role_metadata, desc="User Role Creation", unit=" user roles", colour="#2c8558"):
             role_name = r_metadata.get('name')
             model_set_id = model_lookup.get(
                 r_metadata.get('model_set') if r_metadata.get('model_set') == 'All' else r_metadata.get('model_set').lower())
@@ -91,7 +91,7 @@ class CreateInstanceRoles(CreateRoleBase):
         role_lookup = self.create_allrole_lookup()
         group_lookup = self.create_allgroup_lookup()
 
-        for r_metadata in tqdm(self.role_metadata, desc = "Instance Role Attribution", unit=" roles", colour="#2c8558"):
+        for r_metadata in tqdm(self.role_metadata, desc="Instance Role Attribution", unit=" roles", colour="#2c8558"):
             role_name = r_metadata.get('name')
             teams = r_metadata.get('teams')
             role_id = role_lookup.get(role_name)

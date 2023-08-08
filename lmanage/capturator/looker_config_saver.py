@@ -19,6 +19,25 @@ class LookerConfigSaver():
         self.__save_settings(config.settings)
         self.__save_content(config.content)
 
+    def __init_yaml(self):
+        self.yaml = ruamel.yaml.YAML()
+        self.yaml.register_class(loc.LookerFolder)
+        self.yaml.register_class(loc.LookerModelSet)
+        self.yaml.register_class(loc.LookerPermissionSet)
+        self.yaml.register_class(loc.LookerRoles)
+        self.yaml.register_class(loc.LookerUserAttribute)
+        self.yaml.register_class(loc.LookObject)
+        self.yaml.register_class(loc.DashboardObject)
+        self.yaml.register_class(loc.AlertObject)
+        self.yaml.register_class(loc.AlertDestinationObject)
+        self.yaml.register_class(loc.AlertFieldObject)
+        self.yaml.register_class(loc.AlertFieldFilterObject)
+        self.yaml.register_class(loc.BoardObject)
+        self.yaml.register_class(looker_sdk.sdk.api40.models.ScheduledPlan)
+        self.yaml.register_class(
+            looker_sdk.sdk.api40.models.ScheduledPlanDestination)
+        self.yaml.register_class(looker_sdk.sdk.api40.models.UserPublic)
+
     def __save_settings(self, settings):
         # Folder Permissions
         with open(self.__get_settings_path(), 'w') as file:
@@ -71,18 +90,3 @@ class LookerConfigSaver():
 
     def __get_content_path(self):
         return f'{self.config_dir}/content.yaml'
-
-    def __init_yaml(self):
-        self.yaml = ruamel.yaml.YAML()
-        self.yaml.register_class(loc.LookerFolder)
-        self.yaml.register_class(loc.LookerModelSet)
-        self.yaml.register_class(loc.LookerPermissionSet)
-        self.yaml.register_class(loc.LookerRoles)
-        self.yaml.register_class(loc.LookerUserAttribute)
-        self.yaml.register_class(loc.LookObject)
-        self.yaml.register_class(loc.DashboardObject)
-        self.yaml.register_class(loc.BoardObject)
-        self.yaml.register_class(looker_sdk.sdk.api40.models.ScheduledPlan)
-        self.yaml.register_class(
-            looker_sdk.sdk.api40.models.ScheduledPlanDestination)
-        self.yaml.register_class(looker_sdk.sdk.api40.models.UserPublic)

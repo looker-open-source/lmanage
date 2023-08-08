@@ -2,9 +2,10 @@ import logging
 from looker_sdk import models, error
 from tqdm import tqdm
 from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
+from lmanage.configurator.create_object import CreateObject
 
 
-class CreateAndAssignUserAttributes():
+class CreateAndAssignUserAttributes(CreateObject):
     def __init__(self, user_attributes, sdk, logger):
         self.user_attribute_metadata = user_attributes
         self.sdk = sdk
@@ -20,7 +21,7 @@ class CreateAndAssignUserAttributes():
         existing_ua = self.existing_user_attributes()
         yaml_user_attributes = self.user_attribute_metadata
 
-        for ua in tqdm(yaml_user_attributes, desc = "User Attribute Creation", unit=" attributes", colour="#2c8558"):
+        for ua in tqdm(yaml_user_attributes, desc="User Attribute Creation", unit=" attributes", colour="#2c8558"):
             name = ua.get('name')
             if name in existing_ua.keys():
                 logging.warning(
@@ -41,7 +42,8 @@ class CreateAndAssignUserAttributes():
                         user_can_edit=user_edit,
                         default_value=ua.get('default_value')
                     )
-                    response = self.sdk.create_user_attribute(body=ua_permissions)
+                    response = self.sdk.create_user_attribute(
+                        body=ua_permissions)
                     logging.info(f'created user attribute {response.label}')
                 except error.SDKError as err:
                     logging.error('skipping permission because already exists')

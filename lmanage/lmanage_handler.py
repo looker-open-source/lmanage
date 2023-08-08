@@ -1,6 +1,7 @@
 from lmanage.capturator.looker_api_reader import LookerApiReader
 from lmanage.capturator.looker_config_saver import LookerConfigSaver
 from lmanage.configurator.looker_config_reader import LookerConfigReader
+from lmanage.configurator.looker_provisioner import LookerProvisioner
 
 
 class LManageConfig():
@@ -16,16 +17,12 @@ class LManageHandler():
         self.verbose_logs = verbose_logs
 
     def capture(self):
-        reader = LookerApiReader(self.ini_file)
-        saver = LookerConfigSaver(self.config_dir)
-        config = reader.get_config()
-        saver.save(config)
+        config = LookerApiReader(self.ini_file).get_config()
+        LookerConfigSaver(self.config_dir).save(config)
 
     def configure(self):
-        print('')
-        # reader = LookerConfigReader(self.config_dir)
-        # config = reader.read()
-        # saver.save(config)
+        metadata = LookerConfigReader(self.config_dir).read()
+        LookerProvisioner(self.ini_file).provision(metadata)
 
 
 # if __name__ == "__main__":

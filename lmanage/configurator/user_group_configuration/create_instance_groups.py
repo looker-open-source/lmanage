@@ -2,8 +2,10 @@ from looker_sdk import models, error
 from lmanage.utils.errorhandling import return_error_message
 from tqdm import tqdm
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
+from lmanage.configurator.create_object import CreateObject
 
-class CreateInstanceGroups():
+
+class CreateInstanceGroups(CreateObject):
     def __init__(self, folders, user_attributes, roles, sdk, logger) -> None:
         self.folder_metadata = folders
         self.user_attribute_metadata = user_attributes
@@ -27,21 +29,20 @@ class CreateInstanceGroups():
     def extract_folder_teams(self, container, data_storage):
         for folder_element in container:
             if isinstance(folder_element.get('team_edit'), list):
-                    edit_group = folder_element.get('team_edit')
-                    for group in edit_group:
-                        data_storage.append(group)
+                edit_group = folder_element.get('team_edit')
+                for group in edit_group:
+                    data_storage.append(group)
             if isinstance(folder_element.get('team_view'), list):
-                    view_group = folder_element.get('team_view')
-                    for group in view_group:
-                        data_storage.append(group)
+                view_group = folder_element.get('team_view')
+                for group in view_group:
+                    data_storage.append(group)
             else:
                 pass
-    
+
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def search_looker_groups(self, sdk, group_name: str) -> list:
         s = sdk.search_groups(name=group_name)
         return s
-        
 
     def create_group_if_not_exists(self,
                                    sdk,
@@ -66,7 +67,8 @@ class CreateInstanceGroups():
             self.logger.debug(
                 'You have hit a warning creating your group; warning = %s', err_msg)
             self.logger.debug(grouperr)
-            group = self.search_looker_groups(sdk = self.sdk, group_name=group_name)
+            group = self.search_looker_groups(
+                sdk=self.sdk, group_name=group_name)
             return group[0]
 
     def get_instance_group_metadata(self,
@@ -74,7 +76,7 @@ class CreateInstanceGroups():
                                     unique_group_list: list) -> list:
         group_metadata = []
 
-        for group_name in tqdm(unique_group_list, desc = "Creating User Groups", unit=" user groups", colour="#2c8558"):
+        for group_name in tqdm(unique_group_list, desc="Creating User Groups", unit=" user groups", colour="#2c8558"):
             group = self.create_group_if_not_exists(sdk, group_name)
             temp = {}
             temp['group_id'] = group.id

@@ -2,10 +2,10 @@ from tqdm import tqdm
 from looker_sdk import models40 as models
 from lmanage.utils import logger_creation as log_color
 # logger = log_color.init_logger(__name__, logger_level)
+from lmanage.configurator.create_object import CreateObject
 
 
-class Create_Schedules():
-
+class CreateSchedules(CreateObject):
     def __init__(self, sdk, folder_mapping, content_metadata) -> None:
         self.sdk = sdk
         self.folder_mapping = folder_mapping
@@ -13,28 +13,45 @@ class Create_Schedules():
 
     def create_schedule(self) -> None:
         resp = []
-        for dash in tqdm(self.content_metadata, desc="Schedule Creation", unit="schedule", colour="#2c8558"):
-            if dash['scheduled_plans']:
-                for schedule in dash['scheduled_plans']:
-                    new_dash_id = self.sdk.search_dashboards(
-                        slug=dash['dashboard_slug'], fields='id')[0].id
+        for dashboard in tqdm(self.content_metadata, desc="Schedule Creation", unit="schedule", colour="#2c8558"):
+            if dashboard['scheduled_plans']:
+                dashboard_id = self.sdk.search_dashboards(
+                    slug=dashboard['dashboard_slug'], fields='id')[0].id
+                for schedule in dashboard['scheduled_plans']:
+                    destinations = []
+                    for d in schedule['scheduled_plan_destination']:
+                        destination = models.ScheduledPlanDestination()
+                        destination.__dict__.update(d)
+                        destinations.append(destination)
                     body = models.WriteScheduledPlan(
-                        user_id=2
+                        name=schedule['name'],
+                        # user_id="1",
+                        run_as_recipient=schedule['run_as_recipient'],
+                        enabled=schedule['enabled'],
+                        look_id=schedule['look_id'],
+                        dashboard_id=dashboard_id,
+                        # lookml_dashboard_id=schedule['lookml_dashboard_id'],
+                        scheduled_plan_destination=destinations,
+                        filters_string=schedule['filters_string'],
+                        dashboard_filters=schedule['dashboard_filters'],
+                        require_results=schedule['require_results'],
+                        require_no_results=schedule['require_no_results'],
+                        require_change=schedule['require_change'],
+                        send_all_results=schedule['send_all_results'],
+                        crontab=schedule['crontab'],
+                        timezone=schedule['timezone'],
+                        datagroup=schedule['datagroup'],
+                        query_id=schedule['query_id'],
+                        include_links=schedule['include_links'],
+                        pdf_paper_size=schedule['pdf_paper_size'],
+                        pdf_landscape=schedule['pdf_landscape'],
+                        embed=schedule['embed'],
+                        color_theme=schedule['color_theme'],
+                        long_tables=schedule['long_tables'],
+                        inline_table_width=schedule['inline_table_width'],
                     )
-                    x = models.ScheduledPlanDestination()
-                    test = []
-                    for destination in schedule['scheduled_plan_destination']:
-                        x.__dict__.update(destination)
-                        test.append(x)
-                    appendthing = {'scheduled_plan_destination': test}
-                    body.__dict__.update(schedule)
-                    body.__dict__.update(appendthing)
-                    body.__dict__.pop('user')
-                    body.user_id = 2
-                    body.dashboard_id = new_dash_id
                     plan = self.sdk.create_scheduled_plan(body=body)
                     resp.append(plan)
-
         return resp
 
     def execute(self):

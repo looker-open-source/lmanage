@@ -3,11 +3,12 @@ from lmanage.utils import errorhandling as eh
 from lmanage.utils import logger_creation as log_color
 from tqdm import tqdm
 from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
+from lmanage.configurator.create_object import CreateObject
 
-#logger = log_color.init_logger(__name__, logger_level)
+# logger = log_color.init_logger(__name__, logger_level)
 
 
-class CreateRoleBase():
+class CreateRoleBase(CreateObject):
     def __init__(self, logger, permissions, model_sets, sdk):
         self.permission_set_metadata = permissions
         self.model_set_metadata = model_sets
@@ -59,7 +60,8 @@ class CreateRoleBase():
         yaml_permissions = [permission.get('name').lower()
                             for permission in permission_set_dict]
         self.logger.debug('yaml permissions configured = %s', yaml_permissions)
-        self.logger.debug('existing permsissions = %s', permissions_dict.keys())
+        self.logger.debug('existing permsissions = %s',
+                          permissions_dict.keys())
 
         for permission_set_name in permissions_dict.keys():
 

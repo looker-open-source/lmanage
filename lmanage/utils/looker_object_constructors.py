@@ -78,12 +78,66 @@ class LookObject():
 
 
 class DashboardObject():
-    def __init__(self, legacy_folder_id, lookml, dashboard_id, dashboard_slug, scheduled_plans) -> None:
+    def __init__(self, legacy_folder_id, lookml, dashboard_id, dashboard_slug, dashboard_element_alert_counts, scheduled_plans, alerts) -> None:
         self.legacy_folder_id = legacy_folder_id
         self.lookml = lookml
         self.dashboard_id = dashboard_id
         self.dashboard_slug = dashboard_slug
+        self.dashboard_element_alert_counts = dashboard_element_alert_counts
         self.scheduled_plans = scheduled_plans
+        self.alerts = alerts
+
+
+class AlertObject():
+    def __init__(self, alert) -> None:
+        self.applied_dashboard_filters = alert.get('applied_dashboard_filters')
+        self.comparison_type = alert.get('comparison_type')
+        self.cron = alert.get('cron')
+        self.custom_title = self.__empty_string_if_none(
+            alert.get('custom_tile'))
+        # self.dashboard_element_id = alert.get('dashboard_element_id')
+        self.description = self.__empty_string_if_none(
+            alert.get('description'))
+        self.destinations = [AlertDestinationObject(
+            destination) for destination in alert.get('destinations')]
+        self.field = AlertFieldObject(alert.get('field'))
+        self.is_disabled = alert.get('is_disabled')
+        self.is_public = alert.get('is_public')
+        self.disabled_reason = self.__empty_string_if_none(
+            alert.get('disabled_reason'))
+        # self.investigative_content_type = self.__empty_string_if_none(alert.get(
+        #     'investigative_content_type'))
+        # self.investigative_content_id = alert.get('investigative_content_id')
+        # self.lookml_dashboard_id = alert.get('lookml_dashboard_id')
+        # self.lookml_link_id = alert.get('lookml_link_id')
+        # self.owner_id = alert.get('owner_id')
+        self.threshold = alert.get('threshold')
+        # self.time_series_condition_state = alert.get(
+        #     'time_series_condition_state')
+
+    def __empty_string_if_none(self, value):
+        return value if value is not None else ''
+
+
+class AlertDestinationObject():
+    def __init__(self, destination) -> None:
+        self.destination_type = destination.get('destination_type')
+        self.email_address = destination.get('email_address')
+
+
+class AlertFieldObject():
+    def __init__(self, alert_field) -> None:
+        self.title = alert_field.get('title')
+        self.name = alert_field.get('name')
+        self.filter = [AlertFieldFilterObject(
+            filter) for filter in alert_field.get('filter')]
+
+
+class AlertFieldFilterObject():
+    def __init__(self, alert_field_filter) -> None:
+        self.field_name = alert_field_filter.field_name
+        self.field_value = alert_field_filter.field_value
+        self.filter_value = alert_field_filter.filter_value
 
 
 class BoardObject():
