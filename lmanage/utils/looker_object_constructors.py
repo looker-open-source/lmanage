@@ -88,24 +88,29 @@ class DashboardObject():
         self.alerts = alerts
 
 
+def xstr(self, value):
+    return value if value is not None else ''
+
+
 class AlertObject():
     def __init__(self, alert) -> None:
-        self.applied_dashboard_filters = alert.get('applied_dashboard_filters')
+        self.applied_dashboard_filters = [AlertAppliedDashboardFilterObject(
+            f) for f in alert.get('applied_dashboard_filters')]
         self.comparison_type = alert.get('comparison_type')
         self.cron = alert.get('cron')
-        self.custom_title = self.__empty_string_if_none(
+        self.custom_title = xstr(
             alert.get('custom_tile'))
         # self.dashboard_element_id = alert.get('dashboard_element_id')
-        self.description = self.__empty_string_if_none(
+        self.description = xstr(
             alert.get('description'))
         self.destinations = [AlertDestinationObject(
-            destination) for destination in alert.get('destinations')]
+            d) for d in alert.get('destinations')]
         self.field = AlertFieldObject(alert.get('field'))
         self.is_disabled = alert.get('is_disabled')
         self.is_public = alert.get('is_public')
-        self.disabled_reason = self.__empty_string_if_none(
+        self.disabled_reason = xstr(
             alert.get('disabled_reason'))
-        # self.investigative_content_type = self.__empty_string_if_none(alert.get(
+        # self.investigative_content_type = xstr(alert.get(
         #     'investigative_content_type'))
         # self.investigative_content_id = alert.get('investigative_content_id')
         # self.lookml_dashboard_id = alert.get('lookml_dashboard_id')
@@ -115,8 +120,13 @@ class AlertObject():
         # self.time_series_condition_state = alert.get(
         #     'time_series_condition_state')
 
-    def __empty_string_if_none(self, value):
-        return value if value is not None else ''
+
+class AlertAppliedDashboardFilterObject():
+    def __init__(self, filter):
+        self.filter_title = filter.get('title')
+        self.field_name = filter.get('title')
+        self.filter_value = filter.get('title')
+        self.filter_description = xstr(filter.get('title'))
 
 
 class AlertDestinationObject():

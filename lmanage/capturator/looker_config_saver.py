@@ -29,6 +29,7 @@ class LookerConfigSaver():
         self.yaml.register_class(loc.LookObject)
         self.yaml.register_class(loc.DashboardObject)
         self.yaml.register_class(loc.AlertObject)
+        self.yaml.register_class(loc.AlertAppliedDashboardFilterObject)
         self.yaml.register_class(loc.AlertDestinationObject)
         self.yaml.register_class(loc.AlertFieldObject)
         self.yaml.register_class(loc.AlertFieldFilterObject)
