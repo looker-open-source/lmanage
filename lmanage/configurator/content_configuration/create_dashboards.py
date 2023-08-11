@@ -33,7 +33,7 @@ class CreateDashboards(CreateObject):
                 body=body)
 
             if len(dashboard['scheduled_plans']) > 0:
-                self.__create_schedules(
+                self.__create_scheduled_plans(
                     dashboard['scheduled_plans'], created_dashboard.id)
 
             if len(dashboard['alerts']) > 0:
@@ -68,7 +68,7 @@ class CreateDashboards(CreateObject):
                 alert_index += 1
             alert_count_index += 1
 
-    def __create_schedules(self, scheduled_plans, new_dashboard_id):
+    def __create_scheduled_plans(self, scheduled_plans, dashboard_id):
         for schedule in scheduled_plans:
             destinations = []
             for d in schedule['scheduled_plan_destination']:
@@ -80,12 +80,10 @@ class CreateDashboards(CreateObject):
                 # user_id="1",
                 run_as_recipient=schedule['run_as_recipient'],
                 enabled=schedule['enabled'],
-                look_id=schedule['look_id'],
-                dashboard_id=new_dashboard_id,
+                dashboard_id=dashboard_id,
                 # lookml_dashboard_id=schedule['lookml_dashboard_id'],
                 scheduled_plan_destination=destinations,
                 filters_string=schedule['filters_string'],
-                dashboard_filters=schedule['dashboard_filters'],
                 require_results=schedule['require_results'],
                 require_no_results=schedule['require_no_results'],
                 require_change=schedule['require_change'],

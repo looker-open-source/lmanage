@@ -1,5 +1,5 @@
 import ruamel.yaml
-
+from lmanage.utils.helpers import xstr
 
 yaml = ruamel.yaml.YAML()
 
@@ -86,10 +86,6 @@ class DashboardObject():
         self.dashboard_element_alert_counts = dashboard_element_alert_counts
         self.scheduled_plans = scheduled_plans
         self.alerts = alerts
-
-
-def xstr(self, value):
-    return value if value is not None else ''
 
 
 class AlertObject():

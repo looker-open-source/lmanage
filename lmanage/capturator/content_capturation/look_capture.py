@@ -78,7 +78,7 @@ class LookCapture:
         content = 1
         for look in tqdm(all_look_data, desc="Look Capture", unit=" looks", colour="#2c8558"):
             lmetadata = self.get_look_metadata(look_id=look)
-            schedule_metadata = self.sdk.scheduled_plans_for_look(
+            scheduled_plans = self.sdk.scheduled_plans_for_look(
                 look_id=lmetadata.id, all_users=True)
             query_object = lmetadata.query.__dict__
             nq_obj = self.clean_query_obj(query_metadata=query_object)
@@ -93,7 +93,7 @@ class LookCapture:
                 legacy_folder_id=legacy_folder,
                 look_id=look_id,
                 title=title,
-                scheduled_plans=schedule_metadata)
+                scheduled_plans=scheduled_plans)
             looks.append(look_obj)
             content += 1
         return looks
