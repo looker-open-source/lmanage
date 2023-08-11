@@ -77,13 +77,13 @@ class LookerProvisioner():
         # # EMPTY TRASH CAN OF ALL DELETED CONTENT
         ccp.CleanInstanceContent(sdk=self.sdk, logger=self.logger).execute()
 
-        # # FIND LOOKS AND REMAKE THEM
-        # look_creator = cl.CreateLooks(
-        #     folder_mapping=folder_mapping_obj,
-        #     sdk=self.sdk,
-        #     content_metadata=metadata['look_metadata'],
-        #     logger=self.logger)
-        # look_creator.execute()
+        # FIND LOOKS AND REMAKE THEM
+        look_creator = cl.CreateLooks(
+            folder_mapping=folder_mapping_obj,
+            sdk=self.sdk,
+            content_metadata=metadata['look_metadata'],
+            logger=self.logger)
+        look_creator.execute()
 
         # Find DASHBOARDS AND REMAKE THEM
         dashboard_creator = cd.CreateDashboards(

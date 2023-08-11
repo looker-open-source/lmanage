@@ -98,7 +98,7 @@ class LookCapture:
                 legacy_folder_id=legacy_folder,
                 look_id=look_id,
                 title=title,
-                scheduled_plans=schedule_metadata)
+                scheduled_plans=scheduled_plans)
             looks.append(look_obj)
             content += 1
         return looks
