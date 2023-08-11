@@ -67,6 +67,12 @@ class LookCapture:
             (k, query_metadata[k]) for k in metadata_keep_keys)
         return restricted_look_metadata
 
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
+    def get_schedule_plans_for_look(self, looker_look_id):
+        schedule_metadata = self.sdk.scheduled_plans_for_look(
+            look_id=looker_look_id, all_users=True)
+        return schedule_metadata
+
     def execute(self):
         '''
         1. get all the looks and extract the id's
@@ -78,8 +84,7 @@ class LookCapture:
         content = 1
         for look in tqdm(all_look_data, desc="Look Capture", unit=" looks", colour="#2c8558"):
             lmetadata = self.get_look_metadata(look_id=look)
-            schedule_metadata = self.sdk.scheduled_plans_for_look(
-                look_id=lmetadata.id, all_users=True)
+            schedule_metadata = self.get_schedule_plans_for_look(looker_look_id=lmetadata.id)
             query_object = lmetadata.query.__dict__
             nq_obj = self.clean_query_obj(query_metadata=query_object)
             self.logger.debug(nq_obj)
