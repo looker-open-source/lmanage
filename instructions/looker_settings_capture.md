@@ -21,6 +21,7 @@ The Looker Instance settings that are impacted by these tools are:
 - User Permission Sets
 - User Model Sets
 - Looker Content (looks and dashboards)
+- Looker Schedules and Alerts
 
 ## Typical Workflow
 
