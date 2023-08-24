@@ -8,8 +8,8 @@ class CleanInstanceContent(CreateObject):
         self.logger = logger
 
     def execute(self):
-        self.__delete_boards()
-        # self.__delete_dashboards()
+        # self.__delete_boards()
+        self.__delete_dashboards()
         self.__delete_looks()
         self.__delete_scheduled_plans()
         self.__empty_dashboard_trash()
@@ -36,9 +36,9 @@ class CleanInstanceContent(CreateObject):
         all_looks = self.sdk.all_looks()
         delete_id_list = [look.id for look in all_looks]
         for look_id in tqdm(delete_id_list, 'Scrubbing Instance Looks', unit='looks', colour="#2c8558"):
-            self.sdk.delete_look(look_id=look_id)
             self.logger.debug(
-                f'cleaning the trash dashboard {look_id} from instance')
+                f'Deleting look {look_id} from instance')
+            self.sdk.delete_look(look_id=look_id)
 
     def __delete_scheduled_plans(self) -> None:
         all_schedules = self.sdk.all_scheduled_plans(all_users=True)

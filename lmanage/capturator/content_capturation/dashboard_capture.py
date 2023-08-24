@@ -4,6 +4,7 @@ from lmanage.utils import looker_object_constructors as loc, errorhandling as eh
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 from yaspin import yaspin
 
+
 class CaptureDashboards():
     def __init__(self, sdk, content_folders: dict, logger, all_alerts):
         self.sdk = sdk
@@ -26,19 +27,18 @@ class CaptureDashboards():
         # logger.info(scrub_dashboards)
         return scrub_dashboards
 
-
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def get_looker_dashboard(self, looker_dashboard_id, fields='dashboard_elements'):
         dashboard_elements = self.sdk.dashboard(
             looker_dashboard_id, fields)
         return dashboard_elements
-        
+
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def get_looker_schedule_plan_for_dashboard(self, looker_dashboard_id):
         dash_schedule_plans = self.sdk.scheduled_plans_for_dashboard(
             looker_dashboard_id, all_users=True)
         return dash_schedule_plans
- 
+
     def get_dashboard_lookml(self, all_dashboards: dict) -> list:
         # logging.info("Beginning Dashboard Capture:")
         response = []
@@ -48,11 +48,13 @@ class CaptureDashboards():
             if "::" in dashboard_id:
                 continue
             else:
-                dashboard_elements = self.get_looker_dashboard(looker_dashboard_id=dashboard_id)['dashboard_elements']
+                dashboard_elements = self.get_looker_dashboard(
+                    looker_dashboard_id=dashboard_id)['dashboard_elements']
                 dashboard_element_ids = [e['id'] for e in dashboard_elements]
                 dashboard_element_alert_counts = [
                     e['alert_count'] for e in dashboard_elements]
-                scheduled_plans = self.get_looker_schedule_plan_for_dashboard(looker_dashboard_id=dashboard_id)
+                scheduled_plans = self.get_looker_schedule_plan_for_dashboard(
+                    looker_dashboard_id=dashboard_id)
                 alerts = [
                     loc.AlertObject(alert) for alert in self.all_alerts if alert['dashboard_element_id'] in dashboard_element_ids]
 

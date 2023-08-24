@@ -357,3 +357,4 @@ class CreateAndProvisionInstanceFolders(CreateObject):
             content_access_metadata_list=content_access_metadata)
         self.remove_all_user_group(
             content_access_metadata_list=content_access_metadata)
+        print('aaaaaaa')

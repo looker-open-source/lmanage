@@ -1,5 +1,5 @@
 from tqdm import tqdm
-from looker_sdk import models40 as models
+from looker_sdk import models40 as models, error
 from lmanage.utils import logger_creation as log_color
 from lmanage.configurator.create_object import CreateObject
 
@@ -15,28 +15,29 @@ class CreateDashboards(CreateObject):
         self.logger = logger
 
     def execute(self):
-        mapping = self.__upload_dashboards()
+        mapping = self.__create_dashboards()
         self.logger.debug(mapping)
         return mapping
 
-    def __upload_dashboards(self) -> None:
+    def __create_dashboards(self) -> None:
         for dashboard in tqdm(self.content_metadata, desc="Dashboard Upload", unit="dashboards", colour="#2c8558"):
             self.logger.debug(type(dashboard))
-            t = dashboard.get('legacy_folder_id').get('folder_id')
-            new_folder_id = self.folder_mapping.get(t)
-            new_folder_id = new_folder_id if new_folder_id != 'Shared' else 1
-            body = models.WriteDashboardLookml(
-                folder_id=new_folder_id,
-                lookml=dashboard['lookml']
-            )
-            created_dashboard = self.sdk.import_dashboard_from_lookml(
-                body=body)
+            old_folder_id = dashboard.get('legacy_folder_id').get('folder_id')
+            new_folder_id = self.folder_mapping.get(old_folder_id)
+            try:
+                created_dashboard = self.sdk.import_dashboard_from_lookml(
+                    body=models.WriteDashboardLookml(
+                        folder_id=new_folder_id,
+                        lookml=dashboard['lookml']
+                    ))
+            except error.SDKError as e:
+                print(e.message)
 
-            if len(dashboard['scheduled_plans']) > 0:
+            if 'scheduled_plans' in dashboard and len(dashboard['scheduled_plans']) > 0:
                 self.__create_scheduled_plans(
                     dashboard['scheduled_plans'], created_dashboard.id)
 
-            if len(dashboard['alerts']) > 0:
+            if 'alerts' in dashboard and len(dashboard['alerts']) > 0:
                 self.__create_alerts(
                     dashboard['alerts'], dashboard['dashboard_element_alert_counts'], created_dashboard.dashboard_elements)
 

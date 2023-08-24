@@ -7,20 +7,18 @@ from lmanage.utils.helpers import nstr
 
 
 class CreateLooks(CreateObject):
-    def __init__(self, folder_mapping, sdk, content_metadata, logger):
+    def __init__(self, sdk, folder_mapping, content_metadata, logger):
         self.sdk = sdk
-        self.content_metadata = content_metadata
         self.folder_mapping = folder_mapping
+        self.content_metadata = content_metadata
         self.logger = logger
 
     def execute(self) -> dict:
         look_mapping = []
-
         for look in tqdm(self.content_metadata, desc="Look Creation", unit="attributes", colour="#2c8558"):
             query = self.__create_query(look_metadata=look)
-            created_look = self.__create_look(
-                query_id=query.id, look_metadata=look, folder_mapping=self.folder_mapping)
-            if len(look['scheduled_plans']) > 0:
+            created_look = self.__create_look(query.id, look)
+            if 'scheduled_plans' in look and len(look['scheduled_plans']) > 0:
                 self.__create_scheduled_plans(
                     look['scheduled_plans'], created_look.id)
             temp = {}
@@ -30,7 +28,6 @@ class CreateLooks(CreateObject):
             temp['folder_mapping'][look.get('legacy_folder_id')] = self.folder_mapping.get(
                 look.get('legacy_folder_id'))
             look_mapping.append(temp)
-
         return look_mapping
 
     def __create_query(self, look_metadata: dict) -> int:
@@ -60,15 +57,15 @@ class CreateLooks(CreateObject):
         response = self.sdk.create_query(body=query_body)
         return response
 
-    def __create_look(self, query_id: int, look_metadata: dict, folder_mapping: dict) -> dict:
-        legacy_fid = look_metadata.get('legacy_folder_id')
+    def __create_look(self, query_id: int, look: dict) -> dict:
+        old_folder_id = look.get('legacy_folder_id')
+        new_folder_id = self.folder_mapping.get(old_folder_id)
         look_body = models.WriteLookWithQuery(
-            title=look_metadata.get('title'),
-            description=look_metadata['description'],
+            title=look.get('title'),
+            description=look['description'],
             query_id=query_id,
-            folder_id=folder_mapping.get(legacy_fid) if folder_mapping.get(legacy_fid) != 'Shared' else '1')
-        response = self.sdk.create_look(body=look_body)
-        return response
+            folder_id=new_folder_id)
+        return self.sdk.create_look(body=look_body)
 
     def __create_scheduled_plans(self, scheduled_plans, look_id):
         for schedule in scheduled_plans:
