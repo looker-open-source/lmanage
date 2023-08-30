@@ -3,4 +3,4 @@ def xstr(value):
 
 
 def nstr(value):
-    return None if value is '' else value
+    return None if value == '' else value

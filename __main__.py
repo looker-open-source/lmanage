@@ -14,9 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import click
+import configparser
+import os
 import logging
 from functools import wraps
-from lmanage.lmanage_handler import LManageHandler
+from lmanage.capturator.looker_api_reader import LookerApiReader
+from lmanage.capturator.looker_config_saver import LookerConfigSaver
+from lmanage.configurator.looker_config_reader import LookerConfigReader
+from lmanage.configurator.looker_provisioner import LookerProvisioner
 from lmanage.mapview import mapview_execute
 from lmanage.utils import logger_creation as log_color
 
@@ -59,24 +64,54 @@ def common_options(f):
     def decorated_function(ctx, *args, **kwargs):
         log_args(**kwargs)
         kwargs = clean_args(**kwargs)
-        return ctx.invoke(f, *args, **kwargs)
+        return ctx.invoke(f, *args, kwargs.get('ini_file'), kwargs.get('config_dir'), kwargs.get('verbose'))
     return decorated_function
 
 
 @lmanage.command()
 @common_options
-def capturator(**kwargs):
+def capturator(ini_file, config_dir, verbose):
     """Captures security settings for your looker instance"""
-    LManageHandler(kwargs.get(
-        'ini_file'), kwargs.get('config_dir')).capture()
+    try:
+        target_url = get_target_url(ini_file)
+        if click.confirm(f'\nYou are about to capture settings and content from instance {target_url}. Proceed?'):
+            config = LookerApiReader(ini_file).get_config()
+            LookerConfigSaver(config_dir).save(config)
+    except RuntimeError as e:
+        print(e)
 
 
 @lmanage.command()
 @common_options
-def configurator(**kwargs):
+def configurator(ini_file, config_dir, verbose):
     """Configures security settings for your looker instance"""
-    LManageHandler(kwargs.get(
-        'ini_file'), kwargs.get('config_dir')).configure()
+    try:
+        target_url = get_target_url(ini_file)
+        config_reader = LookerConfigReader(config_dir)
+        config_reader.read()
+        summary = config_reader.get_summary()
+        if click.confirm(f'\nYou are about configure instance {target_url} with:\n{summary}\nAre you sure you want to proceed?'):
+            LookerProvisioner(ini_file).provision(config_reader.config)
+    except RuntimeError as e:
+        print(e)
+
+
+def get_target_url(ini_file):
+    if ini_file:
+        config_parser = configparser.ConfigParser()
+        successful_read = config_parser.read(ini_file)
+
+        if not successful_read:
+            raise FileNotFoundError(
+                f'Configuration file "{ini_file}" not found.')
+
+        sections = config_parser.sections()
+        return config_parser.get(sections[0], 'base_url')
+    else:
+        target_url = os.getenv('LOOKERSDK_BASE_URL')
+        if target_url is None:
+            raise ValueError(
+                'LOOKERSDK_BASE_URL environment variable not set.')
 
 
 @lmanage.command()
