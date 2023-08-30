@@ -24,6 +24,7 @@ verify_ssl=True
 ```
 
 - **level** (`--level`, `-l`) **Optional** Set this flag to DEBUG to receive expanded results in stdout for debugging
+- **force** (`--force`, `-f`) **Optional** Flag to skip initial confirmation, defaults to False
 
 ##### Yaml configurations
 

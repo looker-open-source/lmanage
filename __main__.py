@@ -58,23 +58,29 @@ def common_options(f):
                   help='Where to save the YAML files to use for instance configuration.', required=True)
     @click.option('-v', '--verbose',
                   is_flag=True,
-                  help='Add this flag value to get a more verbose version of the returned stout text.')
+                  help='Add this flag to get a more verbose version of the returned stout text.')
+    @click.option('-f', '--force',
+                  is_flag=True,
+                  help='Add this flag to skip confirmation prompt for capturing and configuring instance.')
     @click.pass_context
     @wraps(f)
     def decorated_function(ctx, *args, **kwargs):
         log_args(**kwargs)
         kwargs = clean_args(**kwargs)
-        return ctx.invoke(f, *args, kwargs.get('ini_file'), kwargs.get('config_dir'), kwargs.get('verbose'))
+        return ctx.invoke(f, *args, **kwargs)
     return decorated_function
 
 
 @lmanage.command()
 @common_options
-def capturator(ini_file, config_dir, verbose):
+def capturator(**kwargs):
     """Captures security settings for your looker instance"""
+    ini_file, config_dir, verbose, force = kwargs.get('ini_file'), kwargs.get(
+        'config_dir'), kwargs.get('verbose'), kwargs.get('force')
+
     try:
         target_url = get_target_url(ini_file)
-        if click.confirm(f'\nYou are about to capture settings and content from instance {target_url}. Proceed?'):
+        if force or (not force and click.confirm(f'\nYou are about to capture settings and content from instance {target_url}. Proceed?')):
             config = LookerApiReader(ini_file).get_config()
             LookerConfigSaver(config_dir).save(config)
     except RuntimeError as e:
@@ -83,14 +89,17 @@ def capturator(ini_file, config_dir, verbose):
 
 @lmanage.command()
 @common_options
-def configurator(ini_file, config_dir, verbose):
+def configurator(**kwargs):
     """Configures security settings for your looker instance"""
+    ini_file, config_dir, verbose, force = kwargs.get('ini_file'), kwargs.get(
+        'config_dir'), kwargs.get('verbose'), kwargs.get('force')
+
     try:
         target_url = get_target_url(ini_file)
         config_reader = LookerConfigReader(config_dir)
         config_reader.read()
         summary = config_reader.get_summary()
-        if click.confirm(f'\nYou are about configure instance {target_url} with:\n{summary}\nAre you sure you want to proceed?'):
+        if force or (not force and click.confirm(f'\nYou are about configure instance {target_url} with:\n{summary}\nAre you sure you want to proceed?')):
             LookerProvisioner(ini_file).provision(config_reader.config)
     except RuntimeError as e:
         print(e)

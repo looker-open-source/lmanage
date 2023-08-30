@@ -9,7 +9,7 @@ The capturator is the instance capture portion of the Instance Migrator Tool. It
 ##### Flags
 
 - **config-dir** (`--config-dir`, `-cd`) This is the directory to generate the yaml files to use for instance configuration.
-- **ini-file** (`--ini-file`, `-i`) This is the file path to the ini file that you've created to use the Looker SDK
+- **ini-file** (`--ini-file`, `-i`) **Optional** This is the file path to the ini file that you've created to use the Looker SDK. Will default to environment variables if not set.
 
 ```
 #example Ini file
@@ -21,6 +21,7 @@ verify_ssl=True
 ```
 
 - **level** (`--verbose`, `-v`) **Optional** Set this flag to receive expanded results in stdout for debugging
+- **force** (`--force`, `-f`) **Optional** Flag to skip initial confirmation, defaults to False
 
 ##### Anatomy of your Settings Yaml File
 
