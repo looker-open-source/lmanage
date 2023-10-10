@@ -58,7 +58,7 @@ class CaptureDashboards():
                 alerts = [
                     loc.AlertObject(alert) for alert in self.all_alerts if alert['dashboard_element_id'] in dashboard_element_ids]
 
-                while lookml is None:
+                while lookml is None and trys < 5:
                     trys += 1
                     try:
                         lookml = self.sdk.dashboard_lookml(
@@ -66,18 +66,19 @@ class CaptureDashboards():
                     except:
                         eh.return_sleep_message(call_number=trys, quiet=True)
 
-                self.logger.debug(lookml.lookml)
-                captured_dashboard = loc.DashboardObject(
-                    legacy_folder_id=all_dashboards.get(dashboard_id),
-                    lookml=lookml.lookml,
-                    dashboard_id=dashboard_id,
-                    dashboard_slug=all_dashboards.get(
-                        dashboard_id).get('slug'),
-                    dashboard_element_alert_counts=dashboard_element_alert_counts,
-                    scheduled_plans=scheduled_plans,
-                    alerts=alerts
-                )
-                response.append(captured_dashboard)
+                if lookml:
+                    self.logger.debug(lookml.lookml)
+                    captured_dashboard = loc.DashboardObject(
+                        legacy_folder_id=all_dashboards.get(dashboard_id),
+                        lookml=lookml.lookml,
+                        dashboard_id=dashboard_id,
+                        dashboard_slug=all_dashboards.get(
+                            dashboard_id).get('slug'),
+                        dashboard_element_alert_counts=dashboard_element_alert_counts,
+                        scheduled_plans=scheduled_plans,
+                        alerts=alerts
+                    )
+                    response.append(captured_dashboard)
         return response
 
     def execute(self):
