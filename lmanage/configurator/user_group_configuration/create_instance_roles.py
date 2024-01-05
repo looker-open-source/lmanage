@@ -1,4 +1,5 @@
-from looker_sdk import models, error
+from looker_sdk import error
+from looker_sdk.sdk.api40 import models
 from lmanage.configurator.user_group_configuration.create_role_base import CreateRoleBase
 from lmanage.utils.errorhandling import return_error_message
 from tqdm import tqdm

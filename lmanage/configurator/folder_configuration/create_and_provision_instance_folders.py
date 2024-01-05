@@ -1,6 +1,7 @@
 import logging
 import time
-from looker_sdk import models, error
+from looker_sdk import error
+from looker_sdk.sdk.api40 import models
 from lmanage.utils import errorhandling
 from tqdm import tqdm
 from lmanage.utils.errorhandling import return_sleep_message
