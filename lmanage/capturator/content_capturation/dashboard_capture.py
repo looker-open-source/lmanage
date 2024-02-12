@@ -42,7 +42,7 @@ class CaptureDashboards():
     def get_dashboard_lookml(self, all_dashboards: dict) -> list:
         # logging.info("Beginning Dashboard Capture:")
         response = []
-        for dashboard_id in tqdm(all_dashboards, desc="Dashboard Capture", unit="dashboards", colour="#2c8558"):
+        for dashboard_id in tqdm(all_dashboards, desc="Dashboard Capture", unit=" dashboards", colour="#2c8558"):
             lookml = None
             trys = 0
             if "::" in dashboard_id:
