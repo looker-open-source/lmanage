@@ -1,5 +1,4 @@
 import logging
-from looker_sdk import models
 from os import name
 import pytest
 from lmanage.capturator.content_capturation import look_capture as lc

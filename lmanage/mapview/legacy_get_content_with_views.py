@@ -23,7 +23,7 @@ from lmanage.itertools import chain
 
 import coloredlogs
 import looker_sdk
-from looker_sdk import models
+from looker_sdk.sdk.api40 import models
 import pandas as pd
 from lmanage.utils import parsing_sql
 from lmanage.utils import create_df
@@ -186,7 +186,7 @@ def parse_sql(sdk, qid: int):
         else:
             return sql_response
     except looker_sdk.error.SDKError:
-        return('No Content')
+        return ('No Content')
 
 
 def get_sql_from_elements(sdk, content_results):

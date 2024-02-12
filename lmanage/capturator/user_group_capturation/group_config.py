@@ -1,5 +1,7 @@
-from looker_sdk import models, error
+from looker_sdk import error
+from looker_sdk.sdk.api40 import models
 from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
+
 
 class GetInstanceGroups():
     def __init__(self, sdk, logger) -> None:
@@ -48,7 +50,8 @@ class GetInstanceGroups():
             return group
         except error.SDKError as grouperr:
             err_msg = eh.return_error_message(grouperr)
-            self.logger.info('you have an error in your group; error = %s', err_msg)
+            self.logger.info(
+                'you have an error in your group; error = %s', err_msg)
             self.logger.debug(grouperr)
             group = sdk.search_groups(name=group_name)
             return group[0]

@@ -1,4 +1,5 @@
-from looker_sdk import models, error
+from looker_sdk import error
+from looker_sdk.sdk.api40 import models
 from lmanage.utils import errorhandling as eh
 from lmanage.utils import logger_creation as log_color
 from tqdm import tqdm

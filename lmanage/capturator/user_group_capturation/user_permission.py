@@ -1,6 +1,6 @@
 import logging
 import looker_sdk
-from looker_sdk import models
+from looker_sdk.sdk.api40 import models
 from role_config import CreateRoleBase
 from lmanage.utils import logger_creation as log_color
 

@@ -1,5 +1,6 @@
 import logging
-from looker_sdk import models, error
+from looker_sdk import error
+from looker_sdk.sdk.api40 import models
 from tqdm import tqdm
 from tenacity import retry, wait_random, wait_fixed, stop_after_attempt
 from lmanage.configurator.create_object import CreateObject

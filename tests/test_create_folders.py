@@ -1,5 +1,5 @@
 import logging
-from looker_sdk import models
+from looker_sdk.sdk.api40 import models
 from os import name
 import pytest
 from lmanage.configurator.folder_configuration import create_folders as cf

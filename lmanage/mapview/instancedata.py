@@ -1,4 +1,4 @@
-from looker_sdk import models
+from looker_sdk.sdk.api40 import models
 import json
 
 

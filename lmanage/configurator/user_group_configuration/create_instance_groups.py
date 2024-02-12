@@ -1,4 +1,5 @@
-from looker_sdk import models, error
+from looker_sdk import error
+from looker_sdk.sdk.api40 import models
 from lmanage.utils.errorhandling import return_error_message
 from tqdm import tqdm
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
