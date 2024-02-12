@@ -32,10 +32,11 @@ class LookerConfigReader():
             len(d.get('scheduled_plans')) if d.get('scheduled_plans') else 0,
             len(d.get('alerts')) if d.get('alerts') else 0)
             for d in config['dashboard_metadata']]
+        print(dashboard_scheduled_plan_and_alert_counts)
         dashboard_scheduled_plan_count = sum(
-            dashboard_scheduled_plan_and_alert_counts[0])
+            dashboard_scheduled_plan_and_alert_counts[0]) if dashboard_scheduled_plan_and_alert_counts else 0
         dashboard_alert_count = sum(
-            dashboard_scheduled_plan_and_alert_counts[1])
+            dashboard_scheduled_plan_and_alert_counts[1]) if dashboard_scheduled_plan_and_alert_counts else 0
         return f'''
         {len(config['permission_set_metadata']):<5} permissions
         {len(config['model_set_metadata']):<5} models
