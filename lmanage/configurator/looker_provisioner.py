@@ -54,16 +54,16 @@ class LookerProvisioner():
             folders=created_folder_metadata,
             sdk=self.sdk, logger=self.logger).execute()
 
-        # ###############
-        # # Role Config #
-        # ###############
+        ###############
+        # Role Config #
+        ###############
         up.CreateInstanceRoles(roles=metadata['role_metadata'],
                                sdk=self.sdk,
                                logger=self.logger).execute()
 
-        # #########################
-        # # User Attribute Config #
-        # #########################
+        #########################
+        # User Attribute Config #
+        #########################
         # FIND UNIQUE USER ATTRIBUTES AND ATTRIBUTE TO TEAM
         cuap.CreateAndAssignUserAttributes(
             user_attributes=metadata['user_attribute_metadata'],

@@ -30,6 +30,7 @@ class CreateLooks(CreateObject):
             look_mapping.append(temp)
         return look_mapping
 
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def __create_query(self, look_metadata: dict) -> int:
         '''create a query from look metadata and return the id'''
         query_body = models.WriteQuery(

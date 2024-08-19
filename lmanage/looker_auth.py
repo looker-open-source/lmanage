@@ -20,5 +20,5 @@ class LookerAuth():
         try:
             sdk.me()
             return True
-        except error.SDKError():
+        except:
             return False

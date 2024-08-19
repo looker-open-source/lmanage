@@ -2,6 +2,7 @@ from tqdm import tqdm
 from looker_sdk import models40 as models, error
 from lmanage.utils import logger_creation as log_color
 from lmanage.configurator.create_object import CreateObject
+from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 
 # logger = log_color.init_logger(__name__, logger_level)
 
@@ -18,6 +19,15 @@ class CreateDashboards(CreateObject):
         mapping = self.__create_dashboards()
         self.logger.debug(mapping)
         return mapping
+    
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
+    def __create_dashboard(self, folder_id, lookml) -> None:
+        created_dashboard = self.sdk.import_dashboard_from_lookml(
+            body=models.WriteDashboardLookml(
+                folder_id=folder_id,
+                lookml=lookml
+            ))
+        return created_dashboard
 
     def __create_dashboards(self) -> None:
         for dashboard in tqdm(self.content_metadata, desc="Dashboard Upload", unit="dashboards", colour="#2c8558"):
@@ -25,13 +35,10 @@ class CreateDashboards(CreateObject):
             old_folder_id = dashboard.get('legacy_folder_id').get('folder_id')
             new_folder_id = self.folder_mapping.get(old_folder_id)
             try:
-                created_dashboard = self.sdk.import_dashboard_from_lookml(
-                    body=models.WriteDashboardLookml(
-                        folder_id=new_folder_id,
-                        lookml=dashboard['lookml']
-                    ))
+                created_dashboard = self.__create_dashboard(new_folder_id, dashboard.get('lookml'))
             except error.SDKError as e:
                 print(e.message)
+                continue
 
             if 'scheduled_plans' in dashboard and len(dashboard['scheduled_plans']) > 0:
                 self.__create_scheduled_plans(
@@ -41,6 +48,7 @@ class CreateDashboards(CreateObject):
                 self.__create_alerts(
                     dashboard['alerts'], dashboard['dashboard_element_alert_counts'], created_dashboard.dashboard_elements)
 
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def __create_alerts(self, alerts, alert_counts, dashboard_elements):
         alert_index = 0
         alert_count_index = 0
@@ -69,6 +77,7 @@ class CreateDashboards(CreateObject):
                 alert_index += 1
             alert_count_index += 1
 
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
     def __create_scheduled_plans(self, scheduled_plans, dashboard_id):
         for schedule in scheduled_plans:
             destinations = []

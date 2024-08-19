@@ -92,7 +92,10 @@ class CreateInstanceGroups(CreateObject):
         all_groups = self.sdk.all_groups()
         group_dict = {group.name: group.id for group in all_groups}
         # Deleting Standard Groups
-        del group_dict['All Users']
+        try:
+            del group_dict['All Users']
+        except:
+            pass
 
         for group_name in group_dict.keys():
             if group_name not in group_name_list:
