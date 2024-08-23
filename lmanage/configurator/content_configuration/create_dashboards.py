@@ -87,9 +87,9 @@ class CreateDashboards(CreateObject):
         for schedule in scheduled_plans:
             destinations = []
             for d in schedule['scheduled_plan_destination']:
-                destination = models.ScheduledPlanDestination()
-                destination.__dict__.update(d)
-                destinations.append(destination)
+                # destination = models.ScheduledPlanDestination()
+                # destination.__dict__.update(d)
+                destinations.append(d)
             body = models.WriteScheduledPlan(
                 name=schedule['name'],
                 # user_id="1",
