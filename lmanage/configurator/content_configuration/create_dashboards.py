@@ -1,3 +1,4 @@
+import json
 from tqdm import tqdm
 from looker_sdk import models40 as models, error
 from lmanage.utils import logger_creation as log_color
@@ -58,22 +59,26 @@ class CreateDashboards(CreateObject):
                 alert = alerts[alert_index]
                 field = alert['field']
                 element_id = element.id
-                self.sdk.create_alert(body=models.WriteAlert(
-                    cron=alert['cron'],
-                    custom_title=alert['custom_title'],
-                    dashboard_element_id=element_id,
-                    applied_dashboard_filters=alert['applied_dashboard_filters'],
-                    comparison_type=alert['comparison_type'],
-                    destinations=alert['destinations'],
-                    field={
-                        'title': field['title'],
-                        'name': field['name']
-                    },
-                    is_disabled=alert['is_disabled'],
-                    is_public=alert['is_public'],
-                    threshold=alert['threshold'],
-                    owner_id=self.alert_owner_id
-                ))
+                alert_body = json.dumps(
+                    {
+                        "cron": alert['cron'],
+                        "custom_title": alert['custom_title'],
+                        "dashboard_element_id": element_id,
+                        "applied_dashboard_filters": alert['applied_dashboard_filters'],
+                        "comparison_type": alert['comparison_type'],
+                        "destinations": alert['destinations'],
+                        "field": {
+                            'title': field['title'],
+                            'name': field['name']
+                        },
+                        "is_disabled": alert['is_disabled'],
+                        "is_public": alert['is_public'],
+                        "threshold": alert['threshold'],
+                        "owner_id": self.alert_owner_id
+                    }
+                )
+                self.sdk.create_alert(body=alert_body)
+                    
                 alert_index += 1
             alert_count_index += 1
 

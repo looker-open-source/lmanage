@@ -7,13 +7,9 @@ from lmanage.utils import logger_creation as log_color
 
 
 class LookerProvisioner():
-    def __init__(self, ini_file):
+    def __init__(self, ini_file, verbose):
         self.sdk = LookerAuth().authenticate(ini_file)
-        logger_level = 'INFO'  # kwargs.get('verbose')
-        self.logger = log_color.init_logger(__name__, logger_level)
-        self.logger.info(
-            '----------------------------------------------------------------------------------------')
-        self.logger.info('provisioning')
+        self.logger = log_color.init_logger(__name__, testing_mode=verbose)
 
     def provision(self, metadata):
         ###############

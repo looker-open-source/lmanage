@@ -23,7 +23,7 @@ from lmanage.configurator.looker_config_reader import LookerConfigReader
 from lmanage.configurator.looker_provisioner import LookerProvisioner
 from lmanage.utils import logger_creation as log_color
 
-logger = log_color.init_logger(__name__, testing_mode=False)
+# logger = log_color.init_logger(__name__, testing_mode=False)
 
 
 @click.group()
@@ -98,7 +98,7 @@ def configurator(**kwargs):
         config_reader.read()
         summary = config_reader.get_summary()
         if force or (not force and click.confirm(f'\nYou are about configure instance {target_url} with:\n{summary}\nAre you sure you want to proceed?')):
-            LookerProvisioner(ini_file).provision(config_reader.config)
+            LookerProvisioner(ini_file, verbose).provision(config_reader.config)
     except RuntimeError as e:
         print(e)
 
