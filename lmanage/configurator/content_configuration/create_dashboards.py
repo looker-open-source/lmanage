@@ -69,7 +69,8 @@ class CreateDashboards(CreateObject):
                         "destinations": alert['destinations'],
                         "field": {
                             'title': field['title'],
-                            'name': field['name']
+                            'name': field['name'],
+                            "filter": field["filter"]
                         },
                         "is_disabled": alert['is_disabled'],
                         "is_public": alert['is_public'],
