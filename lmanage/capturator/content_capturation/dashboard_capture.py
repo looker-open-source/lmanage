@@ -3,6 +3,7 @@ import logging
 from lmanage.utils import looker_object_constructors as loc, errorhandling as eh, logger_creation as log_color
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 from yaspin import yaspin
+from looker_sdk import error
 
 
 class CaptureDashboards():
@@ -16,7 +17,7 @@ class CaptureDashboards():
         scrub_dashboards = {}
         with yaspin().white.bold.shark.on_blue as sp:
             sp.text = "getting all system dashboard metadata (can take a while)"
-            all_dashboards = self.sdk.all_dashboards(fields="id,folder, slug")
+            all_dashboards = self.sdk.all_dashboards(fields="id,folder,slug")
 
         for dash in all_dashboards:
             self.logger.debug(self.content_folders)
@@ -63,7 +64,8 @@ class CaptureDashboards():
                     try:
                         lookml = self.sdk.dashboard_lookml(
                             dashboard_id=dashboard_id)
-                    except:
+                    except error.SDKError as e:
+                        self.logger.error(f"LookML download error for dashboard {dashboard_id}")
                         eh.return_sleep_message(call_number=trys, quiet=True)
 
                 if lookml:
