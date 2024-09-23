@@ -93,11 +93,10 @@ class CreateDashboards(CreateObject):
                 destinations.append(d)
             body = models.WriteScheduledPlan(
                 name=schedule['name'],
-                # user_id="1",
                 run_as_recipient=schedule['run_as_recipient'],
                 enabled=schedule['enabled'],
                 dashboard_id=dashboard_id,
-                # lookml_dashboard_id=schedule['lookml_dashboard_id'],
+                lookml_dashboard_id=schedule['lookml_dashboard_id'],
                 scheduled_plan_destination=destinations,
                 filters_string=schedule['filters_string'],
                 require_results=schedule['require_results'],
