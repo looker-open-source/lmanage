@@ -72,9 +72,9 @@ class CreateLooks(CreateObject):
         for schedule in scheduled_plans:
             destinations = []
             for d in schedule['scheduled_plan_destination']:
-                destination = models.ScheduledPlanDestination()
-                destination.__dict__.update(d)
-                destinations.append(destination)
+                # destination = models.ScheduledPlanDestination()
+                # destination.__dict__.update(d)
+                destinations.append(d)
             body = models.WriteScheduledPlan(
                 name=schedule['name'],
                 run_as_recipient=schedule['run_as_recipient'],
