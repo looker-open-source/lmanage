@@ -4,14 +4,16 @@ from lmanage.utils import looker_object_constructors as loc, errorhandling as eh
 from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
 from yaspin import yaspin
 from looker_sdk import error
-
+from collections import Counter
 
 class CaptureDashboards():
-    def __init__(self, sdk, content_folders: dict, logger, all_alerts):
+    def __init__(self, sdk, content_folders: dict, logger):
         self.sdk = sdk
         self.content_folders = content_folders
         self.logger = logger
-        self.all_alerts = all_alerts
+        self.all_alerts = self.sdk.search_alerts(all_owners=True)
+        all_dashboard_elements_with_alerts = [alert.dashboard_element_id for alert in self.all_alerts]
+        self.dashboard_element_alert_counts = dict(Counter(all_dashboard_elements_with_alerts))
 
     def get_all_dashboards(self) -> dict:
         scrub_dashboards = {}
@@ -52,8 +54,7 @@ class CaptureDashboards():
                 dashboard_elements = self.get_looker_dashboard(
                     looker_dashboard_id=dashboard_id)['dashboard_elements']
                 dashboard_element_ids = [e['id'] for e in dashboard_elements]
-                dashboard_element_alert_counts = [
-                    e['alert_count'] for e in dashboard_elements]
+                dashboard_element_alert_counts = [self.dashboard_element_alert_counts.get(id, 0) for id in dashboard_element_ids]
                 scheduled_plans = self.get_looker_schedule_plan_for_dashboard(
                     looker_dashboard_id=dashboard_id)
                 alerts = [
