@@ -58,6 +58,7 @@ class CreateDashboards(CreateObject):
             alert_count = int(alert_counts[alert_index])
             for _ in range(alert_count):
                 alert = alerts[alert_index]
+                applied_dashboard_filters = [f for f in alert['applied_dashboard_filters'] if f["filter_title"] != ""]
                 field = alert['field']
                 element_id = element.id
                 alert_body = json.dumps(
@@ -65,7 +66,7 @@ class CreateDashboards(CreateObject):
                         "cron": alert['cron'],
                         "custom_title": alert['custom_title'],
                         "dashboard_element_id": element_id,
-                        "applied_dashboard_filters": alert['applied_dashboard_filters'],
+                        "applied_dashboard_filters": applied_dashboard_filters,
                         "comparison_type": alert['comparison_type'],
                         "destinations": alert['destinations'],
                         "field": {
@@ -80,7 +81,6 @@ class CreateDashboards(CreateObject):
                     }
                 )
                 self.sdk.create_alert(body=alert_body)
-                    
                 alert_index += 1
             alert_count_index += 1
 
