@@ -3,10 +3,13 @@ from tqdm import tqdm
 from looker_sdk import models40 as models, error
 from lmanage.utils import logger_creation as log_color
 from lmanage.configurator.create_object import CreateObject
-from tenacity import retry, wait_fixed, wait_random, stop_after_attempt
+from tenacity import retry, wait_fixed, wait_random, stop_after_attempt, retry_if_exception_type
 
 # logger = log_color.init_logger(__name__, logger_level)
 
+class NonRetryableError(Exception):
+    """Custom exception for non-retryable errors."""
+    pass
 
 class CreateDashboards(CreateObject):
     def __init__(self, sdk, folder_mapping, content_metadata, logger) -> None:
@@ -21,25 +24,33 @@ class CreateDashboards(CreateObject):
         self.logger.debug(mapping)
         return mapping
     
-    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5))
-    def __create_dashboard(self, folder_id, lookml) -> None:
-        created_dashboard = self.sdk.import_dashboard_from_lookml(
-            body=models.WriteDashboardLookml(
-                folder_id=folder_id,
-                lookml=lookml
-            ))
-        return created_dashboard
+    @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5), retry=retry_if_exception_type(error.SDKError))
+    def __create_dashboard(self, dashboard_id, folder_id, lookml) -> None:
+        try:
+            created_dashboard = self.sdk.import_dashboard_from_lookml(
+                body=models.WriteDashboardLookml(
+                    folder_id=folder_id,
+                    lookml=lookml
+                ))
+            return created_dashboard
+        except error.SDKError as e:
+            if e.errors and hasattr(e.errors[0], "message") and e.errors[0].message == "Filter with this title already exists.":
+                self.logger.error(f"Dashboard {dashboard_id} failed with 'Filter with this title already exists' error.")
+                raise NonRetryableError("Non-retryable error encountered, skipping retries.")
+            else:
+                self.logger.error(f"Dashboard {dashboard_id} failed with '{e.message}' error.")
+                raise
+
 
     def __create_dashboards(self) -> None:
         for dashboard in tqdm(self.content_metadata, desc="Dashboard Upload", unit="dashboards", colour="#2c8558"):
             self.logger.debug(type(dashboard))
             old_folder_id = dashboard.get('legacy_folder_id').get('folder_id')
             new_folder_id = self.folder_mapping.get(old_folder_id)
+
             try:
-                created_dashboard = self.__create_dashboard(new_folder_id, dashboard.get('lookml'))
-            except error.SDKError as e:
-                print(e.message)
-                print(e.errors)
+                created_dashboard = self.__create_dashboard(dashboard.get('dashboard_id'), new_folder_id, dashboard.get('lookml'))
+            except NonRetryableError:
                 continue
 
             if 'scheduled_plans' in dashboard and len(dashboard['scheduled_plans']) > 0:
