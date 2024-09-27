@@ -61,7 +61,8 @@ class CreateAndAssignUserAttributes(CreateObject):
             'last_name',
             'number_format',
             'locale',
-            'name'
+            'name',
+            "looker_internal_email_domain_allowlist",
         ]
 
         for ua in sys_default_ua:

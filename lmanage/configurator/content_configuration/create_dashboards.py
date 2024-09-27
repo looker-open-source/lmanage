@@ -55,7 +55,7 @@ class CreateDashboards(CreateObject):
         alert_index = 0
         alert_count_index = 0
         for element in dashboard_elements:
-            alert_count = int(alert_counts[alert_index])
+            alert_count = int(alert_counts[alert_count_index])
             for _ in range(alert_count):
                 alert = alerts[alert_index]
                 applied_dashboard_filters = [f for f in alert['applied_dashboard_filters'] if f["filter_title"] != ""]
@@ -80,7 +80,11 @@ class CreateDashboards(CreateObject):
                         "owner_id": self.alert_owner_id
                     }
                 )
-                self.sdk.create_alert(body=alert_body)
+                try:
+                    self.sdk.create_alert(body=alert_body)
+                except error.SDKError as e:
+                    print(e.message)
+                    print(e.errors)
                 alert_index += 1
             alert_count_index += 1
 
