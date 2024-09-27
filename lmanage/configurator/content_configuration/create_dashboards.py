@@ -25,7 +25,7 @@ class CreateDashboards(CreateObject):
         return mapping
     
     @retry(wait=wait_fixed(3) + wait_random(0, 2), stop=stop_after_attempt(5), retry=retry_if_exception_type(error.SDKError))
-    def __create_dashboard(self, dashboard_id, folder_id, lookml) -> None:
+    def __create_dashboard(self, dashboard_id, old_folder_id, folder_id, lookml) -> None:
         try:
             created_dashboard = self.sdk.import_dashboard_from_lookml(
                 body=models.WriteDashboardLookml(
@@ -35,10 +35,10 @@ class CreateDashboards(CreateObject):
             return created_dashboard
         except error.SDKError as e:
             if e.errors and hasattr(e.errors[0], "message") and e.errors[0].message == "Filter with this title already exists.":
-                self.logger.error(f"Dashboard {dashboard_id} failed with 'Filter with this title already exists' error.")
+                self.logger.error(f"Dashboard {dashboard_id} in folder {old_folder_id} failed with 'Filter with this title already exists' error.")
                 raise NonRetryableError("Non-retryable error encountered, skipping retries.")
             else:
-                self.logger.error(f"Dashboard {dashboard_id} failed with '{e.message}' error.")
+                self.logger.error(f"Dashboard {dashboard_id} in folder {old_folder_id} failed with '{e.message}' error.")
                 raise
 
 
@@ -49,7 +49,7 @@ class CreateDashboards(CreateObject):
             new_folder_id = self.folder_mapping.get(old_folder_id)
 
             try:
-                created_dashboard = self.__create_dashboard(dashboard.get('dashboard_id'), new_folder_id, dashboard.get('lookml'))
+                created_dashboard = self.__create_dashboard(dashboard.get('dashboard_id'), old_folder_id, new_folder_id, dashboard.get('lookml'))
             except NonRetryableError:
                 continue
 
