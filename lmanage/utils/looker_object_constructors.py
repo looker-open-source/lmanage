@@ -141,10 +141,10 @@ class AlertObject:
 
 class AlertAppliedDashboardFilterObject:
     def __init__(self, filter):
-        self.filter_title = filter.get("title")
-        self.field_name = filter.get("title")
-        self.filter_value = filter.get("title")
-        self.filter_description = xstr(filter.get("title"))
+        self.filter_title = filter.get("filter_title")
+        self.field_name = filter.get("field_name")
+        self.filter_value = filter.get("filter_value")
+        self.filter_description = xstr(filter.get("filter_description"))
 
 
 class AlertDestinationObject:
