@@ -2,6 +2,7 @@
 name = "lmanage"
 version = "0.3.36"
 description = "LManage is a collection of useful tools for Looker admins to help curate and cleanup content and it's associated source LookML."
+license = "Apache-2.0"
 keywords = ["keyword", "another_keyword"]
 authors = ["hselbie <hselbie@gmail.com>"]
 readme = "README.md"
